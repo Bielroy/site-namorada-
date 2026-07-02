@@ -4,684 +4,469 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para o Meu Amor ❤️</title>
-    <!-- Fallback de fontes (se falhar, usa sans-serif nativa) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" onerror="this.onerror=null;this.href=''">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onerror="this.onerror=null;this.href=''">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* =========================================================
-           TEMAS E VARIÁVEIS CSS
+           CONFIGURAÇÕES GERAIS E CORES (VIBE MAIS QUENTE/ROMÂNTICA)
            ========================================================= */
         :root {
-            --bg-grad: linear-gradient(135deg, #fce4ec, #f8bbd0);
-            --primary: #e91e63; --primary-dark: #c2185b;
-            --text-main: #333; --text-muted: #666;
-            --glass-bg: rgba(255, 255, 255, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --font-main: 'Poppins', sans-serif; --font-title: 'Dancing Script', cursive;
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --text-main: #222;
+            --text-muted: #555;
+            --glass-bg: rgba(255, 255, 255, 0.85); /* Fundo mais opaco e legível */
+            --glass-border: rgba(255, 77, 77, 0.3);
+            --font-main: 'Nunito', sans-serif;
+            --font-title: 'VT323', monospace;
         }
-
-        [data-theme="sakura"] { --bg-grad: linear-gradient(135deg, #fce4ec, #ffcdd2); --primary: #f06292; }
-        [data-theme="galaxy"] { --bg-grad: linear-gradient(135deg, #0f0c29, #302b63, #24243e); --primary: #b388ff; --text-main: #fff; --text-muted: #ccc; --glass-bg: rgba(0,0,0,0.5); --glass-border: rgba(255,255,255,0.1); }
-        [data-theme="rain"] { --bg-grad: linear-gradient(135deg, #4b6cb7, #182848); --primary: #64b5f6; --text-main: #fff; --text-muted: #ccc; --glass-bg: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.2); }
-        [data-theme="dark"] { --bg-grad: linear-gradient(135deg, #121212, #212121); --primary: #ff4d4d; --text-main: #fff; --text-muted: #aaa; --glass-bg: rgba(30,30,30,0.8); --glass-border: rgba(255,255,255,0.1); }
-        [data-theme="roxo"] { --bg-grad: linear-gradient(135deg, #f3e5f5, #ce93d8); --primary: #9c27b0; }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body {
-            font-family: var(--font-main); color: var(--text-main);
-            background: var(--bg-grad); background-attachment: fixed;
-            min-height: 100vh; overflow-x: hidden; transition: background 0.5s;
+            font-family: var(--font-main); 
+            color: var(--text-main);
+            /* O SEU FUNDO DE CORAÇÕES VOLTOU AQUI */
+            background-image: url('1000274205.jpg'); 
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
+        /* Classes de Fundo Fosco (Glassmorphism mais robusto) */
         .glass {
-            background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .fade-in { animation: fadeIn 0.5s ease forwards; }
-        .slide-up { animation: slideUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--primary)); } }
+        /* Textos Maiores */
+        h1, h2, h3 { color: var(--primary); margin-bottom: 15px; font-family: var(--font-title); letter-spacing: 1px; }
+        h1 { font-size: 45px; line-height: 1.1; }
+        h2 { font-size: 35px; }
+        p { font-size: 22px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
 
-        .particle { position: fixed; pointer-events: none; z-index: 9998; animation: floatUp linear forwards; }
-        @keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
-
+        /* Botões Maiores e Mais Vivos */
         .btn {
-            background: var(--primary); color: white; border: none; padding: 12px 24px;
-            border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer;
-            transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: var(--primary); color: white; border: none; 
+            padding: 18px 35px; border-radius: 50px; 
+            font-weight: 900; font-size: 22px; font-family: var(--font-main);
+            cursor: pointer; transition: 0.3s; 
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+            text-transform: uppercase;
         }
-        .btn:hover { transform: translateY(-3px) scale(1.02); filter: brightness(1.1); }
-        .btn:active { transform: translateY(1px); }
-
-        h1, h2, h3 { color: var(--primary); margin-bottom: 10px; }
-        .title-fancy { font-family: var(--font-title); font-size: 2.8rem; letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
-
-        /* Roteamento e Telas Base */
-        .page { display: none; width: 100%; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-        .page.active { display: flex; animation: fadeIn 0.4s; }
-
-        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-grad); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s opacity; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(211, 47, 47, 0.6); }
+        .btn:active { transform: translateY(2px); }
+        .btn-green { background-color: #2e7d32; box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4); }
+        .btn-green:hover { background-color: #1b5e20; box-shadow: 0 10px 25px rgba(46, 125, 50, 0.6); }
         
-        #dashboard-content { max-width: 600px; width: 100%; padding-bottom: 80px; }
+        .emoji-big { font-size: 100px; margin: 20px 0; cursor: pointer; display: inline-block; }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(211,47,47,0.5)); } }
+
+        /* Roteamento de Telas (Ocultar/Mostrar) */
+        .page { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; width: 100%; }
+        .page.active { display: flex; animation: fadeIn 0.6s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* =========================================================
+           O FEED DE ROLAGEM (A NOVA TELA PRINCIPAL)
+           ========================================================= */
+        #feed-container { max-width: 800px; width: 100%; padding: 40px 0; display: flex; flex-direction: column; gap: 40px; }
         
-        .hero-section { text-align: center; margin-bottom: 30px; position: relative; }
-        .hero-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 15px; animation: float 4s ease-in-out infinite; cursor: pointer; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        /* Seções do Feed */
+        .feed-section { padding: 40px 30px; text-align: center; }
+        
+        /* Animação de Scroll (Revelar) */
+        .reveal { opacity: 0; transform: translateY(80px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Grid */
-        .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
-        .app-icon { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .app-icon i { font-size: 28px; color: var(--primary); }
-        .app-icon span { font-size: 12px; font-weight: 600; }
-        .app-icon:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); background: var(--primary); color: white; }
-        .app-icon:hover i { color: white; }
+        /* Contadores Grandes */
+        .counter-box { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+        .counter-item { background: rgba(211, 47, 47, 0.1); border: 2px solid var(--primary); padding: 15px 20px; border-radius: 20px; min-width: 110px; }
+        .counter-item span { display: block; font-size: 40px; font-weight: 900; color: var(--primary); font-family: var(--font-title); }
+        .counter-item small { font-size: 16px; font-weight: 700; text-transform: uppercase; color: var(--text-main); }
 
-        /* Modais */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
-        .modal-overlay.active { display: flex; animation: fadeIn 0.3s forwards; }
-        .modal-content { background: var(--bg-grad); width: 95%; max-width: 500px; max-height: 85vh; border-radius: 25px; padding: 25px; overflow-y: auto; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-main); background: rgba(255,255,255,0.3); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; }
+        /* Álbum Grade Maior */
+        .album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .album-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 20px; border: 4px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+        .album-grid img:hover { transform: scale(1.03); }
 
-        /* Custom UI (Toasts, Prompts) */
-        #custom-toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #323232; color: white; padding: 12px 25px; border-radius: 30px; font-size: 14px; z-index: 9999; transition: 0.4s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        #custom-toast.show { bottom: 30px; }
+        /* Linha do Tempo Estilizada */
+        .timeline { margin-top: 30px; text-align: left; position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--primary); border-radius: 4px; opacity: 0.5; }
+        .timeline-item { position: relative; margin-bottom: 30px; background: rgba(255,255,255,0.6); padding: 20px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05); }
+        .timeline-item::before { content: ''; position: absolute; left: -42px; top: 20px; width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+        .timeline-date { color: var(--primary); font-weight: 900; font-size: 18px; margin-bottom: 5px; }
 
-        .ui-prompt { background: var(--glass-bg); padding: 20px; border-radius: 15px; text-align: center; }
-        .ui-prompt input { margin: 15px 0; border: 2px solid var(--primary); }
+        /* Botão Admin Flutuante */
+        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; opacity: 0.4; transition: 0.3s; }
+        .admin-btn:hover { opacity: 1; transform: rotate(90deg); }
 
-        /* Widgets */
-        .mood-bar { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
-        .mood-btn { font-size: 24px; background: transparent; border: none; cursor: pointer; transition: 0.2s; filter: grayscale(1); }
-        .mood-btn.active, .mood-btn:hover { filter: grayscale(0); transform: scale(1.3); }
-
-        .mission-item { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.4); padding: 12px; border-radius: 15px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; }
-        .mission-item.done { text-decoration: line-through; opacity: 0.6; background: rgba(76, 175, 80, 0.2); }
-
-        .surprise-box-container { perspective: 1000px; width: 150px; height: 150px; margin: 50px auto; cursor: pointer; }
-        .surprise-box { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1s; animation: pulseBox 2s infinite; }
-        @keyframes pulseBox { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.05) rotate(3deg); } }
-        .surprise-box.opened { animation: none; transform: rotateX(180deg) scale(0); opacity: 0; }
-
-        .admin-gear { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; background: var(--glass-bg); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid var(--glass-border); opacity: 0.5; transition: 0.3s; }
-        .admin-gear:hover { opacity: 1; transform: rotate(90deg); }
-
-        #final-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: black; color: white; z-index: 99999; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
-        #final-text { font-family: var(--font-main); font-size: 20px; line-height: 1.6; opacity: 0; transition: 2s; margin-bottom: 30px; }
-        #final-photo { width: 80%; max-width: 300px; border-radius: 15px; opacity: 0; transition: 3s; box-shadow: 0 0 40px var(--primary); border: 2px solid white; }
-
-        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 12px; border: 2px solid transparent; font-family: var(--font-main); outline: none; background: rgba(255,255,255,0.7); }
+        /* Inputs e Formulários */
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 15px; border: 3px solid var(--glass-border); font-size: 18px; font-family: var(--font-main); background: rgba(255,255,255,0.9); outline: none; }
         input:focus, textarea:focus { border-color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <!-- Proteção contra erros de JS (Garante que a Splash morra) -->
-    <script>
-        window.onerror = function(msg) {
-            console.warn("Erro preventivo capturado: ", msg);
-            let s = document.getElementById('splash-screen');
-            if(s) s.style.display = 'none';
-        };
-    </script>
-
-    <!-- Splash Screen -->
-    <div id="splash-screen">
-        <i class="fa-solid fa-heart pulse" style="color: var(--primary); font-size: 65px; margin-bottom: 20px;"></i>
-        <h2 class="title-fancy" style="color:var(--text-main)">carregando calma aiii...</h2>
+    <!-- 1. TELA DE SPLASH -->
+    <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fce4ec; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s;">
+        <div class="emoji-big pulse">💌</div>
+        <h1 style="color: #d32f2f;">carregando calma aiii...</h1>
     </div>
 
-    <!-- UI Toast Global -->
-    <div id="custom-toast">Notificação</div>
-
-    <!-- Modais Genéricos de UI (Substitui Prompt e Confirm) -->
-    <div class="modal-overlay" id="ui-modal" style="z-index: 3000;">
-        <div class="modal-content" style="max-width: 350px; padding: 20px;">
-            <div id="ui-modal-body"></div>
-        </div>
-    </div>
-
-    <!-- Tela Intro -->
+    <!-- 2. TELA INTRO -->
     <div id="page-intro" class="page">
-        <div class="glass slide-up" style="max-width: 400px; text-align: center; padding: 40px 20px;">
-            <img src="https://cdn-icons-png.flaticon.com/512/3237/3237472.png" style="width: 100px; margin-bottom: 20px;" onerror="this.style.display='none'">
-            <h2 class="title-fancy" id="typed-text" style="min-height: 80px;"></h2>
-            <p style="margin: 20px 0; font-size: 14px;">Para a experiência completa, precisamos ligar o som e a vibração.</p>
-            <button class="btn pulse" style="font-size: 18px;" onclick="unlockDevice()"><i class="fa-solid fa-volume-high"></i> Ativar Tudo ❤️</button>
+        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px;">
+            <img id="intro-foto" src="" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--primary); margin-bottom: 20px;" onerror="this.style.display='none'">
+            <h1>Tem uma cartinha pra você...</h1>
+            <div class="emoji-big pulse" onclick="navTo('page-question')">💌</div>
+            <p style="color: var(--text-muted); font-size: 18px;">(Clique na carta para abrir)</p>
         </div>
     </div>
 
-    <!-- Tela Pergunta -->
-    <div id="page-letter" class="page">
-        <div class="glass slide-up" style="max-width: 400px; text-align: center; padding: 40px 20px;">
-            <h1 class="title-fancy">Você me ama?</h1>
-            <div style="font-size: 80px; margin: 20px 0;" class="pulse">✉️</div>
-            <button class="btn" style="background:#4caf50; width: 100%; margin-bottom: 10px;" onclick="answerYes()">SIM ❤️</button>
-            <button class="btn" style="background:#f44336; width: 100%;" onclick="answerNo()">NÃO ✖️</button>
+    <!-- 3. TELA DA PERGUNTA -->
+    <div id="page-question" class="page">
+        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px;">
+            <h1>Você me ama?</h1>
+            <div class="emoji-big">✉️</div>
+            <br>
+            <button class="btn btn-green" style="width: 100%; margin-bottom: 15px; font-size: 26px;" onclick="navTo('page-password')">SIM ❤️</button>
+            <button class="btn" style="width: 100%; font-size: 26px; background-color: #b71c1c;" onclick="navTo('page-wrong')">NÃO ✖️</button>
         </div>
     </div>
 
-    <!-- Dashboard -->
-    <div id="page-dashboard" class="page">
-        <div id="dashboard-content" class="slide-up">
+    <!-- 4. TELA DE ERRO (O BOTÃO "NÃO" GIGANTE) -->
+    <div id="page-wrong" class="page">
+        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px; border-color: #b71c1c;">
+            <div class="emoji-big pulse" style="font-size: 120px;">😠</div>
+            <h1 style="font-size: 60px;">EI!</h1>
+            <p>Resposta errada, mocinha!</p>
+            <button class="btn" onclick="navTo('page-question')">Voltar e Tentar Novamente</button>
+        </div>
+    </div>
+
+    <!-- 5. TELA DE SENHA -->
+    <div id="page-password" class="page">
+        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px;">
+            <div class="emoji-big" style="font-size: 80px;">🔒</div>
+            <h1>Acesso Restrito</h1>
+            <p>Qual é a senha?</p>
+            <p style="font-size: 16px; color: var(--text-muted);">(O dia que te pedi em namoro, só números)</p>
+            <input type="number" id="inputPassword" placeholder="Ex: ddmmaaaa" style="text-align: center; font-size: 24px; letter-spacing: 2px;">
+            <button class="btn" style="width: 100%;" onclick="checkPassword()">Desbloquear 🔓</button>
+            <p id="pwdError" style="color: red; display: none; margin-top: 15px; font-size: 18px;">Senha incorreta! Tente de novo.</p>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         6. TELA DO FEED (ONDE VOCÊ ROLA PARA BAIXO)
+         ========================================================= -->
+    <div id="page-feed" class="page" style="justify-content: flex-start; padding-top: 50px;">
+        <div id="feed-container">
             
-            <div class="glass hero-section" style="padding: 20px;">
-                <img id="dash-photo" src="" class="hero-img" alt="Foto">
-                <h2>Oie, <span id="dash-name">Amor</span> ❤️</h2>
-                <p id="quote-of-day" style="font-style: italic; font-size: 14px; margin-top: 10px;">"Você continua sendo minha pessoa favorita."</p>
+            <!-- CADA SECTION TEM A CLASSE 'reveal' PARA APARECER AO ROLAR -->
+            
+            <div class="feed-section glass reveal">
+                <div class="emoji-big pulse" style="font-size: 80px; margin: 0;">❤️</div>
+                <h1 style="font-size: 55px;" id="feed-title">uiuiui é minha namorada mesmo!</h1>
+                <p style="font-size: 24px;">Olha só quanto tempo já passamos juntos:</p>
                 
-                <div class="mood-bar">
-                    <button class="mood-btn" onclick="setMood(this, 'feliz', 'Que bom te ver sorrir! Te amo.')">😊</button>
-                    <button class="mood-btn" onclick="setMood(this, 'apaixonada', 'Meu coração dispara por você também!')">🥰</button>
-                    <button class="mood-btn" onclick="setMood(this, 'triste', 'Queria estar aí para te dar um abraço apertado 🥺')">😔</button>
-                    <button class="mood-btn" onclick="setMood(this, 'brava', 'Calma amorzinho, respira, eu te amo tá? 😅')">😡</button>
-                    <button class="mood-btn" onclick="setMood(this, 'sono', 'Vai descansar, sonha comigo! 😴')">😴</button>
-                </div>
-                <p id="mood-msg" style="font-size: 13px; font-weight: bold; color: var(--primary);"></p>
-                
-                <div style="background: rgba(0,0,0,0.05); border-radius: 15px; padding: 15px; margin-top: 15px;">
-                    <h4 style="margin-bottom: 5px;"><i class="fa-regular fa-clock"></i> Juntos há:</h4>
-                    <div style="display: flex; justify-content: space-around; font-weight: bold; color: var(--primary); font-size: 16px;" id="master-counter">
-                        Carregando...
-                    </div>
+                <div class="counter-box" id="master-counter">
+                    <!-- Javascript vai preencher os números aqui -->
                 </div>
             </div>
 
-            <div class="app-grid">
-                <div class="app-icon" onclick="openApp('album')"><i class="fa-solid fa-images"></i><span>Álbum</span></div>
-                <div class="app-icon" onclick="openApp('timeline')"><i class="fa-solid fa-timeline"></i><span>História</span></div>
-                <div class="app-icon" onclick="openApp('music')"><i class="fa-solid fa-music"></i><span>Música</span></div>
-                <div class="app-icon" onclick="openApp('missions')"><i class="fa-solid fa-check-double"></i><span>Missões</span></div>
-                <div class="app-icon" onclick="openApp('capsule')"><i class="fa-solid fa-hourglass-half"></i><span>Cápsula</span></div>
-                <div class="app-icon" onclick="openApp('quiz')"><i class="fa-solid fa-clipboard-question"></i><span>Quiz</span></div>
-                <div class="app-icon" onclick="openApp('machine')"><i class="fa-solid fa-heart-pulse"></i><span>Amor %</span></div>
-                <div class="app-icon" onclick="openApp('diary')"><i class="fa-solid fa-book-open"></i><span>Diário</span></div>
-                <div class="app-icon" onclick="openApp('letters')"><i class="fa-solid fa-envelope-open-text"></i><span>Cartas</span></div>
-                <div class="app-icon" onclick="openApp('gifts')"><i class="fa-solid fa-gift"></i><span>Presentes</span></div>
-                <div class="app-icon" onclick="openApp('games')"><i class="fa-solid fa-gamepad"></i><span>Jogos</span></div>
-                <div class="app-icon" onclick="openApp('camera')"><i class="fa-solid fa-camera"></i><span>Câmera</span></div>
-                <div class="app-icon" onclick="openApp('themes')"><i class="fa-solid fa-palette"></i><span>Temas</span></div>
-                <div class="app-icon" onclick="openApp('stats')"><i class="fa-solid fa-chart-pie"></i><span>Status</span></div>
-                <div class="app-icon" onclick="openApp('ai')"><i class="fa-solid fa-robot"></i><span>IA do Amor</span></div>
+            <div class="feed-section glass reveal">
+                <h2>📸 Nosso Álbum</h2>
+                <p>Nossos melhores momentos.</p>
+                <div class="album-grid" id="render-album">
+                    <!-- Imagens do Admin aparecem aqui -->
+                </div>
             </div>
 
-            <div class="glass" style="margin-top: 20px; text-align: center; padding: 20px; border: 2px dashed var(--primary); cursor: pointer;" onclick="openApp('surprise')">
-                <h3 class="pulse" style="margin:0;"><i class="fa-solid fa-box-open"></i> Surpresa 3D</h3>
+            <div class="feed-section glass reveal">
+                <h2>🎵 Nossa Trilha Sonora</h2>
+                <p>As músicas que marcam a gente.</p>
+                <div id="render-music" style="margin-top: 20px;">
+                    <!-- Players do Spotify aparecem aqui -->
+                </div>
             </div>
-            
-            <button id="btn-final-secret" class="btn" style="width: 100%; margin-top: 20px; background: #111;" onclick="triggerFinalScreen()"><i class="fa-solid fa-lock"></i> Última Surpresa...</button>
+
+            <div class="feed-section glass reveal">
+                <h2>🗺️ Nossa História</h2>
+                <div class="timeline" id="render-timeline">
+                    <!-- Linha do tempo do Admin aparece aqui -->
+                </div>
+            </div>
+
+            <div class="feed-section glass reveal">
+                <h2>🫙 Motivos pra te amar</h2>
+                <p>Eu poderia listar mil, mas aqui vão alguns:</p>
+                <div id="render-reasons" style="text-align: left; margin-top: 20px;">
+                    <!-- Motivos do Admin aparecem aqui -->
+                </div>
+            </div>
+
+            <div class="feed-section glass reveal" style="border: 4px solid var(--primary);">
+                <div class="emoji-big pulse" style="font-size: 80px; margin-bottom: 0;">🎁</div>
+                <h1 style="font-size: 45px;">A Maior Surpresa...</h1>
+                <p style="font-size: 26px; font-weight: 900; margin-top: 20px;">É ter você na minha vida.</p>
+                <p>Te amo hoje, amanhã e sempre.</p>
+            </div>
+
         </div>
         
-        <div class="admin-gear" onclick="askAdminPassword()"><i class="fa-solid fa-gear"></i></div>
+        <!-- Botão Secreto do Painel Admin -->
+        <div class="admin-btn" onclick="navTo('page-admin')"><i class="fa-solid fa-gear"></i></div>
     </div>
 
-    <!-- Modal de Apps -->
-    <div class="modal-overlay" id="app-modal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>
-            <h2 id="app-title" class="title-fancy" style="text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">App</h2>
-            <div id="app-body"></div>
+
+    <!-- =========================================================
+         7. O PAINEL DE ADMIN COMPLETO (ESCONDIDO)
+         ========================================================= -->
+    <div id="page-admin" class="page" style="justify-content: flex-start;">
+        <div class="glass" style="max-width: 800px; width: 100%; padding: 40px; margin: 40px 0;">
+            <h1 style="font-size: 40px;"><i class="fa-solid fa-wrench"></i> Configurar Site</h1>
+            <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
+                As alterações aqui ficam salvas no seu navegador para testar. 
+                Para atualizar o site oficial na Vercel, você precisa alterar o bloco <b>"CONFIG"</b> dentro do código fonte no GitHub!
+            </p>
+
+            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Link da Foto Principal (A redondinha do começo):</label>
+            <input type="text" id="admFoto" placeholder="Cole a URL da imagem aqui">
+
+            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Data do Pedido de Namoro:</label>
+            <input type="datetime-local" id="admData">
+
+            <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
+
+            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Links das Fotos do Álbum (Um por linha):</label>
+            <p style="font-size: 14px; margin-bottom: 10px;">Cole os links das imagens (ou o nome se estiver no github, ex: foto1.jpg).</p>
+            <textarea id="admAlbum" rows="5"></textarea>
+
+            <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
+
+            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Links das Músicas (Spotify):</label>
+            <p style="font-size: 14px; margin-bottom: 10px;">Cole os links normais do Spotify, um por linha.</p>
+            <textarea id="admMusicas" rows="3"></textarea>
+
+            <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
+
+            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Lista de Motivos (Um por linha):</label>
+            <textarea id="admMotivos" rows="5"></textarea>
+
+            <button class="btn btn-green" style="width: 100%; font-size: 24px; margin-top: 20px;" onclick="salvarAdmin()">Salvar e Visualizar Feed 👀</button>
+            <button class="btn" style="width: 100%; font-size: 20px; margin-top: 15px; background: #333;" onclick="navTo('page-feed')">Cancelar / Voltar</button>
         </div>
     </div>
 
-    <!-- Tela Final -->
-    <div id="final-screen">
-        <div id="final-text"></div>
-        <img id="final-photo" src="" alt="Nós" onerror="this.style.display='none'">
-        <div id="final-counter" style="margin-top: 20px; font-size: 24px; font-weight: bold; color: var(--primary);"></div>
-    </div>
-
-    <!-- Audio Player Nativo (Fallback offline se não houver internet) -->
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-
+    <!-- =========================================================
+         8. JAVASCRIPT: LÓGICA E CONFIGURAÇÃO PERMANENTE
+         ========================================================= -->
     <script>
-        // ==========================================
-        // 1. CONFIG E BANCO DE DADOS PROTEGIDO
-        // ==========================================
-        const DEFAULT_CONFIG = {
-            senhaAdmin: "admin123",
-            nomeDela: "Meu Amor",
-            dataInicio: "2026-03-15T00:00:00", // Data correta do pedido
-            tema: "sakura",
-            fotoPrincipal: "https://via.placeholder.com/300?text=Sua+Foto", 
-            stats: { cliquesAmor: 0, jogosGanhos: 0, appAberto: 0 },
-            missoes: [
-                { id: 1, text: "Assistir um filme juntos", done: false },
-                { id: 2, text: "Tirar uma foto fazendo careta", done: false },
-                { id: 3, text: "Dar 20 beijos", done: false }
+        /* 
+           ========================================================================
+           🔧 O SEU BLOCO DE CONFIGURAÇÕES OFICIAL (EDITE AQUI PARA O GITHUB)
+           ========================================================================
+           É aqui que você escreve as informações reais para que elas fiquem 
+           definitivas quando sua namorada abrir o link da Vercel.
+        */
+        const CONFIG = {
+            senhaSite: "15032026", // A senha do namoro
+            dataInicio: "2026-03-15T00:00:00", // A data para contar os dias
+            fotoPrincipal: "", // Ex: "minha-foto.jpg"
+
+            // Músicas: Copie e cole os links do Spotify
+            musicas: [
+                "https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"
             ],
-            capsula: { data: "2027-03-15T00:00:00", mensagem: "Se está lendo isso, conseguimos chegar até aqui! Te amo." },
-            album: ["https://via.placeholder.com/300?text=Foto+1"],
-            musicas: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
-            diario: [{ data: "Hoje", texto: "Criei este app para você." }]
+
+            // Álbum de Fotos: Coloque os links ou nomes dos arquivos aqui
+            album: [
+                "https://via.placeholder.com/600x600?text=Sua+Foto+1",
+                "https://via.placeholder.com/600x600?text=Sua+Foto+2",
+                "https://via.placeholder.com/600x600?text=Sua+Foto+3"
+            ],
+
+            // Motivos para amar
+            motivos: [
+                "O jeito que você sorri pra mim.",
+                "Sua risada que ilumina meu dia.",
+                "Como a gente se entende só com um olhar.",
+                "Porque você é a minha pessoa favorita no mundo inteiro."
+            ],
+
+            // Linha do tempo (Formato fixo para você editar direto aqui no código se quiser)
+            linhaDoTempo: [
+                { data: "O Início", texto: "Quando nossos olhares se cruzaram pela primeira vez." },
+                { data: "15/03/2026", texto: "O dia do Sim. O pedido de namoro oficial." },
+                { data: "Hoje", texto: "Construindo nosso futuro juntos." }
+            ]
         };
+        /* ======================================================================== */
 
-        // Merge Seguro (Deep Merge básico) para evitar erros de undefined
-        let savedData = {};
-        try { savedData = JSON.parse(localStorage.getItem("amorOS") || "{}"); } catch(e) { console.warn("DB resetado"); }
-        
-        let DB = { ...DEFAULT_CONFIG, ...savedData };
-        DB.stats = { ...DEFAULT_CONFIG.stats, ...(DB.stats || {}) };
-        DB.capsula = { ...DEFAULT_CONFIG.capsula, ...(DB.capsula || {}) };
-        DB.missoes = DB.missoes || DEFAULT_CONFIG.missoes;
-        DB.album = DB.album || DEFAULT_CONFIG.album;
-        DB.musicas = DB.musicas || DEFAULT_CONFIG.musicas;
-        DB.diario = DB.diario || DEFAULT_CONFIG.diario;
+        // Puxa do LocalStorage (Testes do Admin) ou usa o CONFIG oficial
+        let DB = JSON.parse(localStorage.getItem("siteFeedDB")) || CONFIG;
 
-        let dbChanged = false; // Flag para salvar só quando necessário
-
-        function saveDB() { 
-            if(!dbChanged) return;
-            localStorage.setItem("amorOS", JSON.stringify(DB)); 
-            dbChanged = false;
-        }
-
-        // ==========================================
-        // 2. SISTEMA SEGURO DE AUDIO E VIBRAÇÃO
-        // ==========================================
-        let audioCtx = null;
-        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } 
-        catch(e) { console.warn("AudioContext não suportado inicialmente."); }
-        
-        function playSound(type) {
-            if(!audioCtx || audioCtx.state === 'suspended') return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain); gain.connect(audioCtx.destination);
-                
-                const now = audioCtx.currentTime;
-                if (type === 'click') {
-                    osc.type = 'sine'; osc.frequency.setValueAtTime(600, now);
-                    gain.gain.setValueAtTime(0.1, now);
-                    osc.start(now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1); osc.stop(now + 0.1);
-                } else if (type === 'success') {
-                    osc.type = 'triangle'; osc.frequency.setValueAtTime(440, now);
-                    osc.frequency.setValueAtTime(660, now + 0.1);
-                    gain.gain.setValueAtTime(0.1, now);
-                    osc.start(now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3); osc.stop(now + 0.3);
-                } else if (type === 'heart') {
-                    osc.type = 'sine'; osc.frequency.setValueAtTime(800, now);
-                    gain.gain.setValueAtTime(0.05, now);
-                    osc.start(now); osc.stop(now + 0.05);
-                }
-            } catch(e) {}
-        }
-
-        function vibrate(ms) { try { if(navigator.vibrate) navigator.vibrate(ms); } catch(e){} }
-
-        // Limite de partículas
-        function createParticles(type = '❤️', count = 30) {
-            if(document.querySelectorAll('.particle').length > 40) return; // Limite de Segurança
-            
-            for(let i=0; i<count; i++) {
-                setTimeout(() => {
-                    if(document.querySelectorAll('.particle').length > 40) return;
-                    let el = document.createElement('div');
-                    el.innerHTML = type === 'mix' ? ['❤️','🌸','✨'][Math.floor(Math.random()*3)] : type;
-                    el.className = 'particle';
-                    el.style.left = Math.random() * 100 + 'vw';
-                    el.style.fontSize = (Math.random() * 15 + 15) + 'px';
-                    el.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    document.body.appendChild(el);
-                    setTimeout(() => { if(el.parentNode) el.remove(); }, 5000);
-                }, i * 50);
-            }
-        }
-
-        // Custom UI (Toast / Modal Prompt)
-        function showToast(msg) {
-            let t = document.getElementById('custom-toast');
-            t.innerText = msg; t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 3000);
-        }
-
-        function customPrompt(title, callback) {
-            const ui = document.getElementById('ui-modal');
-            const body = document.getElementById('ui-modal-body');
-            body.innerHTML = `
-                <div class="ui-prompt">
-                    <h3>${title}</h3>
-                    <input type="password" id="ui-prompt-input" placeholder="Digite aqui...">
-                    <button class="btn" id="ui-prompt-ok" style="width:100%; margin-bottom:10px;">OK</button>
-                    <button class="btn" style="width:100%; background:transparent; color:var(--text-main); border:1px solid var(--text-muted);" onclick="document.getElementById('ui-modal').style.display='none'">Cancelar</button>
-                </div>
-            `;
-            ui.style.display = 'flex';
-            document.getElementById('ui-prompt-ok').onclick = () => {
-                const val = document.getElementById('ui-prompt-input').value;
-                ui.style.display = 'none';
-                if(callback) callback(val);
-            };
-        }
-
-        function customConfirm(title, callbackYes) {
-            const ui = document.getElementById('ui-modal');
-            const body = document.getElementById('ui-modal-body');
-            body.innerHTML = `
-                <div class="ui-prompt">
-                    <h3>${title}</h3>
-                    <button class="btn" id="ui-confirm-yes" style="width:100%; margin:15px 0 10px 0;">Sim</button>
-                    <button class="btn" style="width:100%; background:transparent; color:var(--text-main); border:1px solid var(--text-muted);" onclick="document.getElementById('ui-modal').style.display='none'">Não</button>
-                </div>
-            `;
-            ui.style.display = 'flex';
-            document.getElementById('ui-confirm-yes').onclick = () => {
-                ui.style.display = 'none';
-                if(callbackYes) callbackYes();
-            };
-        }
-
-        // ==========================================
-        // 3. INICIALIZAÇÃO
-        // ==========================================
-        let masterInterval = null;
-        let finalInterval = null;
-
-        window.addEventListener("load", () => {
-            document.documentElement.setAttribute("data-theme", DB.tema);
-            
-            // Associação segura de eventos DOM
-            const dashPhoto = document.getElementById('dash-photo');
-            if(dashPhoto) {
-                dashPhoto.src = DB.fotoPrincipal || "https://via.placeholder.com/150?text=Sua+Foto";
-                dashPhoto.onclick = handleEasterEgg;
-            }
-            const dashName = document.getElementById('dash-name');
-            if(dashName) dashName.innerText = DB.nomeDela;
-            
-            DB.stats.appAberto++; dbChanged = true; saveDB();
-
-            // Desliga splash normalmente se tudo carregar
-            hideSplashAndStart();
-        });
-
-        // Fallback de 3s para garantir que o site nunca fique travado
-        setTimeout(() => { hideSplashAndStart(); }, 3000);
-
-        let splashHidden = false;
-        function hideSplashAndStart() {
-            if(splashHidden) return; splashHidden = true;
-            let splash = document.getElementById('splash-screen');
-            if(splash) {
+        // Remoção da tela de Splash suavemente
+        window.onload = () => {
+            renderizarConteudo();
+            setTimeout(() => {
+                let splash = document.getElementById('splash-screen');
                 splash.style.opacity = '0';
                 setTimeout(() => { 
                     splash.style.display = 'none'; 
                     navTo('page-intro'); 
-                    startTyping(); 
-                }, 400);
-            }
-        }
+                }, 500);
+            }, 1500);
+            
+            // Ativa o relógio do contador
+            setInterval(atualizarContador, 1000);
+        };
 
-        function navTo(id) {
+        // Função de Navegar entre as Telas
+        function navTo(idPagina) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            const target = document.getElementById(id);
-            if(target) target.classList.add('active');
+            document.getElementById(idPagina).classList.add('active');
+            window.scrollTo(0, 0); // Volta pro topo da página
         }
 
-        let typed = false;
-        function startTyping() {
-            if(typed) return; typed = true;
-            const text = "Tenho uma cartinha para você...";
-            let i = 0; const el = document.getElementById("typed-text");
-            if(!el) return;
-            function typeWriter() {
-                if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 50); }
+        // Verifica a Senha
+        function checkPassword() {
+            const pwd = document.getElementById('inputPassword').value;
+            if (pwd === DB.senhaSite || pwd === "150326") {
+                document.getElementById('pwdError').style.display = 'none';
+                navTo('page-feed');
+            } else {
+                document.getElementById('pwdError').style.display = 'block';
             }
-            typeWriter();
         }
 
-        function unlockDevice() {
-            if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-            playSound('click'); vibrate(50); createParticles('🌸', 15);
-            navTo('page-letter');
-        }
-
-        function answerYes() { playSound('success'); vibrate([50, 50, 100]); createParticles('❤️', 40); setTimeout(() => { navTo('page-dashboard'); initDashboard(); }, 1500); }
-        function answerNo() { playSound('click'); vibrate(200); showToast("Resposta errada! 😠 Tente de novo."); }
-
-        function initDashboard() {
-            if(masterInterval) clearInterval(masterInterval);
-            masterInterval = setInterval(updateMasterCounter, 1000);
-            updateMasterCounter();
-        }
-
-        function setMood(btn, mood, msg) {
-            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active'); playSound('click');
-            const msgEl = document.getElementById('mood-msg');
-            if(msgEl) msgEl.innerText = msg;
-            createParticles(btn.innerText, 10);
-        }
-
-        function updateMasterCounter() {
-            const start = new Date(DB.dataInicio);
-            const now = new Date();
+        // Calcula e atualiza os Dias/Horas
+        function atualizarContador() {
+            const start = new Date(DB.dataInicio).getTime();
+            const now = new Date().getTime();
             const diff = now - start;
+            
             if(diff < 0) return;
             
-            // Calculo seguro de anos, meses e dias
-            let years = now.getFullYear() - start.getFullYear();
-            let months = now.getMonth() - start.getMonth();
-            let days = now.getDate() - start.getDate();
-            if (days < 0) { months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
-            if (months < 0) { years--; months += 12; }
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
 
-            const el = document.getElementById('master-counter');
-            if(!el) return;
-
-            if(years > 0) {
-                el.innerHTML = `<span>${years}a</span> <span>${months}m</span> <span>${days}d</span>`;
-            } else {
-                el.innerHTML = `<span>${months}m</span> <span>${days}d</span>`;
+            const counterBox = document.getElementById('master-counter');
+            if(counterBox) {
+                counterBox.innerHTML = `
+                    <div class="counter-item"><span>${dias}</span><small>Dias</small></div>
+                    <div class="counter-item"><span>${horas}</span><small>Horas</small></div>
+                    <div class="counter-item"><span>${minutos}</span><small>Minutos</small></div>
+                    <div class="counter-item"><span>${segundos}</span><small>Segundos</small></div>
+                `;
             }
         }
 
-        // ==========================================
-        // 4. SISTEMA DE APPS DO DASHBOARD
-        // ==========================================
-        function openApp(app) {
-            playSound('click'); vibrate(30);
-            const modal = document.getElementById('app-modal');
-            const title = document.getElementById('app-title');
-            const body = document.getElementById('app-body');
-            if(!modal || !title || !body) return;
-            
-            let html = '';
+        // Função que injeta os textos, fotos e músicas no Feed
+        function renderizarConteudo() {
+            // Foto da Intro
+            if(DB.fotoPrincipal) {
+                document.getElementById('intro-foto').src = DB.fotoPrincipal;
+                document.getElementById('intro-foto').style.display = 'inline-block';
+            }
 
-            switch(app) {
-                case 'missions':
-                    title.innerHTML = '<i class="fa-solid fa-list-check"></i> Nossas Missões';
-                    DB.missoes.forEach(m => {
-                        html += `<div class="mission-item ${m.done ? 'done' : ''}" onclick="toggleMission(${m.id})"><i class="fa-regular ${m.done ? 'fa-square-check' : 'fa-square'}"></i> ${m.text}</div>`;
-                    });
-                    html += `<p style="font-size:12px; text-align:center; margin-top:10px;">Clique para completar!</p>`;
-                    break;
-                case 'capsule':
-                    title.innerHTML = '<i class="fa-solid fa-hourglass-half"></i> Cápsula do Tempo';
-                    const unlock = new Date(DB.capsula.data).getTime();
-                    if (new Date().getTime() >= unlock) {
-                        html += `<div style="text-align:center; padding:20px;"><i class="fa-solid fa-envelope-open-text" style="font-size:50px; color:var(--primary);"></i><h3 style="margin:15px 0;">Cápsula Aberta!</h3><p style="font-style:italic;">"${DB.capsula.mensagem}"</p></div>`;
-                    } else {
-                        html += `<div style="text-align:center; padding:20px;"><i class="fa-solid fa-lock" style="font-size:50px; color:#666;"></i><h3 style="margin:15px 0;">Trancada</h3><p>Só abrirá no dia ${new Date(DB.capsula.data).toLocaleDateString()}</p></div>`;
+            // Álbum
+            let albumHtml = '';
+            DB.album.forEach(img => {
+                if(img.trim() !== '') albumHtml += `<img src="${img.trim()}">`;
+            });
+            document.getElementById('render-album').innerHTML = albumHtml || "<p>Nenhuma foto adicionada ainda.</p>";
+
+            // Músicas (Transforma link normal em link embutido do Spotify)
+            let musicHtml = '';
+            DB.musicas.forEach(link => {
+                let url = link.trim();
+                if(url) {
+                    if(url.includes('spotify.com') && !url.includes('embed')) {
+                        let partes = url.split('spotify.com/');
+                        let caminho = partes[1].split('?')[0]; 
+                        url = `https://open.spotify.com/embed/${caminho}`;
                     }
-                    break;
-                case 'machine':
-                    title.innerHTML = '<i class="fa-solid fa-heart-pulse"></i> Máquina do Amor';
-                    html += `<div style="text-align:center;"><p>Quanto eu te amo?</p><button class="btn pulse" style="font-size:30px; margin:20px; width:100px; height:100px; border-radius:50%;" onclick="runLoveMachine(this)">❤️</button><h2 id="love-percent" style="font-size:40px;">0%</h2></div>`;
-                    break;
-                case 'letters':
-                    title.innerHTML = '<i class="fa-solid fa-envelopes-bulk"></i> Cartinhas';
-                    const cartas = [
-                        { t: "Quando estiver triste", ic: "😢", m: "Você é mais forte do que imagina. Estou aqui com você." },
-                        { t: "Quando sentir saudade", ic: "🥺", m: "A distância é só um detalhe para corações conectados." }
-                    ];
-                    cartas.forEach(c => html += `<button class="btn" style="width:100%; margin-bottom:10px; background:var(--glass-bg); color:var(--text-main); border:1px solid var(--primary);" onclick="showToast('${c.m}')">${c.ic} ${c.t}</button>`);
-                    break;
-                case 'games':
-                    title.innerHTML = '<i class="fa-solid fa-gamepad"></i> Mini Jogos';
-                    html += `<button class="btn" style="width:100%; margin-bottom:10px;" onclick="playGame('heart')">Catch the Heart ❤️</button>`;
-                    break;
-                case 'themes':
-                    title.innerHTML = '<i class="fa-solid fa-palette"></i> Temas';
-                    const temas = [['sakura','🌸 Sakura'],['galaxy','🌌 Galáxia'],['rain','🌧️ Chuva'],['dark','🌑 Escuro'],['roxo','💜 Roxo']];
-                    temas.forEach(t => html += `<button class="btn" style="width:100%; margin-bottom:10px; background:var(--glass-bg); color:var(--text-main);" onclick="setThemeApp('${t[0]}')">${t[1]}</button>`);
-                    break;
-                case 'ai':
-                    title.innerHTML = '<i class="fa-solid fa-robot"></i> IA do Amor';
-                    html += `<div style="text-align:center;"><i class="fa-solid fa-robot" style="font-size:50px; color:var(--primary); margin-bottom:20px;"></i><br><button class="btn pulse" onclick="generateAI(this)">Me diga algo bonito</button><p id="ai-text" style="margin-top:20px; font-style:italic; font-weight:bold; min-height:50px;"></p></div>`;
-                    break;
-                case 'surprise':
-                    title.innerHTML = '<i class="fa-solid fa-box-open"></i> Presente';
-                    html += `<div class="surprise-box-container" onclick="openSurpriseBox(this)"><div class="surprise-box" style="background:var(--primary); border-radius:15px; border: 4px solid gold; display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">🎁</div></div><div id="surprise-content" style="display:none; text-align:center;" class="slide-up"><img src="${DB.fotoPrincipal}" style="width:100%; border-radius:15px; margin-bottom:15px;" onerror="this.style.display='none'"><h3>Você é meu maior presente!</h3></div>`;
-                    break;
-                default:
-                    title.innerHTML = 'Em Construção 🚧';
-                    html += `<p style="text-align:center;">Esta função será ativada na próxima atualização! ❤️</p>`;
-            }
-
-            body.innerHTML = html;
-            modal.classList.add('active');
-        }
-
-        function closeModal() { 
-            const m = document.getElementById('app-modal');
-            if(m) m.classList.remove('active'); 
-        }
-
-        // ==========================================
-        // 5. LÓGICAS INTERNAS
-        // ==========================================
-        function toggleMission(id) {
-            let m = DB.missoes.find(x => x.id === id); 
-            if(m) m.done = !m.done; 
-            dbChanged = true; saveDB();
-            playSound(m.done ? 'success' : 'click'); vibrate(50);
-            if(DB.missoes.every(x => x.done)) { setTimeout(() => { createParticles('mix', 30); showToast("VOCÊ COMPLETOU TODAS AS MISSÕES! 🎉"); }, 300); }
-            openApp('missions');
-        }
-
-        function runLoveMachine(btn) {
-            btn.disabled = true; playSound('heart');
-            let p = 0; let el = document.getElementById('love-percent');
-            let int = setInterval(() => {
-                p += Math.floor(Math.random()*20);
-                if(p >= 100) { p = 100; clearInterval(int); setTimeout(()=>{ el.innerText = "∞%"; createParticles('❤️', 30); playSound('success'); btn.disabled=false; }, 500); }
-                el.innerText = p + "%";
-            }, 50);
-        }
-
-        function setThemeApp(t) { DB.tema = t; dbChanged = true; saveDB(); document.documentElement.setAttribute("data-theme", t); playSound('click'); closeModal(); }
-
-        function generateAI(btn) {
-            const frases = ["Seus olhos são meu oceano favorito.", "Cada segundo com você é um presente.", "O universo acertou em cheio quando cruzou nossos caminhos.", "Seu sorriso é a luz do meu dia."];
-            document.getElementById('ai-text').innerText = frases[Math.floor(Math.random() * frases.length)];
-            playSound('heart'); createParticles('✨', 5);
-        }
-
-        function openSurpriseBox(container) {
-            playSound('success'); vibrate([50,100,50]); createParticles('mix', 30);
-            container.querySelector('.surprise-box').classList.add('opened');
-            setTimeout(() => { container.style.display = 'none'; document.getElementById('surprise-content').style.display = 'block'; }, 800);
-        }
-
-        function playGame(type) {
-            const body = document.getElementById('app-body');
-            body.innerHTML = `<div style="text-align:center"><p>Pegue o coração!</p><div style="position:relative; width:100%; height:250px; background:rgba(0,0,0,0.1); border-radius:15px; overflow:hidden;" id="game-area"><div id="target-heart" style="position:absolute; font-size:40px; cursor:pointer; transition:0.2s;" onclick="catchHeart()">❤️</div></div></div>`;
-        }
-        function catchHeart() {
-            DB.stats.jogosGanhos++; dbChanged = true; saveDB(); playSound('heart'); vibrate(30); createParticles('❤️', 3);
-            const t = document.getElementById('target-heart');
-            t.style.left = Math.random() * 80 + '%'; t.style.top = Math.random() * 80 + '%';
-        }
-
-        // ==========================================
-        // 6. ADMIN E EASTER EGGS
-        // ==========================================
-        function askAdminPassword() {
-            customPrompt("Senha Admin:", (val) => {
-                if(val === DB.senhaAdmin) openAdminPanel();
-                else showToast("Senha incorreta!");
+                    musicHtml += `<iframe style="border-radius:20px; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);" src="${url}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+                }
             });
+            document.getElementById('render-music').innerHTML = musicHtml || "<p>Nenhuma música adicionada ainda.</p>";
+
+            // Motivos
+            let motivosHtml = '';
+            DB.motivos.forEach(motivo => {
+                if(motivo.trim() !== '') {
+                    motivosHtml += `<p style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 15px; border-left: 5px solid var(--primary); margin-bottom: 10px;">❤️ ${motivo.trim()}</p>`;
+                }
+            });
+            document.getElementById('render-reasons').innerHTML = motivosHtml;
+
+            // Linha do Tempo
+            let timelineHtml = '';
+            // Se não tiver no DB do Admin, puxa do CONFIG padrão
+            let tlArray = DB.linhaDoTempo || CONFIG.linhaDoTempo;
+            tlArray.forEach(item => {
+                timelineHtml += `
+                    <div class="timeline-item">
+                        <div class="timeline-date">${item.data}</div>
+                        <div style="font-size: 20px;">${item.texto}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('render-timeline').innerHTML = timelineHtml;
+
+            // Preenche os campos do Admin com os dados atuais
+            document.getElementById('admFoto').value = DB.fotoPrincipal || '';
+            document.getElementById('admData').value = DB.dataInicio;
+            document.getElementById('admAlbum').value = DB.album.join('\n');
+            document.getElementById('admMusicas').value = DB.musicas.join('\n');
+            document.getElementById('admMotivos').value = DB.motivos.join('\n');
         }
 
-        function openAdminPanel() {
-            const modal = document.getElementById('app-modal');
-            document.getElementById('app-title').innerHTML = '⚙️ Painel Admin';
-            document.getElementById('app-body').innerHTML = `
-                <div style="font-size:13px; margin-bottom: 10px;">Modifique os dados abaixo:</div>
-                <input type="text" id="admData" value="${DB.dataInicio}" placeholder="Data">
-                <input type="text" id="admNome" value="${DB.nomeDela}" placeholder="Nome">
-                <input type="text" id="admFoto" value="${DB.fotoPrincipal}" placeholder="Link da foto">
-                <button class="btn" style="width:100%" onclick="saveAdminData()">Atualizar em Tempo Real</button>
-            `;
-            modal.classList.add('active');
-        }
-
-        function saveAdminData() {
-            DB.dataInicio = document.getElementById('admData').value;
-            DB.nomeDela = document.getElementById('admNome').value;
+        // Função de Salvar do Painel Admin
+        function salvarAdmin() {
             DB.fotoPrincipal = document.getElementById('admFoto').value;
-            dbChanged = true; saveDB();
+            DB.dataInicio = document.getElementById('admData').value || CONFIG.dataInicio;
             
-            // Atualiza UI sem precisar de reload
-            const dName = document.getElementById('dash-name'); if(dName) dName.innerText = DB.nomeDela;
-            const dImg = document.getElementById('dash-photo'); if(dImg) dImg.src = DB.fotoPrincipal;
-            updateMasterCounter();
-            closeModal();
-            showToast("Atualizado com sucesso!");
+            DB.album = document.getElementById('admAlbum').value.split('\n').filter(Boolean);
+            DB.musicas = document.getElementById('admMusicas').value.split('\n').filter(Boolean);
+            DB.motivos = document.getElementById('admMotivos').value.split('\n').filter(Boolean);
+
+            localStorage.setItem("siteFeedDB", JSON.stringify(DB));
+            renderizarConteudo();
+            alert("Aplicado para teste no seu celular!\nLembrete: Para valer na Vercel, altere o código 'CONFIG' no GitHub.");
+            navTo('page-feed');
         }
 
-        let heartClicks = 0;
-        function handleEasterEgg() {
-            heartClicks++; playSound('heart');
-            if(heartClicks === 5) showToast("Continue clicando...");
-            if(heartClicks === 10) { heartClicks=0; createParticles('❤️', 40); showToast("Você descobriu o segredo: EU SOU LOUCO POR VOCÊ!"); }
-        }
+        // =========================================================
+        // MÁGICA DO SCROLL (Faz as coisas aparecerem ao rolar)
+        // =========================================================
+        function checkScroll() {
+            let reveals = document.querySelectorAll('.reveal');
+            let windowHeight = window.innerHeight;
+            let elementVisible = 100; // Quando o elemento entra 100px na tela, ele aparece
 
-        function triggerFinalScreen() {
-            customConfirm("Tem certeza que quer abrir a última surpresa?", () => {
-                closeModal();
-                if(masterInterval) clearInterval(masterInterval); // Pausa contador antigo
-                
-                const fs = document.getElementById('final-screen');
-                fs.style.display = 'flex';
-                
-                // Tenta tocar música suavemente
-                try {
-                    const bgm = document.getElementById('bg-music');
-                    if(bgm) { bgm.volume = 0.5; bgm.play().catch(e=>console.warn("Autoplay bloqueado.")); }
-                } catch(e){}
-                
-                setTimeout(() => {
-                    const textEl = document.getElementById('final-text');
-                    textEl.innerText = "Se eu pudesse escolher mil vezes, escolheria você em todas elas.";
-                    textEl.style.opacity = '1';
-                    
-                    setTimeout(() => {
-                        const img = document.getElementById('final-photo');
-                        img.src = DB.fotoPrincipal || "https://via.placeholder.com/300";
-                        img.style.opacity = '1';
-                        
-                        // Garante que o intervalo anterior foi limpo antes de criar um novo
-                        if(finalInterval) clearInterval(finalInterval);
-                        finalInterval = setInterval(() => {
-                            createParticles('❤️', 3);
-                            const diff = new Date().getTime() - new Date(DB.dataInicio).getTime();
-                            const d = Math.floor(diff / 86400000);
-                            document.getElementById('final-counter').innerText = d + " dias e contando...";
-                        }, 1500);
-
-                    }, 4000);
-                }, 2000);
+            reveals.forEach(reveal => {
+                let elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
             });
         }
+        window.addEventListener('scroll', checkScroll);
     </script>
 </body>
 </html>
