@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* =========================================================
-           CONFIGURAÇÕES GERAIS E CORES (VIBE MAIS QUENTE/ROMÂNTICA)
-           ========================================================= */
         :root {
             --primary: #d32f2f;
             --primary-dark: #b71c1c;
             --text-main: #222;
             --text-muted: #555;
-            --glass-bg: rgba(255, 255, 255, 0.85); /* Fundo mais opaco e legível */
+            --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(255, 77, 77, 0.3);
             --font-main: 'Nunito', sans-serif;
             --font-title: 'VT323', monospace;
@@ -27,7 +24,6 @@
         body {
             font-family: var(--font-main); 
             color: var(--text-main);
-            /* O SEU FUNDO DE CORAÇÕES VOLTOU AQUI */
             background-image: url('1000274205.jpg'); 
             background-attachment: fixed;
             background-size: cover;
@@ -36,7 +32,6 @@
             min-height: 100vh;
         }
 
-        /* Classes de Fundo Fosco (Glassmorphism mais robusto) */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -46,13 +41,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        /* Textos Maiores */
         h1, h2, h3 { color: var(--primary); margin-bottom: 15px; font-family: var(--font-title); letter-spacing: 1px; }
         h1 { font-size: 45px; line-height: 1.1; }
         h2 { font-size: 35px; }
         p { font-size: 22px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
 
-        /* Botões Maiores e Mais Vivos */
         .btn {
             background: var(--primary); color: white; border: none; 
             padding: 18px 35px; border-radius: 50px; 
@@ -66,52 +59,41 @@
         .btn:active { transform: translateY(2px); }
         .btn-green { background-color: #2e7d32; box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4); }
         .btn-green:hover { background-color: #1b5e20; box-shadow: 0 10px 25px rgba(46, 125, 50, 0.6); }
+        .btn-small { padding: 10px 15px; font-size: 16px; border-radius: 12px; margin-bottom: 15px;}
         
         .emoji-big { font-size: 100px; margin: 20px 0; cursor: pointer; display: inline-block; }
         .pulse { animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(211,47,47,0.5)); } }
 
-        /* Roteamento de Telas (Ocultar/Mostrar) */
         .page { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; width: 100%; }
         .page.active { display: flex; animation: fadeIn 0.6s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* =========================================================
-           O FEED DE ROLAGEM (A NOVA TELA PRINCIPAL)
-           ========================================================= */
         #feed-container { max-width: 800px; width: 100%; padding: 40px 0; display: flex; flex-direction: column; gap: 40px; }
-        
-        /* Seções do Feed */
         .feed-section { padding: 40px 30px; text-align: center; }
         
-        /* Animação de Scroll (Revelar) */
         .reveal { opacity: 0; transform: translateY(80px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Contadores Grandes */
         .counter-box { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
         .counter-item { background: rgba(211, 47, 47, 0.1); border: 2px solid var(--primary); padding: 15px 20px; border-radius: 20px; min-width: 110px; }
         .counter-item span { display: block; font-size: 40px; font-weight: 900; color: var(--primary); font-family: var(--font-title); }
         .counter-item small { font-size: 16px; font-weight: 700; text-transform: uppercase; color: var(--text-main); }
 
-        /* Álbum Grade Maior */
         .album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .album-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 20px; border: 4px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.1); transition: 0.3s; }
         .album-grid img:hover { transform: scale(1.03); }
 
-        /* Linha do Tempo Estilizada */
         .timeline { margin-top: 30px; text-align: left; position: relative; padding-left: 30px; }
         .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--primary); border-radius: 4px; opacity: 0.5; }
         .timeline-item { position: relative; margin-bottom: 30px; background: rgba(255,255,255,0.6); padding: 20px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05); }
         .timeline-item::before { content: ''; position: absolute; left: -42px; top: 20px; width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
         .timeline-date { color: var(--primary); font-weight: 900; font-size: 18px; margin-bottom: 5px; }
 
-        /* Botão Admin Flutuante */
         .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; opacity: 0.4; transition: 0.3s; }
         .admin-btn:hover { opacity: 1; transform: rotate(90deg); }
 
-        /* Inputs e Formulários */
-        input, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 15px; border: 3px solid var(--glass-border); font-size: 18px; font-family: var(--font-main); background: rgba(255,255,255,0.9); outline: none; }
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 15px; border: 3px solid var(--glass-border); font-size: 16px; font-family: var(--font-main); background: rgba(255,255,255,0.9); outline: none; }
         input:focus, textarea:focus { border-color: var(--primary); }
     </style>
 </head>
@@ -144,7 +126,7 @@
         </div>
     </div>
 
-    <!-- 4. TELA DE ERRO (O BOTÃO "NÃO" GIGANTE) -->
+    <!-- 4. TELA DE ERRO -->
     <div id="page-wrong" class="page">
         <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px; border-color: #b71c1c;">
             <div class="emoji-big pulse" style="font-size: 120px;">😠</div>
@@ -167,53 +149,38 @@
         </div>
     </div>
 
-    <!-- =========================================================
-         6. TELA DO FEED (ONDE VOCÊ ROLA PARA BAIXO)
-         ========================================================= -->
+    <!-- 6. TELA DO FEED (ROLAGEM) -->
     <div id="page-feed" class="page" style="justify-content: flex-start; padding-top: 50px;">
         <div id="feed-container">
-            
-            <!-- CADA SECTION TEM A CLASSE 'reveal' PARA APARECER AO ROLAR -->
             
             <div class="feed-section glass reveal">
                 <div class="emoji-big pulse" style="font-size: 80px; margin: 0;">❤️</div>
                 <h1 style="font-size: 55px;" id="feed-title">uiuiui é minha namorada mesmo!</h1>
                 <p style="font-size: 24px;">Olha só quanto tempo já passamos juntos:</p>
-                
-                <div class="counter-box" id="master-counter">
-                    <!-- Javascript vai preencher os números aqui -->
-                </div>
+                <div class="counter-box" id="master-counter"></div>
             </div>
 
             <div class="feed-section glass reveal">
                 <h2>📸 Nosso Álbum</h2>
                 <p>Nossos melhores momentos.</p>
-                <div class="album-grid" id="render-album">
-                    <!-- Imagens do Admin aparecem aqui -->
-                </div>
+                <div class="album-grid" id="render-album"></div>
             </div>
 
             <div class="feed-section glass reveal">
                 <h2>🎵 Nossa Trilha Sonora</h2>
                 <p>As músicas que marcam a gente.</p>
-                <div id="render-music" style="margin-top: 20px;">
-                    <!-- Players do Spotify aparecem aqui -->
-                </div>
+                <div id="render-music" style="margin-top: 20px;"></div>
             </div>
 
             <div class="feed-section glass reveal">
                 <h2>🗺️ Nossa História</h2>
-                <div class="timeline" id="render-timeline">
-                    <!-- Linha do tempo do Admin aparece aqui -->
-                </div>
+                <div class="timeline" id="render-timeline"></div>
             </div>
 
             <div class="feed-section glass reveal">
                 <h2>🫙 Motivos pra te amar</h2>
                 <p>Eu poderia listar mil, mas aqui vão alguns:</p>
-                <div id="render-reasons" style="text-align: left; margin-top: 20px;">
-                    <!-- Motivos do Admin aparecem aqui -->
-                </div>
+                <div id="render-reasons" style="text-align: left; margin-top: 20px;"></div>
             </div>
 
             <div class="feed-section glass reveal" style="border: 4px solid var(--primary);">
@@ -225,33 +192,40 @@
 
         </div>
         
-        <!-- Botão Secreto do Painel Admin -->
         <div class="admin-btn" onclick="navTo('page-admin')"><i class="fa-solid fa-gear"></i></div>
     </div>
 
-
-    <!-- =========================================================
-         7. O PAINEL DE ADMIN COMPLETO (ESCONDIDO)
-         ========================================================= -->
+    <!-- 7. O PAINEL DE ADMIN COMPLETO -->
     <div id="page-admin" class="page" style="justify-content: flex-start;">
         <div class="glass" style="max-width: 800px; width: 100%; padding: 40px; margin: 40px 0;">
             <h1 style="font-size: 40px;"><i class="fa-solid fa-wrench"></i> Configurar Site</h1>
-            <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
-                As alterações aqui ficam salvas no seu navegador para testar. 
-                Para atualizar o site oficial na Vercel, você precisa alterar o bloco <b>"CONFIG"</b> dentro do código fonte no GitHub!
+            <p style="font-size: 14px; color: #666; margin-bottom: 30px;">
+                Dica: Você pode upar as fotos da galeria aqui mesmo! As fotos ficarão salvas na memória do celular onde você as colocou.
             </p>
 
-            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Link da Foto Principal (A redondinha do começo):</label>
-            <input type="text" id="admFoto" placeholder="Cole a URL da imagem aqui">
+            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Foto Principal (A do começo):</label>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                <input type="text" id="admFoto" placeholder="URL da imagem (Opcional se usar a galeria)" style="margin: 0;">
+                <label class="btn btn-small" style="background: #333; text-transform: none; font-size: 18px; margin: 0; cursor: pointer;">
+                    <i class="fa-solid fa-image"></i> Escolher da Galeria
+                    <input type="file" accept="image/*" style="display: none;" onchange="uparFotoUnica(event, 'admFoto')">
+                </label>
+            </div>
 
             <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Data do Pedido de Namoro:</label>
             <input type="datetime-local" id="admData">
 
             <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
 
-            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Links das Fotos do Álbum (Um por linha):</label>
-            <p style="font-size: 14px; margin-bottom: 10px;">Cole os links das imagens (ou o nome se estiver no github, ex: foto1.jpg).</p>
-            <textarea id="admAlbum" rows="5"></textarea>
+            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Nosso Álbum de Fotos:</label>
+            <p style="font-size: 14px; margin-bottom: 10px;">Você pode colar links, ou clicar no botão abaixo para escolher várias fotos do celular de uma vez!</p>
+            
+            <label class="btn btn-small" style="background: #333; text-transform: none; font-size: 18px; width: 100%; cursor: pointer;">
+                <i class="fa-solid fa-images"></i> Selecionar Fotos da Galeria (Múltiplas)
+                <input type="file" accept="image/*" multiple style="display: none;" onchange="uparFotosAlbum(event)">
+            </label>
+            <textarea id="admAlbum" rows="5" placeholder="Os códigos/links das imagens aparecerão aqui..." style="font-size: 12px;"></textarea>
+            <p style="font-size: 12px; color: red;">Aviso: Como a memória do celular é limitada, se você colocar 50 fotos pesadas, o navegador pode não salvar. Vá testando!</p>
 
             <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
 
@@ -264,83 +238,46 @@
             <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Lista de Motivos (Um por linha):</label>
             <textarea id="admMotivos" rows="5"></textarea>
 
-            <button class="btn btn-green" style="width: 100%; font-size: 24px; margin-top: 20px;" onclick="salvarAdmin()">Salvar e Visualizar Feed 👀</button>
+            <button class="btn btn-green" style="width: 100%; font-size: 24px; margin-top: 20px;" onclick="salvarAdmin()">Salvar e Visualizar 👀</button>
             <button class="btn" style="width: 100%; font-size: 20px; margin-top: 15px; background: #333;" onclick="navTo('page-feed')">Cancelar / Voltar</button>
         </div>
     </div>
 
     <!-- =========================================================
-         8. JAVASCRIPT: LÓGICA E CONFIGURAÇÃO PERMANENTE
+         8. JAVASCRIPT
          ========================================================= -->
     <script>
-        /* 
-           ========================================================================
-           🔧 O SEU BLOCO DE CONFIGURAÇÕES OFICIAL (EDITE AQUI PARA O GITHUB)
-           ========================================================================
-           É aqui que você escreve as informações reais para que elas fiquem 
-           definitivas quando sua namorada abrir o link da Vercel.
-        */
         const CONFIG = {
-            senhaSite: "15032026", // A senha do namoro
-            dataInicio: "2026-03-15T00:00:00", // A data para contar os dias
-            fotoPrincipal: "", // Ex: "minha-foto.jpg"
-
-            // Músicas: Copie e cole os links do Spotify
-            musicas: [
-                "https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"
-            ],
-
-            // Álbum de Fotos: Coloque os links ou nomes dos arquivos aqui
-            album: [
-                "https://via.placeholder.com/600x600?text=Sua+Foto+1",
-                "https://via.placeholder.com/600x600?text=Sua+Foto+2",
-                "https://via.placeholder.com/600x600?text=Sua+Foto+3"
-            ],
-
-            // Motivos para amar
-            motivos: [
-                "O jeito que você sorri pra mim.",
-                "Sua risada que ilumina meu dia.",
-                "Como a gente se entende só com um olhar.",
-                "Porque você é a minha pessoa favorita no mundo inteiro."
-            ],
-
-            // Linha do tempo (Formato fixo para você editar direto aqui no código se quiser)
+            senhaSite: "15032026", 
+            dataInicio: "2026-03-15T00:00:00", 
+            fotoPrincipal: "", 
+            musicas: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
+            album: [], // Deixei vazio pra você preencher via Galeria no admin
+            motivos: ["Seu sorriso", "Como nos entendemos com um olhar"],
             linhaDoTempo: [
-                { data: "O Início", texto: "Quando nossos olhares se cruzaram pela primeira vez." },
-                { data: "15/03/2026", texto: "O dia do Sim. O pedido de namoro oficial." },
-                { data: "Hoje", texto: "Construindo nosso futuro juntos." }
+                { data: "O Início", texto: "Quando nossos olhares se cruzaram." },
+                { data: "15/03/2026", texto: "O dia do Sim. O pedido de namoro." }
             ]
         };
-        /* ======================================================================== */
 
-        // Puxa do LocalStorage (Testes do Admin) ou usa o CONFIG oficial
         let DB = JSON.parse(localStorage.getItem("siteFeedDB")) || CONFIG;
 
-        // Remoção da tela de Splash suavemente
         window.onload = () => {
             renderizarConteudo();
             setTimeout(() => {
                 let splash = document.getElementById('splash-screen');
                 splash.style.opacity = '0';
-                setTimeout(() => { 
-                    splash.style.display = 'none'; 
-                    navTo('page-intro'); 
-                }, 500);
+                setTimeout(() => { splash.style.display = 'none'; navTo('page-intro'); }, 500);
             }, 1500);
-            
-            // Ativa o relógio do contador
             setInterval(atualizarContador, 1000);
         };
 
-        // Função de Navegar entre as Telas
         function navTo(idPagina) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(idPagina).classList.add('active');
-            window.scrollTo(0, 0); // Volta pro topo da página
+            window.scrollTo(0, 0); 
         }
 
-        // Verifica a Senha
         function checkPassword() {
             const pwd = document.getElementById('inputPassword').value;
             if (pwd === DB.senhaSite || pwd === "150326") {
@@ -351,12 +288,10 @@
             }
         }
 
-        // Calcula e atualiza os Dias/Horas
         function atualizarContador() {
             const start = new Date(DB.dataInicio).getTime();
             const now = new Date().getTime();
             const diff = now - start;
-            
             if(diff < 0) return;
             
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -375,22 +310,46 @@
             }
         }
 
-        // Função que injeta os textos, fotos e músicas no Feed
+        // ==========================================
+        // FUNÇÕES DE LER FOTOS DA GALERIA DO CELULAR
+        // ==========================================
+        function uparFotoUnica(event, inputId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(inputId).value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function uparFotosAlbum(event) {
+            const files = event.target.files;
+            const textarea = document.getElementById('admAlbum');
+            for(let i=0; i<files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Adiciona o código da imagem em uma nova linha no textarea
+                    textarea.value += (textarea.value ? '\n' : '') + e.target.result;
+                };
+                reader.readAsDataURL(files[i]);
+            }
+            alert(files.length + " foto(s) carregada(s) com sucesso na caixa de texto!");
+        }
+
         function renderizarConteudo() {
-            // Foto da Intro
             if(DB.fotoPrincipal) {
                 document.getElementById('intro-foto').src = DB.fotoPrincipal;
                 document.getElementById('intro-foto').style.display = 'inline-block';
             }
 
-            // Álbum
             let albumHtml = '';
             DB.album.forEach(img => {
                 if(img.trim() !== '') albumHtml += `<img src="${img.trim()}">`;
             });
             document.getElementById('render-album').innerHTML = albumHtml || "<p>Nenhuma foto adicionada ainda.</p>";
 
-            // Músicas (Transforma link normal em link embutido do Spotify)
             let musicHtml = '';
             DB.musicas.forEach(link => {
                 let url = link.trim();
@@ -405,7 +364,6 @@
             });
             document.getElementById('render-music').innerHTML = musicHtml || "<p>Nenhuma música adicionada ainda.</p>";
 
-            // Motivos
             let motivosHtml = '';
             DB.motivos.forEach(motivo => {
                 if(motivo.trim() !== '') {
@@ -414,9 +372,7 @@
             });
             document.getElementById('render-reasons').innerHTML = motivosHtml;
 
-            // Linha do Tempo
             let timelineHtml = '';
-            // Se não tiver no DB do Admin, puxa do CONFIG padrão
             let tlArray = DB.linhaDoTempo || CONFIG.linhaDoTempo;
             tlArray.forEach(item => {
                 timelineHtml += `
@@ -428,7 +384,6 @@
             });
             document.getElementById('render-timeline').innerHTML = timelineHtml;
 
-            // Preenche os campos do Admin com os dados atuais
             document.getElementById('admFoto').value = DB.fotoPrincipal || '';
             document.getElementById('admData').value = DB.dataInicio;
             document.getElementById('admAlbum').value = DB.album.join('\n');
@@ -436,28 +391,26 @@
             document.getElementById('admMotivos').value = DB.motivos.join('\n');
         }
 
-        // Função de Salvar do Painel Admin
         function salvarAdmin() {
-            DB.fotoPrincipal = document.getElementById('admFoto').value;
-            DB.dataInicio = document.getElementById('admData').value || CONFIG.dataInicio;
-            
-            DB.album = document.getElementById('admAlbum').value.split('\n').filter(Boolean);
-            DB.musicas = document.getElementById('admMusicas').value.split('\n').filter(Boolean);
-            DB.motivos = document.getElementById('admMotivos').value.split('\n').filter(Boolean);
+            try {
+                DB.fotoPrincipal = document.getElementById('admFoto').value;
+                DB.dataInicio = document.getElementById('admData').value || CONFIG.dataInicio;
+                DB.album = document.getElementById('admAlbum').value.split('\n').filter(Boolean);
+                DB.musicas = document.getElementById('admMusicas').value.split('\n').filter(Boolean);
+                DB.motivos = document.getElementById('admMotivos').value.split('\n').filter(Boolean);
 
-            localStorage.setItem("siteFeedDB", JSON.stringify(DB));
-            renderizarConteudo();
-            alert("Aplicado para teste no seu celular!\nLembrete: Para valer na Vercel, altere o código 'CONFIG' no GitHub.");
-            navTo('page-feed');
+                localStorage.setItem("siteFeedDB", JSON.stringify(DB));
+                renderizarConteudo();
+                navTo('page-feed');
+            } catch (e) {
+                alert("Erro! Você colocou fotos grandes demais e a memória do navegador encheu. Remova algumas fotos do álbum e tente novamente.");
+            }
         }
 
-        // =========================================================
-        // MÁGICA DO SCROLL (Faz as coisas aparecerem ao rolar)
-        // =========================================================
         function checkScroll() {
             let reveals = document.querySelectorAll('.reveal');
             let windowHeight = window.innerHeight;
-            let elementVisible = 100; // Quando o elemento entra 100px na tela, ele aparece
+            let elementVisible = 100;
 
             reveals.forEach(reveal => {
                 let elementTop = reveal.getBoundingClientRect().top;
