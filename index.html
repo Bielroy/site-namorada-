@@ -2,457 +2,453 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para o Meu Amor ❤️</title>
+    <!-- Fontes Premium e Ícones Modernos -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@400;700;900&display=swap');
+        /* =========================================================
+           1. VARIÁVEIS E TEMAS (CSS CUSTOM PROPERTIES)
+           ========================================================= */
+        :root {
+            /* Tema Padrão (Amor/Vermelho) */
+            --hue: 350;
+            --sat: 85%;
+            --lig: 65%;
+            --bg-color: #fce4ec;
+            --text-main: #333;
+            --text-muted: #666;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --primary: hsl(var(--hue), var(--sat), var(--lig));
+            --primary-dark: hsl(var(--hue), var(--sat), calc(var(--lig) - 15%));
+            --radius: 20px;
+            --font-main: 'Poppins', sans-serif;
+            --font-title: 'Dancing Script', cursive;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* Tema Escuro / Noturno */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-main: #fff;
+            --text-muted: #ccc;
+            --glass-bg: rgba(30, 30, 30, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: rgba(0, 0, 0, 0.5);
+            --primary: #ff4d4d;
+        }
 
+        /* Tema Azul (Oceano) */
+        [data-theme="blue"] { --hue: 210; --sat: 80%; --lig: 60%; --bg-color: #e3f2fd; }
+        /* Tema Lilás */
+        [data-theme="lilac"] { --hue: 270; --sat: 70%; --lig: 65%; --bg-color: #f3e5f5; }
+
+        /* =========================================================
+           2. RESET E BASE
+           ========================================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            /* Fundo principal que você escolheu */
-            background-image: url('1000274205.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: 'Nunito', sans-serif;
-            text-align: center;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: var(--font-main); color: var(--text-main);
+            background: var(--bg-color) url('1000274205.jpg') center/cover fixed;
+            overflow-x: hidden; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: var(--transition);
         }
 
-        /* Efeito "Glassmorphism" - Vidro Fosco */
-        .container {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            padding: 30px 20px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            max-width: 420px;
-            width: 90%;
-            position: relative;
-            z-index: 10;
+        /* Efeito de Fundo Desfocado (opcional se a img for muito forte) */
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color); opacity: 0.8; z-index: -1;
+            transition: var(--transition);
         }
 
-        /* Espaço das Fotos nas Etapas */
-        .foto-espaco {
-            width: 160px; height: 160px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 4px dashed #ff4d4d;
-            border-radius: 20px;
-            margin: 0 auto 20px auto;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 8px 15px rgba(255, 77, 77, 0.2);
+        /* =========================================================
+           3. CLASSES UTILITÁRIAS (GLASSMORPHISM)
+           ========================================================= */
+        .glass {
+            background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); border-radius: var(--radius);
+            box-shadow: 0 8px 32px var(--glass-shadow);
         }
-        .foto-espaco img { width: 100%; height: 100%; object-fit: cover; }
 
-        .page { display: none; animation: fadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        h1, h2, h3 { color: #b71c1c; margin-bottom: 15px; font-family: 'VT323', monospace; font-size: 34px; letter-spacing: 1px;}
-        p { color: #444; margin-bottom: 20px; font-size: 18px; font-weight: 700; }
-        
-        /* Botões mais arredondados e modernos */
         .btn {
-            background-color: #ff4d4d; color: white; border: none;
-            padding: 12px 25px; font-size: 22px; font-family: 'VT323', monospace;
-            border-radius: 50px; cursor: pointer; margin: 8px;
-            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
-            transition: all 0.2s;
+            background: var(--primary); color: white; border: none;
+            padding: 12px 24px; border-radius: 50px; font-weight: 600; font-size: 16px;
+            cursor: pointer; transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 77, 77, 0.6); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); background: var(--primary-dark); }
         .btn:active { transform: translateY(1px); }
-        .btn-green { background-color: #4caf50; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); }
-        .btn-green:hover { box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6); }
-        .btn-dark { background-color: #333; font-size: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-
-        .emoji-big { font-size: 85px; margin: 20px 0; cursor: pointer; display: inline-block; transition: transform 0.3s; }
-        .emoji-big:hover { transform: scale(1.1) rotate(5deg); }
-
-        /* Animação de Pulsar a Carta */
-        .pulsar { animation: pulse 1.5s infinite; }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); filter: drop-shadow(0 0 15px rgba(255,77,77,0.5)); }
-            100% { transform: scale(1); }
-        }
-
-        .carta-sobe { animation: subirCarta 2s forwards; }
-        @keyframes subirCarta { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-200px) scale(0); opacity: 0; } }
-
-        input, textarea {
-            width: 100%; padding: 12px; font-size: 16px; text-align: center;
-            border: 2px solid #ff4d4d; border-radius: 12px; margin-bottom: 15px; font-family: 'Nunito', sans-serif;
-            background: rgba(255,255,255,0.9); outline: none;
-        }
-        input:focus, textarea:focus { border-color: #b71c1c; box-shadow: 0 0 8px rgba(255,77,77,0.5); }
-
-        /* Seções do Painel (Álbum, Música, etc) */
-        .dashboard-section {
-            background: rgba(255,255,255,0.85); border: 2px solid #ff9999;
-            border-radius: 20px; padding: 20px; margin-bottom: 20px; text-align: left;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .dashboard-section h3 { font-size: 26px; margin-bottom: 15px; border-bottom: 2px dashed #ffb3b3; padding-bottom: 8px; }
-
-        /* Design do Álbum */
-        .album-capa {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            border-radius: 15px; padding: 20px; text-align: center; cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 154, 158, 0.4);
-            transition: transform 0.3s; margin-bottom: 15px;
-        }
-        .album-capa:hover { transform: scale(1.03); }
-        .album-capa img { width: 100px; height: 100px; border-radius: 10px; object-fit: cover; border: 3px solid white; margin-bottom: 10px;}
-        .album-capa h4 { color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-size: 20px; }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--text-main); }
         
-        .galeria { display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; animation: fadeIn 0.5s; }
-        .galeria img { width: 100%; height: 120px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: var(--primary); margin-bottom: 10px; }
+        .title-fancy { font-family: var(--font-title); font-size: 2.5rem; letter-spacing: 1px; }
 
-        .admin-btn { position: absolute; bottom: -45px; right: 10px; font-size: 26px; cursor: pointer; opacity: 0.4; transition: 0.3s; }
-        .admin-btn:hover { opacity: 1; transform: rotate(45deg); }
-
-        /* Notificação Bonita (Substitui o Alert feio) */
-        #toast {
-            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
-            background: #4caf50; color: white; padding: 12px 25px;
-            border-radius: 30px; font-weight: bold; font-size: 16px;
-            box-shadow: 0 10px 20px rgba(76,175,80,0.4); z-index: 9999;
-            transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        input, textarea, select {
+            width: 100%; padding: 12px 15px; margin-bottom: 15px;
+            background: rgba(255,255,255,0.5); border: 2px solid transparent;
+            border-radius: 12px; font-family: var(--font-main); color: var(--text-main);
+            transition: var(--transition); outline: none;
         }
-        #toast.show { bottom: 30px; }
+        [data-theme="dark"] input { background: rgba(0,0,0,0.3); color: white; }
+        input:focus, textarea:focus { border-color: var(--primary); background: var(--glass-bg); }
 
-        .heart { position: fixed; font-size: 24px; color: red; top: -50px; z-index: 100; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        /* =========================================================
+           4. ANIMAÇÕES E PARTÍCULAS
+           ========================================================= */
+        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        .slide-up { animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        .zoom-in { animation: zoomIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        .pulse { animation: pulse 2s infinite; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Partículas (Corações) */
+        .particle { position: fixed; bottom: -50px; pointer-events: none; z-index: 9999; animation: floatUp 4s linear forwards; font-size: 20px; }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 10000; transition: 0.5s;
+        }
+
+        /* =========================================================
+           5. LAYOUT DAS PÁGINAS (SPA)
+           ========================================================= */
+        .page { display: none; width: 90%; max-width: 450px; text-align: center; margin: 20px auto; padding: 30px 20px; }
+        .page.active { display: block; }
+
+        /* Foto Avatar */
+        .avatar-box {
+            width: 140px; height: 140px; margin: 0 auto 20px auto;
+            border-radius: 50%; padding: 5px; background: linear-gradient(45deg, var(--primary), #ffa07a);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid white; }
+
+        /* =========================================================
+           6. APP PRINCIPAL (DASHBOARD)
+           ========================================================= */
+        #app-dashboard { max-width: 800px; width: 95%; margin: 20px auto; padding: 20px; text-align: left; }
+        
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .greeting { font-size: 1.2rem; font-weight: 600; color: var(--text-muted); }
+        .greeting span { color: var(--primary); font-family: var(--font-title); font-size: 2rem; }
+
+        /* Card Contador */
+        .counter-card { text-align: center; padding: 20px; margin-bottom: 30px; }
+        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+        .counter-item { background: rgba(255,255,255,0.3); padding: 10px; border-radius: 12px; }
+        .counter-item span { display: block; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .counter-item small { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; }
+
+        /* Grid de Módulos (Menu Principal) */
+        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+        .module-btn {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 20px 10px;
+            border-radius: var(--radius); text-align: center; cursor: pointer; transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 600;
+        }
+        .module-btn i { font-size: 2rem; color: var(--primary); transition: var(--transition); }
+        .module-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px var(--glass-shadow); border-color: var(--primary); }
+        .module-btn:hover i { transform: scale(1.2); }
+
+        /* =========================================================
+           7. MODAIS GLOBAIS (Lightboxes, Paineis de Conteúdo)
+           ========================================================= */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center; z-index: 1000;
+        }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.3s forwards; }
+        .modal-content {
+            background: var(--bg-color); width: 90%; max-width: 600px; max-height: 85vh;
+            border-radius: var(--radius); padding: 25px; overflow-y: auto; position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+
+        /* Módulos Específicos Internos */
+        .timeline-item { display: flex; gap: 15px; margin-bottom: 20px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: -20px; width: 2px; background: var(--primary); opacity: 0.3; }
+        .timeline-item:last-child::before { display: none; }
+        .timeline-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; z-index: 1; flex-shrink: 0;}
+        .timeline-box { background: var(--glass-bg); padding: 15px; border-radius: 15px; flex: 1; border: 1px solid var(--glass-border); }
+        .timeline-box img { width: 100%; border-radius: 10px; margin-top: 10px; }
+
+        .album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
+        .album-grid img { width: 100%; height: 100px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+        .album-grid img:hover { transform: scale(1.05); }
+
+        .dreams-list label { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--glass-bg); margin-bottom: 5px; border-radius: 10px; cursor: pointer;}
+        .dreams-list input[type="checkbox"] { width: 20px; height: 20px; margin: 0; accent-color: var(--primary); }
+
+        .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+        .card { background: var(--primary); height: 80px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: transparent; cursor: pointer; transition: 0.3s; transform-style: preserve-3d; }
+        .card.flipped { background: white; color: var(--primary); transform: rotateY(180deg); border: 2px solid var(--primary); }
+
+        /* Toast Notificação */
+        #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #4caf50; color: white; padding: 12px 25px; border-radius: 30px; font-weight: bold; z-index: 9999; transition: 0.4s; }
+        #toast.show { bottom: 30px; }
+        
+        /* Admin Botão Flutuante */
+        .btn-admin-float { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,0.5); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; z-index: 900; backdrop-filter: blur(5px); }
     </style>
 </head>
 <body>
 
-    <!-- Aviso Bonito -->
-    <div id="toast">✅ Configurações aplicadas!</div>
+    <div class="bg-overlay"></div>
+    <div id="toast">✅ Sucesso!</div>
 
-    <div class="container">
-        <!-- PÁGINA 1 -->
-        <div id="page1" class="page active">
-            <div class="foto-espaco"><img id="imgPg1" src="" alt="Foto 1" onerror="this.style.display='none'; this.parentNode.innerHTML='Sua Foto Aqui'"></div>
-            <h1>Tem uma cartinha pra você...</h1>
-            <div class="emoji-big pulsar" onclick="irPara('page2')">💌</div>
-            <p>(Clique na carta para abrir)</p>
+    <!-- TELA DE LOADING (SPLASH) -->
+    <div id="splash-screen">
+        <i class="fa-solid fa-heart pulse" style="color: var(--primary); font-size: 60px; margin-bottom: 20px;"></i>
+        <h2 class="title-fancy">Carregando Amor...</h2>
+    </div>
+
+    <!-- =========================================================
+         FLUXO DE INTRODUÇÃO (Manteve a Essência Original)
+         ========================================================= -->
+    
+    <!-- PÁGINA 1: A Cartinha -->
+    <div id="page-intro" class="page glass slide-up">
+        <div class="avatar-box"><img id="imgPg1" src="" alt="Sua Foto Aqui" onerror="this.src='https://via.placeholder.com/150?text=Foto'"></div>
+        <h1 class="title-fancy">Tem uma cartinha pra você...</h1>
+        <div style="font-size: 80px; cursor: pointer; margin: 20px 0;" class="pulse" onclick="navTo('page-question')">💌</div>
+        <p class="text-muted">(Clique para abrir)</p>
+    </div>
+
+    <!-- PÁGINA 2: A Pergunta -->
+    <div id="page-question" class="page glass">
+        <div class="avatar-box"><img id="imgPg2" src="" alt="Sua Foto Aqui" onerror="this.src='https://via.placeholder.com/150?text=Foto'"></div>
+        <h1 class="title-fancy">Você me ama?</h1>
+        <div style="font-size: 80px; margin: 10px 0;">✉️</div>
+        <button class="btn" style="background:#4caf50;" onclick="handleYes()">SIM ❤️</button>
+        <button class="btn btn-outline" onclick="navTo('page-wrong')">NÃO ✖️</button>
+    </div>
+
+    <!-- PÁGINA 3: Erro -->
+    <div id="page-wrong" class="page glass">
+        <div style="font-size: 80px; margin: 10px 0;">😠</div>
+        <h2>Ei!</h2>
+        <p>Resposta errada, mocinha!</p>
+        <button class="btn" onclick="navTo('page-question')">Voltar e Tentar Novamente</button>
+    </div>
+
+    <!-- PÁGINA 4: Sucesso -->
+    <div id="page-correct" class="page glass">
+        <h1 class="title-fancy pulse" style="font-size: 2.5rem; margin: 20px 0;">Eu também te amo meu bem! ❤️</h1>
+        <button class="btn slide-up" style="margin-top:20px; animation-delay: 1.5s;" onclick="navTo('page-password')">Prosseguir <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    <!-- PÁGINA 5: Senha -->
+    <div id="page-password" class="page glass">
+        <div style="font-size: 60px; margin: 10px 0;">🔒</div>
+        <h2>Acesso Restrito</h2>
+        <p>Qual é a senha? <br><small>(O dia que te pedi em namoro)</small></p>
+        <input type="password" id="inputPassword" placeholder="Ex: 15032026">
+        <button class="btn" onclick="checkPassword()"><i class="fa-solid fa-unlock"></i> Desbloquear</button>
+        <p id="pwdError" style="color: red; display: none; margin-top:10px;">Senha incorreta!</p>
+    </div>
+
+    <!-- =========================================================
+         O APP PRINCIPAL (DASHBOARD)
+         ========================================================= -->
+    <div id="app-dashboard" class="page slide-up" style="display:none;">
+        
+        <div class="header-top">
+            <div class="greeting" id="greetingText">Boa Tarde, <br><span id="herNameDisplay">Amor</span></div>
+            <button class="btn btn-outline" style="border-radius:50%; width:45px; height:45px; padding:0;" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
         </div>
 
-        <!-- PÁGINA 2 -->
-        <div id="page2" class="page">
-            <div class="foto-espaco"><img id="imgPg2" src="" alt="Foto 2" onerror="this.style.display='none'; this.parentNode.innerHTML='Sua Foto Aqui'"></div>
-            <h1>Você me ama?</h1>
-            <div class="emoji-big">✉️</div><br>
-            <button class="btn btn-green" onclick="dizerSim()">SIM ❤️</button>
-            <button class="btn" onclick="irPara('page3')">NÃO ✖️</button>
-        </div>
-
-        <!-- PÁGINA 3 -->
-        <div id="page3" class="page">
-            <div class="foto-espaco"><img id="imgPg3" src="" alt="Foto 3" onerror="this.style.display='none'; this.parentNode.innerHTML='Sua Foto Aqui'"></div>
-            <div class="emoji-big">😠</div>
-            <h1>Ei!</h1>
-            <p>Resposta errada, mocinha!</p>
-            <button class="btn" onclick="irPara('page2')">Voltar e Tentar Novamente</button>
-        </div>
-
-        <!-- PÁGINA 4 -->
-        <div id="page4" class="page">
-            <div class="foto-espaco"><img id="imgPg4" src="" alt="Foto 4" onerror="this.style.display='none'; this.parentNode.innerHTML='Sua Foto Aqui'"></div>
-            <h1 id="msgSim" style="display:none; font-size: 30px;">hehehehe eu também te amo meu bem ❤️</h1>
-            <br>
-            <button id="btnProsseguir" class="btn" style="display:none; margin-top:20px;" onclick="irPara('page5')">Prosseguir ➡️</button>
-        </div>
-
-        <!-- PÁGINA 5 (Senha) -->
-        <div id="page5" class="page">
-            <div class="emoji-big">🔒</div>
-            <h1>Acesso Restrito</h1>
-            <p>Qual é a senha?</p>
-            <p style="font-size: 14px; color: #666;">(O dia que te pedi em namoro)</p>
-            <input type="number" id="senhaInput" placeholder="Ex: 15032026">
-            <button class="btn" onclick="verificarSenha()">Desbloquear</button>
-            <p id="erroSenha" style="color: red; display: none; font-size: 15px; margin-top:10px;">Senha incorreta. Tente de novo!</p>
-        </div>
-
-        <!-- PÁGINA 6 -->
-        <div id="page6" class="page">
-            <div class="emoji-big">🔓</div>
-            <h1 style="font-size: 45px; margin-top: 20px;">uiuiui é minha namorada mesmo ❤️</h1>
-        </div>
-
-        <!-- PÁGINA 7: Painel Principal -->
-        <div id="page7" class="page">
-            <h1>Nosso Cantinho ❤️</h1>
-            
-            <div class="dashboard-section">
-                <h3>📸 Nosso Álbum</h3>
-                <!-- Capa do Álbum Interativa -->
-                <div class="album-capa" onclick="abrirAlbum()">
-                    <img id="imgCapaAlbum" src="https://cdn-icons-png.flaticon.com/512/3342/3342176.png" alt="Capa">
-                    <h4>Ver Nossas Fotos 💖</h4>
-                    <p style="font-size: 12px; color:white; margin:0;">Clique para abrir</p>
-                </div>
-                <!-- Galeria Oculta -->
-                <div id="galeriaFotos" class="galeria">
-                    <!-- As fotos vão aparecer aqui -->
-                </div>
+        <!-- Section: Contador -->
+        <div class="glass counter-card zoom-in">
+            <h3 class="title-fancy"><i class="fa-solid fa-stopwatch"></i> Nosso Tempo Juntos</h3>
+            <div class="counter-grid">
+                <div class="counter-item"><span id="c-years">0</span><small>Anos</small></div>
+                <div class="counter-item"><span id="c-months">0</span><small>Meses</small></div>
+                <div class="counter-item"><span id="c-days">0</span><small>Dias</small></div>
+                <div class="counter-item"><span id="c-hours">0</span><small>Horas</small></div>
+                <div class="counter-item"><span id="c-mins">0</span><small>Minutos</small></div>
+                <div class="counter-item"><span id="c-secs">0</span><small>Segundos</small></div>
             </div>
-
-            <div class="dashboard-section">
-                <h3>🎵 Nossas Músicas</h3>
-                <div id="musicaContainer">
-                    <!-- Players do Spotify vão aparecer aqui -->
-                </div>
-            </div>
-
-            <div class="dashboard-section">
-                <h3 id="tituloPlanos">✈️ Próximos Planos</h3>
-                <p style="font-size: 16px; margin-bottom: 5px;">Faltam:</p>
-                <h2 id="contagemRegressiva" style="font-size: 32px; color: #ff4d4d; margin:0; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Carregando...</h2>
-            </div>
-            
-            <div class="admin-btn" onclick="abrirAdmin()">⚙️</div>
         </div>
 
-        <!-- PÁGINA 8: GERENCIADOR ADMIN -->
-        <div id="pageAdmin" class="page">
-            <h1 style="font-size: 28px;">Gerenciar Site 🛠️</h1>
-            <p style="font-size: 13px; color:#666;">Preencha os campos abaixo com os links (URLs) ou nomes das fotos (.jpg/.png). Para testar, clique em Salvar. (Para salvar no Vercel de vez, atualize o CONFIG no GitHub).</p>
-            
-            <div class="dashboard-section" style="border-color: #777; height: 50vh; overflow-y: auto;">
-                <h3 style="font-size: 18px;">🗓️ Contagem Regressiva</h3>
-                <input type="text" id="adminTitulo" placeholder="Ex: Viagem para Praia">
-                <input type="datetime-local" id="adminData">
-                
-                <h3 style="font-size: 18px; margin-top:15px;">🎵 Músicas (Links do Spotify)</h3>
-                <p style="font-size: 11px; margin-bottom:5px;">Cole os links normais do Spotify (um por linha):</p>
-                <textarea id="adminMusicas" rows="3" placeholder="https://open.spotify.com/track/...\nhttps://open.spotify.com/track/..."></textarea>
-                
-                <h3 style="font-size: 18px; margin-top:15px;">🖼️ Fotos das Páginas</h3>
-                <input type="text" id="adminF1" placeholder="Foto Página 1 (Início)">
-                <input type="text" id="adminF2" placeholder="Foto Página 2 (Pergunta)">
-                <input type="text" id="adminF3" placeholder="Foto Página 3 (Erro)">
-                <input type="text" id="adminF4" placeholder="Foto Página 4 (Acerto)">
-                
-                <h3 style="font-size: 18px; margin-top:15px;">📸 Fotos do Álbum</h3>
-                <input type="text" id="adminCapa" placeholder="Imagem da Capa do Álbum">
-                <p style="font-size: 11px; margin-bottom:5px;">Links das fotos do álbum (um por linha):</p>
-                <textarea id="adminAlbumFotos" rows="3" placeholder="foto1.jpg\nfoto2.jpg"></textarea>
-            </div>
-            
-            <button class="btn btn-green" onclick="salvarAdmin()" style="width: 100%;">Salvar e Visualizar 👀</button>
-            <button class="btn btn-dark" onclick="irPara('page7')" style="width: 100%;">Cancelar</button>
+        <!-- Section: Botões de Funcionalidades Premium -->
+        <div class="modules-grid">
+            <div class="module-btn" onclick="openModule('timeline')"><i class="fa-solid fa-route"></i> Linha do Tempo</div>
+            <div class="module-btn" onclick="openModule('album')"><i class="fa-solid fa-images"></i> Nosso Álbum</div>
+            <div class="module-btn" onclick="openModule('music')"><i class="fa-solid fa-music"></i> Músicas</div>
+            <div class="module-btn" onclick="openModule('letters')"><i class="fa-solid fa-envelope-open-text"></i> Cartinhas</div>
+            <div class="module-btn" onclick="openModule('reasons')"><i class="fa-solid fa-jar"></i> Pote de Motivos</div>
+            <div class="module-btn" onclick="openModule('diary')"><i class="fa-solid fa-book-heart"></i> Meu Diário</div>
+            <div class="module-btn" onclick="openModule('dreams')"><i class="fa-solid fa-list-check"></i> Nossos Sonhos</div>
+            <div class="module-btn" onclick="openModule('surprise')"><i class="fa-solid fa-gift pulse"></i> Surpresa</div>
+            <div class="module-btn" onclick="openModule('quiz')"><i class="fa-solid fa-clipboard-question"></i> Quiz do Casal</div>
+            <div class="module-btn" onclick="openModule('game')"><i class="fa-solid fa-gamepad"></i> Jogo</div>
+            <div class="module-btn" onclick="openModule('achievements')"><i class="fa-solid fa-trophy"></i> Conquistas</div>
         </div>
     </div>
 
+    <!-- Botão Secreto Admin -->
+    <div class="btn-admin-float" onclick="openAdmin()"><i class="fa-solid fa-gear"></i></div>
+
+    <!-- =========================================================
+         MODAL GLOBAL (Renderiza tudo via JavaScript)
+         ========================================================= -->
+    <div class="modal-overlay" id="mainModal" onclick="closeModal(event)">
+        <div class="modal-content glass slide-up" onclick="event.stopPropagation()">
+            <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('mainModal').classList.remove('active')"></i>
+            <h2 class="title-fancy" id="modalTitle" style="text-align: center; margin-bottom: 20px;">Título</h2>
+            <div id="modalBody">
+                <!-- O conteúdo é injetado dinamicamente aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT PURÃO (Lógica SPA)
+         ========================================================= -->
     <script>
-        // =====================================================================
-        // 🔧 ÁREA DE CONFIGURAÇÃO (O SEU "BLOCO DE NOTAS" PARA O GITHUB)
-        // =====================================================================
-        const CONFIG = {
-            senhaSite: "15032026", 
-            senhaGerenciador: "admin123", 
-            
-            dataDoPlano: "2026-12-20T00:00", 
-            tituloDoPlano: "✈️ Próximos Planos: Nossa Viagem",
-            
-            // Coloque os links normais do Spotify aqui, separados por vírgula e entre aspas
-            linksSpotify: [
-                "https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP",
-                "https://open.spotify.com/track/4PTG3Z6ehGkBFwjybzWkR8"
+        /**
+         * 1. BANCO DE DADOS LOCAL (CONFIG OBJECT)
+         * Se quiser fixar no Vercel/GitHub, mude os valores aqui.
+         */
+        const DEFAULT_CONFIG = {
+            senhaSite: "15032026",
+            senhaAdmin: "admin123",
+            nomeDela: "Meu Amor",
+            dataInicio: "2024-03-15T00:00:00",
+            fotoPg1: "", fotoPg2: "",
+            temaColor: "default", // default, dark, blue, lilac
+            timeline: [
+                { icon: "fa-heart", date: "15/03/2024", title: "O Pedido", desc: "O dia que minha vida mudou.", img: "" }
             ],
-
-            // Nomes ou Links das fotos que aparecem nas etapas (ex: "minhafoto.jpg")
-            fotoPg1: "",
-            fotoPg2: "",
-            fotoPg3: "",
-            fotoPg4: "",
-
-            // Álbum
-            fotoCapaAlbum: "https://cdn-icons-png.flaticon.com/512/3342/3342176.png",
-            fotosDentroDoAlbum: [
-                "suafoto1.jpg",
-                "suafoto2.jpg"
-            ]
+            album: ["https://via.placeholder.com/300?text=Nossa+Foto", "https://via.placeholder.com/300?text=Viagem"],
+            music: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
+            letters: [
+                { title: "Leia quando estiver triste", content: "Lembre-se que eu sempre estarei aqui para você. Te amo infinitamente!" },
+                { title: "Leia quando sentir saudade", content: "Olhe para a lua, estamos olhando para o mesmo céu." }
+            ],
+            reasons: ["Seu sorriso", "Seu cheiro", "O jeito que você me abraça", "Porque você é incrível"],
+            diary: [{ date: "Hoje", title: "Pensando em você", text: "Fiz esse app só pra te ver sorrir." }],
+            dreams: [{ text: "Viajar para a Praia", done: false }, { text: "Casar", done: false }],
+            quiz: [
+                { q: "Qual foi nosso primeiro encontro?", options: ["Cinema", "Parque", "Jantar", "Praia"], answer: 0 }
+            ],
+            achievements: ["🏆 Primeiro Mês Juntos", "🏆 Primeira Viagem"]
         };
-        // =====================================================================
 
-        // Carrega as configurações salvas no navegador (do Admin) OU as originais do CONFIG acima
-        let configAtual = JSON.parse(localStorage.getItem("siteConfig")) || CONFIG;
+        // Mescla com o LocalStorage
+        let DB = JSON.parse(localStorage.getItem("appDB")) || DEFAULT_CONFIG;
+        function saveDB() { localStorage.setItem("appDB", JSON.stringify(DB)); }
 
-        function aplicarConfiguracoesNoSite() {
-            // Textos e Datas
-            document.getElementById("tituloPlanos").innerText = configAtual.tituloDoPlano;
-            
-            // Fotos Páginas
-            if(configAtual.fotoPg1) { document.getElementById("imgPg1").src = configAtual.fotoPg1; document.getElementById("imgPg1").style.display='block'; }
-            if(configAtual.fotoPg2) { document.getElementById("imgPg2").src = configAtual.fotoPg2; document.getElementById("imgPg2").style.display='block'; }
-            if(configAtual.fotoPg3) { document.getElementById("imgPg3").src = configAtual.fotoPg3; document.getElementById("imgPg3").style.display='block'; }
-            if(configAtual.fotoPg4) { document.getElementById("imgPg4").src = configAtual.fotoPg4; document.getElementById("imgPg4").style.display='block'; }
-            
-            // Álbum
-            document.getElementById("imgCapaAlbum").src = configAtual.fotoCapaAlbum;
-            let galeriaHtml = '';
-            configAtual.fotosDentroDoAlbum.forEach(foto => {
-                if(foto.trim() !== "") {
-                    galeriaHtml += `<img src="${foto}" alt="Foto" onerror="this.style.display='none'">`;
-                }
-            });
-            document.getElementById("galeriaFotos").innerHTML = galeriaHtml;
-
-            // Converter Músicas normais do Spotify para Iframe
-            let musicasHtml = '';
-            configAtual.linksSpotify.forEach(link => {
-                link = link.trim();
-                if(link) {
-                    // Pega o link normal e transforma em link de embed do Spotify
-                    if(link.includes('spotify.com') && !link.includes('embed')) {
-                        let partes = link.split('spotify.com/');
-                        let caminho = partes[1].split('?')[0]; // tira coisas extras do link
-                        link = `https://open.spotify.com/embed/${caminho}`;
-                    }
-                    musicasHtml += `<iframe style="border-radius:12px; margin-bottom: 10px;" src="${link}" width="100%" height="100" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
-                }
-            });
-            if(musicasHtml === '') musicasHtml = '<p style="font-size:14px; color:#666;">Nenhuma música adicionada ainda.</p>';
-            document.getElementById("musicaContainer").innerHTML = musicasHtml;
+        // =========================================================
+        // 2. UTILITÁRIOS E NAVEGAÇÃO
+        // =========================================================
+        function showToast(msg) {
+            let t = document.getElementById("toast"); t.innerText = msg; t.classList.add("show");
+            setTimeout(() => t.classList.remove("show"), 3000);
         }
 
-        // Executa ao carregar a página
-        aplicarConfiguracoesNoSite();
-
-        // Navegação Padrão
-        function irPara(idPagina) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(idPagina).classList.add('active');
-        }
-
-        function dizerSim() {
-            irPara('page4');
-            let carta = document.createElement('div');
-            carta.innerHTML = '✉️';
-            carta.className = 'emoji-big carta-sobe';
-            carta.style.position = 'absolute';
-            document.getElementById('page4').prepend(carta);
-            criarCoracoes();
-            setTimeout(() => {
-                document.getElementById('msgSim').style.display = 'block';
-                document.getElementById('btnProsseguir').style.display = 'inline-block';
-            }, 2000);
-        }
-
-        function criarCoracoes() {
-            for (let i = 0; i < 50; i++) {
+        function createHearts() {
+            for (let i = 0; i < 40; i++) {
                 setTimeout(() => {
-                    let coracao = document.createElement('div');
-                    coracao.innerHTML = '❤️';
-                    coracao.className = 'heart';
-                    coracao.style.left = Math.random() * 100 + 'vw';
-                    coracao.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                    document.body.appendChild(coracao);
-                    setTimeout(() => coracao.remove(), 4000);
-                }, i * 100);
+                    let heart = document.createElement('div');
+                    heart.innerHTML = ['❤️','💖','✨','💕'][Math.floor(Math.random()*4)];
+                    heart.className = 'particle';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 50);
             }
         }
 
-        function verificarSenha() {
-            let senhaDigitada = document.getElementById('senhaInput').value;
-            if (senhaDigitada === CONFIG.senhaSite) {
-                irPara('page6');
-                setTimeout(() => irPara('page7'), 3000);
+        function navTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // =========================================================
+        // 3. FLUXO INICIAL E CONTADOR
+        // =========================================================
+        window.onload = () => {
+            applyTheme(DB.temaColor);
+            document.getElementById('imgPg1').src = DB.fotoPg1 || "https://via.placeholder.com/150?text=Foto";
+            document.getElementById('imgPg2').src = DB.fotoPg2 || "https://via.placeholder.com/150?text=Foto";
+            
+            setTimeout(() => {
+                document.getElementById('splash-screen').style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById('splash-screen').style.display = "none";
+                    navTo('page-intro');
+                }, 500);
+            }, 2000);
+            updateGreeting();
+            setInterval(updateCounter, 1000);
+        };
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme === 'default' ? '' : theme);
+        }
+        function toggleTheme() {
+            const themes = ['default', 'dark', 'blue', 'lilac'];
+            let current = themes.indexOf(DB.temaColor);
+            DB.temaColor = themes[(current + 1) % themes.length];
+            applyTheme(DB.temaColor); saveDB(); showToast("Tema Alterado! 🎨");
+        }
+
+        function updateGreeting() {
+            let hour = new Date().getHours();
+            let g = hour < 12 ? "Bom dia" : hour < 18 ? "Boa tarde" : "Boa noite";
+            document.getElementById("greetingText").innerHTML = `${g}, <br><span id="herNameDisplay">${DB.nomeDela} ❤️</span>`;
+        }
+
+        function handleYes() {
+            createHearts(); navTo('page-correct');
+        }
+
+        function checkPassword() {
+            if (document.getElementById('inputPassword').value === DB.senhaSite) {
+                navTo('app-dashboard'); createHearts();
             } else {
-                document.getElementById('erroSenha').style.display = 'block';
+                document.getElementById('pwdError').style.display = 'block';
             }
         }
 
-        // Abrir Álbum
-        function abrirAlbum() {
-            let galeria = document.getElementById("galeriaFotos");
-            if(galeria.style.display === "none" || galeria.style.display === "") {
-                galeria.style.display = "grid";
-            } else {
-                galeria.style.display = "none";
-            }
-        }
-
-        // =====================================================================
-        // 🛠️ ADMIN e NOTIFICAÇÃO
-        // =====================================================================
-        function mostrarAvisoBonito(mensagem) {
-            let toast = document.getElementById("toast");
-            toast.innerText = mensagem;
-            toast.classList.add("show");
-            setTimeout(() => { toast.classList.remove("show"); }, 3000);
-        }
-
-        function abrirAdmin() {
-            let pass = prompt("Digite a senha do painel Admin:");
-            if (pass === CONFIG.senhaGerenciador) {
-                document.getElementById("adminTitulo").value = configAtual.tituloDoPlano;
-                document.getElementById("adminData").value = configAtual.dataDoPlano;
-                document.getElementById("adminF1").value = configAtual.fotoPg1;
-                document.getElementById("adminF2").value = configAtual.fotoPg2;
-                document.getElementById("adminF3").value = configAtual.fotoPg3;
-                document.getElementById("adminF4").value = configAtual.fotoPg4;
-                document.getElementById("adminCapa").value = configAtual.fotoCapaAlbum;
-                
-                document.getElementById("adminMusicas").value = configAtual.linksSpotify.join('\n');
-                document.getElementById("adminAlbumFotos").value = configAtual.fotosDentroDoAlbum.join('\n');
-                
-                irPara('pageAdmin');
-            } else if (pass !== null) {
-                alert("Senha incorreta!");
-            }
-        }
-
-        function salvarAdmin() {
-            configAtual.tituloDoPlano = document.getElementById("adminTitulo").value;
-            configAtual.dataDoPlano = document.getElementById("adminData").value;
-            configAtual.fotoPg1 = document.getElementById("adminF1").value;
-            configAtual.fotoPg2 = document.getElementById("adminF2").value;
-            configAtual.fotoPg3 = document.getElementById("adminF3").value;
-            configAtual.fotoPg4 = document.getElementById("adminF4").value;
-            configAtual.fotoCapaAlbum = document.getElementById("adminCapa").value;
+        function updateCounter() {
+            const start = new Date(DB.dataInicio).getTime();
+            const now = new Date().getTime();
+            const diff = now - start;
+            if (diff < 0) return;
             
-            configAtual.linksSpotify = document.getElementById("adminMusicas").value.split('\n');
-            configAtual.fotosDentroDoAlbum = document.getElementById("adminAlbumFotos").value.split('\n');
-            
-            localStorage.setItem("siteConfig", JSON.stringify(configAtual));
-            
-            aplicarConfiguracoesNoSite();
-            mostrarAvisoBonito("✅ Configurações salvas e aplicadas!");
-            irPara('page7');
-        }
+            const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const years = Math.floor(daysTotal / 365);
+            const months = Math.floor((daysTotal % 365) / 30);
+            const days = (daysTotal % 365) % 30;
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-        // Relógio
-        setInterval(function() {
-            const dataObjetivo = new Date(configAtual.dataDoPlano).getTime();
-            const agora = new Date().getTime();
-            const distancia = dataObjetivo - agora;
-
-            if (distancia < 0 || isNaN(distancia)) {
-                document.getElementById("contagemRegressiva").innerHTML = "É HOJE!!! 🎉";
-                return;
-            }
-
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-            document.getElementById("contagemRegressiva").innerHTML = 
-                dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
-        }, 1000);
-    </script>
-</body>
-</html>
+            document.getElementById('c-years').innerText = years;
+            document.getElementById('c-months').innerText = months;
+            document.getElementById('c-days').innerText = days;
+            document.getElementById('c-hours').innerText = hours;
+            documentNormally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
