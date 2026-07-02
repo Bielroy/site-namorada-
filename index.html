@@ -4,246 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para o Meu Amor ❤️</title>
-    <!-- Fontes Premium e Ícones Modernos -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* =========================================================
-           1. VARIÁVEIS E TEMAS (CSS CUSTOM PROPERTIES)
-           ========================================================= */
         :root {
-            /* Tema Padrão (Amor/Vermelho) */
-            --hue: 350;
-            --sat: 85%;
-            --lig: 65%;
-            --bg-color: #fce4ec;
-            --text-main: #333;
-            --text-muted: #666;
-            --glass-bg: rgba(255, 255, 255, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --hue: 350; --sat: 85%; --lig: 65%;
+            --bg-color: #fce4ec; --text-main: #333; --text-muted: #666;
+            --glass-bg: rgba(255, 255, 255, 0.65); --glass-border: rgba(255, 255, 255, 0.4);
             --primary: hsl(var(--hue), var(--sat), var(--lig));
-            --primary-dark: hsl(var(--hue), var(--sat), calc(var(--lig) - 15%));
-            --radius: 20px;
-            --font-main: 'Poppins', sans-serif;
-            --font-title: 'Dancing Script', cursive;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --radius: 20px; --font-main: 'Poppins', sans-serif; --font-title: 'Dancing Script', cursive;
         }
 
-        /* Tema Escuro / Noturno */
         [data-theme="dark"] {
-            --bg-color: #121212;
-            --text-main: #fff;
-            --text-muted: #ccc;
-            --glass-bg: rgba(30, 30, 30, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: rgba(0, 0, 0, 0.5);
+            --bg-color: #121212; --text-main: #fff; --text-muted: #ccc;
+            --glass-bg: rgba(30, 30, 30, 0.7); --glass-border: rgba(255, 255, 255, 0.1);
             --primary: #ff4d4d;
         }
 
-        /* Tema Azul (Oceano) */
-        [data-theme="blue"] { --hue: 210; --sat: 80%; --lig: 60%; --bg-color: #e3f2fd; }
-        /* Tema Lilás */
-        [data-theme="lilac"] { --hue: 270; --sat: 70%; --lig: 65%; --bg-color: #f3e5f5; }
-
-        /* =========================================================
-           2. RESET E BASE
-           ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body {
             font-family: var(--font-main); color: var(--text-main);
             background: var(--bg-color) url('1000274205.jpg') center/cover fixed;
-            overflow-x: hidden; min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: var(--transition);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: 0.3s; overflow-x: hidden;
         }
 
-        /* Efeito de Fundo Desfocado (opcional se a img for muito forte) */
-        .bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color); opacity: 0.8; z-index: -1;
-            transition: var(--transition);
-        }
-
-        /* =========================================================
-           3. CLASSES UTILITÁRIAS (GLASSMORPHISM)
-           ========================================================= */
         .glass {
             background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border); border-radius: var(--radius);
-            box-shadow: 0 8px 32px var(--glass-shadow);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
         .btn {
-            background: var(--primary); color: white; border: none;
-            padding: 12px 24px; border-radius: 50px; font-weight: 600; font-size: 16px;
-            cursor: pointer; transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--primary); color: white; border: none; padding: 12px 24px;
+            border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer;
+            transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); background: var(--primary-dark); }
-        .btn:active { transform: translateY(1px); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); filter: brightness(0.9); }
         .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--text-main); }
         
         h1, h2, h3 { color: var(--primary); margin-bottom: 10px; }
         .title-fancy { font-family: var(--font-title); font-size: 2.5rem; letter-spacing: 1px; }
 
         input, textarea, select {
-            width: 100%; padding: 12px 15px; margin-bottom: 15px;
-            background: rgba(255,255,255,0.5); border: 2px solid transparent;
-            border-radius: 12px; font-family: var(--font-main); color: var(--text-main);
-            transition: var(--transition); outline: none;
+            width: 100%; padding: 12px 15px; margin-bottom: 15px; border-radius: 12px;
+            background: rgba(255,255,255,0.5); border: 2px solid transparent; color: var(--text-main);
+            font-family: var(--font-main); outline: none; transition: 0.3s;
         }
         [data-theme="dark"] input { background: rgba(0,0,0,0.3); color: white; }
-        input:focus, textarea:focus { border-color: var(--primary); background: var(--glass-bg); }
+        input:focus { border-color: var(--primary); }
 
-        /* =========================================================
-           4. ANIMAÇÕES E PARTÍCULAS
-           ========================================================= */
-        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         .slide-up { animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-        .zoom-in { animation: zoomIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         .pulse { animation: pulse 2s infinite; }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--primary)); } }
 
-        /* Partículas (Corações) */
         .particle { position: fixed; bottom: -50px; pointer-events: none; z-index: 9999; animation: floatUp 4s linear forwards; font-size: 20px; }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-120vh) scale(1.5) rotate(360deg); opacity: 0; }
-        }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
 
         /* Splash Screen */
         #splash-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color); display: flex; flex-direction: column;
-            align-items: center; justify-content: center; z-index: 10000; transition: 0.5s;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000;
+            background: var(--bg-color); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s;
         }
 
-        /* =========================================================
-           5. LAYOUT DAS PÁGINAS (SPA)
-           ========================================================= */
         .page { display: none; width: 90%; max-width: 450px; text-align: center; margin: 20px auto; padding: 30px 20px; }
         .page.active { display: block; }
 
-        /* Foto Avatar */
         .avatar-box {
-            width: 140px; height: 140px; margin: 0 auto 20px auto;
-            border-radius: 50%; padding: 5px; background: linear-gradient(45deg, var(--primary), #ffa07a);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15); animation: float 3s ease-in-out infinite;
+            width: 140px; height: 140px; margin: 0 auto 20px auto; border-radius: 50%; padding: 5px;
+            background: linear-gradient(45deg, var(--primary), #ffa07a); animation: float 3s infinite;
         }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid white; }
 
-        /* =========================================================
-           6. APP PRINCIPAL (DASHBOARD)
-           ========================================================= */
+        /* Dashboard */
         #app-dashboard { max-width: 800px; width: 95%; margin: 20px auto; padding: 20px; text-align: left; }
-        
         .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .greeting { font-size: 1.2rem; font-weight: 600; color: var(--text-muted); }
         .greeting span { color: var(--primary); font-family: var(--font-title); font-size: 2rem; }
 
-        /* Card Contador */
         .counter-card { text-align: center; padding: 20px; margin-bottom: 30px; }
         .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
         .counter-item { background: rgba(255,255,255,0.3); padding: 10px; border-radius: 12px; }
         .counter-item span { display: block; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
         .counter-item small { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; }
 
-        /* Grid de Módulos (Menu Principal) */
-        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; }
         .module-btn {
             background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 20px 10px;
-            border-radius: var(--radius); text-align: center; cursor: pointer; transition: var(--transition);
+            border-radius: var(--radius); text-align: center; cursor: pointer; transition: 0.3s;
             display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 600;
         }
-        .module-btn i { font-size: 2rem; color: var(--primary); transition: var(--transition); }
-        .module-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px var(--glass-shadow); border-color: var(--primary); }
+        .module-btn i { font-size: 2rem; color: var(--primary); transition: 0.3s; }
+        .module-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary); }
         .module-btn:hover i { transform: scale(1.2); }
 
-        /* =========================================================
-           7. MODAIS GLOBAIS (Lightboxes, Paineis de Conteúdo)
-           ========================================================= */
+        /* Modal Global */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
             display: none; align-items: center; justify-content: center; z-index: 1000;
         }
-        .modal-overlay.active { display: flex; animation: fadeIn 0.3s forwards; }
+        .modal-overlay.active { display: flex; animation: slideUp 0.3s forwards; }
         .modal-content {
             background: var(--bg-color); width: 90%; max-width: 600px; max-height: 85vh;
             border-radius: var(--radius); padding: 25px; overflow-y: auto; position: relative;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         .modal-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
 
-        /* Módulos Específicos Internos */
-        .timeline-item { display: flex; gap: 15px; margin-bottom: 20px; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: -20px; width: 2px; background: var(--primary); opacity: 0.3; }
-        .timeline-item:last-child::before { display: none; }
-        .timeline-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; z-index: 1; flex-shrink: 0;}
-        .timeline-box { background: var(--glass-bg); padding: 15px; border-radius: 15px; flex: 1; border: 1px solid var(--glass-border); }
-        .timeline-box img { width: 100%; border-radius: 10px; margin-top: 10px; }
-
-        .album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
-        .album-grid img { width: 100%; height: 100px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: 0.3s; }
-        .album-grid img:hover { transform: scale(1.05); }
-
-        .dreams-list label { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--glass-bg); margin-bottom: 5px; border-radius: 10px; cursor: pointer;}
-        .dreams-list input[type="checkbox"] { width: 20px; height: 20px; margin: 0; accent-color: var(--primary); }
-
-        .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
-        .card { background: var(--primary); height: 80px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: transparent; cursor: pointer; transition: 0.3s; transform-style: preserve-3d; }
-        .card.flipped { background: white; color: var(--primary); transform: rotateY(180deg); border: 2px solid var(--primary); }
-
-        /* Toast Notificação */
         #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #4caf50; color: white; padding: 12px 25px; border-radius: 30px; font-weight: bold; z-index: 9999; transition: 0.4s; }
         #toast.show { bottom: 30px; }
         
-        /* Admin Botão Flutuante */
-        .btn-admin-float { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,0.5); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; z-index: 900; backdrop-filter: blur(5px); }
+        .btn-admin-float { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; z-index: 900; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+        /* Módulos Custom CSS */
+        .timeline-item { display: flex; gap: 15px; margin-bottom: 20px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: -20px; width: 2px; background: var(--primary); opacity: 0.3; }
+        .timeline-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; z-index: 1; flex-shrink: 0;}
+        .timeline-box { background: var(--glass-bg); padding: 15px; border-radius: 15px; flex: 1; }
+        
+        .album-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .album-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div class="bg-overlay"></div>
-    <div id="toast">✅ Sucesso!</div>
-
-    <!-- TELA DE LOADING (SPLASH) -->
+    <!-- Loading Personalizado -->
     <div id="splash-screen">
         <i class="fa-solid fa-heart pulse" style="color: var(--primary); font-size: 60px; margin-bottom: 20px;"></i>
-        <h2 class="title-fancy">Carregando Amor...</h2>
+        <h2 class="title-fancy">carregando calma aiii</h2>
     </div>
 
-    <!-- =========================================================
-         FLUXO DE INTRODUÇÃO (Manteve a Essência Original)
-         ========================================================= -->
-    
-    <!-- PÁGINA 1: A Cartinha -->
+    <div id="toast">✅ Sucesso!</div>
+
+    <!-- PÁGINA 1 -->
     <div id="page-intro" class="page glass slide-up">
-        <div class="avatar-box"><img id="imgPg1" src="" alt="Sua Foto Aqui" onerror="this.src='https://via.placeholder.com/150?text=Foto'"></div>
+        <div class="avatar-box"><img id="imgPg1" src="" onerror="this.src='https://via.placeholder.com/150?text=Sua+Foto'"></div>
         <h1 class="title-fancy">Tem uma cartinha pra você...</h1>
         <div style="font-size: 80px; cursor: pointer; margin: 20px 0;" class="pulse" onclick="navTo('page-question')">💌</div>
         <p class="text-muted">(Clique para abrir)</p>
     </div>
 
-    <!-- PÁGINA 2: A Pergunta -->
+    <!-- PÁGINA 2 -->
     <div id="page-question" class="page glass">
-        <div class="avatar-box"><img id="imgPg2" src="" alt="Sua Foto Aqui" onerror="this.src='https://via.placeholder.com/150?text=Foto'"></div>
+        <div class="avatar-box"><img id="imgPg2" src="" onerror="this.src='https://via.placeholder.com/150?text=Sua+Foto'"></div>
         <h1 class="title-fancy">Você me ama?</h1>
         <div style="font-size: 80px; margin: 10px 0;">✉️</div>
         <button class="btn" style="background:#4caf50;" onclick="handleYes()">SIM ❤️</button>
         <button class="btn btn-outline" onclick="navTo('page-wrong')">NÃO ✖️</button>
     </div>
 
-    <!-- PÁGINA 3: Erro -->
+    <!-- PÁGINA 3 -->
     <div id="page-wrong" class="page glass">
         <div style="font-size: 80px; margin: 10px 0;">😠</div>
         <h2>Ei!</h2>
@@ -251,35 +165,31 @@
         <button class="btn" onclick="navTo('page-question')">Voltar e Tentar Novamente</button>
     </div>
 
-    <!-- PÁGINA 4: Sucesso -->
+    <!-- PÁGINA 4 -->
     <div id="page-correct" class="page glass">
-        <h1 class="title-fancy pulse" style="font-size: 2.5rem; margin: 20px 0;">Eu também te amo meu bem! ❤️</h1>
+        <h1 class="title-fancy pulse" style="font-size: 2.5rem; margin: 20px 0;">hehehehe eu também te amo meu bem! ❤️</h1>
         <button class="btn slide-up" style="margin-top:20px; animation-delay: 1.5s;" onclick="navTo('page-password')">Prosseguir <i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
-    <!-- PÁGINA 5: Senha -->
+    <!-- PÁGINA 5 -->
     <div id="page-password" class="page glass">
         <div style="font-size: 60px; margin: 10px 0;">🔒</div>
         <h2>Acesso Restrito</h2>
         <p>Qual é a senha? <br><small>(O dia que te pedi em namoro)</small></p>
-        <input type="password" id="inputPassword" placeholder="Ex: 15032026">
+        <input type="number" id="inputPassword" placeholder="Ex: 15032026">
         <button class="btn" onclick="checkPassword()"><i class="fa-solid fa-unlock"></i> Desbloquear</button>
         <p id="pwdError" style="color: red; display: none; margin-top:10px;">Senha incorreta!</p>
     </div>
 
-    <!-- =========================================================
-         O APP PRINCIPAL (DASHBOARD)
-         ========================================================= -->
-    <div id="app-dashboard" class="page slide-up" style="display:none;">
-        
+    <!-- PÁGINA 6: DASHBOARD PREMIUM -->
+    <div id="app-dashboard" class="page slide-up">
         <div class="header-top">
             <div class="greeting" id="greetingText">Boa Tarde, <br><span id="herNameDisplay">Amor</span></div>
-            <button class="btn btn-outline" style="border-radius:50%; width:45px; height:45px; padding:0;" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+            <button class="btn btn-outline" style="border-radius:50%; width:45px; height:45px; padding:0;" onclick="toggleTheme()"><i class="fa-solid fa-palette"></i></button>
         </div>
 
-        <!-- Section: Contador -->
-        <div class="glass counter-card zoom-in">
-            <h3 class="title-fancy"><i class="fa-solid fa-stopwatch"></i> Nosso Tempo Juntos</h3>
+        <div class="glass counter-card">
+            <h3 class="title-fancy"><i class="fa-solid fa-stopwatch"></i> Estamos Juntos Há:</h3>
             <div class="counter-grid">
                 <div class="counter-item"><span id="c-years">0</span><small>Anos</small></div>
                 <div class="counter-item"><span id="c-months">0</span><small>Meses</small></div>
@@ -290,165 +200,214 @@
             </div>
         </div>
 
-        <!-- Section: Botões de Funcionalidades Premium -->
         <div class="modules-grid">
             <div class="module-btn" onclick="openModule('timeline')"><i class="fa-solid fa-route"></i> Linha do Tempo</div>
             <div class="module-btn" onclick="openModule('album')"><i class="fa-solid fa-images"></i> Nosso Álbum</div>
             <div class="module-btn" onclick="openModule('music')"><i class="fa-solid fa-music"></i> Músicas</div>
             <div class="module-btn" onclick="openModule('letters')"><i class="fa-solid fa-envelope-open-text"></i> Cartinhas</div>
-            <div class="module-btn" onclick="openModule('reasons')"><i class="fa-solid fa-jar"></i> Pote de Motivos</div>
-            <div class="module-btn" onclick="openModule('diary')"><i class="fa-solid fa-book-heart"></i> Meu Diário</div>
-            <div class="module-btn" onclick="openModule('dreams')"><i class="fa-solid fa-list-check"></i> Nossos Sonhos</div>
+            <div class="module-btn" onclick="openModule('reasons')"><i class="fa-solid fa-jar"></i> Motivos</div>
+            <div class="module-btn" onclick="openModule('dreams')"><i class="fa-solid fa-list-check"></i> Sonhos</div>
             <div class="module-btn" onclick="openModule('surprise')"><i class="fa-solid fa-gift pulse"></i> Surpresa</div>
-            <div class="module-btn" onclick="openModule('quiz')"><i class="fa-solid fa-clipboard-question"></i> Quiz do Casal</div>
-            <div class="module-btn" onclick="openModule('game')"><i class="fa-solid fa-gamepad"></i> Jogo</div>
-            <div class="module-btn" onclick="openModule('achievements')"><i class="fa-solid fa-trophy"></i> Conquistas</div>
+            <div class="module-btn" onclick="openModule('game')"><i class="fa-solid fa-heart"></i> Joguinho</div>
         </div>
     </div>
 
-    <!-- Botão Secreto Admin -->
     <div class="btn-admin-float" onclick="openAdmin()"><i class="fa-solid fa-gear"></i></div>
 
-    <!-- =========================================================
-         MODAL GLOBAL (Renderiza tudo via JavaScript)
-         ========================================================= -->
+    <!-- MODAL GLOBAL -->
     <div class="modal-overlay" id="mainModal" onclick="closeModal(event)">
         <div class="modal-content glass slide-up" onclick="event.stopPropagation()">
             <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('mainModal').classList.remove('active')"></i>
             <h2 class="title-fancy" id="modalTitle" style="text-align: center; margin-bottom: 20px;">Título</h2>
-            <div id="modalBody">
-                <!-- O conteúdo é injetado dinamicamente aqui -->
-            </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
-    <!-- =========================================================
-         JAVASCRIPT PURÃO (Lógica SPA)
-         ========================================================= -->
     <script>
-        /**
-         * 1. BANCO DE DADOS LOCAL (CONFIG OBJECT)
-         * Se quiser fixar no Vercel/GitHub, mude os valores aqui.
-         */
-        const DEFAULT_CONFIG = {
+        // ==========================================
+        // 1. BANCO DE DADOS (CONFIG)
+        // ==========================================
+        const CONFIG = {
             senhaSite: "15032026",
             senhaAdmin: "admin123",
             nomeDela: "Meu Amor",
             dataInicio: "2024-03-15T00:00:00",
+            temaColor: "default", 
             fotoPg1: "", fotoPg2: "",
-            temaColor: "default", // default, dark, blue, lilac
             timeline: [
-                { icon: "fa-heart", date: "15/03/2024", title: "O Pedido", desc: "O dia que minha vida mudou.", img: "" }
+                { icon: "fa-mug-hot", date: "10/02/2024", title: "Primeiro Encontro", desc: "Aquele café inesquecível." },
+                { icon: "fa-ring", date: "15/03/2024", title: "Pedido de Namoro", desc: "O melhor sim da minha vida." }
             ],
-            album: ["https://via.placeholder.com/300?text=Nossa+Foto", "https://via.placeholder.com/300?text=Viagem"],
+            album: ["https://via.placeholder.com/300?text=Foto+1", "https://via.placeholder.com/300?text=Foto+2"],
             music: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
             letters: [
-                { title: "Leia quando estiver triste", content: "Lembre-se que eu sempre estarei aqui para você. Te amo infinitamente!" },
-                { title: "Leia quando sentir saudade", content: "Olhe para a lua, estamos olhando para o mesmo céu." }
+                { title: "Quando estiver triste 😢", text: "Lembre-se que eu sempre estarei aqui para você. Te amo!" },
+                { title: "Quando sentir saudade 🥺", text: "Olhe para o céu, estamos vendo a mesma lua." }
             ],
-            reasons: ["Seu sorriso", "Seu cheiro", "O jeito que você me abraça", "Porque você é incrível"],
-            diary: [{ date: "Hoje", title: "Pensando em você", text: "Fiz esse app só pra te ver sorrir." }],
-            dreams: [{ text: "Viajar para a Praia", done: false }, { text: "Casar", done: false }],
-            quiz: [
-                { q: "Qual foi nosso primeiro encontro?", options: ["Cinema", "Parque", "Jantar", "Praia"], answer: 0 }
-            ],
-            achievements: ["🏆 Primeiro Mês Juntos", "🏆 Primeira Viagem"]
+            reasons: ["Seu sorriso lindo", "Seu cheirinho", "O jeito que você me abraça", "Suas palhaçadas"],
+            dreams: ["Viajar para a Praia", "Morar juntos", "Adotar um pet"],
+            surpresaText: "Você é a melhor coisa que me aconteceu. Te amo muito!"
         };
 
-        // Mescla com o LocalStorage
-        let DB = JSON.parse(localStorage.getItem("appDB")) || DEFAULT_CONFIG;
+        let DB = JSON.parse(localStorage.getItem("appDB")) || CONFIG;
         function saveDB() { localStorage.setItem("appDB", JSON.stringify(DB)); }
 
-        // =========================================================
-        // 2. UTILITÁRIOS E NAVEGAÇÃO
-        // =========================================================
-        function showToast(msg) {
-            let t = document.getElementById("toast"); t.innerText = msg; t.classList.add("show");
-            setTimeout(() => t.classList.remove("show"), 3000);
-        }
-
-        function createHearts() {
-            for (let i = 0; i < 40; i++) {
-                setTimeout(() => {
-                    let heart = document.createElement('div');
-                    heart.innerHTML = ['❤️','💖','✨','💕'][Math.floor(Math.random()*4)];
-                    heart.className = 'particle';
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    document.body.appendChild(heart);
-                    setTimeout(() => heart.remove(), 5000);
-                }, i * 50);
-            }
-        }
-
-        function navTo(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        // =========================================================
-        // 3. FLUXO INICIAL E CONTADOR
-        // =========================================================
+        // ==========================================
+        // 2. FUNÇÕES BASE E ANIMAÇÕES
+        // ==========================================
         window.onload = () => {
             applyTheme(DB.temaColor);
-            document.getElementById('imgPg1').src = DB.fotoPg1 || "https://via.placeholder.com/150?text=Foto";
-            document.getElementById('imgPg2').src = DB.fotoPg2 || "https://via.placeholder.com/150?text=Foto";
-            
             setTimeout(() => {
                 document.getElementById('splash-screen').style.opacity = "0";
                 setTimeout(() => {
                     document.getElementById('splash-screen').style.display = "none";
                     navTo('page-intro');
                 }, 500);
-            }, 2000);
+            }, 2500);
             updateGreeting();
             setInterval(updateCounter, 1000);
         };
 
-        function applyTheme(theme) {
-            document.documentElement.setAttribute("data-theme", theme === 'default' ? '' : theme);
-        }
-        function toggleTheme() {
-            const themes = ['default', 'dark', 'blue', 'lilac'];
-            let current = themes.indexOf(DB.temaColor);
-            DB.temaColor = themes[(current + 1) % themes.length];
-            applyTheme(DB.temaColor); saveDB(); showToast("Tema Alterado! 🎨");
+        function navTo(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
 
-        function updateGreeting() {
-            let hour = new Date().getHours();
-            let g = hour < 12 ? "Bom dia" : hour < 18 ? "Boa tarde" : "Boa noite";
-            document.getElementById("greetingText").innerHTML = `${g}, <br><span id="herNameDisplay">${DB.nomeDela} ❤️</span>`;
-        }
-
-        function handleYes() {
-            createHearts(); navTo('page-correct');
-        }
-
-        function checkPassword() {
-            if (document.getElementById('inputPassword').value === DB.senhaSite) {
-                navTo('app-dashboard'); createHearts();
-            } else {
-                document.getElementById('pwdError').style.display = 'block';
+        function createHearts() {
+            for(let i=0; i<30; i++) {
+                setTimeout(() => {
+                    let h = document.createElement('div'); h.innerHTML = '❤️'; h.className = 'particle';
+                    h.style.left = Math.random() * 100 + 'vw'; h.style.animationDuration = (Math.random()*3+2)+'s';
+                    document.body.appendChild(h); setTimeout(() => h.remove(), 4000);
+                }, i * 100);
             }
         }
 
-        function updateCounter() {
-            const start = new Date(DB.dataInicio).getTime();
-            const now = new Date().getTime();
-            const diff = now - start;
-            if (diff < 0) return;
-            
-            const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const years = Math.floor(daysTotal / 365);
-            const months = Math.floor((daysTotal % 365) / 30);
-            const days = (daysTotal % 365) % 30;
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+        function applyTheme(t) { document.documentElement.setAttribute("data-theme", t === 'default' ? '' : t); }
+        function toggleTheme() {
+            const t = ['default', 'dark', 'blue', 'lilac'];
+            DB.temaColor = t[(t.indexOf(DB.temaColor) + 1) % t.length];
+            applyTheme(DB.temaColor); saveDB();
+        }
 
-            document.getElementById('c-years').innerText = years;
-            document.getElementById('c-months').innerText = months;
-            document.getElementById('c-days').innerText = days;
-            document.getElementById('c-hours').innerText = hours;
-            documentNormally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+        function updateGreeting() {
+            let h = new Date().getHours();
+            let g = h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite";
+            document.getElementById("greetingText").innerHTML = `${g}, <br><span>${DB.nomeDela} ❤️</span>`;
+        }
+
+        function handleYes() { createHearts(); navTo('page-correct'); }
+
+        function checkPassword() {
+            if (document.getElementById('inputPassword').value === DB.senhaSite) { navTo('app-dashboard'); createHearts(); } 
+            else { document.getElementById('pwdError').style.display = 'block'; }
+        }
+
+        // ==========================================
+        // 3. CONTADOR DE TEMPO
+        // ==========================================
+        function updateCounter() {
+            const diff = new Date().getTime() - new Date(DB.dataInicio).getTime();
+            if (diff < 0) return;
+            const daysT = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('c-years').innerText = Math.floor(daysT / 365);
+            document.getElementById('c-months').innerText = Math.floor((daysT % 365) / 30);
+            document.getElementById('c-days').innerText = (daysT % 365) % 30;
+            document.getElementById('c-hours').innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+            document.getElementById('c-mins').innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+            document.getElementById('c-secs').innerText = Math.floor((diff % (1000*60)) / 1000);
+        }
+
+        // ==========================================
+        // 4. GERENCIADOR DE MÓDULOS (O segredo pro código não quebrar)
+        // ==========================================
+        function openModule(mod) {
+            const modal = document.getElementById('mainModal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+            let html = '';
+
+            switch(mod) {
+                case 'timeline':
+                    title.innerText = 'Nossa História';
+                    DB.timeline.forEach(t => {
+                        html += `<div class="timeline-item"><div class="timeline-icon"><i class="fa-solid ${t.icon}"></i></div><div class="timeline-box"><h4>${t.title}</h4><p style="font-size:12px;color:var(--text-muted)">${t.date}</p><p>${t.desc}</p></div></div>`;
+                    });
+                    break;
+                case 'album':
+                    title.innerText = 'Nosso Álbum';
+                    html = `<div class="album-grid">`;
+                    DB.album.forEach(img => html += `<img src="${img}" onclick="window.open('${img}', '_blank')">`);
+                    html += `</div>`;
+                    break;
+                case 'music':
+                    title.innerText = 'Nossas Músicas';
+                    DB.music.forEach(link => {
+                        let embed = link.replace("spotify.com/", "spotify.com/embed/");
+                        html += `<iframe style="border-radius:12px; margin-bottom:10px" src="${embed}" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+                    });
+                    break;
+                case 'letters':
+                    title.innerText = 'Cartinhas';
+                    DB.letters.forEach((l, i) => {
+                        html += `<button class="btn btn-outline" style="width:100%; margin-bottom:10px" onclick="alert('${l.text}')"><i class="fa-solid fa-envelope"></i> ${l.title}</button>`;
+                    });
+                    break;
+                case 'reasons':
+                    title.innerText = 'Pote de Motivos';
+                    html = `<div style="text-align:center"><div class="pulse" style="font-size:80px;cursor:pointer;margin:20px 0" onclick="alert('❤️ Motivo: ${DB.reasons[Math.floor(Math.random() * DB.reasons.length)]}')">🫙</div><p>Clique no pote para ver um motivo pelo qual eu te amo!</p></div>`;
+                    break;
+                case 'dreams':
+                    title.innerText = 'Nossos Sonhos';
+                    DB.dreams.forEach(d => html += `<p style="padding:10px; background:var(--glass-bg); border-radius:10px; margin-bottom:5px;"><i class="fa-regular fa-square"></i> ${d}</p>`);
+                    break;
+                case 'surprise':
+                    title.innerText = 'Surpresa!';
+                    html = `<div style="text-align:center"><div class="pulse" style="font-size:80px;cursor:pointer" onclick="createHearts(); this.innerHTML='🎁<br><p style=\\'font-size:18px; margin-top:20px; font-family:var(--font-main)\\'>${DB.surpresaText}</p>'">📦</div><p style="margin-top:10px">Clique para abrir</p></div>`;
+                    break;
+                case 'game':
+                    title.innerText = 'Pegue os Corações!';
+                    html = `<div style="text-align:center"><p>Clique no coração antes que ele fuja!</p><div id="gameBox" style="position:relative; width:100%; height:200px; background:rgba(0,0,0,0.05); border-radius:10px; margin-top:20px; overflow:hidden;"><div id="gameHeart" style="position:absolute; font-size:40px; cursor:pointer; transition:0.2s" onclick="this.style.left=Math.random()*80+'%'; this.style.top=Math.random()*80+'%'; showToast('Pegou! ❤️'); createHearts()">❤️</div></div></div>`;
+                    break;
+            }
+            body.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        function closeModal(e) { document.getElementById('mainModal').classList.remove('active'); }
+
+        // ==========================================
+        // 5. PAINEL ADMIN BÁSICO
+        // ==========================================
+        function showToast(msg) {
+            let t = document.getElementById("toast"); t.innerText = msg; t.classList.add("show");
+            setTimeout(() => t.classList.remove("show"), 3000);
+        }
+
+        function openAdmin() {
+            if(prompt("Senha Admin:") !== DB.senhaAdmin) { alert("Senha incorreta!"); return; }
+            const modal = document.getElementById('mainModal');
+            document.getElementById('modalTitle').innerText = 'Painel Admin';
+            document.getElementById('modalBody').innerHTML = `
+                <p style="font-size:12px; color:var(--text-muted)">Altere os valores principais aqui para testar. Para salvar no Vercel de vez, lembre-se de alterar no código do GitHub.</p>
+                <label>Data de Início (Formato: YYYY-MM-DDTHH:MM:SS)</label>
+                <input type="text" id="admData" value="${DB.dataInicio}">
+                <label>Nome Dela</label>
+                <input type="text" id="admNome" value="${DB.nomeDela}">
+                <label>Links das Fotos do Álbum (1 por linha)</label>
+                <textarea id="admAlbum" rows="4">${DB.album.join('\n')}</textarea>
+                <button class="btn" style="width:100%" onclick="saveAdmin()"><i class="fa-solid fa-floppy-disk"></i> Salvar Temporariamente</button>
+            `;
+            modal.classList.add('active');
+        }
+
+        function saveAdmin() {
+            DB.dataInicio = document.getElementById('admData').value;
+            DB.nomeDela = document.getElementById('admNome').value;
+            DB.album = document.getElementById('admAlbum').value.split('\n').filter(Boolean);
+            saveDB(); updateGreeting(); showToast("Salvo!");
+            document.getElementById('mainModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
