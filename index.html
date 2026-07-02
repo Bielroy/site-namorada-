@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para o Meu Amor ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fallback de fontes (se falhar, usa sans-serif nativa) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" onerror="this.onerror=null;this.href=''">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onerror="this.onerror=null;this.href=''">
     
     <style>
         /* =========================================================
@@ -26,9 +27,6 @@
         [data-theme="dark"] { --bg-grad: linear-gradient(135deg, #121212, #212121); --primary: #ff4d4d; --text-main: #fff; --text-muted: #aaa; --glass-bg: rgba(30,30,30,0.8); --glass-border: rgba(255,255,255,0.1); }
         [data-theme="roxo"] { --bg-grad: linear-gradient(135deg, #f3e5f5, #ce93d8); --primary: #9c27b0; }
 
-        /* =========================================================
-           RESET E BACKGROUND PARALLAX
-           ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body {
@@ -37,13 +35,11 @@
             min-height: 100vh; overflow-x: hidden; transition: background 0.5s;
         }
 
-        /* Efeito de Vidro Premium */
         .glass {
             background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
-        /* Animações Globais */
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         .slide-up { animation: slideUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         .pulse { animation: pulse 2s infinite; }
@@ -51,11 +47,9 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--primary)); } }
 
-        /* Partículas (Corações e Pétalas) */
-        .particle { position: fixed; pointer-events: none; z-index: 9999; animation: floatUp linear forwards; }
+        .particle { position: fixed; pointer-events: none; z-index: 9998; animation: floatUp linear forwards; }
         @keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
 
-        /* Botões */
         .btn {
             background: var(--primary); color: white; border: none; padding: 12px 24px;
             border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer;
@@ -67,23 +61,19 @@
         h1, h2, h3 { color: var(--primary); margin-bottom: 10px; }
         .title-fancy { font-family: var(--font-title); font-size: 2.8rem; letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
 
-        /* =========================================================
-           ROTEAMENTO DE PÁGINAS (SPA)
-           ========================================================= */
+        /* Roteamento e Telas Base */
         .page { display: none; width: 100%; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
         .page.active { display: flex; animation: fadeIn 0.4s; }
 
-        /* Splash Screen */
         #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-grad); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s opacity; }
         
-        /* Dashboard Premium */
         #dashboard-content { max-width: 600px; width: 100%; padding-bottom: 80px; }
         
         .hero-section { text-align: center; margin-bottom: 30px; position: relative; }
-        .hero-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 15px; animation: float 4s ease-in-out infinite; }
+        .hero-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 15px; animation: float 4s ease-in-out infinite; cursor: pointer; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* Grid de Apps */
+        /* Grid */
         .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
         .app-icon { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .app-icon i { font-size: 28px; color: var(--primary); }
@@ -91,13 +81,20 @@
         .app-icon:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); background: var(--primary); color: white; }
         .app-icon:hover i { color: white; }
 
-        /* Modal Global */
+        /* Modais */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
         .modal-overlay.active { display: flex; animation: fadeIn 0.3s forwards; }
         .modal-content { background: var(--bg-grad); width: 95%; max-width: 500px; max-height: 85vh; border-radius: 25px; padding: 25px; overflow-y: auto; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-main); background: rgba(255,255,255,0.3); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; }
 
-        /* Widgets Específicos */
+        /* Custom UI (Toasts, Prompts) */
+        #custom-toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #323232; color: white; padding: 12px 25px; border-radius: 30px; font-size: 14px; z-index: 9999; transition: 0.4s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        #custom-toast.show { bottom: 30px; }
+
+        .ui-prompt { background: var(--glass-bg); padding: 20px; border-radius: 15px; text-align: center; }
+        .ui-prompt input { margin: 15px 0; border: 2px solid var(--primary); }
+
+        /* Widgets */
         .mood-bar { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
         .mood-btn { font-size: 24px; background: transparent; border: none; cursor: pointer; transition: 0.2s; filter: grayscale(1); }
         .mood-btn.active, .mood-btn:hover { filter: grayscale(0); transform: scale(1.3); }
@@ -110,37 +107,55 @@
         @keyframes pulseBox { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.05) rotate(3deg); } }
         .surprise-box.opened { animation: none; transform: rotateX(180deg) scale(0); opacity: 0; }
 
-        /* Botão Admin Secreto */
         .admin-gear { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; background: var(--glass-bg); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid var(--glass-border); opacity: 0.5; transition: 0.3s; }
         .admin-gear:hover { opacity: 1; transform: rotate(90deg); }
 
-        /* Tela Final Emocional */
         #final-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: black; color: white; z-index: 99999; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
         #final-text { font-family: var(--font-main); font-size: 20px; line-height: 1.6; opacity: 0; transition: 2s; margin-bottom: 30px; }
         #final-photo { width: 80%; max-width: 300px; border-radius: 15px; opacity: 0; transition: 3s; box-shadow: 0 0 40px var(--primary); border: 2px solid white; }
 
-        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 12px; border: 2px solid var(--primary); font-family: var(--font-main); outline: none; background: rgba(255,255,255,0.7); }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 12px; border: 2px solid transparent; font-family: var(--font-main); outline: none; background: rgba(255,255,255,0.7); }
+        input:focus, textarea:focus { border-color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <!-- 1. SPLASH SCREEN (Consertada, rápida e suave) -->
+    <!-- Proteção contra erros de JS (Garante que a Splash morra) -->
+    <script>
+        window.onerror = function(msg) {
+            console.warn("Erro preventivo capturado: ", msg);
+            let s = document.getElementById('splash-screen');
+            if(s) s.style.display = 'none';
+        };
+    </script>
+
+    <!-- Splash Screen -->
     <div id="splash-screen">
         <i class="fa-solid fa-heart pulse" style="color: var(--primary); font-size: 65px; margin-bottom: 20px;"></i>
         <h2 class="title-fancy" style="color:var(--text-main)">carregando calma aiii...</h2>
     </div>
 
-    <!-- 2. PÁGINA: ATIVAR SOM E INTRODUÇÃO -->
+    <!-- UI Toast Global -->
+    <div id="custom-toast">Notificação</div>
+
+    <!-- Modais Genéricos de UI (Substitui Prompt e Confirm) -->
+    <div class="modal-overlay" id="ui-modal" style="z-index: 3000;">
+        <div class="modal-content" style="max-width: 350px; padding: 20px;">
+            <div id="ui-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Tela Intro -->
     <div id="page-intro" class="page">
         <div class="glass slide-up" style="max-width: 400px; text-align: center; padding: 40px 20px;">
-            <img src="https://cdn-icons-png.flaticon.com/512/3237/3237472.png" style="width: 100px; margin-bottom: 20px;">
-            <h2 class="title-fancy" id="typed-text"></h2>
+            <img src="https://cdn-icons-png.flaticon.com/512/3237/3237472.png" style="width: 100px; margin-bottom: 20px;" onerror="this.style.display='none'">
+            <h2 class="title-fancy" id="typed-text" style="min-height: 80px;"></h2>
             <p style="margin: 20px 0; font-size: 14px;">Para a experiência completa, precisamos ligar o som e a vibração.</p>
             <button class="btn pulse" style="font-size: 18px;" onclick="unlockDevice()"><i class="fa-solid fa-volume-high"></i> Ativar Tudo ❤️</button>
         </div>
     </div>
 
-    <!-- 3. PÁGINA: A CARTA (Pergunta) -->
+    <!-- Tela Pergunta -->
     <div id="page-letter" class="page">
         <div class="glass slide-up" style="max-width: 400px; text-align: center; padding: 40px 20px;">
             <h1 class="title-fancy">Você me ama?</h1>
@@ -150,17 +165,15 @@
         </div>
     </div>
 
-    <!-- 4. PÁGINA: DASHBOARD PRINCIPAL (Onde a mágica acontece) -->
+    <!-- Dashboard -->
     <div id="page-dashboard" class="page">
         <div id="dashboard-content" class="slide-up">
             
-            <!-- Hero / Humor / Stats -->
             <div class="glass hero-section" style="padding: 20px;">
-                <img id="dash-photo" src="" class="hero-img" onerror="this.src='https://via.placeholder.com/150'">
+                <img id="dash-photo" src="" class="hero-img" alt="Foto">
                 <h2>Oie, <span id="dash-name">Amor</span> ❤️</h2>
                 <p id="quote-of-day" style="font-style: italic; font-size: 14px; margin-top: 10px;">"Você continua sendo minha pessoa favorita."</p>
                 
-                <!-- Widget de Humor -->
                 <div class="mood-bar">
                     <button class="mood-btn" onclick="setMood(this, 'feliz', 'Que bom te ver sorrir! Te amo.')">😊</button>
                     <button class="mood-btn" onclick="setMood(this, 'apaixonada', 'Meu coração dispara por você também!')">🥰</button>
@@ -170,16 +183,14 @@
                 </div>
                 <p id="mood-msg" style="font-size: 13px; font-weight: bold; color: var(--primary);"></p>
                 
-                <!-- Contador de Tempo Master -->
                 <div style="background: rgba(0,0,0,0.05); border-radius: 15px; padding: 15px; margin-top: 15px;">
                     <h4 style="margin-bottom: 5px;"><i class="fa-regular fa-clock"></i> Juntos há:</h4>
-                    <div style="display: flex; justify-content: space-around; font-weight: bold; color: var(--primary); font-size: 18px;" id="master-counter">
+                    <div style="display: flex; justify-content: space-around; font-weight: bold; color: var(--primary); font-size: 16px;" id="master-counter">
                         Carregando...
                     </div>
                 </div>
             </div>
 
-            <!-- Grade de Aplicativos (Ícones) -->
             <div class="app-grid">
                 <div class="app-icon" onclick="openApp('album')"><i class="fa-solid fa-images"></i><span>Álbum</span></div>
                 <div class="app-icon" onclick="openApp('timeline')"><i class="fa-solid fa-timeline"></i><span>História</span></div>
@@ -198,50 +209,47 @@
                 <div class="app-icon" onclick="openApp('ai')"><i class="fa-solid fa-robot"></i><span>IA do Amor</span></div>
             </div>
 
-            <!-- Caixa Surpresa no Final -->
             <div class="glass" style="margin-top: 20px; text-align: center; padding: 20px; border: 2px dashed var(--primary); cursor: pointer;" onclick="openApp('surprise')">
                 <h3 class="pulse" style="margin:0;"><i class="fa-solid fa-box-open"></i> Surpresa 3D</h3>
             </div>
             
-            <!-- Botão Secreto Final Emocional -->
             <button id="btn-final-secret" class="btn" style="width: 100%; margin-top: 20px; background: #111;" onclick="triggerFinalScreen()"><i class="fa-solid fa-lock"></i> Última Surpresa...</button>
         </div>
         
-        <!-- Botão Admin no Dashboard -->
-        <div class="admin-gear" onclick="openApp('admin')"><i class="fa-solid fa-gear"></i></div>
+        <div class="admin-gear" onclick="askAdminPassword()"><i class="fa-solid fa-gear"></i></div>
     </div>
 
-    <!-- MODAL GLOBAL DE APLICATIVOS (Injeta o HTML dinamicamente) -->
-    <div class="modal-overlay" id="app-modal" onclick="closeModal(event)">
+    <!-- Modal de Apps -->
+    <div class="modal-overlay" id="app-modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="close-btn" onclick="document.getElementById('app-modal').classList.remove('active'); playSound('click')"><i class="fa-solid fa-xmark"></i></div>
+            <div class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>
             <h2 id="app-title" class="title-fancy" style="text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">App</h2>
             <div id="app-body"></div>
         </div>
     </div>
 
-    <!-- TELA FINAL EMOCIONAL -->
+    <!-- Tela Final -->
     <div id="final-screen">
         <div id="final-text"></div>
-        <img id="final-photo" src="" alt="Nós">
+        <img id="final-photo" src="" alt="Nós" onerror="this.style.display='none'">
         <div id="final-counter" style="margin-top: 20px; font-size: 24px; font-weight: bold; color: var(--primary);"></div>
     </div>
 
-    <!-- AUDIO PLAYER HIDDEN PARA MÚSICA FINAL -->
+    <!-- Audio Player Nativo (Fallback offline se não houver internet) -->
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         // ==========================================
-        // 1. BANCO DE DADOS E ESTADO DA APLICAÇÃO
+        // 1. CONFIG E BANCO DE DADOS PROTEGIDO
         // ==========================================
         const DEFAULT_CONFIG = {
             senhaAdmin: "admin123",
             nomeDela: "Meu Amor",
-            dataInicio: "2024-03-15T00:00:00",
+            dataInicio: "2026-03-15T00:00:00", // Data correta do pedido
             tema: "sakura",
-            fotoPrincipal: "", // URL DA FOTO PRINCIPAL
+            fotoPrincipal: "https://via.placeholder.com/300?text=Sua+Foto", 
             stats: { cliquesAmor: 0, jogosGanhos: 0, appAberto: 0 },
             missoes: [
                 { id: 1, text: "Assistir um filme juntos", done: false },
@@ -249,49 +257,72 @@
                 { id: 3, text: "Dar 20 beijos", done: false }
             ],
             capsula: { data: "2027-03-15T00:00:00", mensagem: "Se está lendo isso, conseguimos chegar até aqui! Te amo." },
-            album: ["https://via.placeholder.com/300?text=Foto+1", "https://via.placeholder.com/300?text=Foto+2"],
+            album: ["https://via.placeholder.com/300?text=Foto+1"],
             musicas: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
             diario: [{ data: "Hoje", texto: "Criei este app para você." }]
         };
 
-        let DB = JSON.parse(localStorage.getItem("amorOS")) || DEFAULT_CONFIG;
-        DB.stats.appAberto++;
-        saveDB();
-
-        function saveDB() { localStorage.setItem("amorOS", JSON.stringify(DB)); }
-
-        // ==========================================
-        // 2. SISTEMA DE SONS, VIBRAÇÃO E PARTÍCULAS
-        // ==========================================
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // Merge Seguro (Deep Merge básico) para evitar erros de undefined
+        let savedData = {};
+        try { savedData = JSON.parse(localStorage.getItem("amorOS") || "{}"); } catch(e) { console.warn("DB resetado"); }
         
-        function playSound(type) {
-            if(audioCtx.state === 'suspended') return;
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            osc.connect(gainNode); gainNode.connect(audioCtx.destination);
-            
-            if (type === 'click') {
-                osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                osc.start(); gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1); osc.stop(audioCtx.currentTime + 0.1);
-            } else if (type === 'success') {
-                osc.type = 'triangle'; osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-                osc.frequency.setValueAtTime(660, audioCtx.currentTime + 0.1);
-                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                osc.start(); gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3); osc.stop(audioCtx.currentTime + 0.3);
-            } else if (type === 'heart') {
-                osc.type = 'sine'; osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.05);
-            }
+        let DB = { ...DEFAULT_CONFIG, ...savedData };
+        DB.stats = { ...DEFAULT_CONFIG.stats, ...(DB.stats || {}) };
+        DB.capsula = { ...DEFAULT_CONFIG.capsula, ...(DB.capsula || {}) };
+        DB.missoes = DB.missoes || DEFAULT_CONFIG.missoes;
+        DB.album = DB.album || DEFAULT_CONFIG.album;
+        DB.musicas = DB.musicas || DEFAULT_CONFIG.musicas;
+        DB.diario = DB.diario || DEFAULT_CONFIG.diario;
+
+        let dbChanged = false; // Flag para salvar só quando necessário
+
+        function saveDB() { 
+            if(!dbChanged) return;
+            localStorage.setItem("amorOS", JSON.stringify(DB)); 
+            dbChanged = false;
         }
 
-        function vibrate(ms) { if(navigator.vibrate) navigator.vibrate(ms); }
+        // ==========================================
+        // 2. SISTEMA SEGURO DE AUDIO E VIBRAÇÃO
+        // ==========================================
+        let audioCtx = null;
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } 
+        catch(e) { console.warn("AudioContext não suportado inicialmente."); }
+        
+        function playSound(type) {
+            if(!audioCtx || audioCtx.state === 'suspended') return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                
+                const now = audioCtx.currentTime;
+                if (type === 'click') {
+                    osc.type = 'sine'; osc.frequency.setValueAtTime(600, now);
+                    gain.gain.setValueAtTime(0.1, now);
+                    osc.start(now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1); osc.stop(now + 0.1);
+                } else if (type === 'success') {
+                    osc.type = 'triangle'; osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.setValueAtTime(660, now + 0.1);
+                    gain.gain.setValueAtTime(0.1, now);
+                    osc.start(now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3); osc.stop(now + 0.3);
+                } else if (type === 'heart') {
+                    osc.type = 'sine'; osc.frequency.setValueAtTime(800, now);
+                    gain.gain.setValueAtTime(0.05, now);
+                    osc.start(now); osc.stop(now + 0.05);
+                }
+            } catch(e) {}
+        }
 
+        function vibrate(ms) { try { if(navigator.vibrate) navigator.vibrate(ms); } catch(e){} }
+
+        // Limite de partículas
         function createParticles(type = '❤️', count = 30) {
+            if(document.querySelectorAll('.particle').length > 40) return; // Limite de Segurança
+            
             for(let i=0; i<count; i++) {
                 setTimeout(() => {
+                    if(document.querySelectorAll('.particle').length > 40) return;
                     let el = document.createElement('div');
                     el.innerHTML = type === 'mix' ? ['❤️','🌸','✨'][Math.floor(Math.random()*3)] : type;
                     el.className = 'particle';
@@ -299,32 +330,99 @@
                     el.style.fontSize = (Math.random() * 15 + 15) + 'px';
                     el.style.animationDuration = (Math.random() * 3 + 2) + 's';
                     document.body.appendChild(el);
-                    setTimeout(() => el.remove(), 5000);
+                    setTimeout(() => { if(el.parentNode) el.remove(); }, 5000);
                 }, i * 50);
             }
         }
 
-        // ==========================================
-        // 3. FLUXO DE INICIALIZAÇÃO
-        // ==========================================
-        window.onload = () => {
-            document.documentElement.setAttribute("data-theme", DB.tema);
-            document.getElementById('dash-photo').src = DB.fotoPrincipal || "https://cdn-icons-png.flaticon.com/512/833/833472.png";
-            document.getElementById('dash-name').innerText = DB.nomeDela;
-            
-            // Conserto do Splash Screen: Curto e direto.
-            setTimeout(() => {
-                let splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
-                setTimeout(() => { splash.style.display = 'none'; navTo('page-intro'); startTyping(); }, 400);
-            }, 1200);
+        // Custom UI (Toast / Modal Prompt)
+        function showToast(msg) {
+            let t = document.getElementById('custom-toast');
+            t.innerText = msg; t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
 
-            setInterval(updateMasterCounter, 1000);
-        };
+        function customPrompt(title, callback) {
+            const ui = document.getElementById('ui-modal');
+            const body = document.getElementById('ui-modal-body');
+            body.innerHTML = `
+                <div class="ui-prompt">
+                    <h3>${title}</h3>
+                    <input type="password" id="ui-prompt-input" placeholder="Digite aqui...">
+                    <button class="btn" id="ui-prompt-ok" style="width:100%; margin-bottom:10px;">OK</button>
+                    <button class="btn" style="width:100%; background:transparent; color:var(--text-main); border:1px solid var(--text-muted);" onclick="document.getElementById('ui-modal').style.display='none'">Cancelar</button>
+                </div>
+            `;
+            ui.style.display = 'flex';
+            document.getElementById('ui-prompt-ok').onclick = () => {
+                const val = document.getElementById('ui-prompt-input').value;
+                ui.style.display = 'none';
+                if(callback) callback(val);
+            };
+        }
+
+        function customConfirm(title, callbackYes) {
+            const ui = document.getElementById('ui-modal');
+            const body = document.getElementById('ui-modal-body');
+            body.innerHTML = `
+                <div class="ui-prompt">
+                    <h3>${title}</h3>
+                    <button class="btn" id="ui-confirm-yes" style="width:100%; margin:15px 0 10px 0;">Sim</button>
+                    <button class="btn" style="width:100%; background:transparent; color:var(--text-main); border:1px solid var(--text-muted);" onclick="document.getElementById('ui-modal').style.display='none'">Não</button>
+                </div>
+            `;
+            ui.style.display = 'flex';
+            document.getElementById('ui-confirm-yes').onclick = () => {
+                ui.style.display = 'none';
+                if(callbackYes) callbackYes();
+            };
+        }
+
+        // ==========================================
+        // 3. INICIALIZAÇÃO
+        // ==========================================
+        let masterInterval = null;
+        let finalInterval = null;
+
+        window.addEventListener("load", () => {
+            document.documentElement.setAttribute("data-theme", DB.tema);
+            
+            // Associação segura de eventos DOM
+            const dashPhoto = document.getElementById('dash-photo');
+            if(dashPhoto) {
+                dashPhoto.src = DB.fotoPrincipal || "https://via.placeholder.com/150?text=Sua+Foto";
+                dashPhoto.onclick = handleEasterEgg;
+            }
+            const dashName = document.getElementById('dash-name');
+            if(dashName) dashName.innerText = DB.nomeDela;
+            
+            DB.stats.appAberto++; dbChanged = true; saveDB();
+
+            // Desliga splash normalmente se tudo carregar
+            hideSplashAndStart();
+        });
+
+        // Fallback de 3s para garantir que o site nunca fique travado
+        setTimeout(() => { hideSplashAndStart(); }, 3000);
+
+        let splashHidden = false;
+        function hideSplashAndStart() {
+            if(splashHidden) return; splashHidden = true;
+            let splash = document.getElementById('splash-screen');
+            if(splash) {
+                splash.style.opacity = '0';
+                setTimeout(() => { 
+                    splash.style.display = 'none'; 
+                    navTo('page-intro'); 
+                    startTyping(); 
+                }, 400);
+            }
+        }
 
         function navTo(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+            const target = document.getElementById(id);
+            if(target) target.classList.add('active');
         }
 
         let typed = false;
@@ -332,6 +430,7 @@
             if(typed) return; typed = true;
             const text = "Tenho uma cartinha para você...";
             let i = 0; const el = document.getElementById("typed-text");
+            if(!el) return;
             function typeWriter() {
                 if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 50); }
             }
@@ -339,36 +438,61 @@
         }
 
         function unlockDevice() {
-            if(audioCtx.state === 'suspended') audioCtx.resume();
+            if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
             playSound('click'); vibrate(50); createParticles('🌸', 15);
             navTo('page-letter');
         }
 
-        function answerYes() { playSound('success'); vibrate([50, 50, 100]); createParticles('❤️', 50); setTimeout(() => navTo('page-dashboard'), 1500); }
-        function answerNo() { playSound('click'); vibrate(200); alert("Resposta errada! 😠 Tente de novo."); }
+        function answerYes() { playSound('success'); vibrate([50, 50, 100]); createParticles('❤️', 40); setTimeout(() => { navTo('page-dashboard'); initDashboard(); }, 1500); }
+        function answerNo() { playSound('click'); vibrate(200); showToast("Resposta errada! 😠 Tente de novo."); }
+
+        function initDashboard() {
+            if(masterInterval) clearInterval(masterInterval);
+            masterInterval = setInterval(updateMasterCounter, 1000);
+            updateMasterCounter();
+        }
 
         function setMood(btn, mood, msg) {
             document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active'); playSound('click');
-            document.getElementById('mood-msg').innerText = msg;
+            const msgEl = document.getElementById('mood-msg');
+            if(msgEl) msgEl.innerText = msg;
             createParticles(btn.innerText, 10);
         }
 
         function updateMasterCounter() {
-            const diff = new Date().getTime() - new Date(DB.dataInicio).getTime();
+            const start = new Date(DB.dataInicio);
+            const now = new Date();
+            const diff = now - start;
             if(diff < 0) return;
-            const d = Math.floor(diff / 86400000); const h = Math.floor((diff % 86400000) / 3600000); const m = Math.floor((diff % 3600000) / 60000); const s = Math.floor((diff % 60000) / 1000);
-            document.getElementById('master-counter').innerHTML = `<span>${d}d</span> <span>${h}h</span> <span>${m}m</span> <span>${s}s</span>`;
+            
+            // Calculo seguro de anos, meses e dias
+            let years = now.getFullYear() - start.getFullYear();
+            let months = now.getMonth() - start.getMonth();
+            let days = now.getDate() - start.getDate();
+            if (days < 0) { months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+            if (months < 0) { years--; months += 12; }
+
+            const el = document.getElementById('master-counter');
+            if(!el) return;
+
+            if(years > 0) {
+                el.innerHTML = `<span>${years}a</span> <span>${months}m</span> <span>${days}d</span>`;
+            } else {
+                el.innerHTML = `<span>${months}m</span> <span>${days}d</span>`;
+            }
         }
 
         // ==========================================
-        // 4. SISTEMA DE APPS DO DASHBOARD (A Mágica)
+        // 4. SISTEMA DE APPS DO DASHBOARD
         // ==========================================
         function openApp(app) {
             playSound('click'); vibrate(30);
             const modal = document.getElementById('app-modal');
             const title = document.getElementById('app-title');
             const body = document.getElementById('app-body');
+            if(!modal || !title || !body) return;
+            
             let html = '';
 
             switch(app) {
@@ -396,17 +520,13 @@
                     title.innerHTML = '<i class="fa-solid fa-envelopes-bulk"></i> Cartinhas';
                     const cartas = [
                         { t: "Quando estiver triste", ic: "😢", m: "Você é mais forte do que imagina. Estou aqui com você." },
-                        { t: "Quando não conseguir dormir", ic: "😴", m: "Feche os olhos, estou abraçando você em pensamento." },
                         { t: "Quando sentir saudade", ic: "🥺", m: "A distância é só um detalhe para corações conectados." }
                     ];
-                    cartas.forEach(c => html += `<button class="btn" style="width:100%; margin-bottom:10px; background:var(--glass-bg); color:var(--text-main); border:1px solid var(--primary);" onclick="alert('${c.m}')">${c.ic} ${c.t}</button>`);
+                    cartas.forEach(c => html += `<button class="btn" style="width:100%; margin-bottom:10px; background:var(--glass-bg); color:var(--text-main); border:1px solid var(--primary);" onclick="showToast('${c.m}')">${c.ic} ${c.t}</button>`);
                     break;
                 case 'games':
                     title.innerHTML = '<i class="fa-solid fa-gamepad"></i> Mini Jogos';
-                    html += `
-                        <button class="btn" style="width:100%; margin-bottom:10px;" onclick="playGame('heart')">Catch the Heart ❤️</button>
-                        <button class="btn" style="width:100%; margin-bottom:10px;" onclick="playGame('memory')">Jogo da Memória 🧠</button>
-                    `;
+                    html += `<button class="btn" style="width:100%; margin-bottom:10px;" onclick="playGame('heart')">Catch the Heart ❤️</button>`;
                     break;
                 case 'themes':
                     title.innerHTML = '<i class="fa-solid fa-palette"></i> Temas';
@@ -419,108 +539,125 @@
                     break;
                 case 'surprise':
                     title.innerHTML = '<i class="fa-solid fa-box-open"></i> Presente';
-                    html += `<div class="surprise-box-container" onclick="openSurpriseBox(this)"><div class="surprise-box" style="background:var(--primary); border-radius:15px; border: 4px solid gold; display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">🎁</div></div><div id="surprise-content" style="display:none; text-align:center;" class="slide-up"><img src="${DB.fotoPrincipal}" style="width:100%; border-radius:15px; margin-bottom:15px;"><h3>Você é meu maior presente!</h3></div>`;
-                    break;
-                case 'admin':
-                    if(prompt("Senha Admin:") !== DB.senhaAdmin) { alert("Senha incorreta"); return; }
-                    title.innerHTML = '⚙️ Painel Admin';
-                    html += `<p style="font-size:12px;">Altere os dados principais aqui (Salva no celular).</p>
-                             <input type="text" id="admData" value="${DB.dataInicio}" placeholder="YYYY-MM-DDTHH:MM:SS">
-                             <input type="text" id="admNome" value="${DB.nomeDela}" placeholder="Nome dela">
-                             <input type="text" id="admFoto" value="${DB.fotoPrincipal}" placeholder="Link da foto do casal">
-                             <button class="btn" style="width:100%" onclick="saveAdminData()">Salvar</button>`;
+                    html += `<div class="surprise-box-container" onclick="openSurpriseBox(this)"><div class="surprise-box" style="background:var(--primary); border-radius:15px; border: 4px solid gold; display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">🎁</div></div><div id="surprise-content" style="display:none; text-align:center;" class="slide-up"><img src="${DB.fotoPrincipal}" style="width:100%; border-radius:15px; margin-bottom:15px;" onerror="this.style.display='none'"><h3>Você é meu maior presente!</h3></div>`;
                     break;
                 default:
                     title.innerHTML = 'Em Construção 🚧';
-                    html += `<p style="text-align:center;">Esta função será ativada na próxima atualização do sistema! ❤️</p>`;
+                    html += `<p style="text-align:center;">Esta função será ativada na próxima atualização! ❤️</p>`;
             }
 
             body.innerHTML = html;
             modal.classList.add('active');
         }
 
-        function closeModal(e) { document.getElementById('app-modal').classList.remove('active'); }
-
-        // ==========================================
-        // 5. FUNÇÕES ESPECÍFICAS DOS APPS E EASTER EGGS
-        // ==========================================
-        
-        // Missões
-        function toggleMission(id) {
-            let m = DB.missoes.find(x => x.id === id); m.done = !m.done; saveDB();
-            playSound(m.done ? 'success' : 'click'); vibrate(50);
-            if(DB.missoes.every(x => x.done)) { setTimeout(() => { createParticles('mix', 50); alert("VOCÊ COMPLETOU TODAS AS MISSÕES! 🎉"); }, 300); }
-            openApp('missions'); // refresh
+        function closeModal() { 
+            const m = document.getElementById('app-modal');
+            if(m) m.classList.remove('active'); 
         }
 
-        // Máquina do Amor
+        // ==========================================
+        // 5. LÓGICAS INTERNAS
+        // ==========================================
+        function toggleMission(id) {
+            let m = DB.missoes.find(x => x.id === id); 
+            if(m) m.done = !m.done; 
+            dbChanged = true; saveDB();
+            playSound(m.done ? 'success' : 'click'); vibrate(50);
+            if(DB.missoes.every(x => x.done)) { setTimeout(() => { createParticles('mix', 30); showToast("VOCÊ COMPLETOU TODAS AS MISSÕES! 🎉"); }, 300); }
+            openApp('missions');
+        }
+
         function runLoveMachine(btn) {
             btn.disabled = true; playSound('heart');
             let p = 0; let el = document.getElementById('love-percent');
             let int = setInterval(() => {
-                p += Math.floor(Math.random()*15);
-                if(p >= 100) { p = 100; clearInterval(int); setTimeout(()=>{ el.innerText = "∞%"; createParticles('❤️', 40); playSound('success'); btn.disabled=false; }, 500); }
+                p += Math.floor(Math.random()*20);
+                if(p >= 100) { p = 100; clearInterval(int); setTimeout(()=>{ el.innerText = "∞%"; createParticles('❤️', 30); playSound('success'); btn.disabled=false; }, 500); }
                 el.innerText = p + "%";
             }, 50);
         }
 
-        // Temas
-        function setThemeApp(t) { DB.tema = t; saveDB(); document.documentElement.setAttribute("data-theme", t); playSound('click'); closeModal(); }
+        function setThemeApp(t) { DB.tema = t; dbChanged = true; saveDB(); document.documentElement.setAttribute("data-theme", t); playSound('click'); closeModal(); }
 
-        // IA Offline
         function generateAI(btn) {
-            const frases = ["Seus olhos são meu oceano favorito.", "Cada segundo com você é um presente.", "O universo acertou em cheio quando cruzou nossos caminhos.", "Seu sorriso é a luz do meu dia.", "Te amo mais que pizza (e olha que eu amo pizza)."];
+            const frases = ["Seus olhos são meu oceano favorito.", "Cada segundo com você é um presente.", "O universo acertou em cheio quando cruzou nossos caminhos.", "Seu sorriso é a luz do meu dia."];
             document.getElementById('ai-text').innerText = frases[Math.floor(Math.random() * frases.length)];
             playSound('heart'); createParticles('✨', 5);
         }
 
-        // Caixa Surpresa 3D
         function openSurpriseBox(container) {
-            playSound('success'); vibrate([50,100,50]); createParticles('mix', 60);
+            playSound('success'); vibrate([50,100,50]); createParticles('mix', 30);
             container.querySelector('.surprise-box').classList.add('opened');
             setTimeout(() => { container.style.display = 'none'; document.getElementById('surprise-content').style.display = 'block'; }, 800);
         }
 
-        // Minijogo Catch
         function playGame(type) {
             const body = document.getElementById('app-body');
-            if(type === 'heart') {
-                body.innerHTML = `<div style="text-align:center"><p>Pegue o coração!</p><div style="position:relative; width:100%; height:250px; background:rgba(0,0,0,0.1); border-radius:15px; overflow:hidden;" id="game-area"><div id="target-heart" style="position:absolute; font-size:40px; cursor:pointer; transition:0.2s;" onclick="catchHeart()">❤️</div></div></div>`;
-            } else {
-                body.innerHTML = `<p style="text-align:center;">Nesta versão reduzida o foco é o jogo de pegar corações! Divirta-se com ele primeiro ❤️</p>`;
-            }
+            body.innerHTML = `<div style="text-align:center"><p>Pegue o coração!</p><div style="position:relative; width:100%; height:250px; background:rgba(0,0,0,0.1); border-radius:15px; overflow:hidden;" id="game-area"><div id="target-heart" style="position:absolute; font-size:40px; cursor:pointer; transition:0.2s;" onclick="catchHeart()">❤️</div></div></div>`;
         }
         function catchHeart() {
-            DB.stats.jogosGanhos++; saveDB(); playSound('heart'); vibrate(30); createParticles('❤️', 5);
+            DB.stats.jogosGanhos++; dbChanged = true; saveDB(); playSound('heart'); vibrate(30); createParticles('❤️', 3);
             const t = document.getElementById('target-heart');
             t.style.left = Math.random() * 80 + '%'; t.style.top = Math.random() * 80 + '%';
         }
 
-        // Admin
+        // ==========================================
+        // 6. ADMIN E EASTER EGGS
+        // ==========================================
+        function askAdminPassword() {
+            customPrompt("Senha Admin:", (val) => {
+                if(val === DB.senhaAdmin) openAdminPanel();
+                else showToast("Senha incorreta!");
+            });
+        }
+
+        function openAdminPanel() {
+            const modal = document.getElementById('app-modal');
+            document.getElementById('app-title').innerHTML = '⚙️ Painel Admin';
+            document.getElementById('app-body').innerHTML = `
+                <div style="font-size:13px; margin-bottom: 10px;">Modifique os dados abaixo:</div>
+                <input type="text" id="admData" value="${DB.dataInicio}" placeholder="Data">
+                <input type="text" id="admNome" value="${DB.nomeDela}" placeholder="Nome">
+                <input type="text" id="admFoto" value="${DB.fotoPrincipal}" placeholder="Link da foto">
+                <button class="btn" style="width:100%" onclick="saveAdminData()">Atualizar em Tempo Real</button>
+            `;
+            modal.classList.add('active');
+        }
+
         function saveAdminData() {
             DB.dataInicio = document.getElementById('admData').value;
             DB.nomeDela = document.getElementById('admNome').value;
             DB.fotoPrincipal = document.getElementById('admFoto').value;
-            saveDB(); alert("Salvo! Recarregando..."); location.reload();
+            dbChanged = true; saveDB();
+            
+            // Atualiza UI sem precisar de reload
+            const dName = document.getElementById('dash-name'); if(dName) dName.innerText = DB.nomeDela;
+            const dImg = document.getElementById('dash-photo'); if(dImg) dImg.src = DB.fotoPrincipal;
+            updateMasterCounter();
+            closeModal();
+            showToast("Atualizado com sucesso!");
         }
 
-        // ==========================================
-        // 6. O FINAL EMOCIONAL (Chuva de Lágrimas)
-        // ==========================================
         let heartClicks = 0;
-        // Easter Egg secreto: se clicar no coração da foto 10 vezes...
-        document.getElementById('dash-photo').onclick = () => {
+        function handleEasterEgg() {
             heartClicks++; playSound('heart');
-            if(heartClicks === 5) alert("Continue clicando...");
-            if(heartClicks === 10) { heartClicks=0; createParticles('❤️', 100); alert("Você descobriu o segredo: EU SOU LOUCO POR VOCÊ!"); }
-        };
+            if(heartClicks === 5) showToast("Continue clicando...");
+            if(heartClicks === 10) { heartClicks=0; createParticles('❤️', 40); showToast("Você descobriu o segredo: EU SOU LOUCO POR VOCÊ!"); }
+        }
 
         function triggerFinalScreen() {
-            if(confirm("Tem certeza que quer abrir a última surpresa?")) {
+            customConfirm("Tem certeza que quer abrir a última surpresa?", () => {
                 closeModal();
+                if(masterInterval) clearInterval(masterInterval); // Pausa contador antigo
+                
                 const fs = document.getElementById('final-screen');
                 fs.style.display = 'flex';
-                document.getElementById('bg-music').play().catch(e=>console.log("Audio block")); // Tenta tocar música
+                
+                // Tenta tocar música suavemente
+                try {
+                    const bgm = document.getElementById('bg-music');
+                    if(bgm) { bgm.volume = 0.5; bgm.play().catch(e=>console.warn("Autoplay bloqueado.")); }
+                } catch(e){}
                 
                 setTimeout(() => {
                     const textEl = document.getElementById('final-text');
@@ -532,16 +669,18 @@
                         img.src = DB.fotoPrincipal || "https://via.placeholder.com/300";
                         img.style.opacity = '1';
                         
-                        setInterval(() => {
-                            createParticles('❤️', 5);
+                        // Garante que o intervalo anterior foi limpo antes de criar um novo
+                        if(finalInterval) clearInterval(finalInterval);
+                        finalInterval = setInterval(() => {
+                            createParticles('❤️', 3);
                             const diff = new Date().getTime() - new Date(DB.dataInicio).getTime();
                             const d = Math.floor(diff / 86400000);
                             document.getElementById('final-counter').innerText = d + " dias e contando...";
-                        }, 1000);
+                        }, 1500);
 
                     }, 4000);
                 }, 2000);
-            }
+            });
         }
     </script>
 </body>
