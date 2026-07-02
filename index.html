@@ -8,264 +8,318 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* =========================================================
+           TEMAS E VARIÁVEIS CSS
+           ========================================================= */
         :root {
-            --hue: 350; --sat: 85%; --lig: 65%;
-            --bg-color: #fce4ec; --text-main: #333; --text-muted: #666;
-            --glass-bg: rgba(255, 255, 255, 0.65); --glass-border: rgba(255, 255, 255, 0.4);
-            --primary: hsl(var(--hue), var(--sat), var(--lig));
-            --radius: 20px; --font-main: 'Poppins', sans-serif; --font-title: 'Dancing Script', cursive;
+            --bg-grad: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            --primary: #e91e63; --primary-dark: #c2185b;
+            --text-main: #333; --text-muted: #666;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --font-main: 'Poppins', sans-serif; --font-title: 'Dancing Script', cursive;
         }
 
-        [data-theme="dark"] {
-            --bg-color: #121212; --text-main: #fff; --text-muted: #ccc;
-            --glass-bg: rgba(30, 30, 30, 0.7); --glass-border: rgba(255, 255, 255, 0.1);
-            --primary: #ff4d4d;
-        }
+        [data-theme="sakura"] { --bg-grad: linear-gradient(135deg, #fce4ec, #ffcdd2); --primary: #f06292; }
+        [data-theme="galaxy"] { --bg-grad: linear-gradient(135deg, #0f0c29, #302b63, #24243e); --primary: #b388ff; --text-main: #fff; --text-muted: #ccc; --glass-bg: rgba(0,0,0,0.5); --glass-border: rgba(255,255,255,0.1); }
+        [data-theme="rain"] { --bg-grad: linear-gradient(135deg, #4b6cb7, #182848); --primary: #64b5f6; --text-main: #fff; --text-muted: #ccc; --glass-bg: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.2); }
+        [data-theme="dark"] { --bg-grad: linear-gradient(135deg, #121212, #212121); --primary: #ff4d4d; --text-main: #fff; --text-muted: #aaa; --glass-bg: rgba(30,30,30,0.8); --glass-border: rgba(255,255,255,0.1); }
+        [data-theme="roxo"] { --bg-grad: linear-gradient(135deg, #f3e5f5, #ce93d8); --primary: #9c27b0; }
 
+        /* =========================================================
+           RESET E BACKGROUND PARALLAX
+           ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body {
             font-family: var(--font-main); color: var(--text-main);
-            background: var(--bg-color) url('1000274205.jpg') center/cover fixed;
-            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: 0.3s; overflow-x: hidden;
+            background: var(--bg-grad); background-attachment: fixed;
+            min-height: 100vh; overflow-x: hidden; transition: background 0.5s;
         }
 
+        /* Efeito de Vidro Premium */
         .glass {
-            background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); border-radius: var(--radius);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
-        .btn {
-            background: var(--primary); color: white; border: none; padding: 12px 24px;
-            border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer;
-            transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); filter: brightness(0.9); }
-        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--text-main); }
-        
-        h1, h2, h3 { color: var(--primary); margin-bottom: 10px; }
-        .title-fancy { font-family: var(--font-title); font-size: 2.5rem; letter-spacing: 1px; }
-
-        input, textarea, select {
-            width: 100%; padding: 12px 15px; margin-bottom: 15px; border-radius: 12px;
-            background: rgba(255,255,255,0.5); border: 2px solid transparent; color: var(--text-main);
-            font-family: var(--font-main); outline: none; transition: 0.3s;
-        }
-        [data-theme="dark"] input { background: rgba(0,0,0,0.3); color: white; }
-        input:focus { border-color: var(--primary); }
-
-        .slide-up { animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        /* Animações Globais */
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+        .slide-up { animation: slideUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         .pulse { animation: pulse 2s infinite; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--primary)); } }
 
-        .particle { position: fixed; bottom: -50px; pointer-events: none; z-index: 9999; animation: floatUp 4s linear forwards; font-size: 20px; }
-        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
+        /* Partículas (Corações e Pétalas) */
+        .particle { position: fixed; pointer-events: none; z-index: 9999; animation: floatUp linear forwards; }
+        @keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+
+        /* Botões */
+        .btn {
+            background: var(--primary); color: white; border: none; padding: 12px 24px;
+            border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer;
+            transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn:hover { transform: translateY(-3px) scale(1.02); filter: brightness(1.1); }
+        .btn:active { transform: translateY(1px); }
+
+        h1, h2, h3 { color: var(--primary); margin-bottom: 10px; }
+        .title-fancy { font-family: var(--font-title); font-size: 2.8rem; letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
+
+        /* =========================================================
+           ROTEAMENTO DE PÁGINAS (SPA)
+           ========================================================= */
+        .page { display: none; width: 100%; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        .page.active { display: flex; animation: fadeIn 0.4s; }
 
         /* Splash Screen */
-        #splash-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000;
-            background: var(--bg-color); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s;
-        }
-
-        .page { display: none; width: 90%; max-width: 450px; text-align: center; margin: 20px auto; padding: 30px 20px; }
-        .page.active { display: block; }
-
-        .avatar-box {
-            width: 140px; height: 140px; margin: 0 auto 20px auto; border-radius: 50%; padding: 5px;
-            background: linear-gradient(45deg, var(--primary), #ffa07a); animation: float 3s infinite;
-        }
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-grad); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s opacity; }
+        
+        /* Dashboard Premium */
+        #dashboard-content { max-width: 600px; width: 100%; padding-bottom: 80px; }
+        
+        .hero-section { text-align: center; margin-bottom: 30px; position: relative; }
+        .hero-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 15px; animation: float 4s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid white; }
 
-        /* Dashboard */
-        #app-dashboard { max-width: 800px; width: 95%; margin: 20px auto; padding: 20px; text-align: left; }
-        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .greeting { font-size: 1.2rem; font-weight: 600; color: var(--text-muted); }
-        .greeting span { color: var(--primary); font-family: var(--font-title); font-size: 2rem; }
-
-        .counter-card { text-align: center; padding: 20px; margin-bottom: 30px; }
-        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
-        .counter-item { background: rgba(255,255,255,0.3); padding: 10px; border-radius: 12px; }
-        .counter-item span { display: block; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
-        .counter-item small { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; }
-
-        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; }
-        .module-btn {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 20px 10px;
-            border-radius: var(--radius); text-align: center; cursor: pointer; transition: 0.3s;
-            display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 600;
-        }
-        .module-btn i { font-size: 2rem; color: var(--primary); transition: 0.3s; }
-        .module-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary); }
-        .module-btn:hover i { transform: scale(1.2); }
+        /* Grid de Apps */
+        .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .app-icon { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .app-icon i { font-size: 28px; color: var(--primary); }
+        .app-icon span { font-size: 12px; font-weight: 600; }
+        .app-icon:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); background: var(--primary); color: white; }
+        .app-icon:hover i { color: white; }
 
         /* Modal Global */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
-            display: none; align-items: center; justify-content: center; z-index: 1000;
-        }
-        .modal-overlay.active { display: flex; animation: slideUp 0.3s forwards; }
-        .modal-content {
-            background: var(--bg-color); width: 90%; max-width: 600px; max-height: 85vh;
-            border-radius: var(--radius); padding: 25px; overflow-y: auto; position: relative;
-        }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.3s forwards; }
+        .modal-content { background: var(--bg-grad); width: 95%; max-width: 500px; max-height: 85vh; border-radius: 25px; padding: 25px; overflow-y: auto; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-main); background: rgba(255,255,255,0.3); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; }
 
-        #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #4caf50; color: white; padding: 12px 25px; border-radius: 30px; font-weight: bold; z-index: 9999; transition: 0.4s; }
-        #toast.show { bottom: 30px; }
-        
-        .btn-admin-float { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; z-index: 900; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        /* Widgets Específicos */
+        .mood-bar { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
+        .mood-btn { font-size: 24px; background: transparent; border: none; cursor: pointer; transition: 0.2s; filter: grayscale(1); }
+        .mood-btn.active, .mood-btn:hover { filter: grayscale(0); transform: scale(1.3); }
 
-        /* Módulos Custom CSS */
-        .timeline-item { display: flex; gap: 15px; margin-bottom: 20px; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: -20px; width: 2px; background: var(--primary); opacity: 0.3; }
-        .timeline-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; z-index: 1; flex-shrink: 0;}
-        .timeline-box { background: var(--glass-bg); padding: 15px; border-radius: 15px; flex: 1; }
-        
-        .album-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .album-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; cursor: pointer; }
+        .mission-item { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.4); padding: 12px; border-radius: 15px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; }
+        .mission-item.done { text-decoration: line-through; opacity: 0.6; background: rgba(76, 175, 80, 0.2); }
+
+        .surprise-box-container { perspective: 1000px; width: 150px; height: 150px; margin: 50px auto; cursor: pointer; }
+        .surprise-box { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1s; animation: pulseBox 2s infinite; }
+        @keyframes pulseBox { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.05) rotate(3deg); } }
+        .surprise-box.opened { animation: none; transform: rotateX(180deg) scale(0); opacity: 0; }
+
+        /* Botão Admin Secreto */
+        .admin-gear { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; background: var(--glass-bg); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid var(--glass-border); opacity: 0.5; transition: 0.3s; }
+        .admin-gear:hover { opacity: 1; transform: rotate(90deg); }
+
+        /* Tela Final Emocional */
+        #final-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: black; color: white; z-index: 99999; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+        #final-text { font-family: var(--font-main); font-size: 20px; line-height: 1.6; opacity: 0; transition: 2s; margin-bottom: 30px; }
+        #final-photo { width: 80%; max-width: 300px; border-radius: 15px; opacity: 0; transition: 3s; box-shadow: 0 0 40px var(--primary); border: 2px solid white; }
+
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 12px; border: 2px solid var(--primary); font-family: var(--font-main); outline: none; background: rgba(255,255,255,0.7); }
     </style>
 </head>
 <body>
 
-    <!-- Loading Personalizado -->
+    <!-- 1. SPLASH SCREEN (Consertada, rápida e suave) -->
     <div id="splash-screen">
-        <i class="fa-solid fa-heart pulse" style="color: var(--primary); font-size: 60px; margin-bottom: 20px;"></i>
-        <h2 class="title-fancy">carregando calma aiii</h2>
+        <i class="fa-solid fa-heart pulse" style="color: var(--primary); font-size: 65px; margin-bottom: 20px;"></i>
+        <h2 class="title-fancy" style="color:var(--text-main)">carregando calma aiii...</h2>
     </div>
 
-    <div id="toast">✅ Sucesso!</div>
-
-    <!-- PÁGINA 1 -->
-    <div id="page-intro" class="page glass slide-up">
-        <div class="avatar-box"><img id="imgPg1" src="" onerror="this.src='https://via.placeholder.com/150?text=Sua+Foto'"></div>
-        <h1 class="title-fancy">Tem uma cartinha pra você...</h1>
-        <div style="font-size: 80px; cursor: pointer; margin: 20px 0;" class="pulse" onclick="navTo('page-question')">💌</div>
-        <p class="text-muted">(Clique para abrir)</p>
-    </div>
-
-    <!-- PÁGINA 2 -->
-    <div id="page-question" class="page glass">
-        <div class="avatar-box"><img id="imgPg2" src="" onerror="this.src='https://via.placeholder.com/150?text=Sua+Foto'"></div>
-        <h1 class="title-fancy">Você me ama?</h1>
-        <div style="font-size: 80px; margin: 10px 0;">✉️</div>
-        <button class="btn" style="background:#4caf50;" onclick="handleYes()">SIM ❤️</button>
-        <button class="btn btn-outline" onclick="navTo('page-wrong')">NÃO ✖️</button>
-    </div>
-
-    <!-- PÁGINA 3 -->
-    <div id="page-wrong" class="page glass">
-        <div style="font-size: 80px; margin: 10px 0;">😠</div>
-        <h2>Ei!</h2>
-        <p>Resposta errada, mocinha!</p>
-        <button class="btn" onclick="navTo('page-question')">Voltar e Tentar Novamente</button>
-    </div>
-
-    <!-- PÁGINA 4 -->
-    <div id="page-correct" class="page glass">
-        <h1 class="title-fancy pulse" style="font-size: 2.5rem; margin: 20px 0;">hehehehe eu também te amo meu bem! ❤️</h1>
-        <button class="btn slide-up" style="margin-top:20px; animation-delay: 1.5s;" onclick="navTo('page-password')">Prosseguir <i class="fa-solid fa-arrow-right"></i></button>
-    </div>
-
-    <!-- PÁGINA 5 -->
-    <div id="page-password" class="page glass">
-        <div style="font-size: 60px; margin: 10px 0;">🔒</div>
-        <h2>Acesso Restrito</h2>
-        <p>Qual é a senha? <br><small>(O dia que te pedi em namoro)</small></p>
-        <input type="number" id="inputPassword" placeholder="Ex: 15032026">
-        <button class="btn" onclick="checkPassword()"><i class="fa-solid fa-unlock"></i> Desbloquear</button>
-        <p id="pwdError" style="color: red; display: none; margin-top:10px;">Senha incorreta!</p>
-    </div>
-
-    <!-- PÁGINA 6: DASHBOARD PREMIUM -->
-    <div id="app-dashboard" class="page slide-up">
-        <div class="header-top">
-            <div class="greeting" id="greetingText">Boa Tarde, <br><span id="herNameDisplay">Amor</span></div>
-            <button class="btn btn-outline" style="border-radius:50%; width:45px; height:45px; padding:0;" onclick="toggleTheme()"><i class="fa-solid fa-palette"></i></button>
+    <!-- 2. PÁGINA: ATIVAR SOM E INTRODUÇÃO -->
+    <div id="page-intro" class="page">
+        <div class="glass slide-up" style="max-width: 400px; text-align: center; padding: 40px 20px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3237/3237472.png" style="width: 100px; margin-bottom: 20px;">
+            <h2 class="title-fancy" id="typed-text"></h2>
+            <p style="margin: 20px 0; font-size: 14px;">Para a experiência completa, precisamos ligar o som e a vibração.</p>
+            <button class="btn pulse" style="font-size: 18px;" onclick="unlockDevice()"><i class="fa-solid fa-volume-high"></i> Ativar Tudo ❤️</button>
         </div>
+    </div>
 
-        <div class="glass counter-card">
-            <h3 class="title-fancy"><i class="fa-solid fa-stopwatch"></i> Estamos Juntos Há:</h3>
-            <div class="counter-grid">
-                <div class="counter-item"><span id="c-years">0</span><small>Anos</small></div>
-                <div class="counter-item"><span id="c-months">0</span><small>Meses</small></div>
-                <div class="counter-item"><span id="c-days">0</span><small>Dias</small></div>
-                <div class="counter-item"><span id="c-hours">0</span><small>Horas</small></div>
-                <div class="counter-item"><span id="c-mins">0</span><small>Minutos</small></div>
-                <div class="counter-item"><span id="c-secs">0</span><small>Segundos</small></div>
+    <!-- 3. PÁGINA: A CARTA (Pergunta) -->
+    <div id="page-letter" class="page">
+        <div class="glass slide-up" style="max-width: 400px; text-align: center; padding: 40px 20px;">
+            <h1 class="title-fancy">Você me ama?</h1>
+            <div style="font-size: 80px; margin: 20px 0;" class="pulse">✉️</div>
+            <button class="btn" style="background:#4caf50; width: 100%; margin-bottom: 10px;" onclick="answerYes()">SIM ❤️</button>
+            <button class="btn" style="background:#f44336; width: 100%;" onclick="answerNo()">NÃO ✖️</button>
+        </div>
+    </div>
+
+    <!-- 4. PÁGINA: DASHBOARD PRINCIPAL (Onde a mágica acontece) -->
+    <div id="page-dashboard" class="page">
+        <div id="dashboard-content" class="slide-up">
+            
+            <!-- Hero / Humor / Stats -->
+            <div class="glass hero-section" style="padding: 20px;">
+                <img id="dash-photo" src="" class="hero-img" onerror="this.src='https://via.placeholder.com/150'">
+                <h2>Oie, <span id="dash-name">Amor</span> ❤️</h2>
+                <p id="quote-of-day" style="font-style: italic; font-size: 14px; margin-top: 10px;">"Você continua sendo minha pessoa favorita."</p>
+                
+                <!-- Widget de Humor -->
+                <div class="mood-bar">
+                    <button class="mood-btn" onclick="setMood(this, 'feliz', 'Que bom te ver sorrir! Te amo.')">😊</button>
+                    <button class="mood-btn" onclick="setMood(this, 'apaixonada', 'Meu coração dispara por você também!')">🥰</button>
+                    <button class="mood-btn" onclick="setMood(this, 'triste', 'Queria estar aí para te dar um abraço apertado 🥺')">😔</button>
+                    <button class="mood-btn" onclick="setMood(this, 'brava', 'Calma amorzinho, respira, eu te amo tá? 😅')">😡</button>
+                    <button class="mood-btn" onclick="setMood(this, 'sono', 'Vai descansar, sonha comigo! 😴')">😴</button>
+                </div>
+                <p id="mood-msg" style="font-size: 13px; font-weight: bold; color: var(--primary);"></p>
+                
+                <!-- Contador de Tempo Master -->
+                <div style="background: rgba(0,0,0,0.05); border-radius: 15px; padding: 15px; margin-top: 15px;">
+                    <h4 style="margin-bottom: 5px;"><i class="fa-regular fa-clock"></i> Juntos há:</h4>
+                    <div style="display: flex; justify-content: space-around; font-weight: bold; color: var(--primary); font-size: 18px;" id="master-counter">
+                        Carregando...
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="modules-grid">
-            <div class="module-btn" onclick="openModule('timeline')"><i class="fa-solid fa-route"></i> Linha do Tempo</div>
-            <div class="module-btn" onclick="openModule('album')"><i class="fa-solid fa-images"></i> Nosso Álbum</div>
-            <div class="module-btn" onclick="openModule('music')"><i class="fa-solid fa-music"></i> Músicas</div>
-            <div class="module-btn" onclick="openModule('letters')"><i class="fa-solid fa-envelope-open-text"></i> Cartinhas</div>
-            <div class="module-btn" onclick="openModule('reasons')"><i class="fa-solid fa-jar"></i> Motivos</div>
-            <div class="module-btn" onclick="openModule('dreams')"><i class="fa-solid fa-list-check"></i> Sonhos</div>
-            <div class="module-btn" onclick="openModule('surprise')"><i class="fa-solid fa-gift pulse"></i> Surpresa</div>
-            <div class="module-btn" onclick="openModule('game')"><i class="fa-solid fa-heart"></i> Joguinho</div>
+            <!-- Grade de Aplicativos (Ícones) -->
+            <div class="app-grid">
+                <div class="app-icon" onclick="openApp('album')"><i class="fa-solid fa-images"></i><span>Álbum</span></div>
+                <div class="app-icon" onclick="openApp('timeline')"><i class="fa-solid fa-timeline"></i><span>História</span></div>
+                <div class="app-icon" onclick="openApp('music')"><i class="fa-solid fa-music"></i><span>Música</span></div>
+                <div class="app-icon" onclick="openApp('missions')"><i class="fa-solid fa-check-double"></i><span>Missões</span></div>
+                <div class="app-icon" onclick="openApp('capsule')"><i class="fa-solid fa-hourglass-half"></i><span>Cápsula</span></div>
+                <div class="app-icon" onclick="openApp('quiz')"><i class="fa-solid fa-clipboard-question"></i><span>Quiz</span></div>
+                <div class="app-icon" onclick="openApp('machine')"><i class="fa-solid fa-heart-pulse"></i><span>Amor %</span></div>
+                <div class="app-icon" onclick="openApp('diary')"><i class="fa-solid fa-book-open"></i><span>Diário</span></div>
+                <div class="app-icon" onclick="openApp('letters')"><i class="fa-solid fa-envelope-open-text"></i><span>Cartas</span></div>
+                <div class="app-icon" onclick="openApp('gifts')"><i class="fa-solid fa-gift"></i><span>Presentes</span></div>
+                <div class="app-icon" onclick="openApp('games')"><i class="fa-solid fa-gamepad"></i><span>Jogos</span></div>
+                <div class="app-icon" onclick="openApp('camera')"><i class="fa-solid fa-camera"></i><span>Câmera</span></div>
+                <div class="app-icon" onclick="openApp('themes')"><i class="fa-solid fa-palette"></i><span>Temas</span></div>
+                <div class="app-icon" onclick="openApp('stats')"><i class="fa-solid fa-chart-pie"></i><span>Status</span></div>
+                <div class="app-icon" onclick="openApp('ai')"><i class="fa-solid fa-robot"></i><span>IA do Amor</span></div>
+            </div>
+
+            <!-- Caixa Surpresa no Final -->
+            <div class="glass" style="margin-top: 20px; text-align: center; padding: 20px; border: 2px dashed var(--primary); cursor: pointer;" onclick="openApp('surprise')">
+                <h3 class="pulse" style="margin:0;"><i class="fa-solid fa-box-open"></i> Surpresa 3D</h3>
+            </div>
+            
+            <!-- Botão Secreto Final Emocional -->
+            <button id="btn-final-secret" class="btn" style="width: 100%; margin-top: 20px; background: #111;" onclick="triggerFinalScreen()"><i class="fa-solid fa-lock"></i> Última Surpresa...</button>
+        </div>
+        
+        <!-- Botão Admin no Dashboard -->
+        <div class="admin-gear" onclick="openApp('admin')"><i class="fa-solid fa-gear"></i></div>
+    </div>
+
+    <!-- MODAL GLOBAL DE APLICATIVOS (Injeta o HTML dinamicamente) -->
+    <div class="modal-overlay" id="app-modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="close-btn" onclick="document.getElementById('app-modal').classList.remove('active'); playSound('click')"><i class="fa-solid fa-xmark"></i></div>
+            <h2 id="app-title" class="title-fancy" style="text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">App</h2>
+            <div id="app-body"></div>
         </div>
     </div>
 
-    <div class="btn-admin-float" onclick="openAdmin()"><i class="fa-solid fa-gear"></i></div>
-
-    <!-- MODAL GLOBAL -->
-    <div class="modal-overlay" id="mainModal" onclick="closeModal(event)">
-        <div class="modal-content glass slide-up" onclick="event.stopPropagation()">
-            <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('mainModal').classList.remove('active')"></i>
-            <h2 class="title-fancy" id="modalTitle" style="text-align: center; margin-bottom: 20px;">Título</h2>
-            <div id="modalBody"></div>
-        </div>
+    <!-- TELA FINAL EMOCIONAL -->
+    <div id="final-screen">
+        <div id="final-text"></div>
+        <img id="final-photo" src="" alt="Nós">
+        <div id="final-counter" style="margin-top: 20px; font-size: 24px; font-weight: bold; color: var(--primary);"></div>
     </div>
+
+    <!-- AUDIO PLAYER HIDDEN PARA MÚSICA FINAL -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         // ==========================================
-        // 1. BANCO DE DADOS (CONFIG)
+        // 1. BANCO DE DADOS E ESTADO DA APLICAÇÃO
         // ==========================================
-        const CONFIG = {
-            senhaSite: "15032026",
+        const DEFAULT_CONFIG = {
             senhaAdmin: "admin123",
             nomeDela: "Meu Amor",
             dataInicio: "2024-03-15T00:00:00",
-            temaColor: "default", 
-            fotoPg1: "", fotoPg2: "",
-            timeline: [
-                { icon: "fa-mug-hot", date: "10/02/2024", title: "Primeiro Encontro", desc: "Aquele café inesquecível." },
-                { icon: "fa-ring", date: "15/03/2024", title: "Pedido de Namoro", desc: "O melhor sim da minha vida." }
+            tema: "sakura",
+            fotoPrincipal: "", // URL DA FOTO PRINCIPAL
+            stats: { cliquesAmor: 0, jogosGanhos: 0, appAberto: 0 },
+            missoes: [
+                { id: 1, text: "Assistir um filme juntos", done: false },
+                { id: 2, text: "Tirar uma foto fazendo careta", done: false },
+                { id: 3, text: "Dar 20 beijos", done: false }
             ],
+            capsula: { data: "2027-03-15T00:00:00", mensagem: "Se está lendo isso, conseguimos chegar até aqui! Te amo." },
             album: ["https://via.placeholder.com/300?text=Foto+1", "https://via.placeholder.com/300?text=Foto+2"],
-            music: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
-            letters: [
-                { title: "Quando estiver triste 😢", text: "Lembre-se que eu sempre estarei aqui para você. Te amo!" },
-                { title: "Quando sentir saudade 🥺", text: "Olhe para o céu, estamos vendo a mesma lua." }
-            ],
-            reasons: ["Seu sorriso lindo", "Seu cheirinho", "O jeito que você me abraça", "Suas palhaçadas"],
-            dreams: ["Viajar para a Praia", "Morar juntos", "Adotar um pet"],
-            surpresaText: "Você é a melhor coisa que me aconteceu. Te amo muito!"
+            musicas: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
+            diario: [{ data: "Hoje", texto: "Criei este app para você." }]
         };
 
-        let DB = JSON.parse(localStorage.getItem("appDB")) || CONFIG;
-        function saveDB() { localStorage.setItem("appDB", JSON.stringify(DB)); }
+        let DB = JSON.parse(localStorage.getItem("amorOS")) || DEFAULT_CONFIG;
+        DB.stats.appAberto++;
+        saveDB();
+
+        function saveDB() { localStorage.setItem("amorOS", JSON.stringify(DB)); }
 
         // ==========================================
-        // 2. FUNÇÕES BASE E ANIMAÇÕES
+        // 2. SISTEMA DE SONS, VIBRAÇÃO E PARTÍCULAS
+        // ==========================================
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if(audioCtx.state === 'suspended') return;
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode); gainNode.connect(audioCtx.destination);
+            
+            if (type === 'click') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.start(); gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1); osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'success') {
+                osc.type = 'triangle'; osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(660, audioCtx.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.start(); gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3); osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'heart') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.05);
+            }
+        }
+
+        function vibrate(ms) { if(navigator.vibrate) navigator.vibrate(ms); }
+
+        function createParticles(type = '❤️', count = 30) {
+            for(let i=0; i<count; i++) {
+                setTimeout(() => {
+                    let el = document.createElement('div');
+                    el.innerHTML = type === 'mix' ? ['❤️','🌸','✨'][Math.floor(Math.random()*3)] : type;
+                    el.className = 'particle';
+                    el.style.left = Math.random() * 100 + 'vw';
+                    el.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                    el.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // ==========================================
+        // 3. FLUXO DE INICIALIZAÇÃO
         // ==========================================
         window.onload = () => {
-            applyTheme(DB.temaColor);
+            document.documentElement.setAttribute("data-theme", DB.tema);
+            document.getElementById('dash-photo').src = DB.fotoPrincipal || "https://cdn-icons-png.flaticon.com/512/833/833472.png";
+            document.getElementById('dash-name').innerText = DB.nomeDela;
+            
+            // Conserto do Splash Screen: Curto e direto.
             setTimeout(() => {
-                document.getElementById('splash-screen').style.opacity = "0";
-                setTimeout(() => {
-                    document.getElementById('splash-screen').style.display = "none";
-                    navTo('page-intro');
-                }, 500);
-            }, 2500);
-            updateGreeting();
-            setInterval(updateCounter, 1000);
+                let splash = document.getElementById('splash-screen');
+                splash.style.opacity = '0';
+                setTimeout(() => { splash.style.display = 'none'; navTo('page-intro'); startTyping(); }, 400);
+            }, 1200);
+
+            setInterval(updateMasterCounter, 1000);
         };
 
         function navTo(id) {
@@ -273,140 +327,221 @@
             document.getElementById(id).classList.add('active');
         }
 
-        function createHearts() {
-            for(let i=0; i<30; i++) {
-                setTimeout(() => {
-                    let h = document.createElement('div'); h.innerHTML = '❤️'; h.className = 'particle';
-                    h.style.left = Math.random() * 100 + 'vw'; h.style.animationDuration = (Math.random()*3+2)+'s';
-                    document.body.appendChild(h); setTimeout(() => h.remove(), 4000);
-                }, i * 100);
+        let typed = false;
+        function startTyping() {
+            if(typed) return; typed = true;
+            const text = "Tenho uma cartinha para você...";
+            let i = 0; const el = document.getElementById("typed-text");
+            function typeWriter() {
+                if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 50); }
             }
+            typeWriter();
         }
 
-        function applyTheme(t) { document.documentElement.setAttribute("data-theme", t === 'default' ? '' : t); }
-        function toggleTheme() {
-            const t = ['default', 'dark', 'blue', 'lilac'];
-            DB.temaColor = t[(t.indexOf(DB.temaColor) + 1) % t.length];
-            applyTheme(DB.temaColor); saveDB();
+        function unlockDevice() {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            playSound('click'); vibrate(50); createParticles('🌸', 15);
+            navTo('page-letter');
         }
 
-        function updateGreeting() {
-            let h = new Date().getHours();
-            let g = h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite";
-            document.getElementById("greetingText").innerHTML = `${g}, <br><span>${DB.nomeDela} ❤️</span>`;
+        function answerYes() { playSound('success'); vibrate([50, 50, 100]); createParticles('❤️', 50); setTimeout(() => navTo('page-dashboard'), 1500); }
+        function answerNo() { playSound('click'); vibrate(200); alert("Resposta errada! 😠 Tente de novo."); }
+
+        function setMood(btn, mood, msg) {
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active'); playSound('click');
+            document.getElementById('mood-msg').innerText = msg;
+            createParticles(btn.innerText, 10);
         }
 
-        function handleYes() { createHearts(); navTo('page-correct'); }
-
-        function checkPassword() {
-            if (document.getElementById('inputPassword').value === DB.senhaSite) { navTo('app-dashboard'); createHearts(); } 
-            else { document.getElementById('pwdError').style.display = 'block'; }
-        }
-
-        // ==========================================
-        // 3. CONTADOR DE TEMPO
-        // ==========================================
-        function updateCounter() {
+        function updateMasterCounter() {
             const diff = new Date().getTime() - new Date(DB.dataInicio).getTime();
-            if (diff < 0) return;
-            const daysT = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('c-years').innerText = Math.floor(daysT / 365);
-            document.getElementById('c-months').innerText = Math.floor((daysT % 365) / 30);
-            document.getElementById('c-days').innerText = (daysT % 365) % 30;
-            document.getElementById('c-hours').innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-            document.getElementById('c-mins').innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
-            document.getElementById('c-secs').innerText = Math.floor((diff % (1000*60)) / 1000);
+            if(diff < 0) return;
+            const d = Math.floor(diff / 86400000); const h = Math.floor((diff % 86400000) / 3600000); const m = Math.floor((diff % 3600000) / 60000); const s = Math.floor((diff % 60000) / 1000);
+            document.getElementById('master-counter').innerHTML = `<span>${d}d</span> <span>${h}h</span> <span>${m}m</span> <span>${s}s</span>`;
         }
 
         // ==========================================
-        // 4. GERENCIADOR DE MÓDULOS (O segredo pro código não quebrar)
+        // 4. SISTEMA DE APPS DO DASHBOARD (A Mágica)
         // ==========================================
-        function openModule(mod) {
-            const modal = document.getElementById('mainModal');
-            const title = document.getElementById('modalTitle');
-            const body = document.getElementById('modalBody');
+        function openApp(app) {
+            playSound('click'); vibrate(30);
+            const modal = document.getElementById('app-modal');
+            const title = document.getElementById('app-title');
+            const body = document.getElementById('app-body');
             let html = '';
 
-            switch(mod) {
-                case 'timeline':
-                    title.innerText = 'Nossa História';
-                    DB.timeline.forEach(t => {
-                        html += `<div class="timeline-item"><div class="timeline-icon"><i class="fa-solid ${t.icon}"></i></div><div class="timeline-box"><h4>${t.title}</h4><p style="font-size:12px;color:var(--text-muted)">${t.date}</p><p>${t.desc}</p></div></div>`;
+            switch(app) {
+                case 'missions':
+                    title.innerHTML = '<i class="fa-solid fa-list-check"></i> Nossas Missões';
+                    DB.missoes.forEach(m => {
+                        html += `<div class="mission-item ${m.done ? 'done' : ''}" onclick="toggleMission(${m.id})"><i class="fa-regular ${m.done ? 'fa-square-check' : 'fa-square'}"></i> ${m.text}</div>`;
                     });
+                    html += `<p style="font-size:12px; text-align:center; margin-top:10px;">Clique para completar!</p>`;
                     break;
-                case 'album':
-                    title.innerText = 'Nosso Álbum';
-                    html = `<div class="album-grid">`;
-                    DB.album.forEach(img => html += `<img src="${img}" onclick="window.open('${img}', '_blank')">`);
-                    html += `</div>`;
+                case 'capsule':
+                    title.innerHTML = '<i class="fa-solid fa-hourglass-half"></i> Cápsula do Tempo';
+                    const unlock = new Date(DB.capsula.data).getTime();
+                    if (new Date().getTime() >= unlock) {
+                        html += `<div style="text-align:center; padding:20px;"><i class="fa-solid fa-envelope-open-text" style="font-size:50px; color:var(--primary);"></i><h3 style="margin:15px 0;">Cápsula Aberta!</h3><p style="font-style:italic;">"${DB.capsula.mensagem}"</p></div>`;
+                    } else {
+                        html += `<div style="text-align:center; padding:20px;"><i class="fa-solid fa-lock" style="font-size:50px; color:#666;"></i><h3 style="margin:15px 0;">Trancada</h3><p>Só abrirá no dia ${new Date(DB.capsula.data).toLocaleDateString()}</p></div>`;
+                    }
                     break;
-                case 'music':
-                    title.innerText = 'Nossas Músicas';
-                    DB.music.forEach(link => {
-                        let embed = link.replace("spotify.com/", "spotify.com/embed/");
-                        html += `<iframe style="border-radius:12px; margin-bottom:10px" src="${embed}" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
-                    });
+                case 'machine':
+                    title.innerHTML = '<i class="fa-solid fa-heart-pulse"></i> Máquina do Amor';
+                    html += `<div style="text-align:center;"><p>Quanto eu te amo?</p><button class="btn pulse" style="font-size:30px; margin:20px; width:100px; height:100px; border-radius:50%;" onclick="runLoveMachine(this)">❤️</button><h2 id="love-percent" style="font-size:40px;">0%</h2></div>`;
                     break;
                 case 'letters':
-                    title.innerText = 'Cartinhas';
-                    DB.letters.forEach((l, i) => {
-                        html += `<button class="btn btn-outline" style="width:100%; margin-bottom:10px" onclick="alert('${l.text}')"><i class="fa-solid fa-envelope"></i> ${l.title}</button>`;
-                    });
+                    title.innerHTML = '<i class="fa-solid fa-envelopes-bulk"></i> Cartinhas';
+                    const cartas = [
+                        { t: "Quando estiver triste", ic: "😢", m: "Você é mais forte do que imagina. Estou aqui com você." },
+                        { t: "Quando não conseguir dormir", ic: "😴", m: "Feche os olhos, estou abraçando você em pensamento." },
+                        { t: "Quando sentir saudade", ic: "🥺", m: "A distância é só um detalhe para corações conectados." }
+                    ];
+                    cartas.forEach(c => html += `<button class="btn" style="width:100%; margin-bottom:10px; background:var(--glass-bg); color:var(--text-main); border:1px solid var(--primary);" onclick="alert('${c.m}')">${c.ic} ${c.t}</button>`);
                     break;
-                case 'reasons':
-                    title.innerText = 'Pote de Motivos';
-                    html = `<div style="text-align:center"><div class="pulse" style="font-size:80px;cursor:pointer;margin:20px 0" onclick="alert('❤️ Motivo: ${DB.reasons[Math.floor(Math.random() * DB.reasons.length)]}')">🫙</div><p>Clique no pote para ver um motivo pelo qual eu te amo!</p></div>`;
+                case 'games':
+                    title.innerHTML = '<i class="fa-solid fa-gamepad"></i> Mini Jogos';
+                    html += `
+                        <button class="btn" style="width:100%; margin-bottom:10px;" onclick="playGame('heart')">Catch the Heart ❤️</button>
+                        <button class="btn" style="width:100%; margin-bottom:10px;" onclick="playGame('memory')">Jogo da Memória 🧠</button>
+                    `;
                     break;
-                case 'dreams':
-                    title.innerText = 'Nossos Sonhos';
-                    DB.dreams.forEach(d => html += `<p style="padding:10px; background:var(--glass-bg); border-radius:10px; margin-bottom:5px;"><i class="fa-regular fa-square"></i> ${d}</p>`);
+                case 'themes':
+                    title.innerHTML = '<i class="fa-solid fa-palette"></i> Temas';
+                    const temas = [['sakura','🌸 Sakura'],['galaxy','🌌 Galáxia'],['rain','🌧️ Chuva'],['dark','🌑 Escuro'],['roxo','💜 Roxo']];
+                    temas.forEach(t => html += `<button class="btn" style="width:100%; margin-bottom:10px; background:var(--glass-bg); color:var(--text-main);" onclick="setThemeApp('${t[0]}')">${t[1]}</button>`);
+                    break;
+                case 'ai':
+                    title.innerHTML = '<i class="fa-solid fa-robot"></i> IA do Amor';
+                    html += `<div style="text-align:center;"><i class="fa-solid fa-robot" style="font-size:50px; color:var(--primary); margin-bottom:20px;"></i><br><button class="btn pulse" onclick="generateAI(this)">Me diga algo bonito</button><p id="ai-text" style="margin-top:20px; font-style:italic; font-weight:bold; min-height:50px;"></p></div>`;
                     break;
                 case 'surprise':
-                    title.innerText = 'Surpresa!';
-                    html = `<div style="text-align:center"><div class="pulse" style="font-size:80px;cursor:pointer" onclick="createHearts(); this.innerHTML='🎁<br><p style=\\'font-size:18px; margin-top:20px; font-family:var(--font-main)\\'>${DB.surpresaText}</p>'">📦</div><p style="margin-top:10px">Clique para abrir</p></div>`;
+                    title.innerHTML = '<i class="fa-solid fa-box-open"></i> Presente';
+                    html += `<div class="surprise-box-container" onclick="openSurpriseBox(this)"><div class="surprise-box" style="background:var(--primary); border-radius:15px; border: 4px solid gold; display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">🎁</div></div><div id="surprise-content" style="display:none; text-align:center;" class="slide-up"><img src="${DB.fotoPrincipal}" style="width:100%; border-radius:15px; margin-bottom:15px;"><h3>Você é meu maior presente!</h3></div>`;
                     break;
-                case 'game':
-                    title.innerText = 'Pegue os Corações!';
-                    html = `<div style="text-align:center"><p>Clique no coração antes que ele fuja!</p><div id="gameBox" style="position:relative; width:100%; height:200px; background:rgba(0,0,0,0.05); border-radius:10px; margin-top:20px; overflow:hidden;"><div id="gameHeart" style="position:absolute; font-size:40px; cursor:pointer; transition:0.2s" onclick="this.style.left=Math.random()*80+'%'; this.style.top=Math.random()*80+'%'; showToast('Pegou! ❤️'); createHearts()">❤️</div></div></div>`;
+                case 'admin':
+                    if(prompt("Senha Admin:") !== DB.senhaAdmin) { alert("Senha incorreta"); return; }
+                    title.innerHTML = '⚙️ Painel Admin';
+                    html += `<p style="font-size:12px;">Altere os dados principais aqui (Salva no celular).</p>
+                             <input type="text" id="admData" value="${DB.dataInicio}" placeholder="YYYY-MM-DDTHH:MM:SS">
+                             <input type="text" id="admNome" value="${DB.nomeDela}" placeholder="Nome dela">
+                             <input type="text" id="admFoto" value="${DB.fotoPrincipal}" placeholder="Link da foto do casal">
+                             <button class="btn" style="width:100%" onclick="saveAdminData()">Salvar</button>`;
                     break;
+                default:
+                    title.innerHTML = 'Em Construção 🚧';
+                    html += `<p style="text-align:center;">Esta função será ativada na próxima atualização do sistema! ❤️</p>`;
             }
+
             body.innerHTML = html;
             modal.classList.add('active');
         }
 
-        function closeModal(e) { document.getElementById('mainModal').classList.remove('active'); }
+        function closeModal(e) { document.getElementById('app-modal').classList.remove('active'); }
 
         // ==========================================
-        // 5. PAINEL ADMIN BÁSICO
+        // 5. FUNÇÕES ESPECÍFICAS DOS APPS E EASTER EGGS
         // ==========================================
-        function showToast(msg) {
-            let t = document.getElementById("toast"); t.innerText = msg; t.classList.add("show");
-            setTimeout(() => t.classList.remove("show"), 3000);
+        
+        // Missões
+        function toggleMission(id) {
+            let m = DB.missoes.find(x => x.id === id); m.done = !m.done; saveDB();
+            playSound(m.done ? 'success' : 'click'); vibrate(50);
+            if(DB.missoes.every(x => x.done)) { setTimeout(() => { createParticles('mix', 50); alert("VOCÊ COMPLETOU TODAS AS MISSÕES! 🎉"); }, 300); }
+            openApp('missions'); // refresh
         }
 
-        function openAdmin() {
-            if(prompt("Senha Admin:") !== DB.senhaAdmin) { alert("Senha incorreta!"); return; }
-            const modal = document.getElementById('mainModal');
-            document.getElementById('modalTitle').innerText = 'Painel Admin';
-            document.getElementById('modalBody').innerHTML = `
-                <p style="font-size:12px; color:var(--text-muted)">Altere os valores principais aqui para testar. Para salvar no Vercel de vez, lembre-se de alterar no código do GitHub.</p>
-                <label>Data de Início (Formato: YYYY-MM-DDTHH:MM:SS)</label>
-                <input type="text" id="admData" value="${DB.dataInicio}">
-                <label>Nome Dela</label>
-                <input type="text" id="admNome" value="${DB.nomeDela}">
-                <label>Links das Fotos do Álbum (1 por linha)</label>
-                <textarea id="admAlbum" rows="4">${DB.album.join('\n')}</textarea>
-                <button class="btn" style="width:100%" onclick="saveAdmin()"><i class="fa-solid fa-floppy-disk"></i> Salvar Temporariamente</button>
-            `;
-            modal.classList.add('active');
+        // Máquina do Amor
+        function runLoveMachine(btn) {
+            btn.disabled = true; playSound('heart');
+            let p = 0; let el = document.getElementById('love-percent');
+            let int = setInterval(() => {
+                p += Math.floor(Math.random()*15);
+                if(p >= 100) { p = 100; clearInterval(int); setTimeout(()=>{ el.innerText = "∞%"; createParticles('❤️', 40); playSound('success'); btn.disabled=false; }, 500); }
+                el.innerText = p + "%";
+            }, 50);
         }
 
-        function saveAdmin() {
+        // Temas
+        function setThemeApp(t) { DB.tema = t; saveDB(); document.documentElement.setAttribute("data-theme", t); playSound('click'); closeModal(); }
+
+        // IA Offline
+        function generateAI(btn) {
+            const frases = ["Seus olhos são meu oceano favorito.", "Cada segundo com você é um presente.", "O universo acertou em cheio quando cruzou nossos caminhos.", "Seu sorriso é a luz do meu dia.", "Te amo mais que pizza (e olha que eu amo pizza)."];
+            document.getElementById('ai-text').innerText = frases[Math.floor(Math.random() * frases.length)];
+            playSound('heart'); createParticles('✨', 5);
+        }
+
+        // Caixa Surpresa 3D
+        function openSurpriseBox(container) {
+            playSound('success'); vibrate([50,100,50]); createParticles('mix', 60);
+            container.querySelector('.surprise-box').classList.add('opened');
+            setTimeout(() => { container.style.display = 'none'; document.getElementById('surprise-content').style.display = 'block'; }, 800);
+        }
+
+        // Minijogo Catch
+        function playGame(type) {
+            const body = document.getElementById('app-body');
+            if(type === 'heart') {
+                body.innerHTML = `<div style="text-align:center"><p>Pegue o coração!</p><div style="position:relative; width:100%; height:250px; background:rgba(0,0,0,0.1); border-radius:15px; overflow:hidden;" id="game-area"><div id="target-heart" style="position:absolute; font-size:40px; cursor:pointer; transition:0.2s;" onclick="catchHeart()">❤️</div></div></div>`;
+            } else {
+                body.innerHTML = `<p style="text-align:center;">Nesta versão reduzida o foco é o jogo de pegar corações! Divirta-se com ele primeiro ❤️</p>`;
+            }
+        }
+        function catchHeart() {
+            DB.stats.jogosGanhos++; saveDB(); playSound('heart'); vibrate(30); createParticles('❤️', 5);
+            const t = document.getElementById('target-heart');
+            t.style.left = Math.random() * 80 + '%'; t.style.top = Math.random() * 80 + '%';
+        }
+
+        // Admin
+        function saveAdminData() {
             DB.dataInicio = document.getElementById('admData').value;
             DB.nomeDela = document.getElementById('admNome').value;
-            DB.album = document.getElementById('admAlbum').value.split('\n').filter(Boolean);
-            saveDB(); updateGreeting(); showToast("Salvo!");
-            document.getElementById('mainModal').classList.remove('active');
+            DB.fotoPrincipal = document.getElementById('admFoto').value;
+            saveDB(); alert("Salvo! Recarregando..."); location.reload();
+        }
+
+        // ==========================================
+        // 6. O FINAL EMOCIONAL (Chuva de Lágrimas)
+        // ==========================================
+        let heartClicks = 0;
+        // Easter Egg secreto: se clicar no coração da foto 10 vezes...
+        document.getElementById('dash-photo').onclick = () => {
+            heartClicks++; playSound('heart');
+            if(heartClicks === 5) alert("Continue clicando...");
+            if(heartClicks === 10) { heartClicks=0; createParticles('❤️', 100); alert("Você descobriu o segredo: EU SOU LOUCO POR VOCÊ!"); }
+        };
+
+        function triggerFinalScreen() {
+            if(confirm("Tem certeza que quer abrir a última surpresa?")) {
+                closeModal();
+                const fs = document.getElementById('final-screen');
+                fs.style.display = 'flex';
+                document.getElementById('bg-music').play().catch(e=>console.log("Audio block")); // Tenta tocar música
+                
+                setTimeout(() => {
+                    const textEl = document.getElementById('final-text');
+                    textEl.innerText = "Se eu pudesse escolher mil vezes, escolheria você em todas elas.";
+                    textEl.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        const img = document.getElementById('final-photo');
+                        img.src = DB.fotoPrincipal || "https://via.placeholder.com/300";
+                        img.style.opacity = '1';
+                        
+                        setInterval(() => {
+                            createParticles('❤️', 5);
+                            const diff = new Date().getTime() - new Date(DB.dataInicio).getTime();
+                            const d = Math.floor(diff / 86400000);
+                            document.getElementById('final-counter').innerText = d + " dias e contando...";
+                        }, 1000);
+
+                    }, 4000);
+                }, 2000);
+            }
         }
     </script>
 </body>
