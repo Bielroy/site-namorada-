@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Meu Amor ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Imagem de Fundo */
+            background-image: url('1000274205.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container Principal */
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Espaço da Foto */
+        .foto-espaco {
+            width: 150px;
+            height: 150px;
+            background-color: #ddd;
+            border: 4px dashed #ff4d4d;
+            border-radius: 15px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            overflow: hidden;
+        }
+        .foto-espaco img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Controle das Páginas */
+        .page { display: none; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        /* Textos e Botões */
+        h1, h2, h3 { color: #d32f2f; margin-bottom: 15px; font-family: 'VT323', monospace; font-size: 32px; }
+        p { color: #333; margin-bottom: 20px; font-size: 18px; font-weight: bold; }
+        
+        .btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: 4px solid #b71c1c;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-family: 'VT323', monospace;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: scale(1.1); }
+        .btn-green { background-color: #4caf50; border-color: #2e7d32; }
+        .btn-dark { background-color: #333; border-color: #000; font-size: 16px; }
+
+        /* Emojis Gigantes */
+        .emoji-big { font-size: 80px; margin: 20px 0; cursor: pointer; transition: transform 0.3s; }
+        .emoji-big:hover { transform: scale(1.1); }
+
+        /* Animação da Carta */
+        .carta-sobe { animation: subirCarta 2s forwards; }
+        @keyframes subirCarta {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-150px) scale(0); opacity: 0; }
+        }
+
+        /* Inputs */
+        input[type="password"], input[type="number"], input[type="text"], input[type="datetime-local"] {
+            width: 90%; padding: 10px; font-size: 16px; text-align: center;
+            border: 3px solid #ff4d4d; border-radius: 10px; margin-bottom: 15px; font-family: 'Nunito', sans-serif;
+        }
+
+        /* Dashboard Final */
+        .dashboard-section {
+            background: rgba(255,255,255,0.9); border: 2px solid #ff4d4d;
+            border-radius: 15px; padding: 15px; margin-bottom: 20px; text-align: left;
+        }
+        .dashboard-section h3 { font-size: 24px; margin-bottom: 10px; border-bottom: 2px dashed #ff4d4d; padding-bottom: 5px; }
+
+        /* Ícone Engrenagem Admin */
+        .admin-btn { position: absolute; bottom: -40px; right: 0; font-size: 24px; cursor: pointer; opacity: 0.5; }
+        .admin-btn:hover { opacity: 1; }
+
+        /* Corações Caindo */
+        .heart {
+            position: fixed; font-size: 24px; color: red; top: -50px; z-index: 100; animation: fall linear forwards;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- PÁGINA 1 -->
+        <div id="page1" class="page active">
+            <div class="foto-espaco"><img src="foto1.jpg" alt="Foto 1" onerror="this.style.display='none'; this.parentNode.innerHTML='Espaço<br>Foto 1'"></div>
+            <h1>Tem uma cartinha pra você...</h1>
+            <div class="emoji-big" onclick="irPara('page2')">💌</div>
+            <p>(Clique na carta para abrir)</p>
+        </div>
+
+        <!-- PÁGINA 2 -->
+        <div id="page2" class="page">
+            <div class="foto-espaco"><img src="foto2.jpg" alt="Foto 2" onerror="this.style.display='none'; this.parentNode.innerHTML='Espaço<br>Foto 2'"></div>
+            <h1>Você me ama?</h1>
+            <div class="emoji-big" id="cartaAberta">✉️</div>
+            <button class="btn btn-green" onclick="dizerSim()">SIM ❤️</button>
+            <button class="btn" onclick="irPara('page3')">NÃO ✖️</button>
+        </div>
+
+        <!-- PÁGINA 3 -->
+        <div id="page3" class="page">
+            <div class="foto-espaco"><img src="foto3.jpg" alt="Foto 3" onerror="this.style.display='none'; this.parentNode.innerHTML='Espaço<br>Foto 3'"></div>
+            <div class="emoji-big">😠</div>
+            <h1>Ei!</h1>
+            <p>Resposta errada, mocinha!</p>
+            <button class="btn" onclick="irPara('page2')">Voltar e tentar de novo</button>
+        </div>
+
+        <!-- PÁGINA 4 -->
+        <div id="page4" class="page">
+            <div class="foto-espaco"><img src="foto4.jpg" alt="Foto 4" onerror="this.style.display='none'; this.parentNode.innerHTML='Espaço<br>Foto 4'"></div>
+            <h1 id="msgSim" style="display:none; font-size: 26px;">hehehehe eu também te amo meu bem ❤️</h1>
+            <br>
+            <button id="btnProsseguir" class="btn" style="display:none;" onclick="irPara('page5')">Prosseguir ➡️</button>
+        </div>
+
+        <!-- PÁGINA 5 -->
+        <div id="page5" class="page">
+            <div class="emoji-big">🔒</div>
+            <h1>Acesso Restrito</h1>
+            <p>Qual é a senha?</p>
+            <p style="font-size: 14px; color: #666;">(O dia que te pedi em namoro)</p>
+            <input type="number" id="senhaInput" placeholder="Ex: ddmmaaaa">
+            <br>
+            <button class="btn" onclick="verificarSenha()">Desbloquear</button>
+            <p id="erroSenha" style="color: red; display: none; font-size: 14px;">Senha incorreta. Tente de novo!</p>
+        </div>
+
+        <!-- PÁGINA 6 -->
+        <div id="page6" class="page">
+            <div class="emoji-big">🔓</div>
+            <h1 style="font-size: 40px; margin-top: 20px;">uiuiui é minha namorada mesmo ❤️</h1>
+        </div>
+
+        <!-- PÁGINA 7: Álbum e Painel Principal -->
+        <div id="page7" class="page">
+            <h1>Nosso Cantinho ❤️</h1>
+            
+            <div class="dashboard-section">
+                <h3>📸 Álbum de Memórias</h3>
+                <button class="btn" style="font-size: 16px;" onclick="alert('Logo colocaremos mais fotos aqui!')">15/03/2026 - O Início</button>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>🎵 Nossa Música</h3>
+                <div id="musicaContainer" style="margin-top: 10px;">
+                    <!-- A música vai aparecer aqui via JavaScript -->
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <h3 id="tituloPlanos">✈️ Próximos Planos</h3>
+                <p style="font-size: 16px; margin-bottom: 5px;">Faltam:</p>
+                <h2 id="contagemRegressiva" style="font-size: 28px; color: #ff4d4d; margin:0;">Carregando...</h2>
+            </div>
+            
+            <!-- Botão Secreto Admin -->
+            <div class="admin-btn" onclick="abrirAdmin()">⚙️</div>
+        </div>
+
+        <!-- PÁGINA 8: GERENCIADOR ADMIN (Exclusivo para você mexer) -->
+        <div id="pageAdmin" class="page">
+            <h1>Gerenciar Site 🛠️</h1>
+            <p style="font-size: 14px;">Mude as informações temporariamente aqui para testar. Para salvar de vez no Vercel, altere o código no GitHub!</p>
+            
+            <div class="dashboard-section" style="border-color: #333;">
+                <h3>Data da Próxima Viagem/Plano</h3>
+                <input type="datetime-local" id="adminData">
+                
+                <h3>Link da Música (Embed)</h3>
+                <input type="text" id="adminMusica" placeholder="Cole o link iframe do Spotify/YouTube">
+                
+                <button class="btn btn-dark" onclick="salvarAdmin()" style="width: 100%; margin: 10px 0 0 0;">Visualizar Mudanças 👀</button>
+                <button class="btn" onclick="irPara('page7')" style="width: 100%; margin: 10px 0 0 0;">Voltar ao Site</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================================
+        // 🔧 ÁREA DE CONFIGURAÇÃO (O SEU "BLOCO DE NOTAS" PARA O GITHUB)
+        // =====================================================================
+        // Toda vez que quiser mudar algo de forma definitiva pro Vercel atualizar, 
+        // é só mudar os valores aqui dentro dessas aspas!
+
+        const CONFIG = {
+            // A senha do namoro (só números)
+            senhaSite: "15032026", 
+            
+            // Senha secreta para abrir o botão de ⚙️ no final do site
+            senhaGerenciador: "admin123", 
+            
+            // Data do próximo plano (Formato: Ano-Mês-DiaTHora:Minuto)
+            dataDoPlano: "2026-12-20T00:00", 
+            
+            // Titulo do plano
+            tituloDoPlano: "✈️ Próximos Planos: Nossa Viagem",
+            
+            // Link de incorporar do Spotify ou Youtube (Substitua esse exemplo pelo seu)
+            iframeMusica: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3Zwu2K0Qa5sT6teCCHPShP?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
+        };
+        // =====================================================================
+
+
+        // Inicialização dos Textos e Músicas configurados acima
+        document.getElementById("tituloPlanos").innerText = CONFIG.tituloDoPlano;
+        document.getElementById("musicaContainer").innerHTML = localStorage.getItem("musicaSalva") || CONFIG.iframeMusica;
+        let dataAlvo = localStorage.getItem("dataSalva") || CONFIG.dataDoPlano;
+
+        // Funções de Navegação
+        function irPara(idPagina) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(idPagina).classList.add('active');
+        }
+
+        // Interação SIM e Corações
+        function dizerSim() {
+            irPara('page4');
+            let carta = document.createElement('div');
+            carta.innerHTML = '✉️';
+            carta.className = 'emoji-big carta-sobe';
+            carta.style.position = 'absolute';
+            document.getElementById('page4').prepend(carta);
+            criarCoracoes();
+            setTimeout(() => {
+                document.getElementById('msgSim').style.display = 'block';
+                document.getElementById('btnProsseguir').style.display = 'inline-block';
+            }, 2000);
+        }
+
+        function criarCoracoes() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    let coracao = document.createElement('div');
+                    coracao.innerHTML = '❤️';
+                    coracao.className = 'heart';
+                    coracao.style.left = Math.random() * 100 + 'vw';
+                    coracao.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(coracao);
+                    setTimeout(() => coracao.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // Verificação da Senha de Namoro
+        function verificarSenha() {
+            let senhaDigitada = document.getElementById('senhaInput').value;
+            if (senhaDigitada === CONFIG.senhaSite) {
+                irPara('page6');
+                setTimeout(() => irPara('page7'), 3000);
+            } else {
+                document.getElementById('erroSenha').style.display = 'block';
+            }
+        }
+
+        // =====================================================================
+        // 🛠️ FUNÇÕES DO PAINEL ADMIN (ENGRENAGEM)
+        // =====================================================================
+        function abrirAdmin() {
+            let pass = prompt("Digite a senha do painel Admin:");
+            if (pass === CONFIG.senhaGerenciador) {
+                // Preenche os campos com a data atual configurada
+                document.getElementById("adminData").value = dataAlvo;
+                irPara('pageAdmin');
+            } else if (pass !== null) {
+                alert("Senha incorreta!");
+            }
+        }
+
+        function salvarAdmin() {
+            // Salva as coisas localmente para testar no navegador
+            let novaData = document.getElementById("adminData").value;
+            let novaMusica = document.getElementById("adminMusica").value;
+            
+            if(novaData) {
+                dataAlvo = novaData;
+                localStorage.setItem("dataSalva", novaData);
+            }
+            if(novaMusica) {
+                document.getElementById("musicaContainer").innerHTML = novaMusica;
+                localStorage.setItem("musicaSalva", novaMusica);
+            }
+            
+            alert("Aplicado para visualização! Lembre-se: Para atualizar no Vercel permanentemente, você precisa alterar o bloco 'CONFIG' no arquivo do GitHub.");
+            irPara('page7');
+        }
+
+        // Lógica da Contagem Regressiva
+        setInterval(function() {
+            const dataObjetivo = new Date(dataAlvo).getTime();
+            const agora = new Date().getTime();
+            const distancia = dataObjetivo - agora;
+
+            if (distancia < 0) {
+                document.getElementById("contagemRegressiva").innerHTML = "É HOJE!!! 🎉";
+                return;
+            }
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById("contagemRegressiva").innerHTML = 
+                dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+        }, 1000);
+    </script>
+</body>
+</html>
