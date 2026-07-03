@@ -8,43 +8,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   TOKENS
+   TOKENS - TEMA DARK ROMÂNTICO
    ============================================================ */
-:root{
-  --bg-top:#ffe8ef;
-  --bg-bot:#ffd0e0;
-  --pink:#ff5c8a;
-  --pink-dark:#d63e6c;
-  --yellow:#ffc93c;
-  --yellow-dark:#e0a815;
-  --mint:#6fcf97;
-  --mint-dark:#3fae70;
-  --purple:#b48ead;
-  --ink:#4a314d;
-  --ink-soft:#8c6e8f;
-  --card:rgba(255,255,255,.92);
-  --card-line:#4a314d;
-  --px:4px; /* base pixel unit */
-  --font-pixel:'Press Start 2P', monospace;
-  --font-body:'Baloo 2', sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:var(--font-body);
-  color:var(--ink);
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,255,255,.6) 0 2px, transparent 3px) 0 0/40px 40px,
-    radial-gradient(circle at 65% 60%, rgba(255,255,255,.5) 0 2px, transparent 3px) 0 0/60px 60px,
-    linear-gradient(180deg, var(--bg-top), var(--bg-bot) 40%, #ffc3d8 100%);
-  background-attachment:fixed;
-  overflow-x:hidden;
-  position:relative;
+:root {
+  --bg-top: #1a0b14;
+  --bg-bot: #2d1424;
+  --pink: #ff2a5f;
+  --pink-dark: #b31238;
+  --yellow: #ffd700;
+  --yellow-dark: #b8860b;
+  --mint: #3fae70;
+  --mint-dark: #1e663e;
+  --purple: #8a4baf;
+  --ink: #ffe8ef;
+  --ink-soft: #ffb3c6;
+  --card: rgba(25, 10, 18, 0.95);
+  --card-line: #ff2a5f;
+  --px: 4px;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-body: 'Baloo 2', sans-serif;
+  
+  /* Cores das Raridades */
+  --rarity-comum: #8c8c8c;
+  --rarity-raro: #2196f3;
+  --rarity-epico: #9c27b0;
+  --rarity-lendario: #ffc107;
 }
 
-/* pixel-corner "stairstep" shape, used everywhere for the retro-cute look */
-.pixel{
+* {box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html {scroll-behavior:smooth;}
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,42,95,.15) 0 2px, transparent 3px) 0 0/40px 40px,
+    radial-gradient(circle at 65% 60%, rgba(255,42,95,.1) 0 2px, transparent 3px) 0 0/60px 60px,
+    linear-gradient(180deg, var(--bg-top), var(--bg-bot) 60%, #4a152d 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Formas Pixeladas */
+.pixel {
   clip-path:polygon(
     0 12px,12px 12px,12px 0,
     calc(100% - 12px) 0,calc(100% - 12px) 12px,100% 12px,
@@ -52,182 +59,177 @@ body{
     12px 100%,12px calc(100% - 12px),0 calc(100% - 12px)
   );
 }
-.pixel-sm{
-  clip-path:polygon(
-    0 6px,6px 6px,6px 0,
-    calc(100% - 6px) 0,calc(100% - 6px) 6px,100% 6px,
-    100% calc(100% - 6px),calc(100% - 6px) calc(100% - 6px),calc(100% - 6px) 100%,
-    6px 100%,6px calc(100% - 6px),0 calc(100% - 6px)
-  );
+
+.glass {
+  background: var(--card);
+  border: 3px solid var(--card-line);
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(255, 42, 95, 0.1);
+}
+.glass::after {
+  content:''; position:absolute; inset:0; z-index:-1;
+  transform: translate(6px,6px);
+  background: var(--pink-dark);
+  clip-path: inherit;
 }
 
-.glass{
-  background:var(--card);
-  border:3px solid var(--card-line);
-  position:relative;
-}
-.glass::after{ /* pixel drop-shadow, no blur, stays crisp/retro */
-  content:'';position:absolute;inset:0;z-index:-1;
-  transform:translate(6px,6px);
-  background:var(--pink);
-  clip-path:inherit;
-}
+h1,h2,h3 {font-family:var(--font-pixel); color:var(--pink); line-height:1.5; text-shadow: 2px 2px 0 #000;}
+h1 {font-size:20px;}
+h2 {font-size:16px;}
+p {font-size:18px; font-weight:600; line-height:1.6; margin-bottom:16px; color:var(--ink);}
+small {font-family:var(--font-body);}
 
-h1,h2,h3{font-family:var(--font-pixel);color:var(--pink-dark);line-height:1.5;text-shadow:2px 2px 0 #fff;}
-h1{font-size:22px;}
-h2{font-size:17px;}
-p{font-size:18px;font-weight:600;line-height:1.6;margin-bottom:16px;color:var(--ink);}
-small{font-family:var(--font-body);}
-
-.btn{
+.btn {
   font-family:var(--font-pixel);
   font-size:13px;
   color:#fff;
   background:var(--pink);
-  border:3px solid var(--card-line);
+  border:3px solid #000;
   padding:16px 20px;
   cursor:pointer;
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  box-shadow:4px 4px 0 var(--card-line);
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  box-shadow: 4px 4px 0 #000;
   transition:transform .1s;
   text-transform:uppercase;
   position:relative;
 }
-.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--card-line);}
-.btn-yellow{background:var(--yellow-dark);color:#4a314d;}
-.btn-green{background:var(--mint-dark);}
-.btn-dark{background:#4a314d;}
-.btn-small{font-size:10px;padding:10px 14px;}
-.btn-full{width:100%;margin-bottom:12px;}
+.btn:active {transform:translate(4px,4px); box-shadow:0 0 0 #000;}
+.btn-yellow {background:var(--yellow-dark); color:#fff;}
+.btn-green {background:var(--mint-dark);}
+.btn-dark {background:#11050d; border-color:var(--pink);}
+.btn-small {font-size:10px; padding:10px 14px;}
+.btn-full {width:100%; margin-bottom:12px;}
 
-/* ---------- floating pixel hearts background ---------- */
-#heart-field{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
-.bg-heart{position:absolute;opacity:.35;animation:drift linear infinite;}
-@keyframes drift{
-  0%{transform:translateY(110vh) rotate(0deg);}
-  100%{transform:translateY(-10vh) rotate(15deg);}
+/* Animação do Coração Intro */
+@keyframes pulse-heart {
+  0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--pink)); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 20px var(--pink)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--pink)); }
+}
+.pulse-anim {
+  animation: pulse-heart 1.5s infinite;
 }
 
-/* ---------- pixel heart sprite (built from box-shadow grid) ---------- */
-.pxheart{position:relative;}
-
-/* ---------- pages ---------- */
-.page{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:24px;width:100%;position:relative;z-index:2;}
-.page.active{display:flex;animation:fadeIn .5s ease forwards;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
-.card{max-width:480px;width:100%;text-align:center;padding:40px 26px;}
-
-/* splash */
-#splash-screen{position:fixed;inset:0;background:var(--pink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:#fff;}
-#splash-screen h1{color:#fff;text-shadow:2px 2px 0 var(--pink-dark);font-size:14px;text-align:center;}
-.loadbar{width:220px;height:20px;border:3px solid #fff;background:rgba(255,255,255,.2);position:relative;overflow:hidden;}
-.loadbar-fill{height:100%;width:0%;background:#fff;animation:load 1.4s ease forwards;}
-@keyframes load{to{width:100%;}}
-
-.avatar{width:150px;height:150px;object-fit:cover;border:4px solid var(--card-line);margin-bottom:20px;box-shadow:6px 6px 0 var(--pink);}
-
-/* question / dodge button */
-#btn-nao{transition:top .18s, left .18s;}
-#btn-nao.roaming{position:fixed;z-index:50;}
-
-/* password */
-input[type=number],input[type=text],input[type=datetime-local],textarea{
-  width:100%;padding:14px;margin-bottom:12px;border:3px solid var(--card-line);
-  font-size:16px;font-family:var(--font-body);font-weight:700;background:#fff;
-  outline:none;color:var(--ink);
+/* Background Hearts */
+#heart-field {position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden;}
+.bg-heart {position:absolute; opacity:.15; animation:drift linear infinite;}
+@keyframes drift {
+  0% {transform:translateY(110vh) rotate(0deg);}
+  100% {transform:translateY(-10vh) rotate(15deg);}
 }
-input:focus,textarea:focus{border-color:var(--pink);}
-#pwdError{color:var(--pink-dark);display:none;margin-top:10px;font-size:15px;font-weight:800;}
+.pxheart {position:relative;}
 
-/* feed */
-#feed-container{max-width:760px;width:100%;padding:36px 0;display:flex;flex-direction:column;gap:34px;}
-.feed-section{padding:34px 24px;text-align:center;}
-.eyebrow{font-family:var(--font-pixel);font-size:10px;color:var(--mint-dark);letter-spacing:1px;margin-bottom:10px;display:inline-block;}
+/* Páginas */
+.page {display:none; min-height:100vh; flex-direction:column; align-items:center; justify-content:center; padding:24px; width:100%; position:relative; z-index:2;}
+.page.active {display:flex; animation:fadeIn .5s ease forwards;}
+@keyframes fadeIn {from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+.card {max-width:480px; width:100%; text-align:center; padding:40px 26px;}
 
-.reveal{opacity:0;transform:translateY(60px);transition:all .7s cubic-bezier(.25,.8,.25,1);}
-.reveal.active{opacity:1;transform:translateY(0);}
+/* Splash */
+#splash-screen {position:fixed; inset:0; background:var(--bg-top); z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; color:#fff;}
+.loadbar {width:220px; height:20px; border:3px solid var(--pink); background:rgba(255,42,95,.2); position:relative; overflow:hidden;}
+.loadbar-fill {height:100%; width:0%; background:var(--pink); animation:load 1.4s ease forwards;}
+@keyframes load {to{width:100%;}}
 
-.counter-box{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:18px;}
-.counter-item{background:#fff;border:3px solid var(--card-line);padding:14px 16px;min-width:82px;box-shadow:3px 3px 0 var(--card-line);}
-.counter-item span{display:block;font-family:var(--font-pixel);font-size:22px;color:var(--pink-dark);}
-.counter-item small{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--ink-soft);}
+.avatar {width:150px; height:150px; object-fit:cover; border:4px solid var(--pink); margin-bottom:20px; box-shadow:6px 6px 0 #000;}
 
-.album-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:18px;}
-.album-grid figure{margin:0;}
-.album-grid img{width:100%;height:170px;object-fit:cover;border:3px solid var(--card-line);box-shadow:4px 4px 0 var(--pink);display:block;}
-.album-grid figcaption{font-size:12px;font-weight:700;margin-top:6px;color:var(--ink-soft);}
+#btn-nao {transition:top .18s, left .18s;}
+#btn-nao.roaming {position:fixed; z-index:50;}
 
-.timeline{margin-top:24px;text-align:left;position:relative;padding-left:26px;}
-.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:4px;background:var(--pink);}
-.timeline-item{position:relative;margin-bottom:22px;background:#fff;padding:16px;border:3px solid var(--card-line);box-shadow:3px 3px 0 var(--pink);}
-.timeline-item::before{content:'';position:absolute;left:-26px;top:16px;width:14px;height:14px;background:var(--yellow-dark);border:3px solid var(--card-line);}
-.timeline-date{color:var(--pink-dark);font-family:var(--font-pixel);font-size:11px;margin-bottom:6px;}
-
-.reason-item{background:#fff;padding:14px 16px;border:3px solid var(--card-line);border-left:8px solid var(--pink);margin-bottom:10px;text-align:left;font-weight:700;box-shadow:3px 3px 0 var(--card-line);}
-
-.meme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:18px;}
-.meme-card{background:#fff;border:3px solid var(--card-line);box-shadow:4px 4px 0 var(--mint-dark);overflow:hidden;}
-.meme-card img{width:100%;height:150px;object-fit:cover;display:block;border-bottom:3px solid var(--card-line);}
-.meme-card figcaption{font-size:12px;font-weight:800;padding:8px;color:var(--ink);}
-
-.mood-options{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0;}
-.mood-btn{font-size:30px;background:#fff;border:3px solid var(--card-line);padding:10px 14px;cursor:pointer;box-shadow:3px 3px 0 var(--card-line);transition:transform .1s;}
-.mood-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--card-line);}
-.mood-log{margin-top:16px;text-align:left;max-height:200px;overflow-y:auto;}
-.mood-log-item{font-size:13px;font-weight:700;background:#fff;border:2px solid var(--card-line);padding:8px 12px;margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;}
-
-.jar-box{background:#fff;border:4px solid var(--card-line);padding:24px;margin-top:14px;box-shadow:5px 5px 0 var(--yellow-dark);min-height:70px;display:flex;align-items:center;justify-content:center;}
-#jar-text{font-weight:800;font-size:17px;color:var(--pink-dark);}
-
-/* admin */
-#page-admin{justify-content:flex-start;}
-.admin-card{max-width:760px;width:100%;padding:34px;margin:34px 0;text-align:left;}
-.admin-card label{font-family:var(--font-pixel);font-size:11px;color:var(--pink-dark);display:block;margin:18px 0 8px;}
-.admin-card p.hint{font-size:13px;color:var(--ink-soft);font-weight:700;margin-bottom:10px;}
-.admin-card hr{border:none;border-top:3px dashed var(--pink);margin:26px 0;}
-
-/* mascot */
-#pixel-pet{position:fixed;bottom:18px;right:18px;z-index:1000;cursor:pointer;transition:transform .2s;}
-#pixel-pet:hover{transform:scale(1.1) rotate(-4deg);}
-#pet-bubble{position:fixed;bottom:100px;right:18px;max-width:210px;background:#fff;border:3px solid var(--card-line);padding:12px 14px;font-weight:800;font-size:13px;box-shadow:4px 4px 0 var(--pink);z-index:1001;display:none;}
-
-.admin-btn{position:fixed;bottom:18px;left:18px;background:#4a314d;color:#fff;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:3px 3px 0 var(--pink);z-index:1000;opacity:.5;transition:.2s;}
-.admin-btn:hover{opacity:1;transform:rotate(90deg);}
-
-/* confetti hearts */
-.confetti-heart{position:fixed;z-index:9998;pointer-events:none;}
-
-@media (max-width:480px){
-  h1{font-size:17px;}
-  h2{font-size:14px;}
-  .btn{font-size:11px;padding:14px 16px;}
+/* Formulários */
+input, textarea {
+  width:100%; padding:14px; margin-bottom:12px; border:3px solid var(--pink-dark);
+  font-size:16px; font-family:var(--font-body); font-weight:700; background:#11050d;
+  outline:none; color:var(--ink);
 }
+input:focus, textarea:focus {border-color:var(--yellow);}
+#pwdError {color:var(--pink); display:none; margin-top:10px; font-size:15px; font-weight:800;}
+
+/* Feed */
+#feed-container {max-width:760px; width:100%; padding:36px 0; display:flex; flex-direction:column; gap:34px;}
+.feed-section {padding:34px 24px; text-align:center;}
+.eyebrow {font-family:var(--font-pixel); font-size:10px; color:var(--yellow); letter-spacing:1px; margin-bottom:10px; display:inline-block;}
+.reveal {opacity:0; transform:translateY(60px); transition:all .7s cubic-bezier(.25,.8,.25,1);}
+.reveal.active {opacity:1; transform:translateY(0);}
+
+.counter-box {display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:18px;}
+.counter-item {background:#11050d; border:3px solid var(--card-line); padding:14px 16px; min-width:82px; box-shadow:3px 3px 0 #000;}
+.counter-item span {display:block; font-family:var(--font-pixel); font-size:22px; color:var(--pink);}
+.counter-item small {font-size:11px; font-weight:800; text-transform:uppercase; color:var(--ink-soft);}
+
+/* Conquistas / Troféus */
+.achievement-grid {display: flex; flex-direction: column; gap: 16px; margin-top: 20px;}
+.achiev-card {background: #11050d; border: 3px solid var(--card-line); padding: 16px; text-align: left; position: relative;}
+.achiev-header {display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;}
+.achiev-title {font-weight: 800; font-size: 16px; color: var(--ink);}
+.achiev-badge {font-family: var(--font-pixel); font-size: 9px; padding: 4px 8px; border: 2px solid #000;}
+.achiev-bar-bg {width: 100%; height: 16px; background: rgba(255,255,255,0.1); border: 2px solid #000; position: relative; overflow: hidden;}
+.achiev-bar-fill {height: 100%; transition: width 0.5s ease;}
+.achiev-progress-text {font-size: 12px; font-weight: bold; margin-top: 6px; text-align: right; color: var(--ink-soft);}
+
+/* Planos Futuros */
+.plan-item {background: #11050d; border: 3px dashed var(--pink); padding: 16px; margin-bottom: 12px; text-align: center;}
+.plan-title {font-weight: 800; color: var(--yellow); font-size: 18px; margin-bottom: 8px;}
+.plan-countdown {font-family: var(--font-pixel); font-size: 12px; color: var(--ink);}
+
+.album-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-top:18px;}
+.album-grid figure {margin:0;}
+.album-grid img {width:100%; height:170px; object-fit:cover; border:3px solid var(--card-line); box-shadow:4px 4px 0 #000; display:block;}
+.album-grid figcaption {font-size:12px; font-weight:700; margin-top:6px; color:var(--ink-soft);}
+
+.reason-item {background:#11050d; padding:14px 16px; border:3px solid var(--card-line); border-left:8px solid var(--pink); margin-bottom:10px; text-align:left; font-weight:700; box-shadow:3px 3px 0 #000;}
+
+.meme-grid {display:flex; flex-direction:column; gap:16px; margin-top:18px;}
+.meme-card {background:#11050d; border:3px solid var(--card-line); box-shadow:4px 4px 0 #000; overflow:hidden;}
+.meme-card img {width:100%; object-fit:cover; display:block;}
+.meme-card iframe {width:100%; height: 400px; border: none;}
+.meme-card figcaption {font-size:13px; font-weight:800; padding:12px; color:var(--ink);}
+
+.mood-options {display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:18px 0;}
+.mood-btn {font-size:30px; background:#11050d; border:3px solid var(--card-line); padding:10px 14px; cursor:pointer; box-shadow:3px 3px 0 #000;}
+.mood-log {margin-top:16px; text-align:left; max-height:200px; overflow-y:auto;}
+.mood-log-item {font-size:13px; font-weight:700; background:#11050d; border:2px solid var(--card-line); padding:8px 12px; margin-bottom:6px; display:flex; justify-content:space-between; gap:10px;}
+
+.jar-box {background:#11050d; border:4px solid var(--card-line); padding:24px; margin-top:14px; box-shadow:5px 5px 0 var(--yellow); min-height:70px; display:flex; align-items:center; justify-content:center;}
+#jar-text {font-weight:800; font-size:17px; color:var(--yellow);}
+
+/* Admin */
+#page-admin {justify-content:flex-start;}
+.admin-card {max-width:760px; width:100%; padding:34px; margin:34px 0; text-align:left;}
+.admin-card label {font-family:var(--font-pixel); font-size:11px; color:var(--pink); display:block; margin:18px 0 8px;}
+.admin-card p.hint {font-size:13px; color:var(--ink-soft); font-weight:700; margin-bottom:10px;}
+.admin-card hr {border:none; border-top:3px dashed var(--pink-dark); margin:26px 0;}
+
+/* Mascot */
+#pixel-pet {position:fixed; bottom:18px; right:18px; z-index:1000; cursor:pointer; transition:transform .2s;}
+#pixel-pet:hover {transform:scale(1.1) rotate(-4deg);}
+#pet-bubble {position:fixed; bottom:100px; right:18px; max-width:210px; background:#11050d; border:3px solid var(--pink); padding:12px 14px; font-weight:800; font-size:13px; box-shadow:4px 4px 0 #000; z-index:1001; display:none; color:var(--ink);}
+
+.admin-btn {position:fixed; bottom:18px; left:18px; background:#11050d; color:#fff; width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer; box-shadow:3px 3px 0 var(--pink); z-index:1000; opacity:.5; transition:.2s; border: 2px solid var(--pink);}
+.admin-btn:hover {opacity:1; transform:rotate(90deg);}
 </style>
 </head>
 <body>
 
 <div id="heart-field"></div>
-
-<!-- pixel heart symbol template, colored/duplicated at runtime -->
-<template id="tpl-pixel-heart">
-  <div class="pxheart"></div>
-</template>
+<template id="tpl-pixel-heart"><div class="pxheart"></div></template>
 
 <!-- 1. SPLASH -->
 <div id="splash-screen">
   <div id="splash-heart" class="pxheart" style="transform:scale(1.6)"></div>
-  <h1>carregando amor...</h1>
+  <h1 style="color:var(--pink)">carregando amor...</h1>
   <div class="loadbar"><div class="loadbar-fill"></div></div>
 </div>
 
 <!-- 2. INTRO -->
 <div id="page-intro" class="page">
   <div class="glass pixel card">
-    <img id="intro-foto" class="avatar" src="" style="border-radius:0;display:none;" onerror="this.style.display='none'">
+    <img id="intro-foto" class="avatar" src="" style="display:none;" onerror="this.style.display='none'">
     <span class="eyebrow">💌 vc tem 1 nova mensagem</span>
     <h1>tem uma cartinha pra você...</h1>
-    <div id="envelope-heart" class="pxheart" style="cursor:pointer;margin:20px auto;" onclick="navTo('page-question')"></div>
-    <p style="color:var(--ink-soft);font-size:14px;">(toca no coraçãozinho pra abrir)</p>
+    <!-- Adicionada classe pulse-anim para chamar a atenção -->
+    <div id="envelope-heart" class="pxheart pulse-anim" style="cursor:pointer; margin:30px auto;" onclick="navTo('page-question')"></div>
+    <p style="color:var(--ink-soft); font-size:14px;">(toca no coraçãozinho pra abrir)</p>
   </div>
 </div>
 
@@ -255,15 +257,15 @@ input:focus,textarea:focus{border-color:var(--pink);}
   <div class="glass pixel card">
     <h1>acesso restrito 🔒</h1>
     <p>qual é a senha?</p>
-    <p style="font-size:13px;color:var(--ink-soft);">(o dia que te pedi em namoro, só números — ddmmaaaa)</p>
-    <input type="number" id="inputPassword" placeholder="ex: 15032026" style="text-align:center;letter-spacing:2px;">
+    <p style="font-size:13px; color:var(--ink-soft);">(o dia que te pedi em namoro, ddmmaaaa)</p>
+    <input type="number" id="inputPassword" placeholder="ex: 15032026" style="text-align:center; letter-spacing:2px;">
     <button class="btn btn-full" onclick="checkPassword()">desbloquear 🔓</button>
     <p id="pwdError">senha incorreta! tenta de novo 🥺</p>
   </div>
 </div>
 
 <!-- 6. FEED -->
-<div id="page-feed" class="page" style="justify-content:flex-start;padding-top:40px;">
+<div id="page-feed" class="page" style="justify-content:flex-start; padding-top:40px;">
   <div id="feed-container">
 
     <div class="feed-section glass pixel reveal">
@@ -273,45 +275,52 @@ input:focus,textarea:focus{border-color:var(--pink);}
       <div class="counter-box" id="master-counter"></div>
     </div>
 
+    <!-- NOVA SEÇÃO: PLANOS FUTUROS -->
     <div class="feed-section glass pixel reveal">
-      <span class="eyebrow">álbum</span>
-      <h2>📸 nosso álbum</h2>
-      <p>nossos melhores momentos.</p>
+      <span class="eyebrow">ansiedade boa</span>
+      <h2>✈️ nossos próximos planos</h2>
+      <p>contagem regressiva para os nossos sonhos:</p>
+      <div id="render-planos" style="margin-top:16px;"></div>
+    </div>
+
+    <!-- NOVA SEÇÃO: CONQUISTAS -->
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">fase desbloqueada</span>
+      <h2>🏆 nossas conquistas</h2>
+      <p>níveis do nosso amor (como num joguinho):</p>
+      <div class="achievement-grid" id="render-conquistas"></div>
+    </div>
+
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">álbum / sonhos realizados</span>
+      <h2>📸 nossos momentos</h2>
+      <p>memórias e sonhos que já realizamos.</p>
       <div class="album-grid" id="render-album"></div>
     </div>
 
     <div class="feed-section glass pixel reveal">
       <span class="eyebrow">trilha sonora</span>
       <h2>🎵 nossa playlist</h2>
-      <p>as músicas que marcam a gente.</p>
       <div id="render-music" style="margin-top:16px;"></div>
-    </div>
-
-    <div class="feed-section glass pixel reveal">
-      <span class="eyebrow">nossa história</span>
-      <h2>🗺️ linha do tempo</h2>
-      <div class="timeline" id="render-timeline"></div>
     </div>
 
     <div class="feed-section glass pixel reveal">
       <span class="eyebrow">motivos</span>
       <h2>🫙 motivos pra te amar</h2>
-      <p>eu poderia listar mil, mas aqui vão alguns:</p>
-      <div id="render-reasons" style="text-align:left;margin-top:16px;"></div>
+      <div id="render-reasons" style="text-align:left; margin-top:16px;"></div>
       <button class="btn btn-yellow btn-small" onclick="sortearMotivo()">🎲 sortear um motivo</button>
     </div>
 
     <div class="feed-section glass pixel reveal">
       <span class="eyebrow">memes nossos</span>
-      <h2>😂 memes da gente</h2>
-      <p>pq amor sério é bom, mas amor engraçado é melhor.</p>
+      <h2>😂 humor da gente</h2>
+      <p>os reels do instagram ou fotos engraçadas.</p>
       <div class="meme-grid" id="render-memes"></div>
     </div>
 
     <div class="feed-section glass pixel reveal">
       <span class="eyebrow">diário</span>
       <h2>🌤️ como você tá hoje?</h2>
-      <p>toca no seu humor de hoje, fica registrado aqui pra sempre.</p>
       <div class="mood-options" id="mood-options"></div>
       <div class="mood-log" id="mood-log"></div>
     </div>
@@ -319,15 +328,14 @@ input:focus,textarea:focus{border-color:var(--pink);}
     <div class="feed-section glass pixel reveal">
       <span class="eyebrow">potinho</span>
       <h2>🍯 pote de elogios</h2>
-      <p>tá precisando ouvir algo bom? clica no pote.</p>
       <button class="btn btn-green" onclick="abrirPote()">abrir potinho 🍯</button>
       <div class="jar-box"><span id="jar-text">seu elogio vai aparecer aqui ✨</span></div>
     </div>
 
-    <div class="feed-section glass pixel reveal" style="border:4px solid var(--pink-dark);">
+    <div class="feed-section glass pixel reveal" style="border:4px solid var(--pink);">
       <div id="final-heart" class="pxheart" style="margin:0 auto 10px;"></div>
       <h1>a maior surpresa...</h1>
-      <p style="font-size:20px;font-weight:800;margin-top:10px;">é ter você na minha vida.</p>
+      <p style="font-size:20px; font-weight:800; margin-top:10px;">é ter você na minha vida.</p>
       <p>te amo hoje, amanhã e sempre. 💗</p>
     </div>
 
@@ -337,68 +345,68 @@ input:focus,textarea:focus{border-color:var(--pink);}
 <!-- 7. ADMIN -->
 <div id="page-admin" class="page">
   <div class="glass pixel admin-card">
-    <h1 style="font-size:22px;">⚙️ configurar site</h1>
-    <p class="hint">dica: as fotos ficam salvas na memória do navegador deste aparelho.</p>
+    <h1 style="font-size:22px;">⚙️ configurar nosso arquivo</h1>
+    <p class="hint">Tudo salvo aqui fica guardado no aparelho atual.</p>
 
     <label>foto principal</label>
-    <input type="text" id="admFoto" placeholder="URL da imagem (opcional se usar a galeria)">
+    <input type="text" id="admFoto" placeholder="URL da imagem (opcional)">
     <label class="btn btn-small btn-dark" style="cursor:pointer;">📷 escolher da galeria
       <input type="file" accept="image/*" style="display:none;" onchange="uparFotoUnica(event,'admFoto')">
     </label>
 
-    <label>data do pedido de namoro</label>
+    <label>data do pedido de namoro (início do contador principal)</label>
     <input type="datetime-local" id="admData">
 
     <hr>
     <label>senha de acesso (só números)</label>
     <input type="text" id="admSenha" placeholder="ex: 15032026">
+    <label>título de boas-vindas</label>
+    <input type="text" id="admTitulo">
 
     <hr>
-    <label>título de boas-vindas do feed</label>
-    <input type="text" id="admTitulo" placeholder="é minha namorada mesmo!! 🥹">
+    <label>✈️ planos futuros (contagem regressiva)</label>
+    <p class="hint">formato: Nome do Plano | Data (AAAA-MM-DDTHH:MM) <br> ex: Viagem pra Praia | 2026-12-25T10:00</p>
+    <textarea id="admPlanos" rows="3"></textarea>
 
     <hr>
-    <label>álbum de fotos</label>
-    <p class="hint">cole links ou escolha várias fotos da galeria de uma vez. formato opcional: url|legenda</p>
-    <label class="btn btn-small btn-dark" style="cursor:pointer;width:100%;text-align:center;display:block;">🖼️ selecionar fotos (múltiplas)
+    <label>🏆 sistema de conquistas (troféus)</label>
+    <p class="hint">formato: Nome | Progresso Atual | Meta | Raridade (Comum, Raro, Epico, Lendario)<br>ex: Sair pra comer pizza | 10 | 25 | Epico</p>
+    <textarea id="admConquistas" rows="4"></textarea>
+
+    <hr>
+    <label>📸 álbum / sonhos realizados</label>
+    <p class="hint">formato: url | legenda. (Ou envie múltiplas fotos)</p>
+    <label class="btn btn-small btn-dark" style="cursor:pointer; width:100%; text-align:center; display:block;">🖼️ enviar fotos
       <input type="file" accept="image/*" multiple style="display:none;" onchange="uparFotosAlbum(event)">
     </label>
-    <textarea id="admAlbum" rows="4" placeholder="link1|legenda1"></textarea>
+    <textarea id="admAlbum" rows="4"></textarea>
 
     <hr>
-    <label>links das músicas (spotify)</label>
-    <p class="hint">um link normal do spotify por linha.</p>
-    <textarea id="admMusicas" rows="3"></textarea>
+    <label>🎵 links das músicas (spotify)</label>
+    <textarea id="admMusicas" rows="2"></textarea>
 
     <hr>
-    <label>motivos pra te amar</label>
+    <label>🫙 motivos pra te amar (sorteados no botão)</label>
     <textarea id="admMotivos" rows="4"></textarea>
 
     <hr>
-    <label>linha do tempo</label>
-    <p class="hint">formato: data | acontecimento — um por linha</p>
-    <textarea id="admTimeline" rows="4" placeholder="15/03/2026 | o dia do sim"></textarea>
-
-    <hr>
-    <label>memes nossos</label>
-    <p class="hint">formato: url|legenda — um por linha, ou envie da galeria.</p>
-    <label class="btn btn-small btn-dark" style="cursor:pointer;width:100%;text-align:center;display:block;">😂 selecionar memes (múltiplas)
+    <label>😂 memes (Aceita link do Instagram Reels!)</label>
+    <p class="hint">Cole o link do post/reels do Instagram ou upe imagens normais.<br>formato: link | legenda</p>
+    <label class="btn btn-small btn-dark" style="cursor:pointer; width:100%; text-align:center; display:block;">🖼️ enviar memes
       <input type="file" accept="image/*" multiple style="display:none;" onchange="uparMemes(event)">
     </label>
-    <textarea id="admMemes" rows="4" placeholder="link1|legenda engraçada"></textarea>
+    <textarea id="admMemes" rows="4"></textarea>
 
     <hr>
-    <label>frases do pote de elogios</label>
-    <p class="hint">uma frase por linha — aparecem quando ela abre o potinho.</p>
+    <label>🍯 frases do pote de elogios</label>
     <textarea id="admElogios" rows="4"></textarea>
 
     <hr>
-    <label>mensagens do bichinho de estimação 🐾</label>
-    <p class="hint">uma frase por linha — aparecem quando ela clica no bichinho pixelado no canto.</p>
+    <label>🐾 mensagens do bichinho de estimação</label>
     <textarea id="admPet" rows="3"></textarea>
 
-    <button class="btn btn-green btn-full" style="margin-top:20px;font-size:15px;" onclick="salvarAdmin()">salvar e visualizar 👀</button>
-    <button class="btn btn-dark btn-full" onclick="navTo('page-feed')">cancelar / voltar</button>
+    <button class="btn btn-green btn-full" style="margin-top:20px; font-size:15px;" onclick="salvarAdmin()">💾 salvar e atualizar</button>
+    <button class="btn btn-dark btn-full" onclick="navTo('page-feed')">❌ cancelar / voltar</button>
   </div>
 </div>
 
@@ -409,7 +417,7 @@ input:focus,textarea:focus{border-color:var(--pink);}
 
 <script>
 /* ============================================================
-   PIXEL ART ENGINE — builds crisp pixel sprites from box-shadow
+   PIXEL ART ENGINE
    ============================================================ */
 const HEART_MATRIX=[
   [0,1,1,0,1,1,0],
@@ -419,7 +427,6 @@ const HEART_MATRIX=[
   [0,0,1,1,1,0,0],
   [0,0,0,1,0,0,0]
 ];
-// simple pixel cat/heart mascot face (heart body + eyes)
 const PET_MATRIX=[
   [0,1,1,0,1,1,0],
   [1,1,1,1,1,1,1],
@@ -436,34 +443,27 @@ function paintPixels(el, matrix, size, color, color2){
   let shadows=[];
   matrix.forEach((row,r)=>row.forEach((cell,c)=>{
     if(cell===1) shadows.push(`${c*size}px ${r*size}px 0 ${color}`);
-    if(cell===2) shadows.push(`${c*size}px ${r*size}px 0 ${color2||'#222'}`);
+    if(cell===2) shadows.push(`${c*size}px ${r*size}px 0 ${color2||'#fff'}`);
   }));
   el.style.boxShadow=shadows.join(',');
   el.style.background='transparent';
-  const cols=matrix[0].length, rows=matrix.length;
-  el.style.width=size+'px';el.style.height=size+'px';
-  el.dataset.w=cols*size; el.dataset.h=rows*size;
 }
 function initHearts(){
   document.querySelectorAll('.pxheart').forEach(el=>{
-    if(el.id==='pixel-pet'){
-      paintPixels(el,PET_MATRIX,10,'#ff5c8a','#4a314d');
-    } else if(el.id==='splash-heart'){
-      paintPixels(el,HEART_MATRIX,12,'#ffffff');
-    } else {
-      paintPixels(el,HEART_MATRIX,10,'#ff5c8a');
-    }
+    if(el.id==='pixel-pet'){ paintPixels(el,PET_MATRIX,10,'#ff2a5f','#fff'); } 
+    else if(el.id==='splash-heart'){ paintPixels(el,HEART_MATRIX,12,'#ffd700'); } 
+    else if(el.id==='envelope-heart'){ paintPixels(el,HEART_MATRIX,12,'#ffd700'); }
+    else { paintPixels(el,HEART_MATRIX,10,'#ff2a5f'); }
   });
 }
 
-/* floating background hearts */
 function spawnBgHearts(){
   const field=document.getElementById('heart-field');
-  const colors=['#ff5c8a','#ffc93c','#b48ead','#6fcf97'];
-  for(let i=0;i<14;i++){
+  const colors=['#ff2a5f','#b31238','#ffd700','#8a4baf'];
+  for(let i=0;i<12;i++){
     const h=document.createElement('div');
     h.className='bg-heart pxheart';
-    paintPixels(h,HEART_MATRIX,6+Math.random()*4,colors[i%colors.length]);
+    paintPixels(h,HEART_MATRIX, 6+Math.random()*4, colors[i%colors.length]);
     h.style.left=Math.random()*100+'vw';
     h.style.animationDuration=(14+Math.random()*16)+'s';
     h.style.animationDelay=(Math.random()*16)+'s';
@@ -471,14 +471,14 @@ function spawnBgHearts(){
   }
 }
 
-/* confetti burst of hearts from a point */
 function burstHearts(x,y,count=16){
-  const colors=['#ff5c8a','#ffc93c','#b48ead','#6fcf97'];
+  const colors=['#ff2a5f','#ffd700','#8a4baf'];
   for(let i=0;i<count;i++){
     const h=document.createElement('div');
     h.className='confetti-heart pxheart';
     paintPixels(h,HEART_MATRIX,6,colors[i%colors.length]);
-    h.style.left=x+'px';h.style.top=y+'px';
+    h.style.left=x+'px'; h.style.top=y+'px';
+    h.style.position='fixed'; h.style.zIndex=9998; h.style.pointerEvents='none';
     const angle=Math.random()*Math.PI*2;
     const dist=80+Math.random()*160;
     const dx=Math.cos(angle)*dist, dy=Math.sin(angle)*dist - 100;
@@ -493,55 +493,38 @@ function burstHearts(x,y,count=16){
 }
 
 /* ============================================================
-   DEFAULT CONTENT
+   DATA & CONFIG
    ============================================================ */
 const CONFIG={
-  senhaSite:"15032026",
-  dataInicio:"2026-03-15T00:00:00",
-  fotoPrincipal:"",
+  senhaSite:"15032026", dataInicio:"2026-03-15T00:00:00", fotoPrincipal:"",
   tituloFeed:"é minha namorada mesmo!! 🥹",
   musicas:["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
-  album:[],
-  memes:[],
-  motivos:["seu sorriso","como a gente se entende com um olhar","seu jeito bobo de ser"],
-  linhaDoTempo:[
-    {data:"o início",texto:"quando nossos olhares se cruzaram."},
-    {data:"15/03/2026",texto:"o dia do sim. o pedido de namoro."}
-  ],
-  elogios:["você é incrível do jeitinho que é.","seu sorriso ilumina meu dia inteiro.","eu tenho muita sorte de te ter.","você é mais forte do que imagina.","hoje o mundo tá mais bonito porque você existe."],
-  petMensagens:["oi oi! 🐾","não esquece de beber água hoje 💧","alguém te ama muito por aí 👀","clica no pote de elogios!","fofa demais, para com isso 🥹"],
-  moods:[]
+  album:[], memes:[], motivos:["seu sorriso","o jeito que você me abraça","nossas madrugadas conversando"],
+  elogios:["você é incrível do jeitinho que é.","eu tenho muita sorte de te ter.","hoje o mundo tá mais bonito porque você existe."],
+  petMensagens:["oi oi! 🐾","já bebeu água hoje? 💧","tem alguém pensando em vc... 👀","fofa demais! 🥹"],
+  moods:[],
+  planosFuturos:[{nome:"Nossa Próxima Viagem", data:"2026-12-25T10:00"}],
+  conquistas:[{nome:"Sair pra comer pizza", atual:2, meta:10, raridade:"Comum"}]
 };
 
 let DB=null;
 try{ DB=JSON.parse(localStorage.getItem("siteFeedDB")); }catch(e){ DB=null; }
 if(!DB) DB=JSON.parse(JSON.stringify(CONFIG));
-// backfill any new fields for people upgrading from an older save
 for(const k in CONFIG){ if(DB[k]===undefined) DB[k]=CONFIG[k]; }
 
-const MOOD_SET=[
-  {e:"🥰",l:"apaixonada"},
-  {e:"😄",l:"feliz"},
-  {e:"😴",l:"cansada"},
-  {e:"🥺",l:"carente"},
-  {e:"😤",l:"estressada"},
-  {e:"😢",l:"triste"}
-];
+const MOOD_SET=[{e:"🥰",l:"apaixonada"},{e:"😄",l:"feliz"},{e:"😴",l:"cansada"},{e:"🥺",l:"carente"},{e:"😤",l:"estressada"},{e:"😢",l:"triste"}];
 
 /* ============================================================
-   BOOT
+   BOOT & LOGIC
    ============================================================ */
 window.onload=()=>{
-  initHearts();
-  spawnBgHearts();
-  renderizarConteudo();
+  initHearts(); spawnBgHearts(); renderizarConteudo();
   setTimeout(()=>{
     const splash=document.getElementById('splash-screen');
-    splash.style.opacity='0';
-    splash.style.transition='.5s';
-    setTimeout(()=>{splash.style.display='none';navTo('page-intro');},500);
+    splash.style.opacity='0'; splash.style.transition='.5s';
+    setTimeout(()=>{splash.style.display='none'; navTo('page-intro');},500);
   },1500);
-  setInterval(atualizarContador,1000);
+  setInterval(atualizarContadores,1000);
   setTimeout(()=>falarPet(true),2500);
 };
 
@@ -552,145 +535,148 @@ function navTo(id){
   document.getElementById('pet-bubble').style.display='none';
 }
 
-/* question page fun bits */
-function respondeSim(ev){
-  burstHearts(ev.clientX||window.innerWidth/2, ev.clientY||window.innerHeight/2, 22);
-  setTimeout(()=>navTo('page-password'),350);
-}
+function respondeSim(ev){ burstHearts(ev.clientX||window.innerWidth/2, ev.clientY||window.innerHeight/2, 22); setTimeout(()=>navTo('page-password'),350); }
 function fugir(btn){
   const w=window.innerWidth, h=window.innerHeight;
   const bw=btn.offsetWidth, bh=btn.offsetHeight;
-  const maxX=Math.max(10,w-bw-20), maxY=Math.max(10,h-bh-20);
   btn.classList.add('roaming');
-  btn.style.left=(10+Math.random()*maxX)+'px';
-  btn.style.top=(10+Math.random()*maxY)+'px';
-  const frases=["não pega não! 😤","tenta de novo 😝","só clica no SIM 🙈","hehe errou"];
+  btn.style.left=(10+Math.random()*Math.max(10,w-bw-20))+'px';
+  btn.style.top=(10+Math.random()*Math.max(10,h-bh-20))+'px';
+  const frases=["não pega não! 😤","tenta de novo 😝","só clica no SIM 🙈"];
   btn.textContent=frases[Math.floor(Math.random()*frases.length)];
 }
 
 function checkPassword(){
-  const pwd=document.getElementById('inputPassword').value;
-  if(pwd===DB.senhaSite){
-    document.getElementById('pwdError').style.display='none';
-    navTo('page-feed');
-  } else {
-    document.getElementById('pwdError').style.display='block';
-  }
+  if(document.getElementById('inputPassword').value===DB.senhaSite){
+    document.getElementById('pwdError').style.display='none'; navTo('page-feed');
+  } else document.getElementById('pwdError').style.display='block';
 }
 
-function atualizarContador(){
-  const start=new Date(DB.dataInicio).getTime();
+/* Calculadora de tempo (Master e Planos Futuros) */
+function calcTime(diff){
+  const abs=Math.abs(diff);
+  return {
+    dias: Math.floor(abs/86400000),
+    horas: Math.floor((abs%86400000)/3600000),
+    min: Math.floor((abs%3600000)/60000),
+    seg: Math.floor((abs%60000)/1000)
+  };
+}
+
+function atualizarContadores(){
   const now=Date.now();
-  const diff=now-start;
-  if(diff<0) return;
-  const dias=Math.floor(diff/86400000);
-  const horas=Math.floor((diff%86400000)/3600000);
-  const minutos=Math.floor((diff%3600000)/60000);
-  const segundos=Math.floor((diff%60000)/1000);
-  const box=document.getElementById('master-counter');
-  if(box){
-    box.innerHTML=`
-      <div class="counter-item"><span>${dias}</span><small>dias</small></div>
-      <div class="counter-item"><span>${horas}</span><small>horas</small></div>
-      <div class="counter-item"><span>${minutos}</span><small>min</small></div>
-      <div class="counter-item"><span>${segundos}</span><small>seg</small></div>`;
+  // Master
+  const diffMaster=now-new Date(DB.dataInicio).getTime();
+  if(diffMaster>0){
+    const t=calcTime(diffMaster);
+    document.getElementById('master-counter').innerHTML=`
+      <div class="counter-item"><span>${t.dias}</span><small>dias</small></div>
+      <div class="counter-item"><span>${t.horas}</span><small>horas</small></div>
+      <div class="counter-item"><span>${t.min}</span><small>min</small></div>
+      <div class="counter-item"><span>${t.seg}</span><small>seg</small></div>`;
   }
+  // Futuros
+  document.querySelectorAll('.plan-timer-core').forEach(el=>{
+    const target=new Date(el.dataset.date).getTime();
+    const diff = target - now;
+    if(diff > 0){
+      const t=calcTime(diff);
+      el.textContent = `${t.dias}d ${t.horas}h ${t.min}m ${t.seg}s`;
+    } else el.textContent = "🎉 Chegou o grande dia! 🎉";
+  });
 }
 
-/* ============================================================
-   UPLOADS (base64 into localStorage, same device)
-   ============================================================ */
-function uparFotoUnica(ev,inputId){
-  const file=ev.target.files[0];
-  if(!file) return;
-  const reader=new FileReader();
-  reader.onload=e=>{ document.getElementById(inputId).value=e.target.result; };
-  reader.readAsDataURL(file);
+function parsePipeList(raw){
+  return raw.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
+    const idx=line.indexOf('|');
+    return idx===-1 ? {url:line, label:''} : {url:line.slice(0,idx).trim(), label:line.slice(idx+1).trim()};
+  });
 }
-function uparFotosAlbum(ev){
-  const files=ev.target.files;
-  const textarea=document.getElementById('admAlbum');
-  let pending=files.length;
-  for(let i=0;i<files.length;i++){
-    const reader=new FileReader();
-    reader.onload=e=>{
-      textarea.value+=(textarea.value?'\n':'')+e.target.result+'|';
-      pending--;
-      if(pending===0) alert(files.length+" foto(s) carregada(s)! adicione uma legenda depois do | se quiser.");
-    };
-    reader.readAsDataURL(files[i]);
-  }
-}
-function uparMemes(ev){
-  const files=ev.target.files;
-  const textarea=document.getElementById('admMemes');
-  for(let i=0;i<files.length;i++){
-    const reader=new FileReader();
-    reader.onload=e=>{ textarea.value+=(textarea.value?'\n':'')+e.target.result+'|meme nosso'; };
-    reader.readAsDataURL(files[i]);
-  }
-  alert(files.length+" meme(s) carregado(s) na caixa de texto!");
-}
+
+/* Uploads Base64 */
+function uparFotoUnica(ev,id){ const r=new FileReader(); r.onload=e=>document.getElementById(id).value=e.target.result; if(ev.target.files[0]) r.readAsDataURL(ev.target.files[0]); }
+function uparFotosAlbum(ev){ Array.from(ev.target.files).forEach(f=>{ const r=new FileReader(); r.onload=e=>document.getElementById('admAlbum').value+='\n'+e.target.result+'|'; r.readAsDataURL(f); }); alert("Fotos carregadas!"); }
+function uparMemes(ev){ Array.from(ev.target.files).forEach(f=>{ const r=new FileReader(); r.onload=e=>document.getElementById('admMemes').value+='\n'+e.target.result+'|meme'; r.readAsDataURL(f); }); alert("Memes carregados!"); }
 
 /* ============================================================
    RENDER
    ============================================================ */
-function parsePipeList(raw){
-  return raw.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
-    const idx=line.indexOf('|');
-    if(idx===-1) return {url:line,label:''};
-    return {url:line.slice(0,idx).trim(), label:line.slice(idx+1).trim()};
-  });
+function getRarityColor(rarity){
+  const r = rarity.toLowerCase();
+  if(r.includes('raro')) return 'var(--rarity-raro)';
+  if(r.includes('epic') || r.includes('épic')) return 'var(--rarity-epico)';
+  if(r.includes('lend')) return 'var(--rarity-lendario)';
+  return 'var(--rarity-comum)';
+}
+
+function convertIgToEmbed(url) {
+  if(url.includes('instagram.com')){
+    let cleanUrl = url.split('?')[0];
+    if(!cleanUrl.endsWith('/')) cleanUrl += '/';
+    return `<iframe src="${cleanUrl}embed" allowtransparency="true" scrolling="no" frameborder="0"></iframe>`;
+  }
+  return `<img src="${url}">`;
 }
 
 function renderizarConteudo(){
-  if(DB.fotoPrincipal){
-    document.getElementById('intro-foto').src=DB.fotoPrincipal;
-    document.getElementById('intro-foto').style.display='inline-block';
-  }
+  if(DB.fotoPrincipal){ document.getElementById('intro-foto').src=DB.fotoPrincipal; document.getElementById('intro-foto').style.display='inline-block'; }
   document.getElementById('feed-title').textContent=DB.tituloFeed||CONFIG.tituloFeed;
 
-  // album
-  const albumItems=parsePipeList(DB.album.join('\n'));
-  document.getElementById('render-album').innerHTML = albumItems.length ? albumItems.map(it=>
-    `<figure><img src="${it.url}">${it.label?`<figcaption>${it.label}</figcaption>`:''}</figure>`
-  ).join('') : "<p>nenhuma foto adicionada ainda.</p>";
-
-  // music
-  let musicHtml='';
-  DB.musicas.forEach(link=>{
-    let url=link.trim();
-    if(!url) return;
-    if(url.includes('spotify.com') && !url.includes('embed')){
-      const partes=url.split('spotify.com/');
-      const caminho=partes[1].split('?')[0];
-      url=`https://open.spotify.com/embed/${caminho}`;
-    }
-    musicHtml+=`<iframe style="border:3px solid var(--card-line);margin-bottom:16px;" src="${url}" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
-  });
-  document.getElementById('render-music').innerHTML=musicHtml || "<p>nenhuma música adicionada ainda.</p>";
-
-  // reasons
-  document.getElementById('render-reasons').innerHTML = DB.motivos.map(m=>
-    `<div class="reason-item">❤️ ${m}</div>`).join('');
-
-  // timeline
-  document.getElementById('render-timeline').innerHTML = (DB.linhaDoTempo||[]).map(it=>
-    `<div class="timeline-item"><div class="timeline-date">${it.data}</div><div>${it.texto}</div></div>`
+  // Planos Futuros
+  const htmlPlanos = (DB.planosFuturos||[]).map(p=>
+    `<div class="plan-item"><div class="plan-title">${p.nome}</div><div class="plan-countdown plan-timer-core" data-date="${p.data}">Calculando...</div></div>`
   ).join('');
+  document.getElementById('render-planos').innerHTML = htmlPlanos || "<p>Nenhum plano adicionado. 😢</p>";
 
-  // memes
+  // Conquistas
+  const htmlConq = (DB.conquistas||[]).map(c=>{
+    const pct = Math.min(100, (c.atual / c.meta) * 100);
+    const color = getRarityColor(c.raridade);
+    return `
+      <div class="achiev-card">
+        <div class="achiev-header">
+          <span class="achiev-title">${c.nome}</span>
+          <span class="achiev-badge" style="color:${color}; border-color:${color};">${c.raridade.toUpperCase()}</span>
+        </div>
+        <div class="achiev-bar-bg">
+          <div class="achiev-bar-fill" style="width:${pct}%; background:${color};"></div>
+        </div>
+        <div class="achiev-progress-text">${c.atual} / ${c.meta} completos</div>
+      </div>`;
+  }).join('');
+  document.getElementById('render-conquistas').innerHTML = htmlConq || "<p>Nenhuma conquista registrada.</p>";
+
+  // Álbum
+  const albumItems=parsePipeList(DB.album.join('\n'));
+  document.getElementById('render-album').innerHTML = albumItems.length ? albumItems.map(it=>`<figure><img src="${it.url}">${it.label?`<figcaption>${it.label}</figcaption>`:''}</figure>`).join('') : "<p>vazio :(</p>";
+
+  // Memes (Agora com suporte a Instagram)
   const memeItems=parsePipeList((DB.memes||[]).join('\n'));
   document.getElementById('render-memes').innerHTML = memeItems.length ? memeItems.map(it=>
-    `<figure class="meme-card"><img src="${it.url}"><figcaption>${it.label||''}</figcaption></figure>`
+    `<figure class="meme-card">
+      ${convertIgToEmbed(it.url)}
+      ${it.label ? `<figcaption>${it.label}</figcaption>` : ''}
+    </figure>`
   ).join('') : "<p>nenhum meme adicionado ainda 😢</p>";
 
-  // mood picker
-  document.getElementById('mood-options').innerHTML = MOOD_SET.map(m=>
-    `<button class="mood-btn" onclick="registrarHumor('${m.e}','${m.l}')">${m.e}</button>`).join('');
+  // Motivos
+  document.getElementById('render-reasons').innerHTML = DB.motivos.map(m=>`<div class="reason-item">❤️ ${m}</div>`).join('');
+
+  // Música
+  let musicHtml='';
+  DB.musicas.forEach(url=>{
+    if(url.includes('spotify.com') && !url.includes('embed')){
+      url=`https://open.spotify.com/embed/${url.split('spotify.com/')[1].split('?')[0]}`;
+    }
+    if(url) musicHtml+=`<iframe style="border:3px solid var(--card-line);margin-bottom:16px;" src="${url}" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media"></iframe>`;
+  });
+  document.getElementById('render-music').innerHTML=musicHtml || "<p>sem música :(</p>";
+
+  // Humor
+  document.getElementById('mood-options').innerHTML = MOOD_SET.map(m=>`<button class="mood-btn" onclick="registrarHumor('${m.e}','${m.l}')">${m.e}</button>`).join('');
   renderMoodLog();
 
-  // admin fields
+  // Inputs do Admin
   document.getElementById('admFoto').value=DB.fotoPrincipal||'';
   document.getElementById('admData').value=DB.dataInicio;
   document.getElementById('admSenha').value=DB.senhaSite;
@@ -698,23 +684,23 @@ function renderizarConteudo(){
   document.getElementById('admAlbum').value=DB.album.join('\n');
   document.getElementById('admMusicas').value=DB.musicas.join('\n');
   document.getElementById('admMotivos').value=DB.motivos.join('\n');
-  document.getElementById('admTimeline').value=(DB.linhaDoTempo||[]).map(it=>`${it.data} | ${it.texto}`).join('\n');
   document.getElementById('admMemes').value=(DB.memes||[]).join('\n');
   document.getElementById('admElogios').value=(DB.elogios||[]).join('\n');
   document.getElementById('admPet').value=(DB.petMensagens||[]).join('\n');
+  
+  // Inputs Admin Novos
+  document.getElementById('admPlanos').value=(DB.planosFuturos||[]).map(p=>`${p.nome} | ${p.data}`).join('\n');
+  document.getElementById('admConquistas').value=(DB.conquistas||[]).map(c=>`${c.nome} | ${c.atual} | ${c.meta} | ${c.raridade}`).join('\n');
 }
 
 function renderMoodLog(){
   const log=document.getElementById('mood-log');
-  const items=(DB.moods||[]).slice(-8).reverse();
-  log.innerHTML=items.length ? items.map(m=>
-    `<div class="mood-log-item"><span>${m.e} ${m.l}</span><span>${m.d}</span></div>`).join('')
-    : '<p style="font-size:13px;color:var(--ink-soft);">nenhum registro ainda — toca em um emoji ali em cima 👆</p>';
+  const items=(DB.moods||[]).slice(-5).reverse();
+  log.innerHTML=items.length ? items.map(m=>`<div class="mood-log-item"><span>${m.e} ${m.l}</span><span>${m.d}</span></div>`).join('') : '<p style="font-size:13px;">toca em um emoji! 👆</p>';
 }
 function registrarHumor(e,l){
   const d=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});
-  DB.moods=DB.moods||[];
-  DB.moods.push({e,l,d});
+  DB.moods=DB.moods||[]; DB.moods.push({e,l,d});
   try{ localStorage.setItem("siteFeedDB", JSON.stringify(DB)); }catch(err){}
   renderMoodLog();
 }
@@ -722,34 +708,28 @@ function registrarHumor(e,l){
 function sortearMotivo(){
   const items=document.querySelectorAll('#render-reasons .reason-item');
   if(!items.length) return;
-  items.forEach(it=>it.style.background='#fff');
+  items.forEach(it=>it.style.background='#11050d');
   const pick=items[Math.floor(Math.random()*items.length)];
-  pick.style.background=DB._pickColor='#fff2c6';
+  pick.style.background='#4a152d';
   pick.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 function abrirPote(){
   const lista=DB.elogios&&DB.elogios.length?DB.elogios:CONFIG.elogios;
-  const frase=lista[Math.floor(Math.random()*lista.length)];
-  document.getElementById('jar-text').textContent=frase;
+  document.getElementById('jar-text').textContent=lista[Math.floor(Math.random()*lista.length)];
   const box=document.querySelector('.jar-box');
-  box.style.transform='scale(1.04)';
-  setTimeout(()=>box.style.transform='scale(1)',180);
+  box.style.transform='scale(1.04)'; setTimeout(()=>box.style.transform='scale(1)',180);
 }
 
 function falarPet(silent){
   const lista=DB.petMensagens&&DB.petMensagens.length?DB.petMensagens:CONFIG.petMensagens;
-  const frase=lista[Math.floor(Math.random()*lista.length)];
   const bubble=document.getElementById('pet-bubble');
-  bubble.textContent=frase;
+  bubble.textContent=lista[Math.floor(Math.random()*lista.length)];
   bubble.style.display='block';
   clearTimeout(window._petTimer);
   window._petTimer=setTimeout(()=>bubble.style.display='none', silent?3200:2600);
 }
 
-/* ============================================================
-   SAVE
-   ============================================================ */
 function salvarAdmin(){
   try{
     DB.fotoPrincipal=document.getElementById('admFoto').value;
@@ -762,27 +742,27 @@ function salvarAdmin(){
     DB.memes=document.getElementById('admMemes').value.split('\n').map(s=>s.trim()).filter(Boolean);
     DB.elogios=document.getElementById('admElogios').value.split('\n').map(s=>s.trim()).filter(Boolean);
     DB.petMensagens=document.getElementById('admPet').value.split('\n').map(s=>s.trim()).filter(Boolean);
-    DB.linhaDoTempo=document.getElementById('admTimeline').value.split('\n').map(s=>s.trim()).filter(Boolean).map(line=>{
-      const idx=line.indexOf('|');
-      return idx===-1 ? {data:'',texto:line} : {data:line.slice(0,idx).trim(), texto:line.slice(idx+1).trim()};
+    
+    // Salvar Planos Futuros
+    DB.planosFuturos=document.getElementById('admPlanos').value.split('\n').map(s=>s.trim()).filter(Boolean).map(linha=>{
+      const p = linha.split('|').map(x=>x.trim());
+      return {nome: p[0], data: p[1]||''};
+    });
+
+    // Salvar Conquistas
+    DB.conquistas=document.getElementById('admConquistas').value.split('\n').map(s=>s.trim()).filter(Boolean).map(linha=>{
+      const c = linha.split('|').map(x=>x.trim());
+      return {nome: c[0], atual: Number(c[1])||0, meta: Number(c[2])||10, raridade: c[3]||"Comum"};
     });
 
     localStorage.setItem("siteFeedDB", JSON.stringify(DB));
-    renderizarConteudo();
-    navTo('page-feed');
+    renderizarConteudo(); navTo('page-feed');
   }catch(e){
-    alert("erro ao salvar! provavelmente as fotos são grandes demais pra memória do navegador. remova algumas e tenta de novo.");
+    alert("Erro ao salvar! As imagens base64 podem estar muito pesadas. Tente hospedar online ou reduzir o tamanho.");
   }
 }
 
-/* scroll reveal */
-function checkScroll(){
-  document.querySelectorAll('.reveal').forEach(el=>{
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight-100) el.classList.add('active');
-  });
-}
-window.addEventListener('scroll',checkScroll);
+window.addEventListener('scroll',()=>document.querySelectorAll('.reveal').forEach(el=>el.getBoundingClientRect().top<window.innerHeight-100&&el.classList.add('active')));
 </script>
 </body>
 </html>
