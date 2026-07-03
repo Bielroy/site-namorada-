@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   TOKENS - TEMA DARK ROMÂNTICO (cores originais mantidas)
+   TOKENS - TEMA DARK ROMÂNTICO 
    ============================================================ */
 :root {
   --bg-top: #1a0b14;
@@ -100,7 +100,6 @@ small {font-family:var(--font-body);}
 .btn-full {width:100%; margin-bottom:12px;}
 .btn:disabled {opacity:.5; cursor:wait;}
 
-/* Ícones em selo pixelado - unifica a linguagem visual de todos os emojis-ícone */
 .icon-badge {
   display:inline-flex; align-items:center; justify-content:center;
   width:44px; height:44px; font-size:22px;
@@ -112,7 +111,6 @@ small {font-family:var(--font-body);}
 .icon-badge.mint {border-color:var(--mint); box-shadow:3px 3px 0 var(--mint-dark);}
 .icon-badge.purple {border-color:var(--purple); box-shadow:3px 3px 0 var(--purple-dark);}
 
-/* Animação do coração - AGORA COM MAIS ESPAÇO, sem sobrepor texto */
 @keyframes float-heart {
   0%   { transform: translateY(0) scale(1); filter: drop-shadow(0 0 6px var(--pink)); }
   50%  { transform: translateY(-10px) scale(1.08); filter: drop-shadow(0 0 14px var(--pink)); }
@@ -168,7 +166,6 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 .counter-item span {display:block; font-family:var(--font-pixel); font-size:22px; color:var(--pink);}
 .counter-item small {font-size:11px; font-weight:800; text-transform:uppercase; color:var(--ink-soft);}
 
-/* Conquistas animadas */
 .achievement-grid {display: flex; flex-direction: column; gap: 16px; margin-top: 20px;}
 .achiev-card {background: #11050d; border: 3px solid var(--card-line); padding: 16px; text-align: left; position: relative; overflow:hidden;}
 .achiev-card.complete {animation: complete-glow 1.8s ease-in-out infinite;}
@@ -186,7 +183,6 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 .achiev-stamp {position:absolute; top:8px; right:8px; font-family:var(--font-pixel); font-size:9px; color:var(--yellow); display:none;}
 .achiev-card.complete .achiev-stamp {display:block;}
 
-/* Sonhos/planos com foto */
 .plan-item {background: #11050d; border: 3px dashed var(--pink); padding: 14px; margin-bottom: 14px; display:flex; gap:14px; align-items:center; text-align:left;}
 .plan-photo {width:74px; height:74px; object-fit:cover; border:3px solid var(--card-line); flex-shrink:0; background:#000;}
 .plan-photo.empty {display:flex; align-items:center; justify-content:center; font-size:24px;}
@@ -207,7 +203,6 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 .meme-card iframe {width:100%; height: 400px; border: none; display:block;}
 .meme-card figcaption {font-size:13px; font-weight:800; padding:12px; color:var(--ink);}
 
-/* Música - moldura justa ao player, sem sobra */
 .music-item {border:3px solid var(--card-line); box-shadow:4px 4px 0 #000; margin-bottom:14px; line-height:0; overflow:hidden;}
 .music-item iframe {display:block; width:100%; height:152px; border:none;}
 
@@ -220,7 +215,6 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 .jar-box {background:#11050d; border:4px solid var(--card-line); padding:24px; margin-top:14px; box-shadow:5px 5px 0 var(--yellow); min-height:70px; display:flex; align-items:center; justify-content:center;}
 #jar-text {font-weight:800; font-size:17px; color:var(--yellow);}
 
-/* Linha do tempo */
 .timeline-wrap {margin-top:22px; position:relative; text-align:left;}
 .timeline-wrap::before {content:''; position:absolute; left:37px; top:0; bottom:0; width:4px; background:var(--pink-dark);}
 .tl-item {position:relative; padding-left:88px; margin-bottom:26px;}
@@ -231,14 +225,12 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 .tl-desc {font-size:14px; font-weight:600; color:var(--ink-soft); margin-bottom:0;}
 .tl-photo {width:100%; max-height:220px; object-fit:cover; border:3px solid var(--card-line); margin-top:10px;}
 
-/* Lugares pra visitar */
 .place-item {display:flex; align-items:center; gap:14px; background:#11050d; border:3px solid var(--card-line); padding:12px; margin-bottom:10px; text-align:left;}
 .place-photo {width:56px; height:56px; object-fit:cover; border:2px solid var(--card-line); flex-shrink:0; background:#000;}
 .place-name {flex:1; font-weight:800; font-size:16px;}
 .place-name.done {text-decoration:line-through; color:var(--ink-soft);}
 .place-check {width:30px; height:30px; flex-shrink:0; accent-color:var(--mint);}
 
-/* Cofre */
 .cofre-total {font-family:var(--font-pixel); font-size:30px; color:var(--yellow); margin:14px 0;}
 .cofre-bar-bg {width:100%; height:24px; background:rgba(255,255,255,.1); border:2px solid #000; margin-bottom:8px;}
 .cofre-bar-fill {height:100%; background:linear-gradient(90deg,var(--mint-dark),var(--mint)); transition:width .6s;}
@@ -247,13 +239,11 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 .cofre-form {display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
 .cofre-form input {flex:1; min-width:120px; margin-bottom:0;}
 
-/* Recados */
 .recado-form textarea {min-height:80px; resize:vertical;}
 .recado-list {margin-top:16px; text-align:left; max-height:280px; overflow-y:auto; display:flex; flex-direction:column-reverse; gap:10px;}
 .recado-item {background:#11050d; border:2px solid var(--card-line); padding:10px 14px;}
 .recado-quem {font-family:var(--font-pixel); font-size:9px; color:var(--yellow); margin-bottom:6px; display:block;}
 
-/* Jogos */
 .game-menu {display:flex; flex-direction:column; gap:14px; margin-top:16px;}
 .game-tile {background:#11050d; border:3px solid var(--card-line); padding:20px; text-align:left; display:flex; align-items:center; gap:16px; cursor:pointer; box-shadow:4px 4px 0 #000;}
 .game-tile:active {transform:translate(3px,3px); box-shadow:0 0 0 #000;}
@@ -277,7 +267,6 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 .cozy-item.unlocked {opacity:1; box-shadow:2px 2px 0 var(--yellow-dark);}
 .cozy-item small {display:block; font-size:9px; margin-top:6px; color:var(--ink-soft);}
 
-/* Admin */
 #page-admin {justify-content:flex-start;}
 .admin-card {max-width:760px; width:100%; padding:34px; margin:34px 0; text-align:left;}
 .admin-card label {font-family:var(--font-pixel); font-size:11px; color:var(--pink); display:block; margin:18px 0 8px;}
@@ -295,7 +284,7 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 #pixel-pet:hover {transform:scale(1.1) rotate(-4deg);}
 #pet-bubble {position:fixed; bottom:100px; right:18px; max-width:210px; background:#11050d; border:3px solid var(--pink); padding:12px 14px; font-weight:800; font-size:13px; box-shadow:4px 4px 0 #000; z-index:1001; display:none; color:var(--ink);}
 
-.admin-btn {position:fixed; bottom:18px; left:18px; background:#11050d; color:#fff; width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer; box-shadow:3px 3px 0 var(--pink); z-index:1000; opacity:.5; transition:.2s; border: 2px solid var(--pink);}
+.admin-btn {position:fixed; bottom:18px; left:18px; background:#11050d; color:#fff; width:52px; height:52px; display:none; align-items:center; justify-content:center; font-size:20px; cursor:pointer; box-shadow:3px 3px 0 var(--pink); z-index:1000; opacity:.5; transition:.2s; border: 2px solid var(--pink);}
 .admin-btn:hover {opacity:1; transform:rotate(90deg);}
 
 #save-toast {position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-80px); background:var(--mint-dark); border:3px solid #000; padding:14px 20px; font-family:var(--font-pixel); font-size:11px; z-index:6000; transition:transform .3s; box-shadow:4px 4px 0 #000;}
@@ -317,7 +306,7 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 <!-- 2. INTRO -->
 <div id="page-intro" class="page">
   <div class="glass pixel card">
-    <img id="intro-foto" class="avatar" src="" style="display:none;" onerror="this.style.display='none'">
+    <img id="intro-foto" class="avatar" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" style="display:none;" onerror="this.style.display='none'">
     <span class="eyebrow">💌 vc tem 1 nova mensagem</span>
     <h1>tem uma cartinha pra você...</h1>
     <div id="envelope-heart" class="pxheart pulse-anim" style="cursor:pointer; margin:40px auto 55px;" onclick="navTo('page-question')"></div>
@@ -350,7 +339,7 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
     <h1>acesso restrito 🔒</h1>
     <p>qual é a senha?</p>
     <p style="font-size:13px; color:var(--ink-soft);">(o dia que te pedi em namoro, ddmmaaaa)</p>
-    <input type="number" id="inputPassword" placeholder="ex: 15032026" style="text-align:center; letter-spacing:2px;">
+    <input type="text" inputmode="numeric" pattern="[0-9]*" id="inputPassword" placeholder="ex: 15032026" style="text-align:center; letter-spacing:2px;">
     <button class="btn btn-full" onclick="checkPassword()">desbloquear 🔓</button>
     <p id="pwdError">senha incorreta! tenta de novo 🥺</p>
   </div>
@@ -521,7 +510,7 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
     <div class="admin-section-title">📷 capa</div>
     <label>foto principal</label>
     <div class="dyn-thumb-row">
-      <img class="dyn-thumb" id="admFotoPreview" src="" style="display:none;">
+      <img class="dyn-thumb" id="admFotoPreview" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" style="display:none;">
       <label class="btn btn-small btn-dark" style="cursor:pointer;">escolher da galeria
         <input type="file" accept="image/*" style="display:none;" onchange="handleFotoPrincipal(event)">
       </label>
@@ -536,7 +525,7 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
     <input type="text" id="admSenha" placeholder="ex: 15032026">
     <label>título de boas-vindas</label>
     <input type="text" id="admTitulo">
-    <label>tópico do ntfy (notificação dos recados)</label>
+    <label>tópico do ntfy (CRIE UM NOME ÚNICO PRA NÃO VAZAR RECADOS)</label>
     <input type="text" id="admNtfy" placeholder="ex: voce-e-ela-9k27fx">
 
     <hr>
@@ -630,7 +619,7 @@ const cozyRef = mainRef.collection('extras').doc('cozy');
 const scoresRef = mainRef.collection('extras').doc('highscores');
 
 /* ============================================================
-   PIXEL ART ENGINE
+   PIXEL ART ENGINE - BUGFIX: NESTED DOM IMPLEMENTATION
    ============================================================ */
 const HEART_MATRIX=[
   [0,1,1,0,1,1,0],
@@ -649,18 +638,30 @@ const PET_MATRIX=[
   [0,0,1,1,1,0,0],
   [0,0,0,1,0,0,0]
 ];
+
 function paintPixels(el, matrix, size, color, color2){
   el.style.position='relative';
   el.style.width=(matrix[0].length*size)+'px';
   el.style.height=(matrix.length*size)+'px';
+  el.style.background='transparent';
+  
+  el.innerHTML = '';
+  const shadowLayer = document.createElement('div');
+  shadowLayer.style.width = size+'px';
+  shadowLayer.style.height = size+'px';
+  shadowLayer.style.position = 'absolute';
+  shadowLayer.style.top = '0';
+  shadowLayer.style.left = '0';
+
   let shadows=[];
   matrix.forEach((row,r)=>row.forEach((cell,c)=>{
     if(cell===1) shadows.push(`${c*size}px ${r*size}px 0 ${color}`);
     if(cell===2) shadows.push(`${c*size}px ${r*size}px 0 ${color2||'#fff'}`);
   }));
-  el.style.boxShadow=shadows.join(',');
-  el.style.background='transparent';
+  shadowLayer.style.boxShadow=shadows.join(',');
+  el.appendChild(shadowLayer);
 }
+
 function initHearts(){
   document.querySelectorAll('.pxheart').forEach(el=>{
     if(el.id==='pixel-pet'){ paintPixels(el,PET_MATRIX,10,'#ff2a5f','#fff'); }
@@ -709,7 +710,7 @@ function burstHearts(x,y,count=16){
 const DEFAULTS={
   senhaSite:"15032026", dataInicio:"2026-03-15T00:00:00", fotoPrincipal:"",
   tituloFeed:"é minha namorada mesmo!! 🥹",
-  ntfyTopic:"voce-e-ela-9k27fx",
+  ntfyTopic:"voce-e-ela-secreta",
   musicas:["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
   album:[], memes:[],
   motivos:["seu sorriso","o jeito que você me abraça","nossas madrugadas conversando"],
@@ -734,11 +735,6 @@ const MOOD_SET=[{e:"🥰",l:"apaixonada"},{e:"😄",l:"feliz"},{e:"😴",l:"cans
    ============================================================ */
 window.onload=()=>{
   initHearts(); spawnBgHearts();
-  setTimeout(()=>{
-    const splash=document.getElementById('splash-screen');
-    splash.style.opacity='0'; splash.style.transition='.5s';
-    setTimeout(()=>{splash.style.display='none'; navTo('page-intro');},500);
-  },1500);
   setInterval(atualizarContadores,1000);
   setTimeout(()=>falarPet(true),2500);
   conectarFirebase();
@@ -758,6 +754,13 @@ async function conectarFirebase(){
       for(const k in DEFAULTS){ DB[k] = data[k]!==undefined ? data[k] : DEFAULTS[k]; }
       dbCarregado=true;
       renderizarConteudo();
+      
+      const splash=document.getElementById('splash-screen');
+      if(splash.style.display !== 'none') {
+        splash.style.opacity='0';
+        splash.style.transition='.5s';
+        setTimeout(()=>{splash.style.display='none'; navTo('page-intro');},500);
+      }
     }
   }, err=>console.error('snapshot main', err));
 
@@ -799,6 +802,7 @@ function navTo(id){
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
   document.getElementById('pet-bubble').style.display='none';
+  document.querySelector('.admin-btn').style.display = (id==='page-feed' || id==='page-admin') ? 'flex' : 'none';
   if(id==='page-admin') montarFormulariosAdmin();
 }
 
@@ -921,7 +925,7 @@ function convertIgToEmbed(url) {
   if(url.includes('instagram.com')){
     let cleanUrl = url.split('?')[0];
     if(!cleanUrl.endsWith('/')) cleanUrl += '/';
-    return `<iframe src="${cleanUrl}embed" loading="lazy" allowtransparency="true" scrolling="no" frameborder="0"></iframe>`;
+    return `<iframe src="${cleanUrl}embed/" loading="lazy" allowtransparency="true" scrolling="no" frameborder="0"></iframe>`;
   }
   return `<img src="${url}" loading="lazy">`;
 }
@@ -1196,6 +1200,9 @@ function iniciarArcade(){
             const bonus = arcadeState.combo>0 && arcadeState.combo%5===0 ? 30 : 0;
             arcadeState.score += 10 + bonus;
             burstHearts(it.el.getBoundingClientRect().left, it.el.getBoundingClientRect().top, 6);
+            if(arcadeState.combo > 1 && arcadeState.combo % 3 === 0) {
+              mostrarComboText(arcadeState.combo + 'x COMBO!');
+            }
           }
           document.getElementById('arcade-score').textContent=arcadeState.score+' pts';
           it.el.remove();
@@ -1213,6 +1220,21 @@ function iniciarArcade(){
   }
   arcadeState.rafId=requestAnimationFrame(loop);
 }
+
+function mostrarComboText(text) {
+  const h = document.createElement('div');
+  h.textContent = text;
+  h.style.position = 'fixed'; h.style.left = '50%'; h.style.top = '25%';
+  h.style.transform = 'translate(-50%, -50%)'; h.style.color = 'var(--yellow)';
+  h.style.fontFamily = 'var(--font-pixel)'; h.style.fontSize = '22px';
+  h.style.zIndex = '9999'; h.style.pointerEvents = 'none';
+  h.style.textShadow = '3px 3px 0 #000';
+  h.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+  document.body.appendChild(h);
+  requestAnimationFrame(()=>{ h.style.transform='translate(-50%, -100px)'; h.style.opacity='0'; });
+  setTimeout(() => h.remove(), 800);
+}
+
 function flashCampo(cor){
   const field=document.getElementById('arcade-field');
   field.style.boxShadow=`inset 0 0 40px ${cor}`;
@@ -1248,13 +1270,16 @@ function pararArcade(){
 function finalizarArcade(){
   pararArcade();
   const nome = document.getElementById('arcadeNome').value.trim() || 'anônimo';
-  scoresRef.get().then(snap=>{
-    const placar = (snap.exists && snap.data().placar) ? snap.data().placar : [];
+  
+  db.runTransaction(async (t) => {
+    const doc = await t.get(scoresRef);
+    const placar = (doc.exists && doc.data().placar) ? doc.data().placar : [];
     placar.push({nome, pontos: arcadeState.score, data: new Date().toLocaleDateString('pt-BR')});
     placar.sort((a,b)=>b.pontos-a.pontos);
-    scoresRef.set({placar: placar.slice(0,10)}).catch(err=>console.error(err));
-  });
-  toast(`fim de jogo! ${arcadeState.score} pontos 💗`);
+    t.set(scoresRef, {placar: placar.slice(0,10)}, {merge:true});
+  }).then(() => {
+    toast(`fim de jogo! ${arcadeState.score} pontos 💗`);
+  }).catch(err => console.error(err));
 }
 function renderArcadeScoreboard(placar){
   const el=document.getElementById('arcade-scoreboard');
@@ -1324,6 +1349,7 @@ function atualizarCozyUI(data, moedasAnteriores){
   shelf.innerHTML = COZY_ITEMS.map(it=>{
     const unlocked = moedas>=it.custo;
     const acabouDeDesbloquear = unlocked && moedasAnteriores!==undefined && moedasAnteriores<it.custo;
+    if(acabouDeDesbloquear) { burstHearts(window.innerWidth/2, window.innerHeight/2, 20); }
     if(!unlocked && !proximoItem) proximoItem=it;
     return `<div class="cozy-item ${unlocked?'unlocked':''}" style="${acabouDeDesbloquear?'animation: complete-glow 1s ease-in-out 2;':''}">${it.icone}<small>${unlocked?it.nome:'💗 '+it.custo}</small></div>`;
   }).join('');
@@ -1340,7 +1366,6 @@ document.addEventListener('click', e=>{
    ADMIN — FORMULÁRIOS DINÂMICOS
    ============================================================ */
 function montarFormulariosAdmin(){
-  document.getElementById('admFoto').value=DB.fotoPrincipal||'';
   if(DB.fotoPrincipal){ document.getElementById('admFotoPreview').src=DB.fotoPrincipal; document.getElementById('admFotoPreview').style.display='inline-block'; }
   document.getElementById('admData').value=DB.dataInicio? DB.dataInicio.slice(0,16) : '';
   document.getElementById('admSenha').value=DB.senhaSite;
@@ -1368,15 +1393,17 @@ function montarCards(containerId, arr, builderFn){
 
 /* --- inputs invisível padrão de imagem por card --- */
 function campoImagemHTML(cardId, pasta, fotoAtual){
+  const fallback = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
   return `
     <div class="dyn-thumb-row">
-      <img class="dyn-thumb" id="${cardId}-thumb" src="${fotoAtual||''}" style="${fotoAtual?'':'display:none;'}">
+      <img class="dyn-thumb" id="${cardId}-thumb" src="${fotoAtual||fallback}" data-realurl="${fotoAtual||''}" style="${fotoAtual?'':'display:none;'}">
       <label class="btn btn-small btn-dark" style="cursor:pointer;">📷 foto
         <input type="file" accept="image/*" style="display:none;" onchange="handleCardUpload(event,'${cardId}','${pasta}')">
       </label>
       <span class="upload-status" id="${cardId}-status"></span>
     </div>`;
 }
+
 async function handleCardUpload(ev, cardId, pasta){
   const file=ev.target.files[0]; if(!file) return;
   const statusEl=document.getElementById(cardId+'-status');
@@ -1385,7 +1412,7 @@ async function handleCardUpload(ev, cardId, pasta){
     const url = await uploadImagem(file, pasta);
     uploadCache[cardId]=url;
     const thumb=document.getElementById(cardId+'-thumb');
-    thumb.src=url; thumb.style.display='inline-block';
+    thumb.src=url; thumb.dataset.realurl=url; thumb.style.display='inline-block';
     statusEl.textContent='enviado ✅';
   }catch(e){ statusEl.textContent='erro 😢'; console.error(e); }
 }
@@ -1507,23 +1534,23 @@ function lerCards(containerId){
     const cardId = card.id;
     const fotoUpload = uploadCache[cardId];
     if(kind==='plano'){
-      return { nome: card.querySelector('.f-nome').value.trim(), data: card.querySelector('.f-data').value, foto: fotoUpload || card.querySelector('.dyn-thumb').src.split('/').pop()!=='' && card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '' };
+      return { nome: card.querySelector('.f-nome').value.trim(), data: card.querySelector('.f-data').value, foto: fotoUpload || card.querySelector('.dyn-thumb').dataset.realurl || '' };
     }
     if(kind==='timeline'){
-      return { data: card.querySelector('.f-data').value, titulo: card.querySelector('.f-titulo').value.trim(), descricao: card.querySelector('.f-desc').value.trim(), foto: fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '') };
+      return { data: card.querySelector('.f-data').value, titulo: card.querySelector('.f-titulo').value.trim(), descricao: card.querySelector('.f-desc').value.trim(), foto: fotoUpload || card.querySelector('.dyn-thumb').dataset.realurl || '' };
     }
     if(kind==='conquista'){
       return { icone: card.querySelector('.f-icone').value.trim()||'🏆', nome: card.querySelector('.f-nome').value.trim(), atual: Number(card.querySelector('.f-atual').value)||0, meta: Number(card.querySelector('.f-meta').value)||10, raridade: card.querySelector('.f-raridade').value };
     }
     if(kind==='lugar'){
-      return { nome: card.querySelector('.f-nome').value.trim(), visitado: card.querySelector('.f-visitado').checked, foto: fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '') };
+      return { nome: card.querySelector('.f-nome').value.trim(), visitado: card.querySelector('.f-visitado').checked, foto: fotoUpload || card.querySelector('.dyn-thumb').dataset.realurl || '' };
     }
     if(kind==='album'){
-      return { label: card.querySelector('.f-label').value.trim(), url: fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '') };
+      return { label: card.querySelector('.f-label').value.trim(), url: fotoUpload || card.querySelector('.dyn-thumb').dataset.realurl || '' };
     }
     if(kind==='meme'){
       const link = card.querySelector('.f-link').value.trim();
-      const url = link || fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '');
+      const url = link || fotoUpload || card.querySelector('.dyn-thumb').dataset.realurl || '';
       return { label: card.querySelector('.f-label').value.trim(), url };
     }
     return null;
