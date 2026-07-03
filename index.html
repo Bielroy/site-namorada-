@@ -1,425 +1,788 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para o Meu Amor ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #d32f2f;
-            --primary-dark: #b71c1c;
-            --text-main: #222;
-            --text-muted: #555;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 77, 77, 0.3);
-            --font-main: 'Nunito', sans-serif;
-            --font-title: 'VT323', monospace;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>pra você ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg-top:#ffe8ef;
+  --bg-bot:#ffd0e0;
+  --pink:#ff5c8a;
+  --pink-dark:#d63e6c;
+  --yellow:#ffc93c;
+  --yellow-dark:#e0a815;
+  --mint:#6fcf97;
+  --mint-dark:#3fae70;
+  --purple:#b48ead;
+  --ink:#4a314d;
+  --ink-soft:#8c6e8f;
+  --card:rgba(255,255,255,.92);
+  --card-line:#4a314d;
+  --px:4px; /* base pixel unit */
+  --font-pixel:'Press Start 2P', monospace;
+  --font-body:'Baloo 2', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.6) 0 2px, transparent 3px) 0 0/40px 40px,
+    radial-gradient(circle at 65% 60%, rgba(255,255,255,.5) 0 2px, transparent 3px) 0 0/60px 60px,
+    linear-gradient(180deg, var(--bg-top), var(--bg-bot) 40%, #ffc3d8 100%);
+  background-attachment:fixed;
+  overflow-x:hidden;
+  position:relative;
+}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            font-family: var(--font-main); 
-            color: var(--text-main);
-            background-image: url('1000274205.jpg'); 
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+/* pixel-corner "stairstep" shape, used everywhere for the retro-cute look */
+.pixel{
+  clip-path:polygon(
+    0 12px,12px 12px,12px 0,
+    calc(100% - 12px) 0,calc(100% - 12px) 12px,100% 12px,
+    100% calc(100% - 12px),calc(100% - 12px) calc(100% - 12px),calc(100% - 12px) 100%,
+    12px 100%,12px calc(100% - 12px),0 calc(100% - 12px)
+  );
+}
+.pixel-sm{
+  clip-path:polygon(
+    0 6px,6px 6px,6px 0,
+    calc(100% - 6px) 0,calc(100% - 6px) 6px,100% 6px,
+    100% calc(100% - 6px),calc(100% - 6px) calc(100% - 6px),calc(100% - 6px) 100%,
+    6px 100%,6px calc(100% - 6px),0 calc(100% - 6px)
+  );
+}
 
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 2px solid var(--glass-border);
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
+.glass{
+  background:var(--card);
+  border:3px solid var(--card-line);
+  position:relative;
+}
+.glass::after{ /* pixel drop-shadow, no blur, stays crisp/retro */
+  content:'';position:absolute;inset:0;z-index:-1;
+  transform:translate(6px,6px);
+  background:var(--pink);
+  clip-path:inherit;
+}
 
-        h1, h2, h3 { color: var(--primary); margin-bottom: 15px; font-family: var(--font-title); letter-spacing: 1px; }
-        h1 { font-size: 45px; line-height: 1.1; }
-        h2 { font-size: 35px; }
-        p { font-size: 22px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+h1,h2,h3{font-family:var(--font-pixel);color:var(--pink-dark);line-height:1.5;text-shadow:2px 2px 0 #fff;}
+h1{font-size:22px;}
+h2{font-size:17px;}
+p{font-size:18px;font-weight:600;line-height:1.6;margin-bottom:16px;color:var(--ink);}
+small{font-family:var(--font-body);}
 
-        .btn {
-            background: var(--primary); color: white; border: none; 
-            padding: 18px 35px; border-radius: 50px; 
-            font-weight: 900; font-size: 22px; font-family: var(--font-main);
-            cursor: pointer; transition: 0.3s; 
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
-            text-transform: uppercase;
-        }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(211, 47, 47, 0.6); }
-        .btn:active { transform: translateY(2px); }
-        .btn-green { background-color: #2e7d32; box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4); }
-        .btn-green:hover { background-color: #1b5e20; box-shadow: 0 10px 25px rgba(46, 125, 50, 0.6); }
-        .btn-small { padding: 10px 15px; font-size: 16px; border-radius: 12px; margin-bottom: 15px;}
-        
-        .emoji-big { font-size: 100px; margin: 20px 0; cursor: pointer; display: inline-block; }
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(211,47,47,0.5)); } }
+.btn{
+  font-family:var(--font-pixel);
+  font-size:13px;
+  color:#fff;
+  background:var(--pink);
+  border:3px solid var(--card-line);
+  padding:16px 20px;
+  cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:4px 4px 0 var(--card-line);
+  transition:transform .1s;
+  text-transform:uppercase;
+  position:relative;
+}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--card-line);}
+.btn-yellow{background:var(--yellow-dark);color:#4a314d;}
+.btn-green{background:var(--mint-dark);}
+.btn-dark{background:#4a314d;}
+.btn-small{font-size:10px;padding:10px 14px;}
+.btn-full{width:100%;margin-bottom:12px;}
 
-        .page { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; width: 100%; }
-        .page.active { display: flex; animation: fadeIn 0.6s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+/* ---------- floating pixel hearts background ---------- */
+#heart-field{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.bg-heart{position:absolute;opacity:.35;animation:drift linear infinite;}
+@keyframes drift{
+  0%{transform:translateY(110vh) rotate(0deg);}
+  100%{transform:translateY(-10vh) rotate(15deg);}
+}
 
-        #feed-container { max-width: 800px; width: 100%; padding: 40px 0; display: flex; flex-direction: column; gap: 40px; }
-        .feed-section { padding: 40px 30px; text-align: center; }
-        
-        .reveal { opacity: 0; transform: translateY(80px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+/* ---------- pixel heart sprite (built from box-shadow grid) ---------- */
+.pxheart{position:relative;}
 
-        .counter-box { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
-        .counter-item { background: rgba(211, 47, 47, 0.1); border: 2px solid var(--primary); padding: 15px 20px; border-radius: 20px; min-width: 110px; }
-        .counter-item span { display: block; font-size: 40px; font-weight: 900; color: var(--primary); font-family: var(--font-title); }
-        .counter-item small { font-size: 16px; font-weight: 700; text-transform: uppercase; color: var(--text-main); }
+/* ---------- pages ---------- */
+.page{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:24px;width:100%;position:relative;z-index:2;}
+.page.active{display:flex;animation:fadeIn .5s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.card{max-width:480px;width:100%;text-align:center;padding:40px 26px;}
 
-        .album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .album-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 20px; border: 4px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.1); transition: 0.3s; }
-        .album-grid img:hover { transform: scale(1.03); }
+/* splash */
+#splash-screen{position:fixed;inset:0;background:var(--pink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:#fff;}
+#splash-screen h1{color:#fff;text-shadow:2px 2px 0 var(--pink-dark);font-size:14px;text-align:center;}
+.loadbar{width:220px;height:20px;border:3px solid #fff;background:rgba(255,255,255,.2);position:relative;overflow:hidden;}
+.loadbar-fill{height:100%;width:0%;background:#fff;animation:load 1.4s ease forwards;}
+@keyframes load{to{width:100%;}}
 
-        .timeline { margin-top: 30px; text-align: left; position: relative; padding-left: 30px; }
-        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--primary); border-radius: 4px; opacity: 0.5; }
-        .timeline-item { position: relative; margin-bottom: 30px; background: rgba(255,255,255,0.6); padding: 20px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05); }
-        .timeline-item::before { content: ''; position: absolute; left: -42px; top: 20px; width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
-        .timeline-date { color: var(--primary); font-weight: 900; font-size: 18px; margin-bottom: 5px; }
+.avatar{width:150px;height:150px;object-fit:cover;border:4px solid var(--card-line);margin-bottom:20px;box-shadow:6px 6px 0 var(--pink);}
 
-        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; opacity: 0.4; transition: 0.3s; }
-        .admin-btn:hover { opacity: 1; transform: rotate(90deg); }
+/* question / dodge button */
+#btn-nao{transition:top .18s, left .18s;}
+#btn-nao.roaming{position:fixed;z-index:50;}
 
-        input, textarea { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 15px; border: 3px solid var(--glass-border); font-size: 16px; font-family: var(--font-main); background: rgba(255,255,255,0.9); outline: none; }
-        input:focus, textarea:focus { border-color: var(--primary); }
-    </style>
+/* password */
+input[type=number],input[type=text],input[type=datetime-local],textarea{
+  width:100%;padding:14px;margin-bottom:12px;border:3px solid var(--card-line);
+  font-size:16px;font-family:var(--font-body);font-weight:700;background:#fff;
+  outline:none;color:var(--ink);
+}
+input:focus,textarea:focus{border-color:var(--pink);}
+#pwdError{color:var(--pink-dark);display:none;margin-top:10px;font-size:15px;font-weight:800;}
+
+/* feed */
+#feed-container{max-width:760px;width:100%;padding:36px 0;display:flex;flex-direction:column;gap:34px;}
+.feed-section{padding:34px 24px;text-align:center;}
+.eyebrow{font-family:var(--font-pixel);font-size:10px;color:var(--mint-dark);letter-spacing:1px;margin-bottom:10px;display:inline-block;}
+
+.reveal{opacity:0;transform:translateY(60px);transition:all .7s cubic-bezier(.25,.8,.25,1);}
+.reveal.active{opacity:1;transform:translateY(0);}
+
+.counter-box{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:18px;}
+.counter-item{background:#fff;border:3px solid var(--card-line);padding:14px 16px;min-width:82px;box-shadow:3px 3px 0 var(--card-line);}
+.counter-item span{display:block;font-family:var(--font-pixel);font-size:22px;color:var(--pink-dark);}
+.counter-item small{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--ink-soft);}
+
+.album-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:18px;}
+.album-grid figure{margin:0;}
+.album-grid img{width:100%;height:170px;object-fit:cover;border:3px solid var(--card-line);box-shadow:4px 4px 0 var(--pink);display:block;}
+.album-grid figcaption{font-size:12px;font-weight:700;margin-top:6px;color:var(--ink-soft);}
+
+.timeline{margin-top:24px;text-align:left;position:relative;padding-left:26px;}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:4px;background:var(--pink);}
+.timeline-item{position:relative;margin-bottom:22px;background:#fff;padding:16px;border:3px solid var(--card-line);box-shadow:3px 3px 0 var(--pink);}
+.timeline-item::before{content:'';position:absolute;left:-26px;top:16px;width:14px;height:14px;background:var(--yellow-dark);border:3px solid var(--card-line);}
+.timeline-date{color:var(--pink-dark);font-family:var(--font-pixel);font-size:11px;margin-bottom:6px;}
+
+.reason-item{background:#fff;padding:14px 16px;border:3px solid var(--card-line);border-left:8px solid var(--pink);margin-bottom:10px;text-align:left;font-weight:700;box-shadow:3px 3px 0 var(--card-line);}
+
+.meme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:18px;}
+.meme-card{background:#fff;border:3px solid var(--card-line);box-shadow:4px 4px 0 var(--mint-dark);overflow:hidden;}
+.meme-card img{width:100%;height:150px;object-fit:cover;display:block;border-bottom:3px solid var(--card-line);}
+.meme-card figcaption{font-size:12px;font-weight:800;padding:8px;color:var(--ink);}
+
+.mood-options{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0;}
+.mood-btn{font-size:30px;background:#fff;border:3px solid var(--card-line);padding:10px 14px;cursor:pointer;box-shadow:3px 3px 0 var(--card-line);transition:transform .1s;}
+.mood-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--card-line);}
+.mood-log{margin-top:16px;text-align:left;max-height:200px;overflow-y:auto;}
+.mood-log-item{font-size:13px;font-weight:700;background:#fff;border:2px solid var(--card-line);padding:8px 12px;margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;}
+
+.jar-box{background:#fff;border:4px solid var(--card-line);padding:24px;margin-top:14px;box-shadow:5px 5px 0 var(--yellow-dark);min-height:70px;display:flex;align-items:center;justify-content:center;}
+#jar-text{font-weight:800;font-size:17px;color:var(--pink-dark);}
+
+/* admin */
+#page-admin{justify-content:flex-start;}
+.admin-card{max-width:760px;width:100%;padding:34px;margin:34px 0;text-align:left;}
+.admin-card label{font-family:var(--font-pixel);font-size:11px;color:var(--pink-dark);display:block;margin:18px 0 8px;}
+.admin-card p.hint{font-size:13px;color:var(--ink-soft);font-weight:700;margin-bottom:10px;}
+.admin-card hr{border:none;border-top:3px dashed var(--pink);margin:26px 0;}
+
+/* mascot */
+#pixel-pet{position:fixed;bottom:18px;right:18px;z-index:1000;cursor:pointer;transition:transform .2s;}
+#pixel-pet:hover{transform:scale(1.1) rotate(-4deg);}
+#pet-bubble{position:fixed;bottom:100px;right:18px;max-width:210px;background:#fff;border:3px solid var(--card-line);padding:12px 14px;font-weight:800;font-size:13px;box-shadow:4px 4px 0 var(--pink);z-index:1001;display:none;}
+
+.admin-btn{position:fixed;bottom:18px;left:18px;background:#4a314d;color:#fff;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:3px 3px 0 var(--pink);z-index:1000;opacity:.5;transition:.2s;}
+.admin-btn:hover{opacity:1;transform:rotate(90deg);}
+
+/* confetti hearts */
+.confetti-heart{position:fixed;z-index:9998;pointer-events:none;}
+
+@media (max-width:480px){
+  h1{font-size:17px;}
+  h2{font-size:14px;}
+  .btn{font-size:11px;padding:14px 16px;}
+}
+</style>
 </head>
 <body>
 
-    <!-- 1. TELA DE SPLASH -->
-    <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fce4ec; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s;">
-        <div class="emoji-big pulse">💌</div>
-        <h1 style="color: #d32f2f;">carregando calma aiii...</h1>
+<div id="heart-field"></div>
+
+<!-- pixel heart symbol template, colored/duplicated at runtime -->
+<template id="tpl-pixel-heart">
+  <div class="pxheart"></div>
+</template>
+
+<!-- 1. SPLASH -->
+<div id="splash-screen">
+  <div id="splash-heart" class="pxheart" style="transform:scale(1.6)"></div>
+  <h1>carregando amor...</h1>
+  <div class="loadbar"><div class="loadbar-fill"></div></div>
+</div>
+
+<!-- 2. INTRO -->
+<div id="page-intro" class="page">
+  <div class="glass pixel card">
+    <img id="intro-foto" class="avatar" src="" style="border-radius:0;display:none;" onerror="this.style.display='none'">
+    <span class="eyebrow">💌 vc tem 1 nova mensagem</span>
+    <h1>tem uma cartinha pra você...</h1>
+    <div id="envelope-heart" class="pxheart" style="cursor:pointer;margin:20px auto;" onclick="navTo('page-question')"></div>
+    <p style="color:var(--ink-soft);font-size:14px;">(toca no coraçãozinho pra abrir)</p>
+  </div>
+</div>
+
+<!-- 3. QUESTION -->
+<div id="page-question" class="page">
+  <div class="glass pixel card">
+    <h1>você me ama?</h1>
+    <p style="font-size:14px;">escolha com sabedoria 👀</p>
+    <button class="btn btn-green btn-full" onclick="respondeSim(event)">SIM ❤️</button>
+    <button id="btn-nao" class="btn btn-full" style="background:var(--pink-dark)" onmouseenter="fugir(this)" ontouchstart="fugir(this)" onclick="navTo('page-wrong')">NÃO ✖️</button>
+  </div>
+</div>
+
+<!-- 4. WRONG -->
+<div id="page-wrong" class="page">
+  <div class="glass pixel card">
+    <h1 style="font-size:34px;">EI!!</h1>
+    <p>essa resposta nem existe no meu sistema 🙅‍♂️</p>
+    <button class="btn btn-yellow" onclick="navTo('page-question')">tentar de novo</button>
+  </div>
+</div>
+
+<!-- 5. PASSWORD -->
+<div id="page-password" class="page">
+  <div class="glass pixel card">
+    <h1>acesso restrito 🔒</h1>
+    <p>qual é a senha?</p>
+    <p style="font-size:13px;color:var(--ink-soft);">(o dia que te pedi em namoro, só números — ddmmaaaa)</p>
+    <input type="number" id="inputPassword" placeholder="ex: 15032026" style="text-align:center;letter-spacing:2px;">
+    <button class="btn btn-full" onclick="checkPassword()">desbloquear 🔓</button>
+    <p id="pwdError">senha incorreta! tenta de novo 🥺</p>
+  </div>
+</div>
+
+<!-- 6. FEED -->
+<div id="page-feed" class="page" style="justify-content:flex-start;padding-top:40px;">
+  <div id="feed-container">
+
+    <div class="feed-section glass pixel reveal">
+      <div id="feed-heart" class="pxheart" style="margin:0 auto 10px;"></div>
+      <h1 id="feed-title" style="font-size:26px;">é minha namorada mesmo!! 🥹</h1>
+      <p>olha só quanto tempo já passamos juntos:</p>
+      <div class="counter-box" id="master-counter"></div>
     </div>
 
-    <!-- 2. TELA INTRO -->
-    <div id="page-intro" class="page">
-        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px;">
-            <img id="intro-foto" src="" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--primary); margin-bottom: 20px;" onerror="this.style.display='none'">
-            <h1>Tem uma cartinha pra você...</h1>
-            <div class="emoji-big pulse" onclick="navTo('page-question')">💌</div>
-            <p style="color: var(--text-muted); font-size: 18px;">(Clique na carta para abrir)</p>
-        </div>
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">álbum</span>
+      <h2>📸 nosso álbum</h2>
+      <p>nossos melhores momentos.</p>
+      <div class="album-grid" id="render-album"></div>
     </div>
 
-    <!-- 3. TELA DA PERGUNTA -->
-    <div id="page-question" class="page">
-        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px;">
-            <h1>Você me ama?</h1>
-            <div class="emoji-big">✉️</div>
-            <br>
-            <button class="btn btn-green" style="width: 100%; margin-bottom: 15px; font-size: 26px;" onclick="navTo('page-password')">SIM ❤️</button>
-            <button class="btn" style="width: 100%; font-size: 26px; background-color: #b71c1c;" onclick="navTo('page-wrong')">NÃO ✖️</button>
-        </div>
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">trilha sonora</span>
+      <h2>🎵 nossa playlist</h2>
+      <p>as músicas que marcam a gente.</p>
+      <div id="render-music" style="margin-top:16px;"></div>
     </div>
 
-    <!-- 4. TELA DE ERRO -->
-    <div id="page-wrong" class="page">
-        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px; border-color: #b71c1c;">
-            <div class="emoji-big pulse" style="font-size: 120px;">😠</div>
-            <h1 style="font-size: 60px;">EI!</h1>
-            <p>Resposta errada, mocinha!</p>
-            <button class="btn" onclick="navTo('page-question')">Voltar e Tentar Novamente</button>
-        </div>
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">nossa história</span>
+      <h2>🗺️ linha do tempo</h2>
+      <div class="timeline" id="render-timeline"></div>
     </div>
 
-    <!-- 5. TELA DE SENHA -->
-    <div id="page-password" class="page">
-        <div class="glass" style="max-width: 500px; text-align: center; padding: 50px 30px;">
-            <div class="emoji-big" style="font-size: 80px;">🔒</div>
-            <h1>Acesso Restrito</h1>
-            <p>Qual é a senha?</p>
-            <p style="font-size: 16px; color: var(--text-muted);">(O dia que te pedi em namoro, só números)</p>
-            <input type="number" id="inputPassword" placeholder="Ex: ddmmaaaa" style="text-align: center; font-size: 24px; letter-spacing: 2px;">
-            <button class="btn" style="width: 100%;" onclick="checkPassword()">Desbloquear 🔓</button>
-            <p id="pwdError" style="color: red; display: none; margin-top: 15px; font-size: 18px;">Senha incorreta! Tente de novo.</p>
-        </div>
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">motivos</span>
+      <h2>🫙 motivos pra te amar</h2>
+      <p>eu poderia listar mil, mas aqui vão alguns:</p>
+      <div id="render-reasons" style="text-align:left;margin-top:16px;"></div>
+      <button class="btn btn-yellow btn-small" onclick="sortearMotivo()">🎲 sortear um motivo</button>
     </div>
 
-    <!-- 6. TELA DO FEED (ROLAGEM) -->
-    <div id="page-feed" class="page" style="justify-content: flex-start; padding-top: 50px;">
-        <div id="feed-container">
-            
-            <div class="feed-section glass reveal">
-                <div class="emoji-big pulse" style="font-size: 80px; margin: 0;">❤️</div>
-                <h1 style="font-size: 55px;" id="feed-title">uiuiui é minha namorada mesmo!</h1>
-                <p style="font-size: 24px;">Olha só quanto tempo já passamos juntos:</p>
-                <div class="counter-box" id="master-counter"></div>
-            </div>
-
-            <div class="feed-section glass reveal">
-                <h2>📸 Nosso Álbum</h2>
-                <p>Nossos melhores momentos.</p>
-                <div class="album-grid" id="render-album"></div>
-            </div>
-
-            <div class="feed-section glass reveal">
-                <h2>🎵 Nossa Trilha Sonora</h2>
-                <p>As músicas que marcam a gente.</p>
-                <div id="render-music" style="margin-top: 20px;"></div>
-            </div>
-
-            <div class="feed-section glass reveal">
-                <h2>🗺️ Nossa História</h2>
-                <div class="timeline" id="render-timeline"></div>
-            </div>
-
-            <div class="feed-section glass reveal">
-                <h2>🫙 Motivos pra te amar</h2>
-                <p>Eu poderia listar mil, mas aqui vão alguns:</p>
-                <div id="render-reasons" style="text-align: left; margin-top: 20px;"></div>
-            </div>
-
-            <div class="feed-section glass reveal" style="border: 4px solid var(--primary);">
-                <div class="emoji-big pulse" style="font-size: 80px; margin-bottom: 0;">🎁</div>
-                <h1 style="font-size: 45px;">A Maior Surpresa...</h1>
-                <p style="font-size: 26px; font-weight: 900; margin-top: 20px;">É ter você na minha vida.</p>
-                <p>Te amo hoje, amanhã e sempre.</p>
-            </div>
-
-        </div>
-        
-        <div class="admin-btn" onclick="navTo('page-admin')"><i class="fa-solid fa-gear"></i></div>
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">memes nossos</span>
+      <h2>😂 memes da gente</h2>
+      <p>pq amor sério é bom, mas amor engraçado é melhor.</p>
+      <div class="meme-grid" id="render-memes"></div>
     </div>
 
-    <!-- 7. O PAINEL DE ADMIN COMPLETO -->
-    <div id="page-admin" class="page" style="justify-content: flex-start;">
-        <div class="glass" style="max-width: 800px; width: 100%; padding: 40px; margin: 40px 0;">
-            <h1 style="font-size: 40px;"><i class="fa-solid fa-wrench"></i> Configurar Site</h1>
-            <p style="font-size: 14px; color: #666; margin-bottom: 30px;">
-                Dica: Você pode upar as fotos da galeria aqui mesmo! As fotos ficarão salvas na memória do celular onde você as colocou.
-            </p>
-
-            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Foto Principal (A do começo):</label>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
-                <input type="text" id="admFoto" placeholder="URL da imagem (Opcional se usar a galeria)" style="margin: 0;">
-                <label class="btn btn-small" style="background: #333; text-transform: none; font-size: 18px; margin: 0; cursor: pointer;">
-                    <i class="fa-solid fa-image"></i> Escolher da Galeria
-                    <input type="file" accept="image/*" style="display: none;" onchange="uparFotoUnica(event, 'admFoto')">
-                </label>
-            </div>
-
-            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Data do Pedido de Namoro:</label>
-            <input type="datetime-local" id="admData">
-
-            <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
-
-            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Nosso Álbum de Fotos:</label>
-            <p style="font-size: 14px; margin-bottom: 10px;">Você pode colar links, ou clicar no botão abaixo para escolher várias fotos do celular de uma vez!</p>
-            
-            <label class="btn btn-small" style="background: #333; text-transform: none; font-size: 18px; width: 100%; cursor: pointer;">
-                <i class="fa-solid fa-images"></i> Selecionar Fotos da Galeria (Múltiplas)
-                <input type="file" accept="image/*" multiple style="display: none;" onchange="uparFotosAlbum(event)">
-            </label>
-            <textarea id="admAlbum" rows="5" placeholder="Os códigos/links das imagens aparecerão aqui..." style="font-size: 12px;"></textarea>
-            <p style="font-size: 12px; color: red;">Aviso: Como a memória do celular é limitada, se você colocar 50 fotos pesadas, o navegador pode não salvar. Vá testando!</p>
-
-            <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
-
-            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Links das Músicas (Spotify):</label>
-            <p style="font-size: 14px; margin-bottom: 10px;">Cole os links normais do Spotify, um por linha.</p>
-            <textarea id="admMusicas" rows="3"></textarea>
-
-            <hr style="border: 1px solid var(--glass-border); margin: 30px 0;">
-
-            <label style="font-weight: bold; font-size: 20px; color: var(--primary);">Lista de Motivos (Um por linha):</label>
-            <textarea id="admMotivos" rows="5"></textarea>
-
-            <button class="btn btn-green" style="width: 100%; font-size: 24px; margin-top: 20px;" onclick="salvarAdmin()">Salvar e Visualizar 👀</button>
-            <button class="btn" style="width: 100%; font-size: 20px; margin-top: 15px; background: #333;" onclick="navTo('page-feed')">Cancelar / Voltar</button>
-        </div>
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">diário</span>
+      <h2>🌤️ como você tá hoje?</h2>
+      <p>toca no seu humor de hoje, fica registrado aqui pra sempre.</p>
+      <div class="mood-options" id="mood-options"></div>
+      <div class="mood-log" id="mood-log"></div>
     </div>
 
-    <!-- =========================================================
-         8. JAVASCRIPT
-         ========================================================= -->
-    <script>
-        const CONFIG = {
-            senhaSite: "15032026", 
-            dataInicio: "2026-03-15T00:00:00", 
-            fotoPrincipal: "", 
-            musicas: ["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
-            album: [], // Deixei vazio pra você preencher via Galeria no admin
-            motivos: ["Seu sorriso", "Como nos entendemos com um olhar"],
-            linhaDoTempo: [
-                { data: "O Início", texto: "Quando nossos olhares se cruzaram." },
-                { data: "15/03/2026", texto: "O dia do Sim. O pedido de namoro." }
-            ]
-        };
+    <div class="feed-section glass pixel reveal">
+      <span class="eyebrow">potinho</span>
+      <h2>🍯 pote de elogios</h2>
+      <p>tá precisando ouvir algo bom? clica no pote.</p>
+      <button class="btn btn-green" onclick="abrirPote()">abrir potinho 🍯</button>
+      <div class="jar-box"><span id="jar-text">seu elogio vai aparecer aqui ✨</span></div>
+    </div>
 
-        let DB = JSON.parse(localStorage.getItem("siteFeedDB")) || CONFIG;
+    <div class="feed-section glass pixel reveal" style="border:4px solid var(--pink-dark);">
+      <div id="final-heart" class="pxheart" style="margin:0 auto 10px;"></div>
+      <h1>a maior surpresa...</h1>
+      <p style="font-size:20px;font-weight:800;margin-top:10px;">é ter você na minha vida.</p>
+      <p>te amo hoje, amanhã e sempre. 💗</p>
+    </div>
 
-        window.onload = () => {
-            renderizarConteudo();
-            setTimeout(() => {
-                let splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
-                setTimeout(() => { splash.style.display = 'none'; navTo('page-intro'); }, 500);
-            }, 1500);
-            setInterval(atualizarContador, 1000);
-        };
+  </div>
+</div>
 
-        function navTo(idPagina) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(idPagina).classList.add('active');
-            window.scrollTo(0, 0); 
-        }
+<!-- 7. ADMIN -->
+<div id="page-admin" class="page">
+  <div class="glass pixel admin-card">
+    <h1 style="font-size:22px;">⚙️ configurar site</h1>
+    <p class="hint">dica: as fotos ficam salvas na memória do navegador deste aparelho.</p>
 
-        function checkPassword() {
-            const pwd = document.getElementById('inputPassword').value;
-            if (pwd === DB.senhaSite || pwd === "150326") {
-                document.getElementById('pwdError').style.display = 'none';
-                navTo('page-feed');
-            } else {
-                document.getElementById('pwdError').style.display = 'block';
-            }
-        }
+    <label>foto principal</label>
+    <input type="text" id="admFoto" placeholder="URL da imagem (opcional se usar a galeria)">
+    <label class="btn btn-small btn-dark" style="cursor:pointer;">📷 escolher da galeria
+      <input type="file" accept="image/*" style="display:none;" onchange="uparFotoUnica(event,'admFoto')">
+    </label>
 
-        function atualizarContador() {
-            const start = new Date(DB.dataInicio).getTime();
-            const now = new Date().getTime();
-            const diff = now - start;
-            if(diff < 0) return;
-            
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+    <label>data do pedido de namoro</label>
+    <input type="datetime-local" id="admData">
 
-            const counterBox = document.getElementById('master-counter');
-            if(counterBox) {
-                counterBox.innerHTML = `
-                    <div class="counter-item"><span>${dias}</span><small>Dias</small></div>
-                    <div class="counter-item"><span>${horas}</span><small>Horas</small></div>
-                    <div class="counter-item"><span>${minutos}</span><small>Minutos</small></div>
-                    <div class="counter-item"><span>${segundos}</span><small>Segundos</small></div>
-                `;
-            }
-        }
+    <hr>
+    <label>senha de acesso (só números)</label>
+    <input type="text" id="admSenha" placeholder="ex: 15032026">
 
-        // ==========================================
-        // FUNÇÕES DE LER FOTOS DA GALERIA DO CELULAR
-        // ==========================================
-        function uparFotoUnica(event, inputId) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById(inputId).value = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
+    <hr>
+    <label>título de boas-vindas do feed</label>
+    <input type="text" id="admTitulo" placeholder="é minha namorada mesmo!! 🥹">
 
-        function uparFotosAlbum(event) {
-            const files = event.target.files;
-            const textarea = document.getElementById('admAlbum');
-            for(let i=0; i<files.length; i++) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // Adiciona o código da imagem em uma nova linha no textarea
-                    textarea.value += (textarea.value ? '\n' : '') + e.target.result;
-                };
-                reader.readAsDataURL(files[i]);
-            }
-            alert(files.length + " foto(s) carregada(s) com sucesso na caixa de texto!");
-        }
+    <hr>
+    <label>álbum de fotos</label>
+    <p class="hint">cole links ou escolha várias fotos da galeria de uma vez. formato opcional: url|legenda</p>
+    <label class="btn btn-small btn-dark" style="cursor:pointer;width:100%;text-align:center;display:block;">🖼️ selecionar fotos (múltiplas)
+      <input type="file" accept="image/*" multiple style="display:none;" onchange="uparFotosAlbum(event)">
+    </label>
+    <textarea id="admAlbum" rows="4" placeholder="link1|legenda1"></textarea>
 
-        function renderizarConteudo() {
-            if(DB.fotoPrincipal) {
-                document.getElementById('intro-foto').src = DB.fotoPrincipal;
-                document.getElementById('intro-foto').style.display = 'inline-block';
-            }
+    <hr>
+    <label>links das músicas (spotify)</label>
+    <p class="hint">um link normal do spotify por linha.</p>
+    <textarea id="admMusicas" rows="3"></textarea>
 
-            let albumHtml = '';
-            DB.album.forEach(img => {
-                if(img.trim() !== '') albumHtml += `<img src="${img.trim()}">`;
-            });
-            document.getElementById('render-album').innerHTML = albumHtml || "<p>Nenhuma foto adicionada ainda.</p>";
+    <hr>
+    <label>motivos pra te amar</label>
+    <textarea id="admMotivos" rows="4"></textarea>
 
-            let musicHtml = '';
-            DB.musicas.forEach(link => {
-                let url = link.trim();
-                if(url) {
-                    if(url.includes('spotify.com') && !url.includes('embed')) {
-                        let partes = url.split('spotify.com/');
-                        let caminho = partes[1].split('?')[0]; 
-                        url = `https://open.spotify.com/embed/${caminho}`;
-                    }
-                    musicHtml += `<iframe style="border-radius:20px; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);" src="${url}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
-                }
-            });
-            document.getElementById('render-music').innerHTML = musicHtml || "<p>Nenhuma música adicionada ainda.</p>";
+    <hr>
+    <label>linha do tempo</label>
+    <p class="hint">formato: data | acontecimento — um por linha</p>
+    <textarea id="admTimeline" rows="4" placeholder="15/03/2026 | o dia do sim"></textarea>
 
-            let motivosHtml = '';
-            DB.motivos.forEach(motivo => {
-                if(motivo.trim() !== '') {
-                    motivosHtml += `<p style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 15px; border-left: 5px solid var(--primary); margin-bottom: 10px;">❤️ ${motivo.trim()}</p>`;
-                }
-            });
-            document.getElementById('render-reasons').innerHTML = motivosHtml;
+    <hr>
+    <label>memes nossos</label>
+    <p class="hint">formato: url|legenda — um por linha, ou envie da galeria.</p>
+    <label class="btn btn-small btn-dark" style="cursor:pointer;width:100%;text-align:center;display:block;">😂 selecionar memes (múltiplas)
+      <input type="file" accept="image/*" multiple style="display:none;" onchange="uparMemes(event)">
+    </label>
+    <textarea id="admMemes" rows="4" placeholder="link1|legenda engraçada"></textarea>
 
-            let timelineHtml = '';
-            let tlArray = DB.linhaDoTempo || CONFIG.linhaDoTempo;
-            tlArray.forEach(item => {
-                timelineHtml += `
-                    <div class="timeline-item">
-                        <div class="timeline-date">${item.data}</div>
-                        <div style="font-size: 20px;">${item.texto}</div>
-                    </div>
-                `;
-            });
-            document.getElementById('render-timeline').innerHTML = timelineHtml;
+    <hr>
+    <label>frases do pote de elogios</label>
+    <p class="hint">uma frase por linha — aparecem quando ela abre o potinho.</p>
+    <textarea id="admElogios" rows="4"></textarea>
 
-            document.getElementById('admFoto').value = DB.fotoPrincipal || '';
-            document.getElementById('admData').value = DB.dataInicio;
-            document.getElementById('admAlbum').value = DB.album.join('\n');
-            document.getElementById('admMusicas').value = DB.musicas.join('\n');
-            document.getElementById('admMotivos').value = DB.motivos.join('\n');
-        }
+    <hr>
+    <label>mensagens do bichinho de estimação 🐾</label>
+    <p class="hint">uma frase por linha — aparecem quando ela clica no bichinho pixelado no canto.</p>
+    <textarea id="admPet" rows="3"></textarea>
 
-        function salvarAdmin() {
-            try {
-                DB.fotoPrincipal = document.getElementById('admFoto').value;
-                DB.dataInicio = document.getElementById('admData').value || CONFIG.dataInicio;
-                DB.album = document.getElementById('admAlbum').value.split('\n').filter(Boolean);
-                DB.musicas = document.getElementById('admMusicas').value.split('\n').filter(Boolean);
-                DB.motivos = document.getElementById('admMotivos').value.split('\n').filter(Boolean);
+    <button class="btn btn-green btn-full" style="margin-top:20px;font-size:15px;" onclick="salvarAdmin()">salvar e visualizar 👀</button>
+    <button class="btn btn-dark btn-full" onclick="navTo('page-feed')">cancelar / voltar</button>
+  </div>
+</div>
 
-                localStorage.setItem("siteFeedDB", JSON.stringify(DB));
-                renderizarConteudo();
-                navTo('page-feed');
-            } catch (e) {
-                alert("Erro! Você colocou fotos grandes demais e a memória do navegador encheu. Remova algumas fotos do álbum e tente novamente.");
-            }
-        }
+<!-- mascot -->
+<div id="pet-bubble"></div>
+<div id="pixel-pet" onclick="falarPet()"></div>
+<div class="admin-btn" onclick="navTo('page-admin')">⚙️</div>
 
-        function checkScroll() {
-            let reveals = document.querySelectorAll('.reveal');
-            let windowHeight = window.innerHeight;
-            let elementVisible = 100;
+<script>
+/* ============================================================
+   PIXEL ART ENGINE — builds crisp pixel sprites from box-shadow
+   ============================================================ */
+const HEART_MATRIX=[
+  [0,1,1,0,1,1,0],
+  [1,1,1,1,1,1,1],
+  [1,1,1,1,1,1,1],
+  [0,1,1,1,1,1,0],
+  [0,0,1,1,1,0,0],
+  [0,0,0,1,0,0,0]
+];
+// simple pixel cat/heart mascot face (heart body + eyes)
+const PET_MATRIX=[
+  [0,1,1,0,1,1,0],
+  [1,1,1,1,1,1,1],
+  [1,2,1,1,1,2,1],
+  [1,1,1,1,1,1,1],
+  [0,1,1,1,1,1,0],
+  [0,0,1,1,1,0,0],
+  [0,0,0,1,0,0,0]
+];
+function paintPixels(el, matrix, size, color, color2){
+  el.style.position='relative';
+  el.style.width=size+'px';
+  el.style.height=size+'px';
+  let shadows=[];
+  matrix.forEach((row,r)=>row.forEach((cell,c)=>{
+    if(cell===1) shadows.push(`${c*size}px ${r*size}px 0 ${color}`);
+    if(cell===2) shadows.push(`${c*size}px ${r*size}px 0 ${color2||'#222'}`);
+  }));
+  el.style.boxShadow=shadows.join(',');
+  el.style.background='transparent';
+  const cols=matrix[0].length, rows=matrix.length;
+  el.style.width=size+'px';el.style.height=size+'px';
+  el.dataset.w=cols*size; el.dataset.h=rows*size;
+}
+function initHearts(){
+  document.querySelectorAll('.pxheart').forEach(el=>{
+    if(el.id==='pixel-pet'){
+      paintPixels(el,PET_MATRIX,10,'#ff5c8a','#4a314d');
+    } else if(el.id==='splash-heart'){
+      paintPixels(el,HEART_MATRIX,12,'#ffffff');
+    } else {
+      paintPixels(el,HEART_MATRIX,10,'#ff5c8a');
+    }
+  });
+}
 
-            reveals.forEach(reveal => {
-                let elementTop = reveal.getBoundingClientRect().top;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                }
-            });
-        }
-        window.addEventListener('scroll', checkScroll);
-    </script>
+/* floating background hearts */
+function spawnBgHearts(){
+  const field=document.getElementById('heart-field');
+  const colors=['#ff5c8a','#ffc93c','#b48ead','#6fcf97'];
+  for(let i=0;i<14;i++){
+    const h=document.createElement('div');
+    h.className='bg-heart pxheart';
+    paintPixels(h,HEART_MATRIX,6+Math.random()*4,colors[i%colors.length]);
+    h.style.left=Math.random()*100+'vw';
+    h.style.animationDuration=(14+Math.random()*16)+'s';
+    h.style.animationDelay=(Math.random()*16)+'s';
+    field.appendChild(h);
+  }
+}
+
+/* confetti burst of hearts from a point */
+function burstHearts(x,y,count=16){
+  const colors=['#ff5c8a','#ffc93c','#b48ead','#6fcf97'];
+  for(let i=0;i<count;i++){
+    const h=document.createElement('div');
+    h.className='confetti-heart pxheart';
+    paintPixels(h,HEART_MATRIX,6,colors[i%colors.length]);
+    h.style.left=x+'px';h.style.top=y+'px';
+    const angle=Math.random()*Math.PI*2;
+    const dist=80+Math.random()*160;
+    const dx=Math.cos(angle)*dist, dy=Math.sin(angle)*dist - 100;
+    h.style.transition='transform 1s ease-out, opacity 1s ease-out';
+    document.body.appendChild(h);
+    requestAnimationFrame(()=>{
+      h.style.transform=`translate(${dx}px, ${dy}px) rotate(${Math.random()*360}deg)`;
+      h.style.opacity='0';
+    });
+    setTimeout(()=>h.remove(),1050);
+  }
+}
+
+/* ============================================================
+   DEFAULT CONTENT
+   ============================================================ */
+const CONFIG={
+  senhaSite:"15032026",
+  dataInicio:"2026-03-15T00:00:00",
+  fotoPrincipal:"",
+  tituloFeed:"é minha namorada mesmo!! 🥹",
+  musicas:["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
+  album:[],
+  memes:[],
+  motivos:["seu sorriso","como a gente se entende com um olhar","seu jeito bobo de ser"],
+  linhaDoTempo:[
+    {data:"o início",texto:"quando nossos olhares se cruzaram."},
+    {data:"15/03/2026",texto:"o dia do sim. o pedido de namoro."}
+  ],
+  elogios:["você é incrível do jeitinho que é.","seu sorriso ilumina meu dia inteiro.","eu tenho muita sorte de te ter.","você é mais forte do que imagina.","hoje o mundo tá mais bonito porque você existe."],
+  petMensagens:["oi oi! 🐾","não esquece de beber água hoje 💧","alguém te ama muito por aí 👀","clica no pote de elogios!","fofa demais, para com isso 🥹"],
+  moods:[]
+};
+
+let DB=null;
+try{ DB=JSON.parse(localStorage.getItem("siteFeedDB")); }catch(e){ DB=null; }
+if(!DB) DB=JSON.parse(JSON.stringify(CONFIG));
+// backfill any new fields for people upgrading from an older save
+for(const k in CONFIG){ if(DB[k]===undefined) DB[k]=CONFIG[k]; }
+
+const MOOD_SET=[
+  {e:"🥰",l:"apaixonada"},
+  {e:"😄",l:"feliz"},
+  {e:"😴",l:"cansada"},
+  {e:"🥺",l:"carente"},
+  {e:"😤",l:"estressada"},
+  {e:"😢",l:"triste"}
+];
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+window.onload=()=>{
+  initHearts();
+  spawnBgHearts();
+  renderizarConteudo();
+  setTimeout(()=>{
+    const splash=document.getElementById('splash-screen');
+    splash.style.opacity='0';
+    splash.style.transition='.5s';
+    setTimeout(()=>{splash.style.display='none';navTo('page-intro');},500);
+  },1500);
+  setInterval(atualizarContador,1000);
+  setTimeout(()=>falarPet(true),2500);
+};
+
+function navTo(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  document.getElementById('pet-bubble').style.display='none';
+}
+
+/* question page fun bits */
+function respondeSim(ev){
+  burstHearts(ev.clientX||window.innerWidth/2, ev.clientY||window.innerHeight/2, 22);
+  setTimeout(()=>navTo('page-password'),350);
+}
+function fugir(btn){
+  const w=window.innerWidth, h=window.innerHeight;
+  const bw=btn.offsetWidth, bh=btn.offsetHeight;
+  const maxX=Math.max(10,w-bw-20), maxY=Math.max(10,h-bh-20);
+  btn.classList.add('roaming');
+  btn.style.left=(10+Math.random()*maxX)+'px';
+  btn.style.top=(10+Math.random()*maxY)+'px';
+  const frases=["não pega não! 😤","tenta de novo 😝","só clica no SIM 🙈","hehe errou"];
+  btn.textContent=frases[Math.floor(Math.random()*frases.length)];
+}
+
+function checkPassword(){
+  const pwd=document.getElementById('inputPassword').value;
+  if(pwd===DB.senhaSite){
+    document.getElementById('pwdError').style.display='none';
+    navTo('page-feed');
+  } else {
+    document.getElementById('pwdError').style.display='block';
+  }
+}
+
+function atualizarContador(){
+  const start=new Date(DB.dataInicio).getTime();
+  const now=Date.now();
+  const diff=now-start;
+  if(diff<0) return;
+  const dias=Math.floor(diff/86400000);
+  const horas=Math.floor((diff%86400000)/3600000);
+  const minutos=Math.floor((diff%3600000)/60000);
+  const segundos=Math.floor((diff%60000)/1000);
+  const box=document.getElementById('master-counter');
+  if(box){
+    box.innerHTML=`
+      <div class="counter-item"><span>${dias}</span><small>dias</small></div>
+      <div class="counter-item"><span>${horas}</span><small>horas</small></div>
+      <div class="counter-item"><span>${minutos}</span><small>min</small></div>
+      <div class="counter-item"><span>${segundos}</span><small>seg</small></div>`;
+  }
+}
+
+/* ============================================================
+   UPLOADS (base64 into localStorage, same device)
+   ============================================================ */
+function uparFotoUnica(ev,inputId){
+  const file=ev.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{ document.getElementById(inputId).value=e.target.result; };
+  reader.readAsDataURL(file);
+}
+function uparFotosAlbum(ev){
+  const files=ev.target.files;
+  const textarea=document.getElementById('admAlbum');
+  let pending=files.length;
+  for(let i=0;i<files.length;i++){
+    const reader=new FileReader();
+    reader.onload=e=>{
+      textarea.value+=(textarea.value?'\n':'')+e.target.result+'|';
+      pending--;
+      if(pending===0) alert(files.length+" foto(s) carregada(s)! adicione uma legenda depois do | se quiser.");
+    };
+    reader.readAsDataURL(files[i]);
+  }
+}
+function uparMemes(ev){
+  const files=ev.target.files;
+  const textarea=document.getElementById('admMemes');
+  for(let i=0;i<files.length;i++){
+    const reader=new FileReader();
+    reader.onload=e=>{ textarea.value+=(textarea.value?'\n':'')+e.target.result+'|meme nosso'; };
+    reader.readAsDataURL(files[i]);
+  }
+  alert(files.length+" meme(s) carregado(s) na caixa de texto!");
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function parsePipeList(raw){
+  return raw.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
+    const idx=line.indexOf('|');
+    if(idx===-1) return {url:line,label:''};
+    return {url:line.slice(0,idx).trim(), label:line.slice(idx+1).trim()};
+  });
+}
+
+function renderizarConteudo(){
+  if(DB.fotoPrincipal){
+    document.getElementById('intro-foto').src=DB.fotoPrincipal;
+    document.getElementById('intro-foto').style.display='inline-block';
+  }
+  document.getElementById('feed-title').textContent=DB.tituloFeed||CONFIG.tituloFeed;
+
+  // album
+  const albumItems=parsePipeList(DB.album.join('\n'));
+  document.getElementById('render-album').innerHTML = albumItems.length ? albumItems.map(it=>
+    `<figure><img src="${it.url}">${it.label?`<figcaption>${it.label}</figcaption>`:''}</figure>`
+  ).join('') : "<p>nenhuma foto adicionada ainda.</p>";
+
+  // music
+  let musicHtml='';
+  DB.musicas.forEach(link=>{
+    let url=link.trim();
+    if(!url) return;
+    if(url.includes('spotify.com') && !url.includes('embed')){
+      const partes=url.split('spotify.com/');
+      const caminho=partes[1].split('?')[0];
+      url=`https://open.spotify.com/embed/${caminho}`;
+    }
+    musicHtml+=`<iframe style="border:3px solid var(--card-line);margin-bottom:16px;" src="${url}" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+  });
+  document.getElementById('render-music').innerHTML=musicHtml || "<p>nenhuma música adicionada ainda.</p>";
+
+  // reasons
+  document.getElementById('render-reasons').innerHTML = DB.motivos.map(m=>
+    `<div class="reason-item">❤️ ${m}</div>`).join('');
+
+  // timeline
+  document.getElementById('render-timeline').innerHTML = (DB.linhaDoTempo||[]).map(it=>
+    `<div class="timeline-item"><div class="timeline-date">${it.data}</div><div>${it.texto}</div></div>`
+  ).join('');
+
+  // memes
+  const memeItems=parsePipeList((DB.memes||[]).join('\n'));
+  document.getElementById('render-memes').innerHTML = memeItems.length ? memeItems.map(it=>
+    `<figure class="meme-card"><img src="${it.url}"><figcaption>${it.label||''}</figcaption></figure>`
+  ).join('') : "<p>nenhum meme adicionado ainda 😢</p>";
+
+  // mood picker
+  document.getElementById('mood-options').innerHTML = MOOD_SET.map(m=>
+    `<button class="mood-btn" onclick="registrarHumor('${m.e}','${m.l}')">${m.e}</button>`).join('');
+  renderMoodLog();
+
+  // admin fields
+  document.getElementById('admFoto').value=DB.fotoPrincipal||'';
+  document.getElementById('admData').value=DB.dataInicio;
+  document.getElementById('admSenha').value=DB.senhaSite;
+  document.getElementById('admTitulo').value=DB.tituloFeed;
+  document.getElementById('admAlbum').value=DB.album.join('\n');
+  document.getElementById('admMusicas').value=DB.musicas.join('\n');
+  document.getElementById('admMotivos').value=DB.motivos.join('\n');
+  document.getElementById('admTimeline').value=(DB.linhaDoTempo||[]).map(it=>`${it.data} | ${it.texto}`).join('\n');
+  document.getElementById('admMemes').value=(DB.memes||[]).join('\n');
+  document.getElementById('admElogios').value=(DB.elogios||[]).join('\n');
+  document.getElementById('admPet').value=(DB.petMensagens||[]).join('\n');
+}
+
+function renderMoodLog(){
+  const log=document.getElementById('mood-log');
+  const items=(DB.moods||[]).slice(-8).reverse();
+  log.innerHTML=items.length ? items.map(m=>
+    `<div class="mood-log-item"><span>${m.e} ${m.l}</span><span>${m.d}</span></div>`).join('')
+    : '<p style="font-size:13px;color:var(--ink-soft);">nenhum registro ainda — toca em um emoji ali em cima 👆</p>';
+}
+function registrarHumor(e,l){
+  const d=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});
+  DB.moods=DB.moods||[];
+  DB.moods.push({e,l,d});
+  try{ localStorage.setItem("siteFeedDB", JSON.stringify(DB)); }catch(err){}
+  renderMoodLog();
+}
+
+function sortearMotivo(){
+  const items=document.querySelectorAll('#render-reasons .reason-item');
+  if(!items.length) return;
+  items.forEach(it=>it.style.background='#fff');
+  const pick=items[Math.floor(Math.random()*items.length)];
+  pick.style.background=DB._pickColor='#fff2c6';
+  pick.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function abrirPote(){
+  const lista=DB.elogios&&DB.elogios.length?DB.elogios:CONFIG.elogios;
+  const frase=lista[Math.floor(Math.random()*lista.length)];
+  document.getElementById('jar-text').textContent=frase;
+  const box=document.querySelector('.jar-box');
+  box.style.transform='scale(1.04)';
+  setTimeout(()=>box.style.transform='scale(1)',180);
+}
+
+function falarPet(silent){
+  const lista=DB.petMensagens&&DB.petMensagens.length?DB.petMensagens:CONFIG.petMensagens;
+  const frase=lista[Math.floor(Math.random()*lista.length)];
+  const bubble=document.getElementById('pet-bubble');
+  bubble.textContent=frase;
+  bubble.style.display='block';
+  clearTimeout(window._petTimer);
+  window._petTimer=setTimeout(()=>bubble.style.display='none', silent?3200:2600);
+}
+
+/* ============================================================
+   SAVE
+   ============================================================ */
+function salvarAdmin(){
+  try{
+    DB.fotoPrincipal=document.getElementById('admFoto').value;
+    DB.dataInicio=document.getElementById('admData').value||CONFIG.dataInicio;
+    DB.senhaSite=document.getElementById('admSenha').value||CONFIG.senhaSite;
+    DB.tituloFeed=document.getElementById('admTitulo').value||CONFIG.tituloFeed;
+    DB.album=document.getElementById('admAlbum').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    DB.musicas=document.getElementById('admMusicas').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    DB.motivos=document.getElementById('admMotivos').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    DB.memes=document.getElementById('admMemes').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    DB.elogios=document.getElementById('admElogios').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    DB.petMensagens=document.getElementById('admPet').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    DB.linhaDoTempo=document.getElementById('admTimeline').value.split('\n').map(s=>s.trim()).filter(Boolean).map(line=>{
+      const idx=line.indexOf('|');
+      return idx===-1 ? {data:'',texto:line} : {data:line.slice(0,idx).trim(), texto:line.slice(idx+1).trim()};
+    });
+
+    localStorage.setItem("siteFeedDB", JSON.stringify(DB));
+    renderizarConteudo();
+    navTo('page-feed');
+  }catch(e){
+    alert("erro ao salvar! provavelmente as fotos são grandes demais pra memória do navegador. remova algumas e tenta de novo.");
+  }
+}
+
+/* scroll reveal */
+function checkScroll(){
+  document.querySelectorAll('.reveal').forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-100) el.classList.add('active');
+  });
+}
+window.addEventListener('scroll',checkScroll);
+</script>
 </body>
 </html>
