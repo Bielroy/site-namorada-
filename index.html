@@ -507,6 +507,7 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
     <p style="font-size:13px; text-align:center;">cliquem juntos pra juntar moedinhas e desbloquear itens</p>
     <div class="cozy-coins" id="cozy-coins-txt">0 moedinhas</div>
     <div id="cozy-pot">🍲</div>
+    <p id="cozy-hint" style="font-size:13px; text-align:center; color:var(--ink-soft); margin-bottom:10px;"></p>
     <div class="cozy-shelf" id="cozy-shelf"></div>
   </div>
 </div>
@@ -605,7 +606,6 @@ label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--in
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-storage-compat.js"></script>
 
 <script>
 /* ============================================================
@@ -622,7 +622,6 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-const storage = firebase.storage();
 const mainRef = db.collection('site').doc('main');
 const moodsRef = mainRef.collection('moods');
 const cofreRef = mainRef.collection('cofre');
@@ -877,12 +876,22 @@ function comprimirImagem(file, maxW, quality){
     reader.readAsDataURL(file);
   });
 }
+/* IMGBB: crie uma chave grátis (sem cartão) em https://api.imgbb.com/ e cole aqui */
+const IMGBB_API_KEY = "COLE_SUA_CHAVE_AQUI";
+
 async function uploadImagem(file, pasta){
+  if(!IMGBB_API_KEY || IMGBB_API_KEY==="COLE_SUA_CHAVE_AQUI"){
+    throw new Error('falta configurar a chave do ImgBB no código (IMGBB_API_KEY)');
+  }
   const blob = await comprimirImagem(file);
-  const nome = pasta+'/'+Date.now()+'_'+Math.random().toString(36).slice(2)+'.jpg';
-  const ref = storage.ref().child(nome);
-  await ref.put(blob);
-  return await ref.getDownloadURL();
+  const formData = new FormData();
+  formData.append('image', blob, 'foto.jpg');
+  const resp = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+    method:'POST', body: formData
+  });
+  const json = await resp.json();
+  if(!json.success) throw new Error((json.error && json.error.message) || 'falha no upload da imagem');
+  return json.data.url;
 }
 
 async function handleFotoPrincipal(ev){
@@ -1106,9 +1115,10 @@ async function enviarRecado(){
 }
 
 /* ============================================================
-   JOGO 1: ARCADE PEGA CORAÇÕES
+   JOGO 1: ARCADE PEGA CORAÇÕES (com colisão de verdade + bombas)
    ============================================================ */
-let arcadeState = {running:false, score:0, timeLeft:30, spawnTimer:null, tickTimer:null};
+let arcadeState = {running:false, score:0, timeLeft:30, combo:0, spawnTimer:null, tickTimer:null, rafId:null, items:[]};
+let basketX = 0;
 
 function abrirArcade(){
   document.getElementById('game-overlay').classList.add('active');
@@ -1119,6 +1129,7 @@ function abrirCozy(){
   document.getElementById('game-overlay').classList.add('active');
   document.getElementById('cozy-wrap').style.display='flex';
   document.getElementById('arcade-wrap').style.display='none';
+  atualizarCozyUI(cozyEstadoAtual);
 }
 function fecharJogo(){
   document.getElementById('game-overlay').classList.remove('active');
@@ -1129,12 +1140,16 @@ function iniciarArcade(){
   if(arcadeState.running) return;
   const field=document.getElementById('arcade-field');
   field.querySelectorAll('.arcade-heart').forEach(h=>h.remove());
-  arcadeState.running=true; arcadeState.score=0; arcadeState.timeLeft=30;
+  arcadeState.items=[];
+  arcadeState.running=true; arcadeState.score=0; arcadeState.timeLeft=30; arcadeState.combo=0;
   document.getElementById('arcade-score').textContent='0 pts';
   document.getElementById('arcade-timer').textContent='30s';
   document.getElementById('arcade-start-btn').disabled=true;
 
-  arcadeState.spawnTimer=setInterval(spawnArcadeHeart, 650);
+  basketX = field.clientWidth/2 - 32;
+  document.getElementById('arcade-basket').style.left = basketX+'px';
+
+  arcadeState.spawnTimer=setInterval(spawnArcadeHeart, 700);
   arcadeState.tickTimer=setInterval(()=>{
     arcadeState.timeLeft--;
     document.getElementById('arcade-timer').textContent=arcadeState.timeLeft+'s';
@@ -1144,37 +1159,91 @@ function iniciarArcade(){
   const basket=document.getElementById('arcade-basket');
   field.onmousemove = e=>{
     const rect=field.getBoundingClientRect();
-    basket.style.left = Math.max(0,Math.min(rect.width-64, e.clientX-rect.left-32))+'px';
+    basketX = Math.max(0,Math.min(rect.width-64, e.clientX-rect.left-32));
+    basket.style.left = basketX+'px';
   };
   field.ontouchmove = e=>{
     const rect=field.getBoundingClientRect();
     const t=e.touches[0];
-    basket.style.left = Math.max(0,Math.min(rect.width-64, t.clientX-rect.left-32))+'px';
+    basketX = Math.max(0,Math.min(rect.width-64, t.clientX-rect.left-32));
+    basket.style.left = basketX+'px';
     e.preventDefault();
   };
+
+  let lastTs=null;
+  function loop(ts){
+    if(!arcadeState.running) return;
+    if(lastTs===null) lastTs=ts;
+    const dt=(ts-lastTs)/1000; lastTs=ts;
+    const field=document.getElementById('arcade-field');
+    const fieldH=field.clientHeight;
+    const basketTop=fieldH-40;
+
+    for(let i=arcadeState.items.length-1;i>=0;i--){
+      const it=arcadeState.items[i];
+      it.y += it.vy*dt;
+      it.el.style.top=it.y+'px';
+
+      if(it.y+26>=basketTop && it.y<fieldH){
+        const itemCenter = it.x+13;
+        if(itemCenter>=basketX-6 && itemCenter<=basketX+70){
+          if(it.bomb){
+            arcadeState.score=Math.max(0, arcadeState.score-15);
+            arcadeState.combo=0;
+            flashCampo('#ff2a5f');
+          }else{
+            arcadeState.combo++;
+            const bonus = arcadeState.combo>0 && arcadeState.combo%5===0 ? 30 : 0;
+            arcadeState.score += 10 + bonus;
+            burstHearts(it.el.getBoundingClientRect().left, it.el.getBoundingClientRect().top, 6);
+          }
+          document.getElementById('arcade-score').textContent=arcadeState.score+' pts';
+          it.el.remove();
+          arcadeState.items.splice(i,1);
+          continue;
+        }
+      }
+      if(it.y>fieldH){
+        if(!it.bomb) arcadeState.combo=0;
+        it.el.remove();
+        arcadeState.items.splice(i,1);
+      }
+    }
+    arcadeState.rafId=requestAnimationFrame(loop);
+  }
+  arcadeState.rafId=requestAnimationFrame(loop);
+}
+function flashCampo(cor){
+  const field=document.getElementById('arcade-field');
+  field.style.boxShadow=`inset 0 0 40px ${cor}`;
+  setTimeout(()=>{ field.style.boxShadow=''; },200);
 }
 function spawnArcadeHeart(){
   const field=document.getElementById('arcade-field');
+  const isBomb = Math.random()<0.18;
   const h=document.createElement('div');
   h.className='arcade-heart pxheart';
-  paintPixels(h,HEART_MATRIX,7,'#ff2a5f');
-  h.style.left = Math.random()*(field.clientWidth-50)+'px';
+  if(isBomb){
+    h.textContent='💣';
+    h.style.fontSize='26px';
+    h.style.width='26px'; h.style.height='26px';
+  }else{
+    paintPixels(h,HEART_MATRIX,7,'#ff2a5f');
+  }
+  const x = Math.random()*(field.clientWidth-50);
+  h.style.left = x+'px';
   h.style.top='-30px';
-  h.style.transition='top linear';
-  h.style.transitionDuration=(2.2+Math.random()*1.6)+'s';
   field.appendChild(h);
-  requestAnimationFrame(()=>{ h.style.top=(field.clientHeight-20)+'px'; });
-  h.onclick=()=>{
-    arcadeState.score+=10;
-    document.getElementById('arcade-score').textContent=arcadeState.score+' pts';
-    h.remove();
-  };
-  setTimeout(()=>h.remove(), 4200);
+  const speed = 60 + Math.random()*70 + (30-arcadeState.timeLeft)*1.2;
+  arcadeState.items.push({el:h, x, y:-30, vy:speed, bomb:isBomb});
 }
 function pararArcade(){
   clearInterval(arcadeState.spawnTimer); clearInterval(arcadeState.tickTimer);
+  if(arcadeState.rafId) cancelAnimationFrame(arcadeState.rafId);
   arcadeState.running=false;
   document.getElementById('arcade-start-btn').disabled=false;
+  document.querySelectorAll('.arcade-heart').forEach(h=>h.remove());
+  arcadeState.items=[];
 }
 function finalizarArcade(){
   pararArcade();
@@ -1190,11 +1259,11 @@ function finalizarArcade(){
 function renderArcadeScoreboard(placar){
   const el=document.getElementById('arcade-scoreboard');
   if(!el) return;
-  el.innerHTML = placar.length ? placar.slice(0,5).map(p=>`<div>${p.nome}: ${p.pontos}</div>`).join('') : '';
+  el.innerHTML = placar.length ? placar.slice(0,5).map((p,i)=>`<div>${i===0?'👑 ':''}${p.nome}: ${p.pontos}</div>`).join('') : '';
 }
 
 /* ============================================================
-   JOGO 2: CANTINHO COZY
+   JOGO 2: CANTINHO COZY (incremento atômico + combo + celebração)
    ============================================================ */
 const COZY_ITEMS = [
   {id:'panela', nome:'panela nova', icone:'🍳', custo:10},
@@ -1204,26 +1273,67 @@ const COZY_ITEMS = [
   {id:'lareira', nome:'lareira', icone:'🔥', custo:140},
   {id:'quadro', nome:'quadro nosso', icone:'🖼️', custo:200},
 ];
-function cozyClick(){
-  cozyRef.get().then(snap=>{
-    const atual = snap.exists ? (snap.data().moedas||0) : 0;
-    cozyRef.set({moedas: atual+1}, {merge:true}).catch(err=>console.error(err));
-  });
+let cozyEstadoAtual = {moedas:0};
+let cozyUltimoClique = 0;
+let cozyCliqueStreak = 0;
+
+function cozyClick(ev){
+  const agora = Date.now();
+  cozyCliqueStreak = (agora - cozyUltimoClique < 600) ? cozyCliqueStreak+1 : 1;
+  cozyUltimoClique = agora;
+  const bonusRaro = Math.random()<0.08;
+  const ganho = bonusRaro ? 5 : (cozyCliqueStreak%10===0 ? 3 : 1);
+
+  const pot=document.getElementById('cozy-pot');
+  pot.style.transform='scale(1.2) rotate(-6deg)';
+  setTimeout(()=>{ pot.style.transform='scale(1)'; },110);
+
+  mostrarFloatCozy(ev, ganho, bonusRaro);
+  cozyRef.set({moedas: firebase.firestore.FieldValue.increment(ganho)}, {merge:true}).catch(err=>console.error(err));
+}
+function mostrarFloatCozy(ev, valor, bonus){
+  const pot=document.getElementById('cozy-pot');
+  const rect=pot.getBoundingClientRect();
+  const f=document.createElement('div');
+  f.textContent = (bonus?'✨ +':'+')+valor;
+  f.style.position='fixed';
+  f.style.left=(rect.left+rect.width/2-10)+'px';
+  f.style.top=(rect.top)+'px';
+  f.style.fontFamily='var(--font-pixel)';
+  f.style.fontSize=bonus?'16px':'13px';
+  f.style.color=bonus?'var(--yellow)':'var(--ink)';
+  f.style.zIndex=6000;
+  f.style.pointerEvents='none';
+  f.style.transition='transform .8s ease-out, opacity .8s ease-out';
+  document.body.appendChild(f);
+  requestAnimationFrame(()=>{ f.style.transform='translateY(-50px)'; f.style.opacity='0'; });
+  setTimeout(()=>f.remove(),820);
 }
 function renderCozy(data){
+  const moedasAnteriores = cozyEstadoAtual.moedas||0;
+  cozyEstadoAtual = data;
+  atualizarCozyUI(data, moedasAnteriores);
+}
+function atualizarCozyUI(data, moedasAnteriores){
   const moedas = data.moedas||0;
   const coinsEl=document.getElementById('cozy-coins-txt');
   if(coinsEl) coinsEl.textContent = moedas+' moedinhas';
   const shelf=document.getElementById('cozy-shelf');
-  if(shelf){
-    shelf.innerHTML = COZY_ITEMS.map(it=>{
-      const unlocked = moedas>=it.custo;
-      return `<div class="cozy-item ${unlocked?'unlocked':''}">${it.icone}<small>${unlocked?it.nome:'💗 '+it.custo}</small></div>`;
-    }).join('');
+  if(!shelf) return;
+  let proximoItem=null;
+  shelf.innerHTML = COZY_ITEMS.map(it=>{
+    const unlocked = moedas>=it.custo;
+    const acabouDeDesbloquear = unlocked && moedasAnteriores!==undefined && moedasAnteriores<it.custo;
+    if(!unlocked && !proximoItem) proximoItem=it;
+    return `<div class="cozy-item ${unlocked?'unlocked':''}" style="${acabouDeDesbloquear?'animation: complete-glow 1s ease-in-out 2;':''}">${it.icone}<small>${unlocked?it.nome:'💗 '+it.custo}</small></div>`;
+  }).join('');
+  const hintEl=document.getElementById('cozy-hint');
+  if(hintEl){
+    hintEl.textContent = proximoItem ? `faltam ${proximoItem.custo-moedas} moedinhas pro(a) "${proximoItem.nome}" ${proximoItem.icone}` : 'vocês desbloquearam tudo! 🥳';
   }
 }
 document.addEventListener('click', e=>{
-  if(e.target && e.target.id==='cozy-pot') cozyClick();
+  if(e.target && e.target.id==='cozy-pot') cozyClick(e);
 });
 
 /* ============================================================
