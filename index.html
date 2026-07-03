@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   TOKENS - TEMA DARK ROMÂNTICO
+   TOKENS - TEMA DARK ROMÂNTICO (cores originais mantidas)
    ============================================================ */
 :root {
   --bg-top: #1a0b14;
@@ -20,15 +20,14 @@
   --mint: #3fae70;
   --mint-dark: #1e663e;
   --purple: #8a4baf;
+  --purple-dark: #5b3175;
   --ink: #ffe8ef;
   --ink-soft: #ffb3c6;
   --card: rgba(25, 10, 18, 0.95);
   --card-line: #ff2a5f;
-  --px: 4px;
   --font-pixel: 'Press Start 2P', monospace;
   --font-body: 'Baloo 2', sans-serif;
-  
-  /* Cores das Raridades */
+
   --rarity-comum: #8c8c8c;
   --rarity-raro: #2196f3;
   --rarity-epico: #9c27b0;
@@ -50,7 +49,6 @@ body {
   position: relative;
 }
 
-/* Formas Pixeladas */
 .pixel {
   clip-path:polygon(
     0 12px,12px 12px,12px 0,
@@ -96,21 +94,32 @@ small {font-family:var(--font-body);}
 .btn:active {transform:translate(4px,4px); box-shadow:0 0 0 #000;}
 .btn-yellow {background:var(--yellow-dark); color:#fff;}
 .btn-green {background:var(--mint-dark);}
+.btn-purple {background:var(--purple-dark);}
 .btn-dark {background:#11050d; border-color:var(--pink);}
 .btn-small {font-size:10px; padding:10px 14px;}
 .btn-full {width:100%; margin-bottom:12px;}
+.btn:disabled {opacity:.5; cursor:wait;}
 
-/* Animação do Coração Intro */
-@keyframes pulse-heart {
-  0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--pink)); }
-  50% { transform: scale(1.15); filter: drop-shadow(0 0 20px var(--pink)); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--pink)); }
+/* Ícones em selo pixelado - unifica a linguagem visual de todos os emojis-ícone */
+.icon-badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; font-size:22px;
+  background:#11050d; border:3px solid var(--card-line);
+  box-shadow:3px 3px 0 #000; flex-shrink:0;
 }
-.pulse-anim {
-  animation: pulse-heart 1.5s infinite;
-}
+.icon-badge.lg {width:60px; height:60px; font-size:30px;}
+.icon-badge.gold {border-color:var(--yellow-dark); box-shadow:3px 3px 0 var(--yellow-dark);}
+.icon-badge.mint {border-color:var(--mint); box-shadow:3px 3px 0 var(--mint-dark);}
+.icon-badge.purple {border-color:var(--purple); box-shadow:3px 3px 0 var(--purple-dark);}
 
-/* Background Hearts */
+/* Animação do coração - AGORA COM MAIS ESPAÇO, sem sobrepor texto */
+@keyframes float-heart {
+  0%   { transform: translateY(0) scale(1); filter: drop-shadow(0 0 6px var(--pink)); }
+  50%  { transform: translateY(-10px) scale(1.08); filter: drop-shadow(0 0 14px var(--pink)); }
+  100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 6px var(--pink)); }
+}
+.pulse-anim { animation: float-heart 1.8s ease-in-out infinite; }
+
 #heart-field {position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden;}
 .bg-heart {position:absolute; opacity:.15; animation:drift linear infinite;}
 @keyframes drift {
@@ -119,13 +128,11 @@ small {font-family:var(--font-body);}
 }
 .pxheart {position:relative;}
 
-/* Páginas */
 .page {display:none; min-height:100vh; flex-direction:column; align-items:center; justify-content:center; padding:24px; width:100%; position:relative; z-index:2;}
 .page.active {display:flex; animation:fadeIn .5s ease forwards;}
 @keyframes fadeIn {from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
 .card {max-width:480px; width:100%; text-align:center; padding:40px 26px;}
 
-/* Splash */
 #splash-screen {position:fixed; inset:0; background:var(--bg-top); z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; color:#fff;}
 .loadbar {width:220px; height:20px; border:3px solid var(--pink); background:rgba(255,42,95,.2); position:relative; overflow:hidden;}
 .loadbar-fill {height:100%; width:0%; background:var(--pink); animation:load 1.4s ease forwards;}
@@ -136,18 +143,22 @@ small {font-family:var(--font-body);}
 #btn-nao {transition:top .18s, left .18s;}
 #btn-nao.roaming {position:fixed; z-index:50;}
 
-/* Formulários */
-input, textarea {
+input, textarea, select {
   width:100%; padding:14px; margin-bottom:12px; border:3px solid var(--pink-dark);
   font-size:16px; font-family:var(--font-body); font-weight:700; background:#11050d;
   outline:none; color:var(--ink);
 }
-input:focus, textarea:focus {border-color:var(--yellow);}
+input:focus, textarea:focus, select:focus {border-color:var(--yellow);}
 #pwdError {color:var(--pink); display:none; margin-top:10px; font-size:15px; font-weight:800;}
+label.field-label {font-family:var(--font-pixel); font-size:10px; color:var(--ink-soft); display:block; margin-bottom:8px;}
 
-/* Feed */
 #feed-container {max-width:760px; width:100%; padding:36px 0; display:flex; flex-direction:column; gap:34px;}
-.feed-section {padding:34px 24px; text-align:center;}
+.feed-section {padding:34px 24px; text-align:center; border-left-width:8px !important;}
+.feed-section.tone-pink {border-left-color:var(--pink) !important;}
+.feed-section.tone-gold {border-left-color:var(--yellow-dark) !important; box-shadow: inset 0 0 24px rgba(255,215,0,.08);}
+.feed-section.tone-mint {border-left-color:var(--mint) !important; box-shadow: inset 0 0 24px rgba(63,174,112,.1);}
+.feed-section.tone-purple {border-left-color:var(--purple) !important; box-shadow: inset 0 0 24px rgba(138,75,175,.12);}
+
 .eyebrow {font-family:var(--font-pixel); font-size:10px; color:var(--yellow); letter-spacing:1px; margin-bottom:10px; display:inline-block;}
 .reveal {opacity:0; transform:translateY(60px); transition:all .7s cubic-bezier(.25,.8,.25,1);}
 .reveal.active {opacity:1; transform:translateY(0);}
@@ -157,20 +168,31 @@ input:focus, textarea:focus {border-color:var(--yellow);}
 .counter-item span {display:block; font-family:var(--font-pixel); font-size:22px; color:var(--pink);}
 .counter-item small {font-size:11px; font-weight:800; text-transform:uppercase; color:var(--ink-soft);}
 
-/* Conquistas / Troféus */
+/* Conquistas animadas */
 .achievement-grid {display: flex; flex-direction: column; gap: 16px; margin-top: 20px;}
-.achiev-card {background: #11050d; border: 3px solid var(--card-line); padding: 16px; text-align: left; position: relative;}
-.achiev-header {display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;}
-.achiev-title {font-weight: 800; font-size: 16px; color: var(--ink);}
-.achiev-badge {font-family: var(--font-pixel); font-size: 9px; padding: 4px 8px; border: 2px solid #000;}
-.achiev-bar-bg {width: 100%; height: 16px; background: rgba(255,255,255,0.1); border: 2px solid #000; position: relative; overflow: hidden;}
-.achiev-bar-fill {height: 100%; transition: width 0.5s ease;}
+.achiev-card {background: #11050d; border: 3px solid var(--card-line); padding: 16px; text-align: left; position: relative; overflow:hidden;}
+.achiev-card.complete {animation: complete-glow 1.8s ease-in-out infinite;}
+@keyframes complete-glow {
+  0%,100% { box-shadow: 0 0 0px rgba(255,215,0,0); }
+  50% { box-shadow: 0 0 22px rgba(255,215,0,.55); }
+}
+.achiev-header {display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap:10px;}
+.achiev-title {display:flex; align-items:center; gap:10px; font-weight: 800; font-size: 16px; color: var(--ink);}
+.achiev-badge {font-family: var(--font-pixel); font-size: 9px; padding: 4px 8px; border: 2px solid #000; flex-shrink:0;}
+.achiev-bar-bg {width: 100%; height: 18px; background: rgba(255,255,255,0.1); border: 2px solid #000; position: relative; overflow: hidden;}
+.achiev-bar-fill {height: 100%; transition: width 0.6s cubic-bezier(.25,.8,.25,1); background-size: 200% 100%; animation: shine 2.4s linear infinite;}
+@keyframes shine { 0%{background-position:0% 0;} 100%{background-position:200% 0;} }
 .achiev-progress-text {font-size: 12px; font-weight: bold; margin-top: 6px; text-align: right; color: var(--ink-soft);}
+.achiev-stamp {position:absolute; top:8px; right:8px; font-family:var(--font-pixel); font-size:9px; color:var(--yellow); display:none;}
+.achiev-card.complete .achiev-stamp {display:block;}
 
-/* Planos Futuros */
-.plan-item {background: #11050d; border: 3px dashed var(--pink); padding: 16px; margin-bottom: 12px; text-align: center;}
-.plan-title {font-weight: 800; color: var(--yellow); font-size: 18px; margin-bottom: 8px;}
-.plan-countdown {font-family: var(--font-pixel); font-size: 12px; color: var(--ink);}
+/* Sonhos/planos com foto */
+.plan-item {background: #11050d; border: 3px dashed var(--pink); padding: 14px; margin-bottom: 14px; display:flex; gap:14px; align-items:center; text-align:left;}
+.plan-photo {width:74px; height:74px; object-fit:cover; border:3px solid var(--card-line); flex-shrink:0; background:#000;}
+.plan-photo.empty {display:flex; align-items:center; justify-content:center; font-size:24px;}
+.plan-body {flex:1; min-width:0;}
+.plan-title {font-weight: 800; color: var(--yellow); font-size: 17px; margin-bottom: 6px;}
+.plan-countdown {font-family: var(--font-pixel); font-size: 11px; color: var(--ink); line-height:1.8;}
 
 .album-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-top:18px;}
 .album-grid figure {margin:0;}
@@ -182,16 +204,78 @@ input:focus, textarea:focus {border-color:var(--yellow);}
 .meme-grid {display:flex; flex-direction:column; gap:16px; margin-top:18px;}
 .meme-card {background:#11050d; border:3px solid var(--card-line); box-shadow:4px 4px 0 #000; overflow:hidden;}
 .meme-card img {width:100%; object-fit:cover; display:block;}
-.meme-card iframe {width:100%; height: 400px; border: none;}
+.meme-card iframe {width:100%; height: 400px; border: none; display:block;}
 .meme-card figcaption {font-size:13px; font-weight:800; padding:12px; color:var(--ink);}
+
+/* Música - moldura justa ao player, sem sobra */
+.music-item {border:3px solid var(--card-line); box-shadow:4px 4px 0 #000; margin-bottom:14px; line-height:0; overflow:hidden;}
+.music-item iframe {display:block; width:100%; height:152px; border:none;}
 
 .mood-options {display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:18px 0;}
 .mood-btn {font-size:30px; background:#11050d; border:3px solid var(--card-line); padding:10px 14px; cursor:pointer; box-shadow:3px 3px 0 #000;}
-.mood-log {margin-top:16px; text-align:left; max-height:200px; overflow-y:auto;}
+.mood-btn:active {transform:translate(3px,3px); box-shadow:0 0 0 #000;}
+.mood-log {margin-top:16px; text-align:left; max-height:220px; overflow-y:auto;}
 .mood-log-item {font-size:13px; font-weight:700; background:#11050d; border:2px solid var(--card-line); padding:8px 12px; margin-bottom:6px; display:flex; justify-content:space-between; gap:10px;}
 
 .jar-box {background:#11050d; border:4px solid var(--card-line); padding:24px; margin-top:14px; box-shadow:5px 5px 0 var(--yellow); min-height:70px; display:flex; align-items:center; justify-content:center;}
 #jar-text {font-weight:800; font-size:17px; color:var(--yellow);}
+
+/* Linha do tempo */
+.timeline-wrap {margin-top:22px; position:relative; text-align:left;}
+.timeline-wrap::before {content:''; position:absolute; left:37px; top:0; bottom:0; width:4px; background:var(--pink-dark);}
+.tl-item {position:relative; padding-left:88px; margin-bottom:26px;}
+.tl-dot {position:absolute; left:22px; top:0; width:34px; height:34px; background:var(--yellow-dark); border:3px solid #000; box-shadow:2px 2px 0 #000; display:flex; align-items:center; justify-content:center; font-size:15px;}
+.tl-card {background:#11050d; border:3px solid var(--card-line); padding:14px; box-shadow:4px 4px 0 #000;}
+.tl-date {font-family:var(--font-pixel); font-size:10px; color:var(--yellow); margin-bottom:8px; display:block;}
+.tl-title {font-weight:800; font-size:16px; margin-bottom:6px; color:var(--ink);}
+.tl-desc {font-size:14px; font-weight:600; color:var(--ink-soft); margin-bottom:0;}
+.tl-photo {width:100%; max-height:220px; object-fit:cover; border:3px solid var(--card-line); margin-top:10px;}
+
+/* Lugares pra visitar */
+.place-item {display:flex; align-items:center; gap:14px; background:#11050d; border:3px solid var(--card-line); padding:12px; margin-bottom:10px; text-align:left;}
+.place-photo {width:56px; height:56px; object-fit:cover; border:2px solid var(--card-line); flex-shrink:0; background:#000;}
+.place-name {flex:1; font-weight:800; font-size:16px;}
+.place-name.done {text-decoration:line-through; color:var(--ink-soft);}
+.place-check {width:30px; height:30px; flex-shrink:0; accent-color:var(--mint);}
+
+/* Cofre */
+.cofre-total {font-family:var(--font-pixel); font-size:30px; color:var(--yellow); margin:14px 0;}
+.cofre-bar-bg {width:100%; height:24px; background:rgba(255,255,255,.1); border:2px solid #000; margin-bottom:8px;}
+.cofre-bar-fill {height:100%; background:linear-gradient(90deg,var(--mint-dark),var(--mint)); transition:width .6s;}
+.cofre-hist {margin-top:16px; max-height:200px; overflow-y:auto; text-align:left;}
+.cofre-hist-item {font-size:13px; font-weight:700; background:#11050d; border:2px solid var(--card-line); padding:8px 12px; margin-bottom:6px; display:flex; justify-content:space-between; gap:10px;}
+.cofre-form {display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+.cofre-form input {flex:1; min-width:120px; margin-bottom:0;}
+
+/* Recados */
+.recado-form textarea {min-height:80px; resize:vertical;}
+.recado-list {margin-top:16px; text-align:left; max-height:280px; overflow-y:auto; display:flex; flex-direction:column-reverse; gap:10px;}
+.recado-item {background:#11050d; border:2px solid var(--card-line); padding:10px 14px;}
+.recado-quem {font-family:var(--font-pixel); font-size:9px; color:var(--yellow); margin-bottom:6px; display:block;}
+
+/* Jogos */
+.game-menu {display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+.game-tile {background:#11050d; border:3px solid var(--card-line); padding:20px; text-align:left; display:flex; align-items:center; gap:16px; cursor:pointer; box-shadow:4px 4px 0 #000;}
+.game-tile:active {transform:translate(3px,3px); box-shadow:0 0 0 #000;}
+.game-tile-title {font-weight:800; font-size:17px; margin-bottom:4px;}
+.game-tile-desc {font-size:13px; color:var(--ink-soft); font-weight:700;}
+#game-overlay {position:fixed; inset:0; z-index:5000; background:rgba(10,4,8,.97); display:none; flex-direction:column; align-items:center; padding:20px; overflow-y:auto;}
+#game-overlay.active {display:flex;}
+.game-close {position:sticky; top:0; align-self:flex-end; margin-bottom:10px;}
+#arcade-field {width:100%; max-width:420px; height:60vh; background:#0d0509; border:4px solid var(--pink); position:relative; overflow:hidden; touch-action:none;}
+.arcade-heart {position:absolute; cursor:pointer;}
+#arcade-basket {position:absolute; bottom:6px; width:64px; height:34px; background:var(--yellow-dark); border:3px solid #000; left:50%; transform:translateX(-50%);}
+#arcade-hud {display:flex; justify-content:space-between; width:100%; max-width:420px; font-family:var(--font-pixel); font-size:12px; color:var(--yellow); margin-bottom:10px;}
+.score-board {display:flex; gap:16px; margin-top:14px; font-family:var(--font-pixel); font-size:11px;}
+.score-board div {background:#11050d; border:2px solid var(--card-line); padding:10px 14px;}
+
+#cozy-pot {font-size:70px; cursor:pointer; user-select:none; text-align:center; margin:20px 0; transition:transform .08s;}
+#cozy-pot:active {transform:scale(.9);}
+.cozy-coins {font-family:var(--font-pixel); font-size:20px; color:var(--yellow); text-align:center; margin-bottom:16px;}
+.cozy-shelf {display:grid; grid-template-columns:repeat(auto-fit,minmax(70px,1fr)); gap:10px; max-width:420px; width:100%;}
+.cozy-item {background:#11050d; border:2px solid var(--card-line); padding:12px; text-align:center; font-size:28px; opacity:.25;}
+.cozy-item.unlocked {opacity:1; box-shadow:2px 2px 0 var(--yellow-dark);}
+.cozy-item small {display:block; font-size:9px; margin-top:6px; color:var(--ink-soft);}
 
 /* Admin */
 #page-admin {justify-content:flex-start;}
@@ -199,20 +283,29 @@ input:focus, textarea:focus {border-color:var(--yellow);}
 .admin-card label {font-family:var(--font-pixel); font-size:11px; color:var(--pink); display:block; margin:18px 0 8px;}
 .admin-card p.hint {font-size:13px; color:var(--ink-soft); font-weight:700; margin-bottom:10px;}
 .admin-card hr {border:none; border-top:3px dashed var(--pink-dark); margin:26px 0;}
+.admin-section-title {font-family:var(--font-pixel); font-size:14px; color:var(--yellow); margin-bottom:6px; display:flex; align-items:center; gap:10px;}
+.dyn-card {background:#11050d; border:3px solid var(--card-line); padding:16px; margin-bottom:14px; position:relative;}
+.dyn-card .remove-btn {position:absolute; top:10px; right:10px; background:var(--pink-dark); border:2px solid #000; color:#fff; width:30px; height:30px; cursor:pointer; font-weight:800;}
+.dyn-thumb-row {display:flex; align-items:center; gap:12px; margin-top:8px;}
+.dyn-thumb {width:60px; height:60px; object-fit:cover; border:2px solid var(--card-line); background:#000;}
+.upload-status {font-size:12px; font-weight:800; color:var(--yellow);}
+.grid-2 {display:grid; grid-template-columns:1fr 1fr; gap:10px;}
 
-/* Mascot */
 #pixel-pet {position:fixed; bottom:18px; right:18px; z-index:1000; cursor:pointer; transition:transform .2s;}
 #pixel-pet:hover {transform:scale(1.1) rotate(-4deg);}
 #pet-bubble {position:fixed; bottom:100px; right:18px; max-width:210px; background:#11050d; border:3px solid var(--pink); padding:12px 14px; font-weight:800; font-size:13px; box-shadow:4px 4px 0 #000; z-index:1001; display:none; color:var(--ink);}
 
 .admin-btn {position:fixed; bottom:18px; left:18px; background:#11050d; color:#fff; width:52px; height:52px; display:flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer; box-shadow:3px 3px 0 var(--pink); z-index:1000; opacity:.5; transition:.2s; border: 2px solid var(--pink);}
 .admin-btn:hover {opacity:1; transform:rotate(90deg);}
+
+#save-toast {position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-80px); background:var(--mint-dark); border:3px solid #000; padding:14px 20px; font-family:var(--font-pixel); font-size:11px; z-index:6000; transition:transform .3s; box-shadow:4px 4px 0 #000;}
+#save-toast.show {transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
 
 <div id="heart-field"></div>
-<template id="tpl-pixel-heart"><div class="pxheart"></div></template>
+<div id="save-toast">salvo! ✅</div>
 
 <!-- 1. SPLASH -->
 <div id="splash-screen">
@@ -227,8 +320,7 @@ input:focus, textarea:focus {border-color:var(--yellow);}
     <img id="intro-foto" class="avatar" src="" style="display:none;" onerror="this.style.display='none'">
     <span class="eyebrow">💌 vc tem 1 nova mensagem</span>
     <h1>tem uma cartinha pra você...</h1>
-    <!-- Adicionada classe pulse-anim para chamar a atenção -->
-    <div id="envelope-heart" class="pxheart pulse-anim" style="cursor:pointer; margin:30px auto;" onclick="navTo('page-question')"></div>
+    <div id="envelope-heart" class="pxheart pulse-anim" style="cursor:pointer; margin:40px auto 55px;" onclick="navTo('page-question')"></div>
     <p style="color:var(--ink-soft); font-size:14px;">(toca no coraçãozinho pra abrir)</p>
   </div>
 </div>
@@ -268,71 +360,126 @@ input:focus, textarea:focus {border-color:var(--yellow);}
 <div id="page-feed" class="page" style="justify-content:flex-start; padding-top:40px;">
   <div id="feed-container">
 
-    <div class="feed-section glass pixel reveal">
+    <div class="feed-section glass pixel reveal tone-pink">
       <div id="feed-heart" class="pxheart" style="margin:0 auto 10px;"></div>
       <h1 id="feed-title" style="font-size:26px;">é minha namorada mesmo!! 🥹</h1>
       <p>olha só quanto tempo já passamos juntos:</p>
       <div class="counter-box" id="master-counter"></div>
     </div>
 
-    <!-- NOVA SEÇÃO: PLANOS FUTUROS -->
-    <div class="feed-section glass pixel reveal">
-      <span class="eyebrow">ansiedade boa</span>
-      <h2>✈️ nossos próximos planos</h2>
-      <p>contagem regressiva para os nossos sonhos:</p>
-      <div id="render-planos" style="margin-top:16px;"></div>
+    <div class="feed-section glass pixel reveal tone-gold">
+      <span class="icon-badge gold lg">✈️</span>
+      <h2 style="margin-top:12px;">nossos próximos sonhos</h2>
+      <p>contagem regressiva pros nossos planos:</p>
+      <div id="render-planos"></div>
     </div>
 
-    <!-- NOVA SEÇÃO: CONQUISTAS -->
-    <div class="feed-section glass pixel reveal">
-      <span class="eyebrow">fase desbloqueada</span>
-      <h2>🏆 nossas conquistas</h2>
+    <div class="feed-section glass pixel reveal tone-gold">
+      <span class="icon-badge gold lg">🕰️</span>
+      <h2 style="margin-top:12px;">linha do tempo</h2>
+      <p>os capítulos da nossa história.</p>
+      <div class="timeline-wrap" id="render-timeline"></div>
+    </div>
+
+    <div class="feed-section glass pixel reveal tone-purple">
+      <span class="icon-badge purple lg">🏆</span>
+      <h2 style="margin-top:12px;">nossas conquistas</h2>
       <p>níveis do nosso amor (como num joguinho):</p>
       <div class="achievement-grid" id="render-conquistas"></div>
     </div>
 
-    <div class="feed-section glass pixel reveal">
+    <div class="feed-section glass pixel reveal tone-mint">
+      <span class="icon-badge mint lg">🗺️</span>
+      <h2 style="margin-top:12px;">lugares pra visitar</h2>
+      <p>nossa lista de sonhos geográficos:</p>
+      <div id="render-lugares"></div>
+    </div>
+
+    <div class="feed-section glass pixel reveal tone-mint">
+      <span class="icon-badge mint lg">🐷</span>
+      <h2 style="margin-top:12px;">cofrinho do casal</h2>
+      <p>guardando uma grana pros nossos planos:</p>
+      <div class="cofre-total" id="cofre-total">R$ 0,00</div>
+      <div class="cofre-bar-bg"><div class="cofre-bar-fill" id="cofre-bar" style="width:0%"></div></div>
+      <div class="cofre-form">
+        <input type="text" id="cofreQuem" placeholder="quem tá guardando?">
+        <input type="number" id="cofreValor" placeholder="R$ valor" step="0.01">
+      </div>
+      <input type="text" id="cofreNota" placeholder="pra quê? (opcional)">
+      <button class="btn btn-green btn-full" onclick="adicionarCofre()">guardar 💰</button>
+      <div class="cofre-hist" id="cofre-hist"></div>
+    </div>
+
+    <div class="feed-section glass pixel reveal tone-pink">
       <span class="eyebrow">álbum / sonhos realizados</span>
       <h2>📸 nossos momentos</h2>
       <p>memórias e sonhos que já realizamos.</p>
       <div class="album-grid" id="render-album"></div>
     </div>
 
-    <div class="feed-section glass pixel reveal">
+    <div class="feed-section glass pixel reveal tone-pink">
       <span class="eyebrow">trilha sonora</span>
       <h2>🎵 nossa playlist</h2>
-      <div id="render-music" style="margin-top:16px;"></div>
+      <div id="render-music" style="margin-top:18px;"></div>
     </div>
 
-    <div class="feed-section glass pixel reveal">
+    <div class="feed-section glass pixel reveal tone-pink">
       <span class="eyebrow">motivos</span>
       <h2>🫙 motivos pra te amar</h2>
       <div id="render-reasons" style="text-align:left; margin-top:16px;"></div>
       <button class="btn btn-yellow btn-small" onclick="sortearMotivo()">🎲 sortear um motivo</button>
     </div>
 
-    <div class="feed-section glass pixel reveal">
+    <div class="feed-section glass pixel reveal tone-pink">
       <span class="eyebrow">memes nossos</span>
       <h2>😂 humor da gente</h2>
       <p>os reels do instagram ou fotos engraçadas.</p>
       <div class="meme-grid" id="render-memes"></div>
     </div>
 
-    <div class="feed-section glass pixel reveal">
+    <div class="feed-section glass pixel reveal tone-pink">
       <span class="eyebrow">diário</span>
       <h2>🌤️ como você tá hoje?</h2>
       <div class="mood-options" id="mood-options"></div>
       <div class="mood-log" id="mood-log"></div>
     </div>
 
-    <div class="feed-section glass pixel reveal">
+    <div class="feed-section glass pixel reveal tone-pink">
       <span class="eyebrow">potinho</span>
       <h2>🍯 pote de elogios</h2>
       <button class="btn btn-green" onclick="abrirPote()">abrir potinho 🍯</button>
       <div class="jar-box"><span id="jar-text">seu elogio vai aparecer aqui ✨</span></div>
     </div>
 
-    <div class="feed-section glass pixel reveal" style="border:4px solid var(--pink);">
+    <div class="feed-section glass pixel reveal tone-purple">
+      <span class="icon-badge purple lg">💌</span>
+      <h2 style="margin-top:12px;">deixar um recado</h2>
+      <p>manda uma mensagem e ela recebe notificação na hora.</p>
+      <div class="recado-form">
+        <input type="text" id="recadoQuem" placeholder="seu nome">
+        <textarea id="recadoTexto" placeholder="escreve algo fofo..."></textarea>
+        <button class="btn btn-purple btn-full" onclick="enviarRecado()">enviar 💌</button>
+      </div>
+      <div class="recado-list" id="render-recados"></div>
+    </div>
+
+    <div class="feed-section glass pixel reveal tone-purple">
+      <span class="icon-badge purple lg">🎮</span>
+      <h2 style="margin-top:12px;">joguinhos a dois</h2>
+      <p>pra matar o tempo juntos:</p>
+      <div class="game-menu">
+        <div class="game-tile" onclick="abrirArcade()">
+          <span class="icon-badge lg">💗</span>
+          <div><div class="game-tile-title">pega corações</div><div class="game-tile-desc">arcade rápido de 30 segundos, valendo recorde</div></div>
+        </div>
+        <div class="game-tile" onclick="abrirCozy()">
+          <span class="icon-badge lg">🍲</span>
+          <div><div class="game-tile-title">nosso cantinho cozy</div><div class="game-tile-desc">juntem moedinhas e decorem um cantinho, no seu ritmo</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feed-section glass pixel reveal tone-pink" style="border:4px solid var(--pink);">
       <div id="final-heart" class="pxheart" style="margin:0 auto 10px;"></div>
       <h1>a maior surpresa...</h1>
       <p style="font-size:20px; font-weight:800; margin-top:10px;">é ter você na minha vida.</p>
@@ -342,17 +489,43 @@ input:focus, textarea:focus {border-color:var(--yellow);}
   </div>
 </div>
 
+<!-- OVERLAY DE JOGOS -->
+<div id="game-overlay">
+  <button class="btn btn-dark game-close" onclick="fecharJogo()">fechar ✖️</button>
+
+  <div id="arcade-wrap" style="display:none; flex-direction:column; align-items:center; width:100%;">
+    <h2 style="margin-bottom:14px;">💗 pega corações</h2>
+    <div id="arcade-hud"><span id="arcade-timer">30s</span><span id="arcade-score">0 pts</span></div>
+    <div id="arcade-field"><div id="arcade-basket"></div></div>
+    <input type="text" id="arcadeNome" placeholder="seu nome pro placar" style="max-width:420px; margin-top:14px;">
+    <button class="btn btn-green" id="arcade-start-btn" onclick="iniciarArcade()">começar ▶️</button>
+    <div class="score-board" id="arcade-scoreboard"></div>
+  </div>
+
+  <div id="cozy-wrap" style="display:none; flex-direction:column; align-items:center; width:100%;">
+    <h2 style="margin-bottom:6px;">🍲 nosso cantinho cozy</h2>
+    <p style="font-size:13px; text-align:center;">cliquem juntos pra juntar moedinhas e desbloquear itens</p>
+    <div class="cozy-coins" id="cozy-coins-txt">0 moedinhas</div>
+    <div id="cozy-pot">🍲</div>
+    <div class="cozy-shelf" id="cozy-shelf"></div>
+  </div>
+</div>
+
 <!-- 7. ADMIN -->
 <div id="page-admin" class="page">
   <div class="glass pixel admin-card">
     <h1 style="font-size:22px;">⚙️ configurar nosso arquivo</h1>
-    <p class="hint">Tudo salvo aqui fica guardado no aparelho atual.</p>
+    <p class="hint">Tudo aqui é salvo na nuvem e sincroniza pros dois na hora.</p>
 
+    <div class="admin-section-title">📷 capa</div>
     <label>foto principal</label>
-    <input type="text" id="admFoto" placeholder="URL da imagem (opcional)">
-    <label class="btn btn-small btn-dark" style="cursor:pointer;">📷 escolher da galeria
-      <input type="file" accept="image/*" style="display:none;" onchange="uparFotoUnica(event,'admFoto')">
-    </label>
+    <div class="dyn-thumb-row">
+      <img class="dyn-thumb" id="admFotoPreview" src="" style="display:none;">
+      <label class="btn btn-small btn-dark" style="cursor:pointer;">escolher da galeria
+        <input type="file" accept="image/*" style="display:none;" onchange="handleFotoPrincipal(event)">
+      </label>
+      <span class="upload-status" id="admFotoStatus"></span>
+    </div>
 
     <label>data do pedido de namoro (início do contador principal)</label>
     <input type="datetime-local" id="admData">
@@ -362,50 +535,64 @@ input:focus, textarea:focus {border-color:var(--yellow);}
     <input type="text" id="admSenha" placeholder="ex: 15032026">
     <label>título de boas-vindas</label>
     <input type="text" id="admTitulo">
+    <label>tópico do ntfy (notificação dos recados)</label>
+    <input type="text" id="admNtfy" placeholder="ex: voce-e-ela-9k27fx">
 
     <hr>
-    <label>✈️ planos futuros (contagem regressiva)</label>
-    <p class="hint">formato: Nome do Plano | Data (AAAA-MM-DDTHH:MM) <br> ex: Viagem pra Praia | 2026-12-25T10:00</p>
-    <textarea id="admPlanos" rows="3"></textarea>
+    <div class="admin-section-title">✈️ sonhos / planos futuros <button class="btn btn-small btn-yellow" onclick="addPlanoCard()">+ adicionar</button></div>
+    <p class="hint">nome, data e uma foto (opcional) pra cada sonho.</p>
+    <div id="planos-cards"></div>
 
     <hr>
-    <label>🏆 sistema de conquistas (troféus)</label>
-    <p class="hint">formato: Nome | Progresso Atual | Meta | Raridade (Comum, Raro, Epico, Lendario)<br>ex: Sair pra comer pizza | 10 | 25 | Epico</p>
-    <textarea id="admConquistas" rows="4"></textarea>
+    <div class="admin-section-title">🕰️ linha do tempo <button class="btn btn-small btn-yellow" onclick="addTimelineCard()">+ adicionar</button></div>
+    <p class="hint">os marcos da relação, em ordem cronológica.</p>
+    <div id="timeline-cards"></div>
 
     <hr>
-    <label>📸 álbum / sonhos realizados</label>
-    <p class="hint">formato: url | legenda. (Ou envie múltiplas fotos)</p>
-    <label class="btn btn-small btn-dark" style="cursor:pointer; width:100%; text-align:center; display:block;">🖼️ enviar fotos
-      <input type="file" accept="image/*" multiple style="display:none;" onchange="uparFotosAlbum(event)">
+    <div class="admin-section-title">🏆 conquistas <button class="btn btn-small btn-yellow" onclick="addConquistaCard()">+ adicionar</button></div>
+    <div id="conquistas-cards"></div>
+
+    <hr>
+    <div class="admin-section-title">🗺️ lugares pra visitar <button class="btn btn-small btn-yellow" onclick="addLugarCard()">+ adicionar</button></div>
+    <div id="lugares-cards"></div>
+
+    <hr>
+    <div class="admin-section-title">🐷 cofrinho</div>
+    <label>meta (R$)</label>
+    <input type="number" id="admCofreMeta" placeholder="ex: 2000" step="0.01">
+
+    <hr>
+    <div class="admin-section-title">📸 álbum <button class="btn btn-small btn-yellow" onclick="addAlbumCard()">+ adicionar</button></div>
+    <label class="btn btn-small btn-dark" style="cursor:pointer; width:100%; text-align:center; display:block; margin-bottom:14px;">🖼️ enviar várias fotos de uma vez
+      <input type="file" accept="image/*" multiple style="display:none;" onchange="handleMultiUpload(event,'album')">
     </label>
-    <textarea id="admAlbum" rows="4"></textarea>
+    <div id="album-cards"></div>
 
     <hr>
-    <label>🎵 links das músicas (spotify)</label>
-    <textarea id="admMusicas" rows="2"></textarea>
+    <div class="admin-section-title">🎵 músicas (link do spotify)</div>
+    <textarea id="admMusicas" rows="2" placeholder="um link por linha"></textarea>
 
     <hr>
-    <label>🫙 motivos pra te amar (sorteados no botão)</label>
-    <textarea id="admMotivos" rows="4"></textarea>
+    <div class="admin-section-title">🫙 motivos pra te amar</div>
+    <textarea id="admMotivos" rows="4" placeholder="um motivo por linha"></textarea>
 
     <hr>
-    <label>😂 memes (Aceita link do Instagram Reels!)</label>
-    <p class="hint">Cole o link do post/reels do Instagram ou upe imagens normais.<br>formato: link | legenda</p>
-    <label class="btn btn-small btn-dark" style="cursor:pointer; width:100%; text-align:center; display:block;">🖼️ enviar memes
-      <input type="file" accept="image/*" multiple style="display:none;" onchange="uparMemes(event)">
+    <div class="admin-section-title">😂 memes <button class="btn btn-small btn-yellow" onclick="addMemeCard()">+ adicionar</button></div>
+    <p class="hint">cole o link do reels do Instagram ou envie imagens.</p>
+    <label class="btn btn-small btn-dark" style="cursor:pointer; width:100%; text-align:center; display:block; margin-bottom:14px;">🖼️ enviar imagens
+      <input type="file" accept="image/*" multiple style="display:none;" onchange="handleMultiUpload(event,'memes')">
     </label>
-    <textarea id="admMemes" rows="4"></textarea>
+    <div id="memes-cards"></div>
 
     <hr>
     <label>🍯 frases do pote de elogios</label>
-    <textarea id="admElogios" rows="4"></textarea>
+    <textarea id="admElogios" rows="4" placeholder="uma frase por linha"></textarea>
 
     <hr>
     <label>🐾 mensagens do bichinho de estimação</label>
-    <textarea id="admPet" rows="3"></textarea>
+    <textarea id="admPet" rows="3" placeholder="uma mensagem por linha"></textarea>
 
-    <button class="btn btn-green btn-full" style="margin-top:20px; font-size:15px;" onclick="salvarAdmin()">💾 salvar e atualizar</button>
+    <button class="btn btn-green btn-full" style="margin-top:20px; font-size:15px;" onclick="salvarAdmin()" id="btnSalvar">💾 salvar e atualizar</button>
     <button class="btn btn-dark btn-full" onclick="navTo('page-feed')">❌ cancelar / voltar</button>
   </div>
 </div>
@@ -415,7 +602,34 @@ input:focus, textarea:focus {border-color:var(--yellow);}
 <div id="pixel-pet" onclick="falarPet()"></div>
 <div class="admin-btn" onclick="navTo('page-admin')">⚙️</div>
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-storage-compat.js"></script>
+
 <script>
+/* ============================================================
+   FIREBASE INIT
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyCGyL5gTitoWIaWbuVREeQ0OlYWldjdqtk",
+  authDomain: "sitenamorada-13b8c.firebaseapp.com",
+  projectId: "sitenamorada-13b8c",
+  storageBucket: "sitenamorada-13b8c.firebasestorage.app",
+  messagingSenderId: "86063780693",
+  appId: "1:86063780693:web:666aeee0c79843b6ecd5dc",
+  measurementId: "G-25S8QWWS6M"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const storage = firebase.storage();
+const mainRef = db.collection('site').doc('main');
+const moodsRef = mainRef.collection('moods');
+const cofreRef = mainRef.collection('cofre');
+const recadosRef = mainRef.collection('recados');
+const cozyRef = mainRef.collection('extras').doc('cozy');
+const scoresRef = mainRef.collection('extras').doc('highscores');
+
 /* ============================================================
    PIXEL ART ENGINE
    ============================================================ */
@@ -438,8 +652,8 @@ const PET_MATRIX=[
 ];
 function paintPixels(el, matrix, size, color, color2){
   el.style.position='relative';
-  el.style.width=size+'px';
-  el.style.height=size+'px';
+  el.style.width=(matrix[0].length*size)+'px';
+  el.style.height=(matrix.length*size)+'px';
   let shadows=[];
   matrix.forEach((row,r)=>row.forEach((cell,c)=>{
     if(cell===1) shadows.push(`${c*size}px ${r*size}px 0 ${color}`);
@@ -450,17 +664,16 @@ function paintPixels(el, matrix, size, color, color2){
 }
 function initHearts(){
   document.querySelectorAll('.pxheart').forEach(el=>{
-    if(el.id==='pixel-pet'){ paintPixels(el,PET_MATRIX,10,'#ff2a5f','#fff'); } 
-    else if(el.id==='splash-heart'){ paintPixels(el,HEART_MATRIX,12,'#ffd700'); } 
+    if(el.id==='pixel-pet'){ paintPixels(el,PET_MATRIX,10,'#ff2a5f','#fff'); }
+    else if(el.id==='splash-heart'){ paintPixels(el,HEART_MATRIX,12,'#ffd700'); }
     else if(el.id==='envelope-heart'){ paintPixels(el,HEART_MATRIX,12,'#ffd700'); }
     else { paintPixels(el,HEART_MATRIX,10,'#ff2a5f'); }
   });
 }
-
 function spawnBgHearts(){
   const field=document.getElementById('heart-field');
   const colors=['#ff2a5f','#b31238','#ffd700','#8a4baf'];
-  for(let i=0;i<12;i++){
+  for(let i=0;i<9;i++){
     const h=document.createElement('div');
     h.className='bg-heart pxheart';
     paintPixels(h,HEART_MATRIX, 6+Math.random()*4, colors[i%colors.length]);
@@ -470,7 +683,6 @@ function spawnBgHearts(){
     field.appendChild(h);
   }
 }
-
 function burstHearts(x,y,count=16){
   const colors=['#ff2a5f','#ffd700','#8a4baf'];
   for(let i=0;i<count;i++){
@@ -493,32 +705,36 @@ function burstHearts(x,y,count=16){
 }
 
 /* ============================================================
-   DATA & CONFIG
+   ESTADO / DEFAULTS
    ============================================================ */
-const CONFIG={
+const DEFAULTS={
   senhaSite:"15032026", dataInicio:"2026-03-15T00:00:00", fotoPrincipal:"",
   tituloFeed:"é minha namorada mesmo!! 🥹",
+  ntfyTopic:"voce-e-ela-9k27fx",
   musicas:["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
-  album:[], memes:[], motivos:["seu sorriso","o jeito que você me abraça","nossas madrugadas conversando"],
+  album:[], memes:[],
+  motivos:["seu sorriso","o jeito que você me abraça","nossas madrugadas conversando"],
   elogios:["você é incrível do jeitinho que é.","eu tenho muita sorte de te ter.","hoje o mundo tá mais bonito porque você existe."],
   petMensagens:["oi oi! 🐾","já bebeu água hoje? 💧","tem alguém pensando em vc... 👀","fofa demais! 🥹"],
-  moods:[],
-  planosFuturos:[{nome:"Nossa Próxima Viagem", data:"2026-12-25T10:00"}],
-  conquistas:[{nome:"Sair pra comer pizza", atual:2, meta:10, raridade:"Comum"}]
+  planosFuturos:[{nome:"nossa próxima viagem", data:"2026-12-25T10:00", foto:""}],
+  conquistas:[{nome:"sair pra comer pizza", atual:2, meta:10, raridade:"Comum", icone:"🍕"}],
+  timeline:[{data:"2026-03-15", titulo:"o dia do sim", descricao:"o começo de tudo.", foto:""}],
+  lugares:[{nome:"praia", visitado:false, foto:""}]
 };
 
-let DB=null;
-try{ DB=JSON.parse(localStorage.getItem("siteFeedDB")); }catch(e){ DB=null; }
-if(!DB) DB=JSON.parse(JSON.stringify(CONFIG));
-for(const k in CONFIG){ if(DB[k]===undefined) DB[k]=CONFIG[k]; }
+let DB = JSON.parse(JSON.stringify(DEFAULTS));
+let dbCarregado=false;
+
+/* Uploads: imagens escolhidas mas ainda não persistidas ficam guardadas aqui por card */
+const uploadCache = {};
 
 const MOOD_SET=[{e:"🥰",l:"apaixonada"},{e:"😄",l:"feliz"},{e:"😴",l:"cansada"},{e:"🥺",l:"carente"},{e:"😤",l:"estressada"},{e:"😢",l:"triste"}];
 
 /* ============================================================
-   BOOT & LOGIC
+   BOOT
    ============================================================ */
 window.onload=()=>{
-  initHearts(); spawnBgHearts(); renderizarConteudo();
+  initHearts(); spawnBgHearts();
   setTimeout(()=>{
     const splash=document.getElementById('splash-screen');
     splash.style.opacity='0'; splash.style.transition='.5s';
@@ -526,13 +742,65 @@ window.onload=()=>{
   },1500);
   setInterval(atualizarContadores,1000);
   setTimeout(()=>falarPet(true),2500);
+  conectarFirebase();
 };
+
+async function conectarFirebase(){
+  try{
+    const snap = await mainRef.get();
+    if(!snap.exists){
+      await mainRef.set(DEFAULTS);
+    }
+  }catch(e){ console.error('erro ao inicializar doc', e); }
+
+  mainRef.onSnapshot(snap=>{
+    if(snap.exists){
+      const data = snap.data();
+      for(const k in DEFAULTS){ DB[k] = data[k]!==undefined ? data[k] : DEFAULTS[k]; }
+      dbCarregado=true;
+      renderizarConteudo();
+    }
+  }, err=>console.error('snapshot main', err));
+
+  moodsRef.orderBy('ts','desc').limit(20).onSnapshot(snap=>{
+    const items=[]; snap.forEach(d=>items.push(d.data()));
+    renderMoodLog(items);
+  }, err=>console.error('snapshot moods', err));
+
+  cofreRef.orderBy('ts','desc').onSnapshot(snap=>{
+    const items=[]; snap.forEach(d=>items.push(d.data()));
+    renderCofre(items);
+  }, err=>console.error('snapshot cofre', err));
+
+  recadosRef.orderBy('ts','desc').limit(30).onSnapshot(snap=>{
+    const items=[]; snap.forEach(d=>items.push(d.data()));
+    renderRecados(items);
+  }, err=>console.error('snapshot recados', err));
+
+  cozyRef.onSnapshot(snap=>{
+    const data = snap.exists ? snap.data() : {moedas:0};
+    renderCozy(data);
+  }, err=>console.error('snapshot cozy', err));
+
+  scoresRef.onSnapshot(snap=>{
+    const data = snap.exists ? snap.data() : {placar:[]};
+    renderArcadeScoreboard(data.placar||[]);
+  }, err=>console.error('snapshot scores', err));
+}
+
+function toast(msg){
+  const t=document.getElementById('save-toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
 
 function navTo(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
   document.getElementById('pet-bubble').style.display='none';
+  if(id==='page-admin') montarFormulariosAdmin();
 }
 
 function respondeSim(ev){ burstHearts(ev.clientX||window.innerWidth/2, ev.clientY||window.innerHeight/2, 22); setTimeout(()=>navTo('page-password'),350); }
@@ -547,12 +815,14 @@ function fugir(btn){
 }
 
 function checkPassword(){
-  if(document.getElementById('inputPassword').value===DB.senhaSite){
+  if(document.getElementById('inputPassword').value===String(DB.senhaSite)){
     document.getElementById('pwdError').style.display='none'; navTo('page-feed');
   } else document.getElementById('pwdError').style.display='block';
 }
 
-/* Calculadora de tempo (Master e Planos Futuros) */
+/* ============================================================
+   CONTADORES
+   ============================================================ */
 function calcTime(diff){
   const abs=Math.abs(diff);
   return {
@@ -562,12 +832,10 @@ function calcTime(diff){
     seg: Math.floor((abs%60000)/1000)
   };
 }
-
 function atualizarContadores(){
   const now=Date.now();
-  // Master
   const diffMaster=now-new Date(DB.dataInicio).getTime();
-  if(diffMaster>0){
+  if(diffMaster>0 && document.getElementById('master-counter')){
     const t=calcTime(diffMaster);
     document.getElementById('master-counter').innerHTML=`
       <div class="counter-item"><span>${t.dias}</span><small>dias</small></div>
@@ -575,134 +843,161 @@ function atualizarContadores(){
       <div class="counter-item"><span>${t.min}</span><small>min</small></div>
       <div class="counter-item"><span>${t.seg}</span><small>seg</small></div>`;
   }
-  // Futuros
   document.querySelectorAll('.plan-timer-core').forEach(el=>{
     const target=new Date(el.dataset.date).getTime();
     const diff = target - now;
     if(diff > 0){
       const t=calcTime(diff);
-      el.textContent = `${t.dias}d ${t.horas}h ${t.min}m ${t.seg}s`;
-    } else el.textContent = "🎉 Chegou o grande dia! 🎉";
+      el.textContent = `⏳ ${t.dias}d ${t.horas}h ${t.min}m ${t.seg}s`;
+    } else el.textContent = "🎉 chegou o grande dia! 🎉";
   });
 }
 
-function parsePipeList(raw){
-  return raw.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
-    const idx=line.indexOf('|');
-    return idx===-1 ? {url:line, label:''} : {url:line.slice(0,idx).trim(), label:line.slice(idx+1).trim()};
+/* ============================================================
+   COMPRESSÃO + UPLOAD DE IMAGEM
+   ============================================================ */
+function comprimirImagem(file, maxW, quality){
+  maxW = maxW || 1280; quality = quality || 0.75;
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const img=new Image();
+      img.onload=()=>{
+        const scale=Math.min(1, maxW/img.width);
+        const w=Math.round(img.width*scale), h=Math.round(img.height*scale);
+        const canvas=document.createElement('canvas');
+        canvas.width=w; canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('falha ao comprimir')), 'image/jpeg', quality);
+      };
+      img.onerror=()=>reject(new Error('imagem inválida'));
+      img.src=e.target.result;
+    };
+    reader.onerror=()=>reject(new Error('falha ao ler arquivo'));
+    reader.readAsDataURL(file);
   });
 }
+async function uploadImagem(file, pasta){
+  const blob = await comprimirImagem(file);
+  const nome = pasta+'/'+Date.now()+'_'+Math.random().toString(36).slice(2)+'.jpg';
+  const ref = storage.ref().child(nome);
+  await ref.put(blob);
+  return await ref.getDownloadURL();
+}
 
-/* Uploads Base64 */
-function uparFotoUnica(ev,id){ const r=new FileReader(); r.onload=e=>document.getElementById(id).value=e.target.result; if(ev.target.files[0]) r.readAsDataURL(ev.target.files[0]); }
-function uparFotosAlbum(ev){ Array.from(ev.target.files).forEach(f=>{ const r=new FileReader(); r.onload=e=>document.getElementById('admAlbum').value+='\n'+e.target.result+'|'; r.readAsDataURL(f); }); alert("Fotos carregadas!"); }
-function uparMemes(ev){ Array.from(ev.target.files).forEach(f=>{ const r=new FileReader(); r.onload=e=>document.getElementById('admMemes').value+='\n'+e.target.result+'|meme'; r.readAsDataURL(f); }); alert("Memes carregados!"); }
+async function handleFotoPrincipal(ev){
+  const file=ev.target.files[0]; if(!file) return;
+  const statusEl=document.getElementById('admFotoStatus');
+  statusEl.textContent='enviando...';
+  try{
+    const url = await uploadImagem(file,'capa');
+    document.getElementById('admFotoPreview').src=url;
+    document.getElementById('admFotoPreview').style.display='inline-block';
+    uploadCache['fotoPrincipal']=url;
+    statusEl.textContent='enviado ✅';
+  }catch(e){ statusEl.textContent='erro ao enviar 😢'; console.error(e); }
+}
 
 /* ============================================================
    RENDER
    ============================================================ */
 function getRarityColor(rarity){
-  const r = rarity.toLowerCase();
+  const r = (rarity||'').toLowerCase();
   if(r.includes('raro')) return 'var(--rarity-raro)';
   if(r.includes('epic') || r.includes('épic')) return 'var(--rarity-epico)';
   if(r.includes('lend')) return 'var(--rarity-lendario)';
   return 'var(--rarity-comum)';
 }
-
 function convertIgToEmbed(url) {
   if(url.includes('instagram.com')){
     let cleanUrl = url.split('?')[0];
     if(!cleanUrl.endsWith('/')) cleanUrl += '/';
-    return `<iframe src="${cleanUrl}embed" allowtransparency="true" scrolling="no" frameborder="0"></iframe>`;
+    return `<iframe src="${cleanUrl}embed" loading="lazy" allowtransparency="true" scrolling="no" frameborder="0"></iframe>`;
   }
-  return `<img src="${url}">`;
+  return `<img src="${url}" loading="lazy">`;
 }
 
 function renderizarConteudo(){
   if(DB.fotoPrincipal){ document.getElementById('intro-foto').src=DB.fotoPrincipal; document.getElementById('intro-foto').style.display='inline-block'; }
-  document.getElementById('feed-title').textContent=DB.tituloFeed||CONFIG.tituloFeed;
+  document.getElementById('feed-title').textContent=DB.tituloFeed||DEFAULTS.tituloFeed;
 
-  // Planos Futuros
-  const htmlPlanos = (DB.planosFuturos||[]).map(p=>
-    `<div class="plan-item"><div class="plan-title">${p.nome}</div><div class="plan-countdown plan-timer-core" data-date="${p.data}">Calculando...</div></div>`
-  ).join('');
-  document.getElementById('render-planos').innerHTML = htmlPlanos || "<p>Nenhum plano adicionado. 😢</p>";
+  const htmlPlanos = (DB.planosFuturos||[]).map(p=>{
+    const foto = p.foto ? `<img class="plan-photo" src="${p.foto}" loading="lazy">` : `<div class="plan-photo empty">✈️</div>`;
+    return `<div class="plan-item">${foto}<div class="plan-body"><div class="plan-title">${p.nome}</div><div class="plan-countdown plan-timer-core" data-date="${p.data}">calculando...</div></div></div>`;
+  }).join('');
+  document.getElementById('render-planos').innerHTML = htmlPlanos || "<p>nenhum sonho adicionado ainda 😢</p>";
 
-  // Conquistas
+  const htmlTl = (DB.timeline||[]).map(t=>{
+    const foto = t.foto ? `<img class="tl-photo" src="${t.foto}" loading="lazy">` : '';
+    return `<div class="tl-item"><div class="tl-dot">💗</div><div class="tl-card"><span class="tl-date">${formatarData(t.data)}</span><div class="tl-title">${t.titulo}</div><p class="tl-desc">${t.descricao||''}</p>${foto}</div></div>`;
+  }).join('');
+  document.getElementById('render-timeline').innerHTML = htmlTl || "<p>nenhum marco adicionado ainda.</p>";
+
   const htmlConq = (DB.conquistas||[]).map(c=>{
     const pct = Math.min(100, (c.atual / c.meta) * 100);
     const color = getRarityColor(c.raridade);
+    const completo = pct>=100;
     return `
-      <div class="achiev-card">
+      <div class="achiev-card ${completo?'complete':''}">
+        <span class="achiev-stamp">✔ completo!</span>
         <div class="achiev-header">
-          <span class="achiev-title">${c.nome}</span>
-          <span class="achiev-badge" style="color:${color}; border-color:${color};">${c.raridade.toUpperCase()}</span>
+          <span class="achiev-title"><span class="icon-badge" style="width:34px;height:34px;font-size:16px;">${c.icone||'🏆'}</span>${c.nome}</span>
+          <span class="achiev-badge" style="color:${color}; border-color:${color};">${(c.raridade||'Comum').toUpperCase()}</span>
         </div>
         <div class="achiev-bar-bg">
-          <div class="achiev-bar-fill" style="width:${pct}%; background:${color};"></div>
+          <div class="achiev-bar-fill" style="width:${pct}%; background:linear-gradient(90deg, ${color}, ${color} 50%, rgba(255,255,255,.4) 50%, ${color} 100%);"></div>
         </div>
         <div class="achiev-progress-text">${c.atual} / ${c.meta} completos</div>
       </div>`;
   }).join('');
-  document.getElementById('render-conquistas').innerHTML = htmlConq || "<p>Nenhuma conquista registrada.</p>";
+  document.getElementById('render-conquistas').innerHTML = htmlConq || "<p>nenhuma conquista registrada.</p>";
 
-  // Álbum
-  const albumItems=parsePipeList(DB.album.join('\n'));
-  document.getElementById('render-album').innerHTML = albumItems.length ? albumItems.map(it=>`<figure><img src="${it.url}">${it.label?`<figcaption>${it.label}</figcaption>`:''}</figure>`).join('') : "<p>vazio :(</p>";
+  const htmlLugares = (DB.lugares||[]).map((l,idx)=>{
+    const foto = l.foto ? `<img class="place-photo" src="${l.foto}" loading="lazy">` : `<div class="place-photo" style="display:flex;align-items:center;justify-content:center;font-size:20px;">📍</div>`;
+    return `<div class="place-item">${foto}<span class="place-name ${l.visitado?'done':''}">${l.nome}</span><input type="checkbox" class="place-check" ${l.visitado?'checked':''} onchange="toggleLugar(${idx}, this.checked)"></div>`;
+  }).join('');
+  document.getElementById('render-lugares').innerHTML = htmlLugares || "<p>nenhum lugar adicionado ainda.</p>";
 
-  // Memes (Agora com suporte a Instagram)
-  const memeItems=parsePipeList((DB.memes||[]).join('\n'));
+  const albumItems = DB.album||[];
+  document.getElementById('render-album').innerHTML = albumItems.length ? albumItems.map(it=>`<figure><img src="${it.url}" loading="lazy">${it.label?`<figcaption>${it.label}</figcaption>`:''}</figure>`).join('') : "<p>vazio :(</p>";
+
+  const memeItems = DB.memes||[];
   document.getElementById('render-memes').innerHTML = memeItems.length ? memeItems.map(it=>
-    `<figure class="meme-card">
-      ${convertIgToEmbed(it.url)}
-      ${it.label ? `<figcaption>${it.label}</figcaption>` : ''}
-    </figure>`
+    `<figure class="meme-card">${convertIgToEmbed(it.url)}${it.label ? `<figcaption>${it.label}</figcaption>` : ''}</figure>`
   ).join('') : "<p>nenhum meme adicionado ainda 😢</p>";
 
-  // Motivos
-  document.getElementById('render-reasons').innerHTML = DB.motivos.map(m=>`<div class="reason-item">❤️ ${m}</div>`).join('');
+  document.getElementById('render-reasons').innerHTML = (DB.motivos||[]).map(m=>`<div class="reason-item">❤️ ${m}</div>`).join('');
 
-  // Música
   let musicHtml='';
-  DB.musicas.forEach(url=>{
-    if(url.includes('spotify.com') && !url.includes('embed')){
-      url=`https://open.spotify.com/embed/${url.split('spotify.com/')[1].split('?')[0]}`;
+  (DB.musicas||[]).forEach(url=>{
+    let embedUrl = url;
+    if(url.includes('spotify.com') && !url.includes('/embed/')){
+      embedUrl=`https://open.spotify.com/embed/${url.split('spotify.com/')[1].split('?')[0]}`;
     }
-    if(url) musicHtml+=`<iframe style="border:3px solid var(--card-line);margin-bottom:16px;" src="${url}" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media"></iframe>`;
+    if(embedUrl) musicHtml+=`<div class="music-item"><iframe src="${embedUrl}" loading="lazy" allow="autoplay; clipboard-write; encrypted-media"></iframe></div>`;
   });
   document.getElementById('render-music').innerHTML=musicHtml || "<p>sem música :(</p>";
 
-  // Humor
   document.getElementById('mood-options').innerHTML = MOOD_SET.map(m=>`<button class="mood-btn" onclick="registrarHumor('${m.e}','${m.l}')">${m.e}</button>`).join('');
-  renderMoodLog();
 
-  // Inputs do Admin
-  document.getElementById('admFoto').value=DB.fotoPrincipal||'';
-  document.getElementById('admData').value=DB.dataInicio;
-  document.getElementById('admSenha').value=DB.senhaSite;
-  document.getElementById('admTitulo').value=DB.tituloFeed;
-  document.getElementById('admAlbum').value=DB.album.join('\n');
-  document.getElementById('admMusicas').value=DB.musicas.join('\n');
-  document.getElementById('admMotivos').value=DB.motivos.join('\n');
-  document.getElementById('admMemes').value=(DB.memes||[]).join('\n');
-  document.getElementById('admElogios').value=(DB.elogios||[]).join('\n');
-  document.getElementById('admPet').value=(DB.petMensagens||[]).join('\n');
-  
-  // Inputs Admin Novos
-  document.getElementById('admPlanos').value=(DB.planosFuturos||[]).map(p=>`${p.nome} | ${p.data}`).join('\n');
-  document.getElementById('admConquistas').value=(DB.conquistas||[]).map(c=>`${c.nome} | ${c.atual} | ${c.meta} | ${c.raridade}`).join('\n');
+  renderCofreMeta();
 }
 
-function renderMoodLog(){
+function formatarData(iso){
+  if(!iso) return '';
+  const partes = iso.split('-');
+  if(partes.length===3) return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  return iso;
+}
+
+function renderMoodLog(items){
   const log=document.getElementById('mood-log');
-  const items=(DB.moods||[]).slice(-5).reverse();
+  if(!log) return;
   log.innerHTML=items.length ? items.map(m=>`<div class="mood-log-item"><span>${m.e} ${m.l}</span><span>${m.d}</span></div>`).join('') : '<p style="font-size:13px;">toca em um emoji! 👆</p>';
 }
 function registrarHumor(e,l){
   const d=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});
-  DB.moods=DB.moods||[]; DB.moods.push({e,l,d});
-  try{ localStorage.setItem("siteFeedDB", JSON.stringify(DB)); }catch(err){}
-  renderMoodLog();
+  moodsRef.add({e,l,d,ts:firebase.firestore.FieldValue.serverTimestamp()}).catch(err=>console.error(err));
 }
 
 function sortearMotivo(){
@@ -715,14 +1010,14 @@ function sortearMotivo(){
 }
 
 function abrirPote(){
-  const lista=DB.elogios&&DB.elogios.length?DB.elogios:CONFIG.elogios;
+  const lista=(DB.elogios&&DB.elogios.length)?DB.elogios:DEFAULTS.elogios;
   document.getElementById('jar-text').textContent=lista[Math.floor(Math.random()*lista.length)];
   const box=document.querySelector('.jar-box');
   box.style.transform='scale(1.04)'; setTimeout(()=>box.style.transform='scale(1)',180);
 }
 
 function falarPet(silent){
-  const lista=DB.petMensagens&&DB.petMensagens.length?DB.petMensagens:CONFIG.petMensagens;
+  const lista=(DB.petMensagens&&DB.petMensagens.length)?DB.petMensagens:DEFAULTS.petMensagens;
   const bubble=document.getElementById('pet-bubble');
   bubble.textContent=lista[Math.floor(Math.random()*lista.length)];
   bubble.style.display='block';
@@ -730,35 +1025,432 @@ function falarPet(silent){
   window._petTimer=setTimeout(()=>bubble.style.display='none', silent?3200:2600);
 }
 
-function salvarAdmin(){
+/* ============================================================
+   LUGARES (toggle direto no feed)
+   ============================================================ */
+function toggleLugar(idx, visitado){
+  const novos = (DB.lugares||[]).slice();
+  if(!novos[idx]) return;
+  novos[idx] = {...novos[idx], visitado};
+  mainRef.update({lugares:novos}).catch(err=>console.error(err));
+}
+
+/* ============================================================
+   COFRINHO
+   ============================================================ */
+function renderCofreMeta(){
+  const bar=document.getElementById('cofre-bar');
+  if(!bar) return;
+  const meta = Number(DB.cofreMeta)||0;
+  bar.dataset.meta = meta;
+  atualizarBarraCofre();
+}
+let cofreTotalAtual=0;
+function renderCofre(items){
+  cofreTotalAtual = items.reduce((s,it)=>s+(Number(it.valor)||0),0);
+  const totalEl=document.getElementById('cofre-total');
+  if(totalEl) totalEl.textContent = 'R$ ' + cofreTotalAtual.toFixed(2).replace('.',',');
+  const hist=document.getElementById('cofre-hist');
+  if(hist){
+    hist.innerHTML = items.length ? items.slice(0,25).map(it=>
+      `<div class="cofre-hist-item"><span>${it.quem||'alguém'}${it.nota?(' · '+it.nota):''}</span><span>+R$ ${Number(it.valor||0).toFixed(2).replace('.',',')}</span></div>`
+    ).join('') : '<p style="font-size:13px;">ninguém guardou nada ainda.</p>';
+  }
+  atualizarBarraCofre();
+}
+function atualizarBarraCofre(){
+  const bar=document.getElementById('cofre-bar');
+  if(!bar) return;
+  const meta = Number(bar.dataset.meta)||0;
+  const pct = meta>0 ? Math.min(100,(cofreTotalAtual/meta)*100) : 0;
+  bar.style.width = pct+'%';
+}
+function adicionarCofre(){
+  const quem=document.getElementById('cofreQuem').value.trim();
+  const valor=Number(document.getElementById('cofreValor').value);
+  const nota=document.getElementById('cofreNota').value.trim();
+  if(!valor || valor<=0){ toast('coloca um valor válido 😅'); return; }
+  cofreRef.add({quem: quem||'alguém', valor, nota, ts:firebase.firestore.FieldValue.serverTimestamp()})
+    .then(()=>{
+      document.getElementById('cofreValor').value='';
+      document.getElementById('cofreNota').value='';
+      toast('guardado! 🐷');
+    }).catch(err=>{console.error(err); toast('erro ao guardar 😢');});
+}
+
+/* ============================================================
+   RECADOS + NOTIFICAÇÃO (ntfy)
+   ============================================================ */
+function renderRecados(items){
+  const el=document.getElementById('render-recados');
+  if(!el) return;
+  el.innerHTML = items.length ? items.map(it=>
+    `<div class="recado-item"><span class="recado-quem">${it.quem||'alguém'}</span>${it.texto}</div>`
+  ).join('') : '<p style="font-size:13px;">nenhum recado ainda.</p>';
+}
+async function enviarRecado(){
+  const quem=document.getElementById('recadoQuem').value.trim()||'alguém';
+  const texto=document.getElementById('recadoTexto').value.trim();
+  if(!texto){ toast('escreve algo antes 😅'); return; }
   try{
-    DB.fotoPrincipal=document.getElementById('admFoto').value;
-    DB.dataInicio=document.getElementById('admData').value||CONFIG.dataInicio;
-    DB.senhaSite=document.getElementById('admSenha').value||CONFIG.senhaSite;
-    DB.tituloFeed=document.getElementById('admTitulo').value||CONFIG.tituloFeed;
-    DB.album=document.getElementById('admAlbum').value.split('\n').map(s=>s.trim()).filter(Boolean);
-    DB.musicas=document.getElementById('admMusicas').value.split('\n').map(s=>s.trim()).filter(Boolean);
-    DB.motivos=document.getElementById('admMotivos').value.split('\n').map(s=>s.trim()).filter(Boolean);
-    DB.memes=document.getElementById('admMemes').value.split('\n').map(s=>s.trim()).filter(Boolean);
-    DB.elogios=document.getElementById('admElogios').value.split('\n').map(s=>s.trim()).filter(Boolean);
-    DB.petMensagens=document.getElementById('admPet').value.split('\n').map(s=>s.trim()).filter(Boolean);
-    
-    // Salvar Planos Futuros
-    DB.planosFuturos=document.getElementById('admPlanos').value.split('\n').map(s=>s.trim()).filter(Boolean).map(linha=>{
-      const p = linha.split('|').map(x=>x.trim());
-      return {nome: p[0], data: p[1]||''};
-    });
+    await recadosRef.add({quem, texto, ts:firebase.firestore.FieldValue.serverTimestamp()});
+    document.getElementById('recadoTexto').value='';
+    const topic = DB.ntfyTopic || DEFAULTS.ntfyTopic;
+    fetch(`https://ntfy.sh/${encodeURIComponent(topic)}`, {
+      method:'POST',
+      body: texto,
+      headers:{ 'Title': `💌 recado de ${quem}`, 'Tags':'heart' }
+    }).catch(err=>console.error('ntfy falhou', err));
+    toast('recado enviado! 💌');
+  }catch(err){ console.error(err); toast('erro ao enviar 😢'); }
+}
 
-    // Salvar Conquistas
-    DB.conquistas=document.getElementById('admConquistas').value.split('\n').map(s=>s.trim()).filter(Boolean).map(linha=>{
-      const c = linha.split('|').map(x=>x.trim());
-      return {nome: c[0], atual: Number(c[1])||0, meta: Number(c[2])||10, raridade: c[3]||"Comum"};
-    });
+/* ============================================================
+   JOGO 1: ARCADE PEGA CORAÇÕES
+   ============================================================ */
+let arcadeState = {running:false, score:0, timeLeft:30, spawnTimer:null, tickTimer:null};
 
-    localStorage.setItem("siteFeedDB", JSON.stringify(DB));
-    renderizarConteudo(); navTo('page-feed');
+function abrirArcade(){
+  document.getElementById('game-overlay').classList.add('active');
+  document.getElementById('arcade-wrap').style.display='flex';
+  document.getElementById('cozy-wrap').style.display='none';
+}
+function abrirCozy(){
+  document.getElementById('game-overlay').classList.add('active');
+  document.getElementById('cozy-wrap').style.display='flex';
+  document.getElementById('arcade-wrap').style.display='none';
+}
+function fecharJogo(){
+  document.getElementById('game-overlay').classList.remove('active');
+  pararArcade();
+}
+
+function iniciarArcade(){
+  if(arcadeState.running) return;
+  const field=document.getElementById('arcade-field');
+  field.querySelectorAll('.arcade-heart').forEach(h=>h.remove());
+  arcadeState.running=true; arcadeState.score=0; arcadeState.timeLeft=30;
+  document.getElementById('arcade-score').textContent='0 pts';
+  document.getElementById('arcade-timer').textContent='30s';
+  document.getElementById('arcade-start-btn').disabled=true;
+
+  arcadeState.spawnTimer=setInterval(spawnArcadeHeart, 650);
+  arcadeState.tickTimer=setInterval(()=>{
+    arcadeState.timeLeft--;
+    document.getElementById('arcade-timer').textContent=arcadeState.timeLeft+'s';
+    if(arcadeState.timeLeft<=0) finalizarArcade();
+  },1000);
+
+  const basket=document.getElementById('arcade-basket');
+  field.onmousemove = e=>{
+    const rect=field.getBoundingClientRect();
+    basket.style.left = Math.max(0,Math.min(rect.width-64, e.clientX-rect.left-32))+'px';
+  };
+  field.ontouchmove = e=>{
+    const rect=field.getBoundingClientRect();
+    const t=e.touches[0];
+    basket.style.left = Math.max(0,Math.min(rect.width-64, t.clientX-rect.left-32))+'px';
+    e.preventDefault();
+  };
+}
+function spawnArcadeHeart(){
+  const field=document.getElementById('arcade-field');
+  const h=document.createElement('div');
+  h.className='arcade-heart pxheart';
+  paintPixels(h,HEART_MATRIX,7,'#ff2a5f');
+  h.style.left = Math.random()*(field.clientWidth-50)+'px';
+  h.style.top='-30px';
+  h.style.transition='top linear';
+  h.style.transitionDuration=(2.2+Math.random()*1.6)+'s';
+  field.appendChild(h);
+  requestAnimationFrame(()=>{ h.style.top=(field.clientHeight-20)+'px'; });
+  h.onclick=()=>{
+    arcadeState.score+=10;
+    document.getElementById('arcade-score').textContent=arcadeState.score+' pts';
+    h.remove();
+  };
+  setTimeout(()=>h.remove(), 4200);
+}
+function pararArcade(){
+  clearInterval(arcadeState.spawnTimer); clearInterval(arcadeState.tickTimer);
+  arcadeState.running=false;
+  document.getElementById('arcade-start-btn').disabled=false;
+}
+function finalizarArcade(){
+  pararArcade();
+  const nome = document.getElementById('arcadeNome').value.trim() || 'anônimo';
+  scoresRef.get().then(snap=>{
+    const placar = (snap.exists && snap.data().placar) ? snap.data().placar : [];
+    placar.push({nome, pontos: arcadeState.score, data: new Date().toLocaleDateString('pt-BR')});
+    placar.sort((a,b)=>b.pontos-a.pontos);
+    scoresRef.set({placar: placar.slice(0,10)}).catch(err=>console.error(err));
+  });
+  toast(`fim de jogo! ${arcadeState.score} pontos 💗`);
+}
+function renderArcadeScoreboard(placar){
+  const el=document.getElementById('arcade-scoreboard');
+  if(!el) return;
+  el.innerHTML = placar.length ? placar.slice(0,5).map(p=>`<div>${p.nome}: ${p.pontos}</div>`).join('') : '';
+}
+
+/* ============================================================
+   JOGO 2: CANTINHO COZY
+   ============================================================ */
+const COZY_ITEMS = [
+  {id:'panela', nome:'panela nova', icone:'🍳', custo:10},
+  {id:'planta', nome:'plantinha', icone:'🪴', custo:25},
+  {id:'gato', nome:'gatinho', icone:'🐱', custo:50},
+  {id:'sofa', nome:'sofá', icone:'🛋️', custo:90},
+  {id:'lareira', nome:'lareira', icone:'🔥', custo:140},
+  {id:'quadro', nome:'quadro nosso', icone:'🖼️', custo:200},
+];
+function cozyClick(){
+  cozyRef.get().then(snap=>{
+    const atual = snap.exists ? (snap.data().moedas||0) : 0;
+    cozyRef.set({moedas: atual+1}, {merge:true}).catch(err=>console.error(err));
+  });
+}
+function renderCozy(data){
+  const moedas = data.moedas||0;
+  const coinsEl=document.getElementById('cozy-coins-txt');
+  if(coinsEl) coinsEl.textContent = moedas+' moedinhas';
+  const shelf=document.getElementById('cozy-shelf');
+  if(shelf){
+    shelf.innerHTML = COZY_ITEMS.map(it=>{
+      const unlocked = moedas>=it.custo;
+      return `<div class="cozy-item ${unlocked?'unlocked':''}">${it.icone}<small>${unlocked?it.nome:'💗 '+it.custo}</small></div>`;
+    }).join('');
+  }
+}
+document.addEventListener('click', e=>{
+  if(e.target && e.target.id==='cozy-pot') cozyClick();
+});
+
+/* ============================================================
+   ADMIN — FORMULÁRIOS DINÂMICOS
+   ============================================================ */
+function montarFormulariosAdmin(){
+  document.getElementById('admFoto').value=DB.fotoPrincipal||'';
+  if(DB.fotoPrincipal){ document.getElementById('admFotoPreview').src=DB.fotoPrincipal; document.getElementById('admFotoPreview').style.display='inline-block'; }
+  document.getElementById('admData').value=DB.dataInicio? DB.dataInicio.slice(0,16) : '';
+  document.getElementById('admSenha').value=DB.senhaSite;
+  document.getElementById('admTitulo').value=DB.tituloFeed;
+  document.getElementById('admNtfy').value=DB.ntfyTopic||DEFAULTS.ntfyTopic;
+  document.getElementById('admMusicas').value=(DB.musicas||[]).join('\n');
+  document.getElementById('admMotivos').value=(DB.motivos||[]).join('\n');
+  document.getElementById('admElogios').value=(DB.elogios||[]).join('\n');
+  document.getElementById('admPet').value=(DB.petMensagens||[]).join('\n');
+  document.getElementById('admCofreMeta').value=DB.cofreMeta||'';
+
+  montarCards('planos-cards', DB.planosFuturos, criarPlanoCardHTML);
+  montarCards('timeline-cards', DB.timeline, criarTimelineCardHTML);
+  montarCards('conquistas-cards', DB.conquistas, criarConquistaCardHTML);
+  montarCards('lugares-cards', DB.lugares, criarLugarCardHTML);
+  montarCards('album-cards', DB.album, criarAlbumCardHTML);
+  montarCards('memes-cards', DB.memes, criarMemeCardHTML);
+}
+
+function montarCards(containerId, arr, builderFn){
+  const container=document.getElementById(containerId);
+  container.innerHTML='';
+  (arr||[]).forEach((item,idx)=> container.insertAdjacentHTML('beforeend', builderFn(item, containerId+'-'+idx)));
+}
+
+/* --- inputs invisível padrão de imagem por card --- */
+function campoImagemHTML(cardId, pasta, fotoAtual){
+  return `
+    <div class="dyn-thumb-row">
+      <img class="dyn-thumb" id="${cardId}-thumb" src="${fotoAtual||''}" style="${fotoAtual?'':'display:none;'}">
+      <label class="btn btn-small btn-dark" style="cursor:pointer;">📷 foto
+        <input type="file" accept="image/*" style="display:none;" onchange="handleCardUpload(event,'${cardId}','${pasta}')">
+      </label>
+      <span class="upload-status" id="${cardId}-status"></span>
+    </div>`;
+}
+async function handleCardUpload(ev, cardId, pasta){
+  const file=ev.target.files[0]; if(!file) return;
+  const statusEl=document.getElementById(cardId+'-status');
+  statusEl.textContent='enviando...';
+  try{
+    const url = await uploadImagem(file, pasta);
+    uploadCache[cardId]=url;
+    const thumb=document.getElementById(cardId+'-thumb');
+    thumb.src=url; thumb.style.display='inline-block';
+    statusEl.textContent='enviado ✅';
+  }catch(e){ statusEl.textContent='erro 😢'; console.error(e); }
+}
+
+/* --- PLANOS --- */
+function criarPlanoCardHTML(p, cardId){
+  return `<div class="dyn-card" id="${cardId}" data-kind="plano">
+    <button class="remove-btn" onclick="removerCard('${cardId}')">✖</button>
+    <label class="field-label">nome do sonho</label>
+    <input type="text" class="f-nome" value="${p.nome||''}" placeholder="ex: viagem pra praia">
+    <label class="field-label">data</label>
+    <input type="datetime-local" class="f-data" value="${(p.data||'').slice(0,16)}">
+    ${campoImagemHTML(cardId,'planos', p.foto)}
+  </div>`;
+}
+function addPlanoCard(){ document.getElementById('planos-cards').insertAdjacentHTML('beforeend', criarPlanoCardHTML({}, 'plano-novo-'+Date.now())); }
+
+/* --- TIMELINE --- */
+function criarTimelineCardHTML(t, cardId){
+  return `<div class="dyn-card" id="${cardId}" data-kind="timeline">
+    <button class="remove-btn" onclick="removerCard('${cardId}')">✖</button>
+    <div class="grid-2">
+      <div><label class="field-label">data</label><input type="date" class="f-data" value="${t.data||''}"></div>
+      <div><label class="field-label">título</label><input type="text" class="f-titulo" value="${t.titulo||''}" placeholder="ex: primeiro beijo"></div>
+    </div>
+    <label class="field-label">descrição</label>
+    <textarea class="f-desc" rows="2">${t.descricao||''}</textarea>
+    ${campoImagemHTML(cardId,'timeline', t.foto)}
+  </div>`;
+}
+function addTimelineCard(){ document.getElementById('timeline-cards').insertAdjacentHTML('beforeend', criarTimelineCardHTML({}, 'tl-novo-'+Date.now())); }
+
+/* --- CONQUISTAS --- */
+function criarConquistaCardHTML(c, cardId){
+  const raridades=['Comum','Raro','Epico','Lendario'];
+  return `<div class="dyn-card" id="${cardId}" data-kind="conquista">
+    <button class="remove-btn" onclick="removerCard('${cardId}')">✖</button>
+    <div class="grid-2">
+      <div><label class="field-label">ícone (emoji)</label><input type="text" class="f-icone" value="${c.icone||'🏆'}" maxlength="4"></div>
+      <div><label class="field-label">nome</label><input type="text" class="f-nome" value="${c.nome||''}" placeholder="ex: sair pra comer pizza"></div>
+    </div>
+    <div class="grid-2">
+      <div><label class="field-label">atual</label><input type="number" class="f-atual" value="${c.atual||0}"></div>
+      <div><label class="field-label">meta</label><input type="number" class="f-meta" value="${c.meta||10}"></div>
+    </div>
+    <label class="field-label">raridade</label>
+    <select class="f-raridade">${raridades.map(r=>`<option ${c.raridade===r?'selected':''}>${r}</option>`).join('')}</select>
+  </div>`;
+}
+function addConquistaCard(){ document.getElementById('conquistas-cards').insertAdjacentHTML('beforeend', criarConquistaCardHTML({}, 'conq-novo-'+Date.now())); }
+
+/* --- LUGARES --- */
+function criarLugarCardHTML(l, cardId){
+  return `<div class="dyn-card" id="${cardId}" data-kind="lugar">
+    <button class="remove-btn" onclick="removerCard('${cardId}')">✖</button>
+    <label class="field-label">nome do lugar</label>
+    <input type="text" class="f-nome" value="${l.nome||''}" placeholder="ex: paris">
+    <label class="field-label"><input type="checkbox" class="f-visitado" style="width:auto;display:inline-block;" ${l.visitado?'checked':''}> já visitamos</label>
+    ${campoImagemHTML(cardId,'lugares', l.foto)}
+  </div>`;
+}
+function addLugarCard(){ document.getElementById('lugares-cards').insertAdjacentHTML('beforeend', criarLugarCardHTML({}, 'lugar-novo-'+Date.now())); }
+
+/* --- ALBUM --- */
+function criarAlbumCardHTML(it, cardId){
+  return `<div class="dyn-card" id="${cardId}" data-kind="album">
+    <button class="remove-btn" onclick="removerCard('${cardId}')">✖</button>
+    <label class="field-label">legenda</label>
+    <input type="text" class="f-label" value="${it.label||''}" placeholder="ex: nosso primeiro rolê">
+    ${campoImagemHTML(cardId,'album', it.url)}
+  </div>`;
+}
+function addAlbumCard(){ document.getElementById('album-cards').insertAdjacentHTML('beforeend', criarAlbumCardHTML({}, 'album-novo-'+Date.now())); }
+
+/* --- MEMES --- */
+function criarMemeCardHTML(it, cardId){
+  return `<div class="dyn-card" id="${cardId}" data-kind="meme">
+    <button class="remove-btn" onclick="removerCard('${cardId}')">✖</button>
+    <label class="field-label">legenda</label>
+    <input type="text" class="f-label" value="${it.label||''}" placeholder="ex: aquele meme que só nós entendemos">
+    <label class="field-label">link do instagram (opcional, se não for upload)</label>
+    <input type="text" class="f-link" value="${(it.url&&it.url.includes('instagram.com'))?it.url:''}" placeholder="https://www.instagram.com/reel/...">
+    ${campoImagemHTML(cardId,'memes', (it.url&&!it.url.includes('instagram.com'))?it.url:'')}
+  </div>`;
+}
+function addMemeCard(){ document.getElementById('memes-cards').insertAdjacentHTML('beforeend', criarMemeCardHTML({}, 'meme-novo-'+Date.now())); }
+
+function removerCard(cardId){
+  const el=document.getElementById(cardId);
+  if(el) el.remove();
+  delete uploadCache[cardId];
+}
+
+/* --- upload múltiplo direto (fora dos cards, pro álbum/memes) --- */
+async function handleMultiUpload(ev, tipo){
+  const files=Array.from(ev.target.files);
+  if(!files.length) return;
+  toast('enviando fotos...');
+  const containerId = tipo==='album' ? 'album-cards' : 'memes-cards';
+  const builder = tipo==='album' ? criarAlbumCardHTML : criarMemeCardHTML;
+  for(const file of files){
+    try{
+      const url = await uploadImagem(file, tipo);
+      const cardId = tipo+'-up-'+Date.now()+'-'+Math.random().toString(36).slice(2,6);
+      document.getElementById(containerId).insertAdjacentHTML('beforeend', builder({url,label:''}, cardId));
+      uploadCache[cardId]=url;
+    }catch(e){ console.error(e); }
+  }
+  toast('fotos prontas! não esquece de salvar 💾');
+}
+
+/* ============================================================
+   SALVAR TUDO
+   ============================================================ */
+function lerCards(containerId){
+  const cards = Array.from(document.getElementById(containerId).children);
+  return cards.map(card=>{
+    const kind = card.dataset.kind;
+    const cardId = card.id;
+    const fotoUpload = uploadCache[cardId];
+    if(kind==='plano'){
+      return { nome: card.querySelector('.f-nome').value.trim(), data: card.querySelector('.f-data').value, foto: fotoUpload || card.querySelector('.dyn-thumb').src.split('/').pop()!=='' && card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '' };
+    }
+    if(kind==='timeline'){
+      return { data: card.querySelector('.f-data').value, titulo: card.querySelector('.f-titulo').value.trim(), descricao: card.querySelector('.f-desc').value.trim(), foto: fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '') };
+    }
+    if(kind==='conquista'){
+      return { icone: card.querySelector('.f-icone').value.trim()||'🏆', nome: card.querySelector('.f-nome').value.trim(), atual: Number(card.querySelector('.f-atual').value)||0, meta: Number(card.querySelector('.f-meta').value)||10, raridade: card.querySelector('.f-raridade').value };
+    }
+    if(kind==='lugar'){
+      return { nome: card.querySelector('.f-nome').value.trim(), visitado: card.querySelector('.f-visitado').checked, foto: fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '') };
+    }
+    if(kind==='album'){
+      return { label: card.querySelector('.f-label').value.trim(), url: fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '') };
+    }
+    if(kind==='meme'){
+      const link = card.querySelector('.f-link').value.trim();
+      const url = link || fotoUpload || (card.querySelector('.dyn-thumb').src.startsWith('http') ? card.querySelector('.dyn-thumb').src : '');
+      return { label: card.querySelector('.f-label').value.trim(), url };
+    }
+    return null;
+  }).filter(item=>item && (item.nome || item.titulo || item.url || item.label));
+}
+
+async function salvarAdmin(){
+  const btn=document.getElementById('btnSalvar');
+  btn.disabled=true; btn.textContent='salvando...';
+  try{
+    const payload = {
+      fotoPrincipal: uploadCache['fotoPrincipal'] || DB.fotoPrincipal || '',
+      dataInicio: document.getElementById('admData').value || DEFAULTS.dataInicio,
+      senhaSite: document.getElementById('admSenha').value || DEFAULTS.senhaSite,
+      tituloFeed: document.getElementById('admTitulo').value || DEFAULTS.tituloFeed,
+      ntfyTopic: document.getElementById('admNtfy').value.trim() || DEFAULTS.ntfyTopic,
+      musicas: document.getElementById('admMusicas').value.split('\n').map(s=>s.trim()).filter(Boolean),
+      motivos: document.getElementById('admMotivos').value.split('\n').map(s=>s.trim()).filter(Boolean),
+      elogios: document.getElementById('admElogios').value.split('\n').map(s=>s.trim()).filter(Boolean),
+      petMensagens: document.getElementById('admPet').value.split('\n').map(s=>s.trim()).filter(Boolean),
+      cofreMeta: Number(document.getElementById('admCofreMeta').value)||0,
+      planosFuturos: lerCards('planos-cards'),
+      timeline: lerCards('timeline-cards'),
+      conquistas: lerCards('conquistas-cards'),
+      lugares: lerCards('lugares-cards'),
+      album: lerCards('album-cards'),
+      memes: lerCards('memes-cards'),
+    };
+    await mainRef.set(payload, {merge:true});
+    for(const k in uploadCache) delete uploadCache[k];
+    toast('tudo salvo! ✅');
+    navTo('page-feed');
   }catch(e){
-    alert("Erro ao salvar! As imagens base64 podem estar muito pesadas. Tente hospedar online ou reduzir o tamanho.");
+    console.error(e);
+    alert('erro ao salvar: '+e.message);
+  }finally{
+    btn.disabled=false; btn.textContent='💾 salvar e atualizar';
   }
 }
 
