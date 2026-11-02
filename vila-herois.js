@@ -41,7 +41,7 @@ function olhosGato(fech){
 const narizAlien=`<path d="M-2.2 -24.6 L2.2 -24.6 L0 -22.6 Z" fill="#2b2326" stroke="#2b2326" stroke-width="1" stroke-linejoin="round"/><path d="M-1 -24.3 h1" stroke="#fff" stroke-width=".7" opacity=".7"/>`;
 const bocaAlien=`<path d="M-2.2 -19.6 L0 -21 L2.2 -19.6" stroke="${INK}" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
 
-function alienSVG(quem,disfarce,fech){
+function alienSVG(quem,disfarce,fech,semRabo){
   const nat=quem==='n';
   // no disfarce: pelo de gato comum (pó de disfarce); revelado: verde-limão do quadro
   const pelo=disfarce?(nat?'#e6d2b8':'#a7896b'):VERDE;
@@ -63,7 +63,7 @@ function alienSVG(quem,disfarce,fech){
   const brilhoAlien=disfarce?'':`<ellipse cx="-6" cy="-37" rx="5" ry="2" fill="${VERDE_CLARO}" opacity=".7"/>`;
   return `<ellipse cx="0" cy="1" rx="14" ry="4" fill="rgba(60,50,30,.22)"/>
    ${nat?cabeloNatTras:''}
-   <path d="M10 -4 C21 -4 23 -14 18 -21" stroke="${INK}" stroke-width="7.5" fill="none" stroke-linecap="round"/><path d="M10 -4 C21 -4 23 -14 18 -21" stroke="${pelo}" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+   ${semRabo?'':`<path d="M10 -4 C21 -4 23 -14 18 -21" stroke="${INK}" stroke-width="7.5" fill="none" stroke-linecap="round"/><path d="M10 -4 C21 -4 23 -14 18 -21" stroke="${pelo}" stroke-width="4.5" fill="none" stroke-linecap="round"/>`}
    <ellipse cx="0" cy="-10" rx="12.5" ry="11.5" fill="${pelo}" ${S}/>
    ${roupa}
    <ellipse cx="-5" cy="-1" rx="4" ry="2.6" fill="${pelo}" stroke="${INK}" stroke-width="1.6"/><ellipse cx="5" cy="-1" rx="4" ry="2.6" fill="${pelo}" stroke="${INK}" stroke-width="1.6"/>
@@ -76,5 +76,6 @@ function alienSVG(quem,disfarce,fech){
    ${chapeu}`;
 }
 window.alienSVG=alienSVG;
+window.peloAlien=(q,disf)=>disf?(q==='n'?'#e6d2b8':'#a7896b'):VERDE;
 window.ALIEN_BOX=[-30,-64,60,72];
 })();

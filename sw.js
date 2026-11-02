@@ -2,8 +2,8 @@
    - páginas e scripts do site: rede primeiro, cópia guardada se cair a internet
    - vídeos, imagens e fontes: cópia guardada primeiro (atualiza por trás)
    - Firestore e ntfy nunca passam por aqui (são dados ao vivo) */
-const V='vila-v6';
-const BASE=['./','index.html','vila.js','vila.css','vila-herois.js','vila-cenas.js','manifest.webmanifest','icons/icon-192.png'];
+const V='vila-v7';
+const BASE=['./','index.html','vila.js','vila.css','vila-herois.js','vila-cenas.js','vila-mini.js','manifest.webmanifest','icons/icon-192.png'];
 self.addEventListener('install',e=>{ e.waitUntil(caches.open(V).then(c=>c.addAll(BASE)).then(()=>self.skipWaiting())); });
 self.addEventListener('activate',e=>{ e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim())); });
 self.addEventListener('fetch',e=>{
