@@ -474,7 +474,7 @@ label.field-label{font-family:var(--font-title);font-weight:600;font-size:13px;c
       <div class="game-menu">
         <div class="game-tile" onclick="abrirCozy()">
           <img src="gatos/sopa.webp" alt="">
-          <div><div class="game-tile-title">vila dos gatinhos</div><div class="game-tile-desc">reconstruam a vila no meio da floresta, acordem os gatinhos e restaurem o castelo da Rainha Mimosa</div><span class="tag" id="cozy-tag">☁️ progresso compartilhado</span></div>
+          <div><div class="game-tile-title">vila dos gatinhos</div><div class="game-tile-desc">dois gatos alienígenas disfarçados, cada um com a sua vila no meio da floresta... até o dia em que se encontram</div><span class="tag" id="cozy-tag">☁️ progresso compartilhado</span></div>
         </div>
         <div class="game-tile" onclick="abrirArcade()">
           <img src="gatos/pesca.webp" alt="">
@@ -582,9 +582,12 @@ label.field-label{font-family:var(--font-title);font-weight:600;font-size:13px;c
     <label>🐾 mensagens do gatinho de estimação</label>
     <textarea id="admPet" rows="3" placeholder="uma mensagem por linha"></textarea>
     <hr>
-    <div class="admin-section-title">👑 carta final da Rainha Mimosa</div>
-    <p class="hint">aparece no jogo da vila só quando o castelo inteiro for restaurado. escreve com carinho, é a surpresa do final 💌</p>
-    <textarea id="admCartaFinal" rows="6" placeholder="sua carta pra ela..."></textarea>
+    <div class="admin-section-title">🛸 cartas do pedido (jogo da vila)</div>
+    <p class="hint">aparecem no capítulo "o cinema fechado", quando o cine cultura for construído. a do Gabriel aparece no jogo da Natalix, e a dela no do Gabrix 💌</p>
+    <label>carta do Gabriel (o que ele diz na tela do cinema)</label>
+    <textarea id="admCartaFinal" rows="6" placeholder="sua declaração pra ela..."></textarea>
+    <label>resposta da Natália (opcional)</label>
+    <textarea id="admCartaFinalDela" rows="4" placeholder="a resposta dela..."></textarea>
     <button class="btn btn-green btn-full" style="margin-top:20px;" onclick="salvarAdmin()" id="btnSalvar">💾 salvar e atualizar</button>
     <button class="btn btn-dark btn-full" onclick="navTo('page-feed')">voltar</button>
   </div>
@@ -670,7 +673,7 @@ function burstHearts(x,y,count=16){
 const DEFAULTS={
   senhaSite:"15032026", dataInicio:"2026-03-15T00:00:00", fotoPrincipal:"",
   tituloFeed:"é minha namorada mesmo!! 🥹",
-  ntfyTopic:"voce-e-ela-secreta", imgbbKey:"", cartaFinal:"",
+  ntfyTopic:"voce-e-ela-secreta", imgbbKey:"", cartaFinal:"", cartaFinalDela:"",
   musicas:["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
   album:[], memes:[],
   motivos:["seu sorriso","o jeito que você me abraça","nossas madrugadas conversando"],
@@ -1108,7 +1111,7 @@ function montarFormulariosAdmin(){
   if(DB.fotoPrincipal){ $('admFotoPreview').src=DB.fotoPrincipal; $('admFotoPreview').style.display='inline-block'; }
   $('admData').value=DB.dataInicio?String(DB.dataInicio).slice(0,16):'';
   $('admSenha').value=DB.senhaSite; $('admTitulo').value=DB.tituloFeed; $('admNtfy').value=DB.ntfyTopic||DEFAULTS.ntfyTopic; $('admImgbb').value=DB.imgbbKey||'';
-  $('admMusicas').value=(DB.musicas||[]).join('\n'); $('admMotivos').value=(DB.motivos||[]).join('\n'); $('admElogios').value=(DB.elogios||[]).join('\n'); $('admPet').value=(DB.petMensagens||[]).join('\n'); $('admCartaFinal').value=DB.cartaFinal||''; $('admCofreMeta').value=DB.cofreMeta||'';
+  $('admMusicas').value=(DB.musicas||[]).join('\n'); $('admMotivos').value=(DB.motivos||[]).join('\n'); $('admElogios').value=(DB.elogios||[]).join('\n'); $('admPet').value=(DB.petMensagens||[]).join('\n'); $('admCartaFinal').value=DB.cartaFinal||''; $('admCartaFinalDela').value=DB.cartaFinalDela||''; $('admCofreMeta').value=DB.cofreMeta||'';
   montarCards('planos-cards',DB.planosFuturos,criarPlanoCardHTML); montarCards('timeline-cards',DB.timeline,criarTimelineCardHTML); montarCards('conquistas-cards',DB.conquistas,criarConquistaCardHTML); montarCards('lugares-cards',DB.lugares,criarLugarCardHTML); montarCards('album-cards',DB.album,criarAlbumCardHTML); montarCards('memes-cards',DB.memes,criarMemeCardHTML);
 }
 function montarCards(cid,arr,fn){ const c=$(cid); c.innerHTML=''; (arr||[]).forEach((it,i)=>c.insertAdjacentHTML('beforeend',fn(it,cid+'-'+i))); }
@@ -1149,7 +1152,7 @@ async function salvarAdmin(){
     await mainRef.set({
       fotoPrincipal:uploadCache.fotoPrincipal||DB.fotoPrincipal||'', dataInicio:$('admData').value||DEFAULTS.dataInicio, senhaSite:novaSenha,
       tituloFeed:$('admTitulo').value||DEFAULTS.tituloFeed, ntfyTopic:$('admNtfy').value.trim()||DEFAULTS.ntfyTopic, imgbbKey:$('admImgbb').value.trim(),
-      musicas:linhas('admMusicas'), motivos:linhas('admMotivos'), elogios:linhas('admElogios'), petMensagens:linhas('admPet'), cartaFinal:$('admCartaFinal').value.trim(),
+      musicas:linhas('admMusicas'), motivos:linhas('admMotivos'), elogios:linhas('admElogios'), petMensagens:linhas('admPet'), cartaFinal:$('admCartaFinal').value.trim(), cartaFinalDela:$('admCartaFinalDela').value.trim(),
       cofreMeta:Number($('admCofreMeta').value)||0, planosFuturos:lerCards('planos-cards'), timeline:lerCards('timeline-cards'), conquistas:lerCards('conquistas-cards'), lugares:lerCards('lugares-cards'), album:lerCards('album-cards'), memes:lerCards('memes-cards')
     },{merge:true});
     if(LS.get('acessoOk',false)) LS.set('acessoOk',hashSenha(novaSenha)); // quem salvou continua lembrado
@@ -1172,6 +1175,7 @@ function observarReveal(){
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ $('lightbox').classList.remove('show'); fecharModal(); } });
 </script>
+<script src="vila-herois.js"></script>
 <script src="vila.js"></script>
 </body>
 </html>
