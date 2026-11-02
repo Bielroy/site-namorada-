@@ -21,16 +21,8 @@
 /* mundo */
 #vl-view{position:absolute;inset:0;overflow:hidden;touch-action:none;cursor:grab;background:radial-gradient(circle at 50% 45%,#8fae74 0,#7c9a63 60%,#6c8a56 100%);}
 #vl-view.drag{cursor:grabbing;}
-#vl-world{position:absolute;left:0;top:0;width:1000px;height:1000px;transform-origin:0 0;will-change:transform;}
-#vl-world > svg{position:absolute;inset:0;width:1000px;height:1000px;overflow:visible;}
-.vl-tint{position:absolute;inset:0;pointer-events:none;z-index:5;transition:background 2s linear;}
+#vl-cv{position:absolute;inset:0;display:block;touch-action:none;}
 .vl-fx{position:absolute;inset:0;pointer-events:none;z-index:6;overflow:hidden;}
-
-/* árvores balançando */
-.tree .sway{transform-box:fill-box;transform-origin:50% 100%;animation:vlsway 5s ease-in-out infinite;}
-@keyframes vlsway{0%,100%{transform:rotate(-1.2deg);}50%{transform:rotate(1.2deg);}}
-.tree{transition:opacity .6s ease, transform .6s ease;}
-.tree.gone{opacity:0;pointer-events:none;}
 
 /* construções */
 .bld{cursor:pointer;}
