@@ -271,3 +271,9 @@
 .vl-ativ button.lock{opacity:.5;}
 .vl-ativ button.pronto{border-color:var(--rose);box-shadow:0 0 0 3px rgba(227,121,138,.18);}
 .vl-ativ .vl-ic{width:34px;height:34px;}
+.vl-config{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+.vl-config button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;font-family:var(--font-title);border:2px solid var(--line);background:var(--paper-hi);border-radius:14px;padding:12px 14px;color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--line);}
+.vl-config button b{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;}
+.vl-config button .vl-ic{width:20px;height:20px;}
+.vl-config button small{font-family:inherit;font-weight:800;color:var(--ink-soft);font-size:12.5px;}
+.vl-config button.perigo{border-color:var(--rose);}
