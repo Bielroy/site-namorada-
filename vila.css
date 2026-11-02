@@ -91,8 +91,8 @@
 @keyframes vlbfly{0%{transform:translate(0,0);}25%{transform:translate(80px,-50px);}50%{transform:translate(20px,-110px);}75%{transform:translate(-60px,-40px);}100%{transform:translate(0,0);}}
 
 /* barra inferior */
-.vl-nav{position:absolute;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;gap:10px;padding:10px 10px calc(12px + env(safe-area-inset-bottom));pointer-events:none;}
-.vl-nav button{pointer-events:auto;position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:74px;background:rgba(251,247,239,.96);border:2px solid var(--line-dark);border-radius:18px;padding:7px 10px 6px;font-family:var(--font-title);font-weight:600;font-size:13px;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 rgba(90,70,54,.28);}
+.vl-nav{position:absolute;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;gap:7px;padding:10px 8px calc(12px + env(safe-area-inset-bottom));pointer-events:none;}
+.vl-nav button{pointer-events:auto;position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;flex:0 1 74px;background:rgba(251,247,239,.96);border:2px solid var(--line-dark);border-radius:18px;padding:7px 10px 6px;font-family:var(--font-title);font-weight:600;font-size:13px;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 rgba(90,70,54,.28);}
 .vl-nav button:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(90,70,54,.28);}
 .vl-nav .vl-ic{width:26px;height:26px;}
 .vl-dot{position:absolute;top:-4px;right:-4px;width:15px;height:15px;border-radius:50%;background:var(--rose);border:2px solid #fbf7ef;display:none;animation:vlbob 1.2s infinite;}
@@ -184,3 +184,51 @@
 .vl-escolha button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line-dark);}
 .vl-escolha b{font-family:var(--font-title);font-size:18px;}
 .vl-escolha small{font-size:12px;font-weight:800;color:var(--ink-soft);}
+
+/* guia: próximo passo */
+.vl-passo{position:absolute;z-index:31;left:50%;top:calc(62px + env(safe-area-inset-top));transform:translateX(-50%);display:flex;align-items:center;gap:9px;max-width:min(94vw,440px);width:max-content;background:rgba(251,247,239,.97);border:2px solid var(--line-dark);border-radius:16px;padding:7px 10px 7px 8px;box-shadow:0 4px 0 rgba(90,70,54,.25);font:inherit;color:var(--ink);text-align:left;cursor:pointer;}
+.vl-passo .vl-ic{width:28px;height:28px;}
+.vl-passo .vl-ic.go{width:18px;height:18px;opacity:.7;}
+.vl-passo .tx{display:flex;flex-direction:column;min-width:0;}
+.vl-passo b{font-family:var(--font-title);font-weight:600;font-size:14px;line-height:1.2;}
+.vl-passo small{font-size:11.5px;font-weight:800;color:var(--ink-soft);}
+.vl-passo .bar{display:block;height:6px;border-radius:9px;background:var(--paper);border:1.5px solid var(--line);overflow:hidden;margin-top:4px;width:100%;min-width:150px;}
+.vl-passo .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--honey),var(--rose));}
+.vl-passo.pode{border-color:var(--honey);animation:vlpulse 1.6s ease-in-out infinite;}
+.vl-passo.tut{border-color:var(--rose);}
+@keyframes vlpulse{50%{box-shadow:0 4px 0 rgba(90,70,54,.25),0 0 0 5px rgba(233,178,79,.28);}}
+#cozy-wrap.visita .vl-passo{background:#fbeff1;border-color:var(--rose);}
+#cozy-wrap.visita #vl-view{filter:saturate(1.08);}
+#cozy-wrap.visita .vl-nav button:not(:last-child){opacity:.45;}
+
+/* cardápio dos pedidos */
+.vl-menu{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:6px;}
+.vl-menu button{background:var(--paper-hi);border:2px solid var(--line);border-radius:14px;padding:6px 2px 6px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font:inherit;color:var(--ink);box-shadow:0 3px 0 var(--line);}
+.vl-menu button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line);}
+.vl-menu .vl-ic{width:34px;height:34px;}
+.vl-menu small{font-size:10.5px;font-weight:800;line-height:1.15;text-align:center;color:var(--ink-soft);}
+
+/* conquistas */
+.vl-conq{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.vl-conq div{background:var(--paper-hi);border:2px solid var(--line);border-radius:16px;padding:8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;opacity:.55;}
+.vl-conq div .vl-ic{width:30px;height:30px;filter:grayscale(1);}
+.vl-conq div b{font-family:var(--font-title);font-size:14px;}
+.vl-conq div small{font-size:11.5px;font-weight:800;color:var(--ink-soft);line-height:1.2;}
+.vl-conq div em{font-style:normal;font-size:11px;font-weight:900;color:var(--ink-soft);margin-top:2px;}
+.vl-conq div.ok{opacity:1;} .vl-conq div.ok .vl-ic{filter:none;} .vl-conq div.ok em{color:var(--leaf-dark);}
+.vl-conq div.pronta{opacity:1;border-color:var(--honey);background:#fff7e3;} .vl-conq div.pronta .vl-ic{filter:none;animation:vlbob 1.2s infinite;}
+.vl-conq button{margin-top:4px;font-family:var(--font-title);font-weight:600;font-size:13px;border:none;border-radius:10px;padding:5px 10px;color:#fff;background:var(--honey);box-shadow:0 3px 0 var(--honey-dark);cursor:pointer;display:flex;align-items:center;gap:3px;}
+
+/* visita + correio */
+.vl-duo{display:flex;gap:8px;margin:2px 0 10px;}
+.vl-duo button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--font-title);font-weight:600;font-size:13.5px;border:2px solid var(--line);background:var(--paper-hi);border-radius:14px;padding:8px 6px;color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--line);}
+.vl-duo .vl-ic{width:20px;height:20px;}
+.vl-duo .n{background:var(--rose);color:#fff;border-radius:99px;padding:0 7px;font-size:12px;}
+.vl-txt{width:100%;min-height:74px;border:2px solid var(--line);border-radius:14px;background:#fffaf0;padding:10px 12px;font:inherit;font-weight:700;font-size:15px;color:var(--ink);resize:vertical;margin-bottom:10px;}
+
+/* cena animada */
+#vl-cena-ov{position:absolute;inset:0;z-index:60;background:#2b2440;display:none;flex-direction:column;align-items:center;justify-content:center;}
+#vl-cena-ov.on{display:flex;}
+#vl-cena-ov canvas{display:block;max-width:100%;max-height:100%;}
+#vl-cena-ov .pular{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;font-family:var(--font-title);font-weight:600;font-size:14px;background:rgba(251,247,239,.9);border:2px solid var(--line-dark);border-radius:99px;padding:6px 14px;color:var(--ink);cursor:pointer;}
+#vl-cena-ov .dica{position:absolute;bottom:calc(14px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font-size:12px;font-weight:800;color:rgba(251,247,239,.7);pointer-events:none;}
