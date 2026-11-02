@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="gatos/soneca.webp">
+<link rel="stylesheet" href="vila.css">
 <style>
 /* ============================================================
    TOKENS — ESTÉTICA PAPEL ACONCHEGANTE (cats & soup)
@@ -266,103 +267,6 @@ label.field-label{font-family:var(--font-title);font-weight:600;font-size:13px;c
 .score-board{display:flex;flex-direction:column;gap:6px;width:100%;max-width:420px;margin-top:16px;}
 .score-board div{background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:8px 12px;font-weight:800;display:flex;justify-content:space-between;}
 
-/* =========================================
-   JOGO 2: FLORESTA DOS GATINHOS (estilo cats & soup)
-========================================= */
-.cs-hud{display:flex;gap:8px;align-items:center;}
-.cs-pill{display:flex;align-items:center;gap:5px;background:var(--paper-hi);border:2px solid var(--line);border-radius:99px;padding:5px 11px;font-family:var(--font-title);font-weight:700;font-size:16px;box-shadow:0 2px 0 var(--line-dark);white-space:nowrap;}
-.cs-pill.rate{font-size:13px;color:var(--leaf-dark);}
-.cs-coin-pop{animation:coinpop .25s ease;}
-@keyframes coinpop{50%{transform:scale(1.12);}}
-
-#cs-forest{width:100%;height:150px;border-radius:22px;position:relative;overflow:hidden;border:2px solid var(--line);box-shadow:var(--shadow);
-  background:linear-gradient(#cfe3e8 0%,#e9efdf 55%,#cfdcae 56%,#b9cd93 100%);}
-#cs-forest .sky-tint{position:absolute;inset:0;transition:background 1.5s linear;pointer-events:none;z-index:4;}
-#cs-forest .astro{position:absolute;top:10px;right:14px;font-size:26px;z-index:3;transition:opacity 1s;}
-#cs-forest .hill{position:absolute;bottom:38%;width:60%;height:70px;border-radius:50% 50% 0 0;background:#c7d6a4;}
-#cs-forest .decor{position:absolute;z-index:2;font-size:26px;filter:drop-shadow(0 2px 0 rgba(90,70,54,.2));animation:popin .5s ease both;}
-#cs-forest .title{position:absolute;left:12px;top:10px;z-index:5;}
-#cs-forest .title b{font-family:var(--font-title);font-size:18px;display:block;}
-#cs-forest .title small{font-size:12px;font-weight:900;color:var(--ink-soft);}
-.cs-lvlbar{width:150px;height:9px;border-radius:99px;background:rgba(255,255,255,.7);border:2px solid var(--line);overflow:hidden;margin-top:4px;}
-.cs-lvlbar i{display:block;height:100%;background:linear-gradient(90deg,var(--honey),var(--rose));width:0;transition:width .5s;}
-@keyframes popin{0%{transform:scale(.2);opacity:0;}70%{transform:scale(1.15);}100%{transform:scale(1);opacity:1;}}
-.cloud{position:absolute;top:18px;font-size:30px;opacity:.85;animation:cloud linear infinite;z-index:1;}
-@keyframes cloud{from{transform:translateX(-80px);}to{transform:translateX(620px);}}
-
-.cs-tabs{display:flex;gap:8px;width:100%;margin:14px 0 12px;}
-.cs-tab{flex:1;font-family:var(--font-title);font-weight:600;font-size:15px;padding:10px 6px;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink-soft);cursor:pointer;position:relative;box-shadow:0 3px 0 var(--line-dark);}
-.cs-tab.on{background:var(--rose);border-color:var(--rose);color:#fff;box-shadow:0 3px 0 var(--rose-dark);}
-.cs-tab .dot{position:absolute;top:-5px;right:-3px;width:14px;height:14px;border-radius:50%;background:var(--honey);border:2px solid var(--paper-hi);display:none;}
-.cs-tab .dot.show{display:block;animation:bob 1.2s infinite;}
-.cs-panel{width:100%;display:none;}
-.cs-panel.on{display:block;}
-
-.cs-buyx{display:flex;justify-content:flex-end;gap:6px;margin-bottom:10px;align-items:center;font-size:13px;font-weight:900;color:var(--ink-soft);}
-.cs-buyx button{font-family:var(--font-title);font-weight:600;font-size:13px;border:2px solid var(--line);background:var(--paper);border-radius:10px;padding:4px 10px;cursor:pointer;color:var(--ink);}
-.cs-buyx button.on{background:var(--honey);border-color:var(--honey-dark);color:#fff;}
-
-.cs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;}
-@media(min-width:520px){.cs-grid{gap:14px;}}
-.st{background:var(--paper);border:2px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;position:relative;}
-.st-art{position:relative;aspect-ratio:4/3;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation;overflow:hidden;}
-.st-art video,.st-art img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
-.st-art .prod{position:absolute;left:8px;top:8px;font-size:15px;background:rgba(251,247,239,.92);border:2px solid var(--line);border-radius:99px;padding:1px 8px;font-weight:900;}
-.st-art .ms{position:absolute;right:8px;top:8px;font-size:11px;background:var(--honey);color:#fff;border-radius:99px;padding:2px 7px;font-weight:900;}
-.st-art.bump{animation:bump .25s ease;}
-@keyframes bump{50%{transform:scale(.97);}}
-.st-info{padding:8px 10px 10px;display:flex;flex-direction:column;gap:5px;}
-.st-name{font-family:var(--font-title);font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center;gap:6px;}
-.st-name .lv{font-size:12px;background:var(--paper-hi);border:2px solid var(--line);border-radius:99px;padding:0 7px;color:var(--ink-soft);flex-shrink:0;}
-.st-meta{font-size:12px;font-weight:800;color:var(--ink-soft);line-height:1.25;min-height:15px;}
-.st-bar{height:9px;border-radius:99px;background:var(--paper-hi);border:2px solid var(--line);overflow:hidden;}
-.st-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--honey),var(--rose));border-radius:99px;}
-.st-up{font-family:var(--font-title);font-weight:600;font-size:14px;border:none;border-radius:12px;padding:8px 6px;cursor:pointer;color:#fff;background:var(--leaf);box-shadow:0 3px 0 var(--leaf-dark);display:flex;justify-content:center;align-items:center;gap:4px;}
-.st-up:active{transform:translateY(2px);box-shadow:0 1px 0 var(--leaf-dark);}
-.st-up.no{background:#cbbfae;box-shadow:0 3px 0 #ab9d89;cursor:not-allowed;}
-.st.locked .st-art img{filter:grayscale(.85) brightness(1.05) opacity(.55);}
-.st.locked .lockmsg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;}
-.st.mystery .st-art img{filter:brightness(0) opacity(.12);}
-.st.mystery .st-up{background:#cbbfae;box-shadow:0 3px 0 #ab9d89;}
-.st .unlock{background:var(--rose);box-shadow:0 3px 0 var(--rose-dark);}
-.st .unlock.no{background:#cbbfae;box-shadow:0 3px 0 #ab9d89;}
-.st.new{animation:popin .6s ease;}
-
-.float-txt{position:absolute;z-index:8;font-family:var(--font-title);font-weight:700;font-size:16px;color:var(--honey-dark);pointer-events:none;text-shadow:0 2px 0 var(--paper-hi),0 -1px 0 var(--paper-hi);animation:floatup 1s ease-out forwards;white-space:nowrap;}
-.float-txt.heart{color:var(--rose-dark);}
-@keyframes floatup{0%{transform:translate(-50%,0) scale(.8);opacity:0;}15%{opacity:1;transform:translate(-50%,-6px) scale(1.05);}100%{transform:translate(-50%,-48px) scale(1);opacity:0;}}
-
-.visitor{position:absolute;z-index:9;left:0;right:0;margin:0 auto;width:max-content;top:22%;background:var(--paper-hi);border:2px solid var(--honey);border-radius:16px;padding:4px 9px;font-weight:900;font-size:12px;box-shadow:0 3px 0 var(--honey-dark);cursor:pointer;animation:bob 1.1s ease-in-out infinite;white-space:nowrap;}
-.visitor b{font-size:22px;vertical-align:middle;}
-
-.perk{display:flex;align-items:center;gap:12px;background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:12px;margin-bottom:10px;box-shadow:0 3px 0 var(--line-dark);}
-.perk .ic{width:46px;height:46px;border-radius:14px;background:var(--paper-hi);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
-.perk .tx{flex:1;min-width:0;text-align:left;}
-.perk .tx b{font-family:var(--font-title);font-size:16px;display:block;}
-.perk .tx small{font-size:13px;font-weight:800;color:var(--ink-soft);display:block;line-height:1.3;}
-.perk button{flex-shrink:0;min-width:84px;}
-.perk-sec{font-family:var(--font-title);font-weight:600;font-size:15px;color:var(--ink-soft);margin:16px 2px 8px;text-align:left;}
-
-.mission{background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:12px;margin-bottom:10px;box-shadow:0 3px 0 var(--line-dark);text-align:left;}
-.mission .row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.mission b{font-size:15px;font-weight:900;}
-.mission .bar{height:10px;border-radius:99px;background:var(--paper-hi);border:2px solid var(--line);overflow:hidden;margin:8px 0 2px;}
-.mission .bar i{display:block;height:100%;background:var(--leaf);border-radius:99px;}
-.mission small{font-size:12px;font-weight:800;color:var(--ink-soft);}
-.mission.done{opacity:.6;}
-.chest{text-align:center;padding:16px;border:2px dashed var(--honey);border-radius:18px;margin-top:6px;}
-.chest .big{font-size:44px;display:block;}
-
-.cs-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;}
-.cs-stats div{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:8px 10px;font-size:13px;font-weight:800;color:var(--ink-soft);}
-.cs-stats b{display:block;font-family:var(--font-title);font-size:18px;color:var(--ink);}
-.cs-note{font-size:13px;text-align:center;color:var(--ink-soft);margin-top:14px;font-weight:800;}
-
-.cs-modal{position:fixed;inset:0;z-index:6500;background:rgba(60,45,35,.55);display:none;align-items:center;justify-content:center;padding:20px;}
-.cs-modal.show{display:flex;}
-.cs-modal .paper{max-width:360px;width:100%;padding:26px 20px 22px;text-align:center;animation:popin .4s ease;}
-.cs-modal .big{font-family:var(--font-title);font-size:34px;font-weight:700;color:var(--honey-dark);margin:6px 0 14px;}
-
 /* ---------- admin ---------- */
 #page-admin{justify-content:flex-start;}
 .admin-card{max-width:740px;width:100%;padding:32px 22px;margin:20px 0 40px;text-align:left;}
@@ -570,7 +474,7 @@ label.field-label{font-family:var(--font-title);font-weight:600;font-size:13px;c
       <div class="game-menu">
         <div class="game-tile" onclick="abrirCozy()">
           <img src="gatos/sopa.webp" alt="">
-          <div><div class="game-tile-title">floresta dos gatinhos</div><div class="game-tile-desc">abram estações, melhorem os gatinhos e juntem moedinhas — eles trabalham até quando vocês estão fora</div><span class="tag" id="cozy-tag">☁️ progresso compartilhado</span></div>
+          <div><div class="game-tile-title">vila dos gatinhos</div><div class="game-tile-desc">reconstruam a vila no meio da floresta, acordem os gatinhos e restaurem o castelo da Rainha Mimosa</div><span class="tag" id="cozy-tag">☁️ progresso compartilhado</span></div>
         </div>
         <div class="game-tile" onclick="abrirArcade()">
           <img src="gatos/pesca.webp" alt="">
@@ -607,59 +511,10 @@ label.field-label{font-family:var(--font-title);font-weight:600;font-size:13px;c
     </div>
   </div>
 
-  <!-- JOGO 2: FLORESTA DOS GATINHOS -->
-  <div id="cozy-wrap" style="display:none;width:100%;flex-direction:column;align-items:center;">
-    <div class="game-top">
-      <div class="cs-hud">
-        <span class="cs-pill" id="cs-coin-pill">🪙 <span id="cat-coin">0</span></span>
-        <span class="cs-pill">💗 <span id="cat-hearts">0</span></span>
-        <span class="cs-pill rate">+<span id="cat-rate">0</span>/s</span>
-      </div>
-      <button class="btn btn-dark btn-small" onclick="fecharJogo()">✖</button>
-    </div>
-    <div class="game-body">
-      <div id="cs-forest">
-        <div class="title"><b>floresta dos gatinhos</b><small>nível <span id="vila-lvl">1</span> · <span id="vila-lvl-prox"></span></small><div class="cs-lvlbar"><i id="vila-fill"></i></div></div>
-        <span class="cloud" style="animation-duration:48s;">☁️</span><span class="cloud" style="animation-duration:70s;animation-delay:-30s;top:40px;font-size:22px;">☁️</span>
-        <div class="hill" style="left:-10%;"></div><div class="hill" style="left:50%;width:70%;height:56px;background:#bccd96;"></div>
-        <div id="cs-decor"></div>
-        <span class="astro" id="vila-astro">🌞</span>
-        <div class="sky-tint" id="vila-ceu"></div>
-      </div>
-
-      <div class="cs-tabs">
-        <button class="cs-tab on" data-tab="floresta" onclick="csTab('floresta')">🏡 estações</button>
-        <button class="cs-tab" data-tab="carinho" onclick="csTab('carinho')">💗 carinho</button>
-        <button class="cs-tab" data-tab="missoes" onclick="csTab('missoes')">📜 missões<span class="dot" id="cs-mis-dot"></span></button>
-      </div>
-
-      <div class="cs-panel on" id="cs-p-floresta">
-        <div class="cs-buyx">comprar
-          <button data-x="1" class="on" onclick="csBuyX(1)">x1</button><button data-x="10" onclick="csBuyX(10)">x10</button><button data-x="max" onclick="csBuyX('max')">máx</button>
-        </div>
-        <div class="cs-grid" id="cs-grid"></div>
-        <p class="cs-note">toque nos gatinhos pra fazer carinho 🐾 (acelera o trabalho e rende 💗)</p>
-      </div>
-
-      <div class="cs-panel" id="cs-p-carinho">
-        <div class="perk-sec">💗 mimos (pagos com corações)</div>
-        <div id="cs-perks"></div>
-        <div class="perk-sec">🎀 enfeites da floresta (pagos com moedas)</div>
-        <div id="cs-decor-shop"></div>
-      </div>
-
-      <div class="cs-panel" id="cs-p-missoes">
-        <div id="cs-missions"></div>
-        <div class="cs-stats" id="cs-stats"></div>
-      </div>
-
-      <p class="cs-note" id="cat-note"></p>
-    </div>
-  </div>
 </div>
 
-<!-- modal do jogo -->
-<div class="cs-modal" id="cs-modal"><div class="paper" id="cs-modal-box"></div></div>
+<!-- JOGO 2: VILA DOS GATINHOS (vila.js) -->
+<div id="cozy-wrap"></div>
 
 <!-- 7. ADMIN -->
 <div id="page-admin" class="page">
@@ -726,6 +581,10 @@ label.field-label{font-family:var(--font-title);font-weight:600;font-size:13px;c
     <hr>
     <label>🐾 mensagens do gatinho de estimação</label>
     <textarea id="admPet" rows="3" placeholder="uma mensagem por linha"></textarea>
+    <hr>
+    <div class="admin-section-title">👑 carta final da Rainha Mimosa</div>
+    <p class="hint">aparece no jogo da vila só quando o castelo inteiro for restaurado. escreve com carinho, é a surpresa do final 💌</p>
+    <textarea id="admCartaFinal" rows="6" placeholder="sua carta pra ela..."></textarea>
     <button class="btn btn-green btn-full" style="margin-top:20px;" onclick="salvarAdmin()" id="btnSalvar">💾 salvar e atualizar</button>
     <button class="btn btn-dark btn-full" onclick="navTo('page-feed')">voltar</button>
   </div>
@@ -811,7 +670,7 @@ function burstHearts(x,y,count=16){
 const DEFAULTS={
   senhaSite:"15032026", dataInicio:"2026-03-15T00:00:00", fotoPrincipal:"",
   tituloFeed:"é minha namorada mesmo!! 🥹",
-  ntfyTopic:"voce-e-ela-secreta", imgbbKey:"",
+  ntfyTopic:"voce-e-ela-secreta", imgbbKey:"", cartaFinal:"",
   musicas:["https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP"],
   album:[], memes:[],
   motivos:["seu sorriso","o jeito que você me abraça","nossas madrugadas conversando"],
@@ -1095,7 +954,7 @@ const ARC_TIPOS=[
 ];
 let arc={on:false};
 function abrirArcade(){
-  $('game-overlay').classList.add('active'); $('arcade-wrap').style.display='flex'; $('cozy-wrap').style.display='none';
+  $('game-overlay').classList.add('active'); $('arcade-wrap').style.display='flex';
   document.body.style.overflow='hidden';
   const f=$('arcade-field');
   if(!f.querySelector('.lane')) for(let i=1;i<ARC_LANES;i++){ const l=document.createElement('div'); l.className='lane'; l.style.left=(i*100/ARC_LANES)+'%'; f.appendChild(l); }
@@ -1196,438 +1055,6 @@ function renderArcadeScoreboard(placar){
 }
 
 /* ============================================================
-   JOGO 2: FLORESTA DOS GATINHOS (estilo cats & soup)
-   ============================================================ */
-/* cada estação = um gatinho dos vídeos. ciclo em s, valor = moedas por ciclo no nível 1 */
-const ESTACOES=[
-  {id:'sopa',     nome:'panela de sopa', prod:'🍲', ciclo:3,  val:2,      abrir:0,       up:10},
-  {id:'padaria',  nome:'cozinha',        prod:'🥕', ciclo:5,  val:9,      abrir:150,     up:70},
-  {id:'horta',    nome:'hortinha',       prod:'🍄', ciclo:7,  val:34,     abrir:1400,    up:480},
-  {id:'lenha',    nome:'lenhador',       prod:'🪵', ciclo:9,  val:130,    abrir:9500,    up:3000},
-  {id:'pesca',    nome:'laguinho',       prod:'🐟', ciclo:12, val:500,    abrir:60000,   up:18000},
-  {id:'fogueira', nome:'fogueira',       prod:'🍡', ciclo:15, val:1900,   abrir:380000,  up:110000},
-  {id:'violao',   nome:'showzinho',      prod:'🎵', ciclo:18, val:7200,   abrir:2.3e6,   up:680000, extra:'a música anima todo mundo: +3% em tudo por nível'},
-  {id:'soneca',   nome:'cantinho da soneca', prod:'☕', ciclo:22, val:28000, abrir:1.4e7, up:4.2e6, extra:'gatinhos descansados: +1h de ganho offline por nível'}
-];
-const MARCOS_NIVEL=[10,25,50,75,100,150,200];
-const PERKS=[
-  {id:'receita',     ic:'📖', nome:'receita secreta',      desc:l=>`+10% moedas em tudo por nível (agora +${l*10}%)`, custo:l=>5*(l+1), max:50},
-  {id:'despertador', ic:'⏰', nome:'despertador fofinho',  desc:l=>`estações 5% mais rápidas por nível (agora ${l*5}%)`, custo:l=>8*(l+1), max:10},
-  {id:'sorte',       ic:'🍀', nome:'trevo da sorte',       desc:l=>`2% de chance por nível de produção dobrada (agora ${l*2}%)`, custo:l=>6*(l+1), max:15},
-  {id:'encomenda',   ic:'📦', nome:'clientes generosos',   desc:l=>`encomendas rendem +50% por nível (agora +${l*50}%)`, custo:l=>4*(l+1), max:20}
-];
-const DECORS=['🌳','🌷','🍄','🌲','🪵','🌼','🦋','⛺','🌸','🐝','🪺','🌻','🏮','🐸','🌈'];
-const DECOR_POS=[[6,20],[24,8],[40,28],[88,30],[60,10],[50,22],[74,36],[82,6],[14,4],[32,18],[94,10],[66,24],[44,4],[56,38],[2,6]];
-const VILA_MARCOS=[
-  {n:10,txt:'🌱 a florestinha começou a crescer!'},{n:30,txt:'🏡 já virou um bairro fofo de gatinhos!'},
-  {n:70,txt:'✨ uma floresta charmosa e cheia de vida!'},{n:150,txt:'👑 a maior floresta de gatinhos apaixonados!'},
-  {n:300,txt:'🏆 lenda: a floresta mais amada do mundo 💗'},{n:600,txt:'🌌 infinito: amor que não cabe no mapa'}
-];
-const MISSOES_POOL=[
-  {tipo:'taps',txt:n=>`fazer ${n} carinhos nos gatinhos`,meta:()=>[30,50,80][Math.floor(rng()*3)]},
-  {tipo:'ups',txt:n=>`melhorar estações ${n} vezes`,meta:()=>[5,10,15][Math.floor(rng()*3)]},
-  {tipo:'encomendas',txt:n=>`entregar ${n} encomendas`,meta:()=>[2,3,4][Math.floor(rng()*3)]},
-  {tipo:'ganhos',txt:n=>`juntar 🪙 ${fmt(n)} jogando`,meta:()=>Math.max(200,Math.round(vilaRate()*[300,600,900][Math.floor(rng()*3)]))},
-  {tipo:'producoes',txt:n=>`produzir ${n} itens nas estações`,meta:()=>[60,120,200][Math.floor(rng()*3)]}
-];
-const CLIENT_ID=Math.random().toString(36).slice(2,10);
-let _seed=1; function rng(){ _seed=(_seed*16807)%2147483647; return (_seed-1)/2147483646; }
-
-function novaVila(ts){ return {v:3,moedas:0,coracoes:0,lastTs:ts===undefined?Date.now():ts,est:{sopa:{lvl:1}},decor:0,perks:{},missoes:null,stats:{taps:0,ups:0,encomendas:0,ganhos:0,producoes:0}}; }
-let vila=novaVila(0); // lastTs 0 = nunca salvo neste aparelho (a nuvem sempre ganha)
-let csDirty=false, csRaf=null, csLast=0, csSyncTimer=null, csSkyTimer=null, csVisitorTimer=null, csVisitor=null, csBoas=false, csBuyMode=1, csAberto=false;
-const csProg={}; // progresso do ciclo atual por estação (local)
-
-function fmt(n){ n=Math.floor(n); const u=[[1e15,'Q'],[1e12,'T'],[1e9,'B'],[1e6,'M'],[1e3,'k']]; for(const [v,s] of u){ if(n>=v) return (n/v).toFixed(n/v<10?2:1).replace('.',',')+s; } return String(n); }
-const estDef=id=>ESTACOES.find(e=>e.id===id);
-const estLvl=id=>(vila.est[id]&&vila.est[id].lvl)||0;
-const estAberta=id=>estLvl(id)>0;
-const perkLvl=id=>(vila.perks&&vila.perks[id])||0;
-function marcoMult(l){ let m=1; MARCOS_NIVEL.forEach(x=>{ if(l>=x) m*=2; }); return m; }
-function proxMarco(l){ return MARCOS_NIVEL.find(x=>l<x); }
-function multGlobal(){ return (1+0.03*vila.decor)*(1+0.10*perkLvl('receita'))*(1+0.03*estLvl('violao')); }
-function estValor(id){ const l=estLvl(id); return l?estDef(id).val*l*marcoMult(l)*multGlobal():0; }
-function estCiclo(id){ return estDef(id).ciclo/(1+0.05*perkLvl('despertador')); }
-function estRate(id){ return estAberta(id)?estValor(id)/estCiclo(id)*(1+0.02*perkLvl('sorte')):0; }
-function vilaRate(){ return ESTACOES.reduce((s,e)=>s+estRate(e.id),0); }
-function capHoras(){ return Math.min(24,8+estLvl('soneca')); }
-function vilaNivel(){ return ESTACOES.reduce((s,e)=>s+estLvl(e.id),0)+vila.decor; }
-function custoUp(id,l){ return Math.round(estDef(id).up*Math.pow(1.16,l-1)); }
-function custoUpN(id,n){ // n níveis (ou 'max')
-  let l=estLvl(id), tot=0, k=0;
-  const lim=n==='max'?500:n;
-  while(k<lim){ const c=custoUp(id,l+k); if(n==='max' && tot+c>vila.moedas) break; tot+=c; k++; }
-  if(n==='max' && k===0){ return {n:1,custo:custoUp(id,l)}; }
-  return {n:k,custo:tot};
-}
-function custoDecor(){ return Math.round(120*Math.pow(2.4,vila.decor)); }
-
-/* ---------- persistência ---------- */
-function salvarVilaLocal(){ LS.set('vilaCats',vila); }
-function carregarVilaLocal(){ const v=LS.get('vilaCats',null); if(v&&v.v===3){ vila=normalizarVila(v); } }
-function normalizarVila(d){
-  const v=novaVila();
-  v.moedas=Math.max(0,Number(d.moedas)||0); v.coracoes=Math.max(0,Number(d.coracoes)||0);
-  v.lastTs=Number(d.lastTs)||Date.now(); v.decor=Math.max(0,Math.min(DECORS.length,Number(d.decor)||0));
-  v.est={}; ESTACOES.forEach(e=>{ const l=d.est&&d.est[e.id]?Number(d.est[e.id].lvl)||0:0; if(l>0) v.est[e.id]={lvl:l}; });
-  if(!v.est.sopa) v.est.sopa={lvl:1};
-  v.perks={}; PERKS.forEach(p=>{ const l=d.perks?Number(d.perks[p.id])||0:0; if(l>0) v.perks[p.id]=l; });
-  v.missoes=d.missoes||null;
-  v.stats=Object.assign(v.stats,d.stats||{});
-  return v;
-}
-function escreverCat(){
-  vila.lastTs=Date.now(); salvarVilaLocal();
-  if(!fb) return;
-  cozyRef.set(JSON.parse(JSON.stringify({...vila,by:CLIENT_ID})),{merge:false}).catch(err=>console.error(err));
-}
-/* recebe o estado salvo na nuvem (com migração dos formatos antigos) */
-function catOnRemote(data){
-  if(!data){ csBoas=true; if(LS.get('vilaCats',null)) escreverCat(); return; }
-  if(data.v===3){
-    if(data.by===CLIENT_ID && Number(data.lastTs)<=vila.lastTs) return; // eco nosso
-    if(Number(data.lastTs)<vila.lastTs-1500){ csBoas=true; escreverCat(); return; } // este aparelho tem progresso mais novo
-    vila=normalizarVila(data);
-  } else if(!csBoas && (data.v===2 || 'catsOwned' in data || 'banked' in data)){
-    // versões antigas do joguinho → leva as moedas e o nível da primeira estação
-    const old=data; vila=novaVila();
-    vila.moedas=Number(old.moedas||old.banked)||0;
-    const oldLvl=old.est&&old.est.padaria?Number(old.est.padaria.lvl)||1:Number(old.potLevel)||1;
-    vila.est.sopa={lvl:Math.max(1,oldLvl)};
-    vila.coracoes=Math.max(0,(Number(old.gatos||old.catsOwned)||1)-1)*2;
-    vila.decor=Math.min(DECORS.length,Number(old.decorLvl||old.toppingLevel)||0);
-    vila.lastTs=Number(old.lastTs)||Date.now();
-    csBoas=true; escreverCat();
-  } else return;
-  csBoas=true;
-  salvarVilaLocal();
-  if(csAberto){ renderEstacoes(true); renderCarinho(); renderMissoes(); renderFloresta(); }
-  atualizarTagCozy();
-}
-function atualizarTagCozy(){ const t=$('cozy-tag'); if(t) t.textContent=`🐾 nível ${vilaNivel()} · 🪙 ${fmt(vila.moedas)} · +${fmt(vilaRate())}/s`; }
-
-/* ---------- abrir / loop ---------- */
-function abrirCozy(){
-  $('game-overlay').classList.add('active'); $('cozy-wrap').style.display='flex'; $('arcade-wrap').style.display='none';
-  document.body.style.overflow='hidden'; csAberto=true;
-  garantirMissoes();
-  // ganhos offline
-  const el=vila.lastTs?Math.min((Date.now()-vila.lastTs)/1000, capHoras()*3600):0;
-  const ganho=el>5?vilaRate()*el:0;
-  vila.lastTs=Date.now();
-  renderFloresta(); renderEstacoes(true); renderCarinho(); renderMissoes(); csTab('floresta');
-  if(ganho>=1) mostrarOffline(ganho,el);
-  iniciarCatLoop();
-}
-function iniciarCatLoop(){
-  pararCatLoop(true);
-  csLast=0;
-  const loop=ts=>{
-    if(!csAberto) return;
-    if(!csLast) csLast=ts;
-    const dt=Math.min(.25,(ts-csLast)/1000); csLast=ts;
-    tickProducao(dt);
-    csRaf=requestAnimationFrame(loop);
-  };
-  csRaf=requestAnimationFrame(loop);
-  csSyncTimer=setInterval(()=>{ if(csDirty){ escreverCat(); csDirty=false; } atualizarHud(); },5000);
-  pintarCeu(); csSkyTimer=setInterval(()=>{ pintarCeu(); atualizarAfford(); },1000);
-  agendarVisitante();
-}
-function pararCatLoop(semSalvar){
-  if(csRaf) cancelAnimationFrame(csRaf); csRaf=null;
-  clearInterval(csSyncTimer); clearInterval(csSkyTimer); clearTimeout(csVisitorTimer);
-  if(csVisitor){ csVisitor.remove(); csVisitor=null; }
-  if(!semSalvar){
-    if(csAberto){ csAberto=false; escreverCat(); csDirty=false; atualizarTagCozy(); }
-    document.querySelectorAll('#cs-grid video').forEach(v=>v.pause());
-  }
-}
-window.addEventListener('visibilitychange',()=>{ if(document.hidden && csAberto){ escreverCat(); csDirty=false; } else if(!document.hidden && csAberto){ const el=Math.min((Date.now()-vila.lastTs)/1000,capHoras()*3600); if(el>20){ const g=vilaRate()*el; vila.moedas+=g; vila.stats.ganhos+=g; vila.lastTs=Date.now(); toast(`+🪙 ${fmt(g)} enquanto você estava fora`); } } });
-window.addEventListener('pagehide',()=>{ if(csAberto) escreverCat(); });
-
-let _hudFrame=0;
-function tickProducao(dt){
-  let mudou=false;
-  ESTACOES.forEach(e=>{
-    if(!estAberta(e.id)) return;
-    const c=estCiclo(e.id);
-    csProg[e.id]=(csProg[e.id]||0)+dt/c;
-    while(csProg[e.id]>=1){ csProg[e.id]-=1; produzir(e.id); mudou=true; }
-    const bar=document.querySelector(`#st-${e.id} .st-bar i`); if(bar) bar.style.width=(csProg[e.id]*100).toFixed(1)+'%';
-  });
-  if(mudou||(++_hudFrame%10===0)) atualizarHud();
-}
-function produzir(id){
-  let v=estValor(id); let dobro=false;
-  if(Math.random()<0.02*perkLvl('sorte')){ v*=2; dobro=true; }
-  vila.moedas+=v; vila.stats.ganhos+=v; vila.stats.producoes++; csDirty=true;
-  progMissao('ganhos',v); progMissao('producoes',1);
-  const art=document.querySelector(`#st-${id} .st-art`);
-  if(art && (estDef(id).ciclo>=5 || Math.random()<.5)) floatTxt(art,(dobro?'🍀 ':'')+'+'+fmt(v),'50%','40%');
-  const pill=$('cs-coin-pill'); pill.classList.remove('cs-coin-pop'); void pill.offsetWidth; pill.classList.add('cs-coin-pop');
-}
-function floatTxt(parent,txt,left,top,cls){
-  const f=document.createElement('div'); f.className='float-txt'+(cls?' '+cls:''); f.textContent=txt; f.style.left=left; f.style.top=top;
-  parent.appendChild(f); setTimeout(()=>f.remove(),1000);
-}
-function atualizarHud(){
-  $('cat-coin').textContent=fmt(vila.moedas);
-  $('cat-hearts').textContent=fmt(vila.coracoes);
-  const r=vilaRate(); $('cat-rate').textContent=r<10?r.toFixed(1).replace('.',','):fmt(r);
-  atualizarAfford();
-}
-
-/* ---------- floresta (cabeçalho) ---------- */
-function renderFloresta(){
-  const box=$('cs-decor'); box.innerHTML='';
-  for(let i=0;i<Math.min(vila.decor,DECORS.length);i++){
-    const d=document.createElement('span'); d.className='decor'; d.textContent=DECORS[i];
-    d.style.left=DECOR_POS[i][0]+'%'; d.style.bottom=DECOR_POS[i][1]+'%'; d.style.animationDelay=(i*.04)+'s';
-    box.appendChild(d);
-  }
-  const n=vilaNivel(); $('vila-lvl').textContent=n;
-  const prox=VILA_MARCOS.find(m=>n<m.n), ant=[...VILA_MARCOS].reverse().find(m=>n>=m.n);
-  const base=ant?ant.n:0;
-  $('vila-fill').style.width=prox?Math.min(100,(n-base)/(prox.n-base)*100)+'%':'100%';
-  $('vila-lvl-prox').textContent=prox?`faltam ${prox.n-n} p/ crescer`:'floresta máxima 💗';
-}
-function pintarCeu(){
-  const ceu=$('vila-ceu'), astro=$('vila-astro'); if(!ceu) return;
-  const h=new Date().getHours()+new Date().getMinutes()/60; // ciclo real do dia
-  const noite=h<6||h>=19?1:h<7?1-(h-6):h>=18?(h-18):0;
-  ceu.style.background=noite?`linear-gradient(rgba(70,72,140,${(noite*.32).toFixed(2)}),rgba(70,72,140,${(noite*.08).toFixed(2)}))`:'none';
-  astro.textContent=noite>.5?'🌙':'🌞';
-}
-
-/* ---------- estações ---------- */
-let _videoObs=null;
-function renderEstacoes(full){
-  const grid=$('cs-grid');
-  const proxFechada=ESTACOES.find(e=>!estAberta(e.id));
-  let html='';
-  ESTACOES.forEach(e=>{
-    const aberta=estAberta(e.id);
-    if(aberta){
-      const l=estLvl(e.id), pm=proxMarco(l);
-      html+=`<div class="st" id="st-${e.id}">
-        <div class="st-art" onpointerdown="carinho(event,'${e.id}')">
-          <video muted loop playsinline preload="none" poster="gatos/${e.id}.webp" src="gatos/${e.id}.mp4"></video>
-          <span class="prod">${e.prod}</span>${marcoMult(l)>1?`<span class="ms">×${marcoMult(l)}</span>`:''}
-        </div>
-        <div class="st-info">
-          <div class="st-name"><span>${e.nome}</span><span class="lv">nv ${l}</span></div>
-          <div class="st-meta">🪙 ${fmt(estValor(e.id))} a cada ${estCiclo(e.id).toFixed(1).replace('.',',')}s${pm?` · ⭐ ×2 no nv ${pm}`:''}</div>
-          <div class="st-bar"><i></i></div>
-          <button class="st-up" data-up="${e.id}" onclick="melhorar('${e.id}')"></button>
-        </div></div>`;
-    } else if(e===proxFechada){
-      html+=`<div class="st locked" id="st-${e.id}">
-        <div class="st-art"><img src="gatos/${e.id}.webp" alt=""><span class="lockmsg">🔒</span><span class="prod">${e.prod}</span></div>
-        <div class="st-info">
-          <div class="st-name"><span>${e.nome}</span></div>
-          <div class="st-meta">começa rendendo 🪙 ${fmt(e.val*multGlobal())} a cada ${e.ciclo}s${e.extra?' · '+e.extra:''}</div>
-          <button class="st-up unlock" data-open="${e.id}" data-cost="${e.abrir}" onclick="abrirEstacao('${e.id}')">abrir 🪙 ${fmt(e.abrir)}</button>
-        </div></div>`;
-    } else {
-      html+=`<div class="st mystery"><div class="st-art"><img src="gatos/${e.id}.webp" alt=""></div><div class="st-info"><div class="st-name"><span>???</span></div><div class="st-meta">um gatinho novo vem aí...</div><button class="st-up" disabled>🔒</button></div></div>`;
-    }
-  });
-  grid.innerHTML=html;
-  // vídeos: só tocam quando aparecem na tela (economiza bateria)
-  if(_videoObs) _videoObs.disconnect();
-  _videoObs=new IntersectionObserver(ents=>ents.forEach(en=>{ const v=en.target; if(en.isIntersecting&&csAberto){ v.play().catch(()=>{}); } else v.pause(); }),{root:$('game-overlay'),threshold:.15});
-  grid.querySelectorAll('video').forEach(v=>_videoObs.observe(v));
-  atualizarAfford();
-}
-function atualizarAfford(){
-  document.querySelectorAll('#cs-grid [data-up]').forEach(b=>{
-    const id=b.dataset.up, c=custoUpN(id,csBuyMode);
-    b.innerHTML=`⬆ ${c.n>1?'+'+c.n+' ':''}🪙 ${fmt(c.custo)}`;
-    b.classList.toggle('no',vila.moedas<c.custo);
-  });
-  document.querySelectorAll('#cs-grid [data-open]').forEach(b=>b.classList.toggle('no',vila.moedas<Number(b.dataset.cost)));
-  document.querySelectorAll('#cs-decor-shop [data-cost], #cs-perks [data-hcost]').forEach(b=>{
-    if(b.dataset.cost) b.classList.toggle('no',vila.moedas<Number(b.dataset.cost));
-    if(b.dataset.hcost) b.disabled=vila.coracoes<Number(b.dataset.hcost);
-  });
-}
-function csBuyX(x){ csBuyMode=x; document.querySelectorAll('.cs-buyx button').forEach(b=>b.classList.toggle('on',String(b.dataset.x)===String(x))); atualizarAfford(); }
-
-function carinho(ev,id){
-  ev.preventDefault();
-  const art=ev.currentTarget; art.classList.remove('bump'); void art.offsetWidth; art.classList.add('bump');
-  csProg[id]=Math.min(.999,(csProg[id]||0)+0.18);
-  vila.stats.taps++; csDirty=true; progMissao('taps',1);
-  const r=art.getBoundingClientRect();
-  const x=((ev.clientX||r.left+r.width/2)-r.left)+'px', y=((ev.clientY||r.top+r.height/2)-r.top-10)+'px';
-  if(vila.stats.taps%12===0){ vila.coracoes+=1; floatTxt(art,'+1 💗',x,y,'heart'); atualizarHud(); }
-  else floatTxt(art,['💗','💕','🐾','✨'][Math.floor(Math.random()*4)],x,y,'heart');
-}
-function melhorar(id){
-  const c=custoUpN(id,csBuyMode);
-  if(vila.moedas<c.custo){ toast('faltam moedinhas 🪙'); return; }
-  const antes=estLvl(id);
-  vila.moedas-=c.custo; vila.est[id].lvl+=c.n; vila.stats.ups+=c.n; csDirty=true; progMissao('ups',c.n);
-  const depois=estLvl(id);
-  const marcoBatido=MARCOS_NIVEL.find(m=>antes<m && depois>=m);
-  const nAntes=vilaNivel()-c.n, vm=VILA_MARCOS.find(m=>nAntes<m.n && vilaNivel()>=m.n);
-  if(marcoBatido){ toast(`⭐ ${estDef(id).nome} nv ${marcoBatido}: produção em dobro!`); const r=$('st-'+id).getBoundingClientRect(); burstHearts(r.left+r.width/2,r.top+r.height/3,16); }
-  else if(vm){ toast(vm.txt); burstHearts(innerWidth/2,innerHeight/3,18); }
-  // atualiza só o card
-  const card=$('st-'+id);
-  if(card){
-    const l=estLvl(id), pm=proxMarco(l);
-    card.querySelector('.lv').textContent='nv '+l;
-    card.querySelector('.st-meta').textContent=`🪙 ${fmt(estValor(id))} a cada ${estCiclo(id).toFixed(1).replace('.',',')}s${pm?` · ⭐ ×2 no nv ${pm}`:''}`;
-    let ms=card.querySelector('.ms'); if(marcoMult(l)>1){ if(!ms){ ms=document.createElement('span'); ms.className='ms'; card.querySelector('.st-art').appendChild(ms); } ms.textContent='×'+marcoMult(l); }
-    floatTxt(card.querySelector('.st-art'),'⬆ nv '+l,'50%','30%');
-  }
-  if(id==='violao') renderEstacoes(false);
-  renderFloresta(); atualizarHud(); renderMissoes();
-}
-function abrirEstacao(id){
-  const e=estDef(id);
-  if(vila.moedas<e.abrir){ toast('faltam moedinhas 🪙'); return; }
-  vila.moedas-=e.abrir; vila.est[id]={lvl:1}; csProg[id]=0; csDirty=true; escreverCat(); csDirty=false;
-  renderEstacoes(true); renderFloresta(); atualizarHud();
-  const card=$('st-'+id); if(card){ card.classList.add('new'); card.scrollIntoView({behavior:'smooth',block:'center'}); const r=card.getBoundingClientRect(); burstHearts(r.left+r.width/2,r.top+r.height/2,22); }
-  modal(`<img class="cat-art" src="gatos/${id}.webp" alt=""><h2>${e.nome} aberto! ${e.prod}</h2><p class="muted" style="margin-top:8px;">um gatinho novo chegou na floresta pra trabalhar com vocês 🐾${e.extra?'<br><b>'+e.extra+'</b>':''}</p><button class="btn btn-full" onclick="fecharModal()">ebaa 💗</button>`);
-}
-
-/* ---------- visitante / encomenda ---------- */
-function agendarVisitante(){
-  clearTimeout(csVisitorTimer);
-  csVisitorTimer=setTimeout(spawnVisitante,(30+Math.random()*45)*1000);
-}
-function spawnVisitante(){
-  if(!csAberto) return;
-  const cards=[...document.querySelectorAll('#cs-grid .st:not(.locked):not(.mystery) .st-art')];
-  if(!cards.length){ agendarVisitante(); return; }
-  const art=cards[Math.floor(Math.random()*cards.length)];
-  const tipos=[['📦','encomenda!'],['💌','pedido!'],['🧺','piquenique!']];
-  const t=tipos[Math.floor(Math.random()*tipos.length)];
-  const v=document.createElement('div'); v.className='visitor'; v.innerHTML=`<b>${t[0]}</b> ${t[1]}`;
-  v.onpointerdown=ev=>{ ev.stopPropagation(); ev.preventDefault(); pegarEncomenda(v,art); };
-  art.appendChild(v); csVisitor=v;
-  setTimeout(()=>{ if(csVisitor===v){ v.remove(); csVisitor=null; agendarVisitante(); } },14000);
-}
-function pegarEncomenda(v,art){
-  const g=Math.max(25,vilaRate()*50)*(1+0.5*perkLvl('encomenda'));
-  vila.moedas+=g; vila.coracoes+=2; vila.stats.encomendas++; vila.stats.ganhos+=g; csDirty=true;
-  progMissao('encomendas',1); progMissao('ganhos',g);
-  const r=v.getBoundingClientRect(); burstHearts(r.left+r.width/2,r.top,14);
-  floatTxt(art,`+🪙 ${fmt(g)}  +2 💗`,'50%','30%');
-  v.remove(); csVisitor=null; atualizarHud(); renderMissoes(); agendarVisitante();
-}
-
-/* ---------- aba carinho ---------- */
-function renderCarinho(){
-  $('cs-perks').innerHTML=PERKS.map(p=>{
-    const l=perkLvl(p.id), max=l>=p.max, c=p.custo(l);
-    return `<div class="perk"><span class="ic">${p.ic}</span><div class="tx"><b>${p.nome} <span class="muted" style="font-size:13px;">nv ${l}</span></b><small>${p.desc(l)}</small></div>
-      ${max?'<button class="btn btn-small btn-dark" disabled>máx ✨</button>':`<button class="btn btn-small" data-hcost="${c}" onclick="comprarPerk('${p.id}')">💗 ${c}</button>`}</div>`;
-  }).join('');
-  const maxD=vila.decor>=DECORS.length, cd=custoDecor();
-  $('cs-decor-shop').innerHTML=`<div class="perk"><span class="ic">${maxD?'🌈':DECORS[vila.decor]}</span><div class="tx"><b>enfeitar a floresta</b><small>${vila.decor}/${DECORS.length} enfeites · +3% em tudo cada (agora +${vila.decor*3}%)</small></div>
-    ${maxD?'<button class="btn btn-small btn-dark" disabled>completo ✨</button>':`<button class="btn btn-small btn-yellow st-up" style="width:auto" data-cost="${cd}" onclick="enfeitar()">🪙 ${fmt(cd)}</button>`}</div>`;
-  atualizarAfford();
-}
-function comprarPerk(id){
-  const p=PERKS.find(x=>x.id===id), l=perkLvl(id), c=p.custo(l);
-  if(vila.coracoes<c){ toast('faltam coraçõezinhos 💗 — faça carinho e pegue encomendas!'); return; }
-  vila.coracoes-=c; vila.perks[id]=l+1; csDirty=true; escreverCat(); csDirty=false;
-  toast(`${p.ic} ${p.nome} nv ${l+1}!`);
-  renderCarinho(); renderEstacoes(false); atualizarHud();
-}
-function enfeitar(){
-  const c=custoDecor(); if(vila.moedas<c){ toast('faltam moedinhas 🪙'); return; }
-  vila.moedas-=c; vila.decor++; csDirty=true; escreverCat(); csDirty=false;
-  toast(`${DECORS[vila.decor-1]} a floresta ficou mais linda!`);
-  renderFloresta(); renderCarinho(); renderEstacoes(false); atualizarHud();
-}
-
-/* ---------- missões diárias (compartilhadas) ---------- */
-function hojeStr(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-function garantirMissoes(){
-  const h=hojeStr();
-  if(vila.missoes && vila.missoes.dia===h) return;
-  _seed=[...h].reduce((s,c)=>s*31+c.charCodeAt(0),7)%2147483647||1;
-  const pool=MISSOES_POOL.slice(); const lista=[];
-  for(let i=0;i<3;i++){ const k=Math.floor(rng()*pool.length); const m=pool.splice(k,1)[0]; const meta=m.meta(); lista.push({tipo:m.tipo,meta,prog:0,ok:false}); }
-  vila.missoes={dia:h,lista,bau:false}; csDirty=true;
-}
-function progMissao(tipo,n){
-  if(!vila.missoes) return;
-  let mudou=false;
-  vila.missoes.lista.forEach(m=>{ if(m.tipo===tipo && m.prog<m.meta){ m.prog=Math.min(m.meta,m.prog+n); mudou=true; if(m.prog>=m.meta) toast('📜 missão completa! pega a recompensa'); } });
-  if(mudou){ if(document.querySelector('#cs-p-missoes.on')) renderMissoes(); else atualizarDotMissao(); }
-}
-function atualizarDotMissao(){
-  const m=vila.missoes; if(!m) return;
-  const pode=m.lista.some(x=>x.prog>=x.meta&&!x.ok)||(!m.bau&&m.lista.every(x=>x.ok));
-  $('cs-mis-dot').classList.toggle('show',pode);
-}
-function renderMissoes(){
-  garantirMissoes();
-  const m=vila.missoes;
-  const html=m.lista.map((x,i)=>{
-    const def=MISSOES_POOL.find(p=>p.tipo===x.tipo); const pct=Math.min(100,x.prog/x.meta*100);
-    return `<div class="mission ${x.ok?'done':''}"><div class="row"><b>${def.txt(x.meta)}</b>
-      ${x.ok?'<span>✅</span>':x.prog>=x.meta?`<button class="btn btn-small btn-green" onclick="resgatarMissao(${i})">pegar 💗3</button>`:'<span class="muted" style="font-weight:900;">💗3</span>'}</div>
-      <div class="bar"><i style="width:${pct}%"></i></div><small>${fmt(x.prog)} / ${fmt(x.meta)}</small></div>`;
-  }).join('');
-  const todas=m.lista.every(x=>x.ok);
-  const bau=`<div class="chest"><span class="big">${m.bau?'🎁':'🧰'}</span>${m.bau?'<b>baú de hoje aberto! volta amanhã 💗</b>':todas?`<button class="btn btn-yellow" onclick="abrirBau()">abrir baú do dia</button>`:'<b class="muted">complete as 3 missões pra abrir o baú do dia</b>'}</div>`;
-  $('cs-missions').innerHTML=`<p class="muted" style="font-size:14px;text-align:center;">missões de hoje — valem pros dois! 💞</p>`+html+bau;
-  const s=vila.stats;
-  $('cs-stats').innerHTML=`<div><b>${fmt(s.taps)}</b>carinhos</div><div><b>${fmt(s.producoes)}</b>itens feitos</div><div><b>${fmt(s.encomendas)}</b>encomendas</div><div><b>🪙 ${fmt(s.ganhos)}</b>ganhos totais</div>`;
-  $('cat-note').textContent=(fb?'☁️ progresso salvo e compartilhado com o casal':'😴 modo offline: salvando só neste aparelho')+` · ganho offline até ${capHoras()}h`;
-  atualizarDotMissao();
-}
-function resgatarMissao(i){
-  const x=vila.missoes.lista[i]; if(!x||x.ok||x.prog<x.meta) return;
-  x.ok=true; vila.coracoes+=3; csDirty=true; escreverCat(); csDirty=false;
-  toast('+3 💗 missão concluída!'); burstHearts(innerWidth/2,innerHeight/2,12);
-  renderMissoes(); atualizarHud();
-}
-function abrirBau(){
-  const m=vila.missoes; if(m.bau||!m.lista.every(x=>x.ok)) return;
-  const g=Math.max(100,vilaRate()*300);
-  m.bau=true; vila.coracoes+=5; vila.moedas+=g; csDirty=true; escreverCat(); csDirty=false;
-  burstHearts(innerWidth/2,innerHeight/2,26);
-  modal(`<span style="font-size:60px;">🎁</span><h2>baú do dia!</h2><div class="big">🪙 ${fmt(g)} + 💗 5</div><button class="btn btn-full" onclick="fecharModal()">obrigado gatinhos 🐾</button>`);
-  renderMissoes(); atualizarHud();
-}
-
-function csTab(t){
-  document.querySelectorAll('.cs-tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-  document.querySelectorAll('.cs-panel').forEach(p=>p.classList.toggle('on',p.id==='cs-p-'+t));
-  if(t==='missoes') renderMissoes();
-  if(t==='carinho') renderCarinho();
-}
-
-/* ---------- modais ---------- */
-function modal(html){ $('cs-modal-box').innerHTML=html; $('cs-modal').classList.add('show'); }
-function fecharModal(){ $('cs-modal').classList.remove('show'); }
-let _offlineGanho=0;
-function mostrarOffline(g,seg){
-  _offlineGanho=g;
-  const h=Math.floor(seg/3600), m=Math.floor((seg%3600)/60);
-  const tempo=h?`${h}h${m?` ${m}min`:''}`:`${Math.max(1,m)}min`;
-  modal(`<img class="cat-art" src="gatos/soneca.webp" alt=""><h2>bem-vindos de volta!</h2>
-    <p class="muted" style="margin-top:6px;">em ${tempo} os gatinhos trabalharam e juntaram:</p>
-    <div class="big">🪙 ${fmt(g)}</div>
-    <button class="btn btn-full btn-green" onclick="coletarOffline(1)">coletar</button>
-    <button class="btn btn-full" ${vila.coracoes<3?'disabled':''} onclick="coletarOffline(2)">coletar ×2 (💗 3)</button>`);
-}
-function coletarOffline(x){
-  if(x===2){ if(vila.coracoes<3) return; vila.coracoes-=3; }
-  const g=_offlineGanho*x; vila.moedas+=g; vila.stats.ganhos+=g; _offlineGanho=0; csDirty=true; escreverCat(); csDirty=false;
-  fecharModal(); atualizarHud(); burstHearts(innerWidth/2,80,16);
-}
-
-/* ============================================================
    ADMIN E UPLOAD
    ============================================================ */
 async function uploadImagem(file){
@@ -1681,7 +1108,7 @@ function montarFormulariosAdmin(){
   if(DB.fotoPrincipal){ $('admFotoPreview').src=DB.fotoPrincipal; $('admFotoPreview').style.display='inline-block'; }
   $('admData').value=DB.dataInicio?String(DB.dataInicio).slice(0,16):'';
   $('admSenha').value=DB.senhaSite; $('admTitulo').value=DB.tituloFeed; $('admNtfy').value=DB.ntfyTopic||DEFAULTS.ntfyTopic; $('admImgbb').value=DB.imgbbKey||'';
-  $('admMusicas').value=(DB.musicas||[]).join('\n'); $('admMotivos').value=(DB.motivos||[]).join('\n'); $('admElogios').value=(DB.elogios||[]).join('\n'); $('admPet').value=(DB.petMensagens||[]).join('\n'); $('admCofreMeta').value=DB.cofreMeta||'';
+  $('admMusicas').value=(DB.musicas||[]).join('\n'); $('admMotivos').value=(DB.motivos||[]).join('\n'); $('admElogios').value=(DB.elogios||[]).join('\n'); $('admPet').value=(DB.petMensagens||[]).join('\n'); $('admCartaFinal').value=DB.cartaFinal||''; $('admCofreMeta').value=DB.cofreMeta||'';
   montarCards('planos-cards',DB.planosFuturos,criarPlanoCardHTML); montarCards('timeline-cards',DB.timeline,criarTimelineCardHTML); montarCards('conquistas-cards',DB.conquistas,criarConquistaCardHTML); montarCards('lugares-cards',DB.lugares,criarLugarCardHTML); montarCards('album-cards',DB.album,criarAlbumCardHTML); montarCards('memes-cards',DB.memes,criarMemeCardHTML);
 }
 function montarCards(cid,arr,fn){ const c=$(cid); c.innerHTML=''; (arr||[]).forEach((it,i)=>c.insertAdjacentHTML('beforeend',fn(it,cid+'-'+i))); }
@@ -1722,7 +1149,7 @@ async function salvarAdmin(){
     await mainRef.set({
       fotoPrincipal:uploadCache.fotoPrincipal||DB.fotoPrincipal||'', dataInicio:$('admData').value||DEFAULTS.dataInicio, senhaSite:novaSenha,
       tituloFeed:$('admTitulo').value||DEFAULTS.tituloFeed, ntfyTopic:$('admNtfy').value.trim()||DEFAULTS.ntfyTopic, imgbbKey:$('admImgbb').value.trim(),
-      musicas:linhas('admMusicas'), motivos:linhas('admMotivos'), elogios:linhas('admElogios'), petMensagens:linhas('admPet'),
+      musicas:linhas('admMusicas'), motivos:linhas('admMotivos'), elogios:linhas('admElogios'), petMensagens:linhas('admPet'), cartaFinal:$('admCartaFinal').value.trim(),
       cofreMeta:Number($('admCofreMeta').value)||0, planosFuturos:lerCards('planos-cards'), timeline:lerCards('timeline-cards'), conquistas:lerCards('conquistas-cards'), lugares:lerCards('lugares-cards'), album:lerCards('album-cards'), memes:lerCards('memes-cards')
     },{merge:true});
     if(LS.get('acessoOk',false)) LS.set('acessoOk',hashSenha(novaSenha)); // quem salvou continua lembrado
@@ -1745,5 +1172,6 @@ function observarReveal(){
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ $('lightbox').classList.remove('show'); fecharModal(); } });
 </script>
+<script src="vila.js"></script>
 </body>
 </html>
