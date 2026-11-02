@@ -85,63 +85,63 @@ const K=0.6, CX=500, CY=520;
 const dEl=(x,y)=>Math.hypot(x-CX,(y-CY)/K);
 /* trabalho: onde o gatinho fica (dx,dy em relação à construção) e o que ele faz */
 const ESTACOES=[
-  {id:'sopa',    nome:'cozinha da vovó',    ciclo:3,  val:2,     abrir:0,      up:10,     x:405,y:568, work:{dx:-44,dy:10,acao:'mexer'},  fumaca:[[14,-92],[-52,-14]],
+  {id:'sopa',    nome:'cozinha da vovó',    ciclo:3, val:1, abrir:0, up:8,     x:405,y:568, work:{dx:-44,dy:10,acao:'mexer'},  fumaca:[[14,-92],[-52,-14]],
    gato:{nome:'Nuvem',cor:'#fffaf3',det:'#ecd6c2'}, pers:'gulosa e carinhosa',
    falas:['essa sopa tá quase... *prova* ...só mais uma provadinha','se o dia tá difícil, toma uma sopinha','não fui eu que comi o pão. juro.','o segredo é mexer com amor (e muito queijo)']},
-  {id:'padaria', nome:'barraquinha da feira',ciclo:5, val:9,     abrir:150,    up:70,     x:610,y:582, work:{dx:2,dy:-4,acao:'cortar'},   fumaca:[],
+  {id:'padaria', nome:'barraquinha da feira',ciclo:5, val:2, abrir:100, up:50,     x:610,y:582, work:{dx:2,dy:-4,acao:'cortar'},   fumaca:[],
    gato:{nome:'Paçoca',cor:'#f1d6ae',det:'#c9a072',listras:1}, pers:'perfeccionista',
    falas:['cenoura cortada torta é crime','47 rodelinhas. todas iguais. perfeito.','não encosta na minha faca!','organizei as caixas por cor. de nada.']},
-  {id:'horta',   nome:'estufa',             ciclo:7,  val:34,    abrir:1400,   up:480,    x:372,y:472, work:{dx:46,dy:12,acao:'regar'},    fumaca:[],
+  {id:'horta',   nome:'estufa',             ciclo:7, val:3, abrir:220, up:110,    x:372,y:472, work:{dx:46,dy:12,acao:'regar'},    fumaca:[],
    gato:{nome:'Azulzinho',cor:'#bccbdc',det:'#8ea3bd',listras:1,chapeu:1}, pers:'tímido e sonhador',
    falas:['oi... as plantas gostam quando a gente conversa com elas','esse cogumelo se chama Gérson','*ficou vermelhinho*','um dia quero plantar um jardim que dê pra ver do céu']},
-  {id:'lenha',   nome:'serraria',           ciclo:9,  val:130,   abrir:9500,   up:3000,   x:650,y:466, work:{dx:-50,dy:12,acao:'machado'},  fumaca:[[22,-96]],
+  {id:'lenha',   nome:'serraria',           ciclo:9, val:5, abrir:480, up:240,   x:650,y:466, work:{dx:-50,dy:12,acao:'machado'},  fumaca:[[22,-96]],
    gato:{nome:'Toco',cor:'#f3dcb8',det:'#d3a878',xadrez:1}, pers:'forte e brincalhão',
    falas:['olha esse muque!','madeiraaaa!','lenha cortada, coração quentinho','aposto que levanto esse tronco com uma pata só']},
-  {id:'pesca',   nome:'cabana do lago',     ciclo:12, val:500,   abrir:60000,  up:18000,  x:318,y:612, work:{dx:-30,dy:-2,acao:'pescar'},  fumaca:[[16,-104]],
+  {id:'pesca',   nome:'cabana do lago',     ciclo:12, val:8, abrir:1100, up:530,  x:318,y:612, work:{dx:-30,dy:-2,acao:'pescar'},  fumaca:[[16,-104]],
    gato:{nome:'Laranjinha',cor:'#f4a35c',det:'#d9793a',listras:1,chapeuVerde:1}, pers:'paciente contador de histórias',
    falas:['uma vez pesquei um peixe deste tamanho... ou era uma bota','pescar é 10% isca e 90% esperar','shhh, os peixes estão ouvindo','o lago brilhou verde ontem à noite. estranho, né?']},
-  {id:'fogueira',nome:'acampamento',        ciclo:15, val:1900,  abrir:380000, up:110000, x:500,y:524, work:{dx:-30,dy:20,acao:'tostar'},  fumaca:[],
+  {id:'fogueira',nome:'acampamento',        ciclo:15, val:12, abrir:2300, up:1200, x:500,y:524, work:{dx:-30,dy:20,acao:'tostar'},  fumaca:[],
    gato:{nome:'Carvão',cor:'#57514f',det:'#3a3535'}, pers:'misterioso e noturno',
    falas:['à noite a floresta conta segredos...','vocês viram aquela luz verde no céu?','marshmallow bom é dourado, nem cru nem queimado','tem gente aqui que não é bem o que parece']},
-  {id:'violao',  nome:'coreto da música',   ciclo:18, val:7200,  abrir:2.3e6,  up:680000, x:528,y:656, work:{dx:2,dy:6,acao:'tocar'},     fumaca:[],
+  {id:'violao',  nome:'coreto da música',   ciclo:18, val:17, abrir:5200, up:2600, x:528,y:656, work:{dx:2,dy:6,acao:'tocar'},     fumaca:[],
    gato:{nome:'Melodia',cor:'#cfcfcf',det:'#9a9a9a',listras:1}, pers:'artista dramática',
    falas:['essa se chama "saudade de um lugar que eu nunca fui"','lá-lá-láá~','um dia vou tocar num palco de verdade','aplausos são opcionais. mas bem-vindos.'], extra:'a música anima todo mundo: +3% em tudo por nível'},
-  {id:'soneca',  nome:'casa-cogumelo',      ciclo:22, val:28000, abrir:1.4e7,  up:4.2e6,  x:702,y:610, work:{dx:-58,dy:6,acao:'dormir'},   fumaca:[[-6,-92]],
+  {id:'soneca',  nome:'casa-cogumelo',      ciclo:22, val:24, abrir:11000, up:5700,  x:702,y:610, work:{dx:-58,dy:6,acao:'dormir'},   fumaca:[[-6,-92]],
    gato:{nome:'Soninho',cor:'#f2dcc0',det:'#d8b48c',listras:1}, pers:'preguiçoso e filósofo',
-   falas:['zzz... cinco minutinhos...','descansar também é trabalhar','sonhei que eu era uma nuvem. ou a nuvem sonhou comigo?','por que correr se a rede tá logo ali?'], extra:'gatinhos descansados: +1h de ganho offline por nível'},
-  {id:'cafe',    nome:'cafeteria da chuva', ciclo:26, val:110000, abrir:8e7,  up:2.6e7, x:272,y:452, work:{dx:40,dy:12,acao:'servir'},  fumaca:[[24,-100]], hist:'chuva',
+   falas:['zzz... cinco minutinhos...','descansar também é trabalhar','sonhei que eu era uma nuvem. ou a nuvem sonhou comigo?','por que correr se a rede tá logo ali?'], extra:'gatinhos descansados: +30 min de ganho com o jogo fechado por nível'},
+  {id:'cafe',    nome:'cafeteria da chuva', ciclo:26, val:34, abrir:25000, up:12000, x:272,y:452, work:{dx:40,dy:12,acao:'servir'},  fumaca:[[24,-100]], hist:'chuva',
    gato:{nome:'Cereja',cor:'#f7dfe3',det:'#e8a9b6',avental:'#c25a6c'}, pers:'doceira apaixonada por cheesecake',
    falas:['cheesecake de cereja saindo!','aqui tudo é vegetariano, viu?','um de maracujá e um de morango, como sempre?','dizem que a chuva daqui revela segredos...']},
-  {id:'cinema',  nome:'cine cultura',       ciclo:30, val:420000, abrir:4.5e8,up:1.4e8, x:744,y:452, work:{dx:-50,dy:16,acao:'projetar'}, fumaca:[], hist:'chuva',
+  {id:'cinema',  nome:'cine cultura',       ciclo:30, val:48, abrir:55000, up:27000, x:744,y:452, work:{dx:-50,dy:16,acao:'projetar'}, fumaca:[], hist:'chuva',
    gato:{nome:'Lumi',cor:'#ddd5ec',det:'#a99cc9',listras:1,oculos:1}, pers:'projecionista cinéfila',
    falas:['hoje tem sessão de Amores Expressos','silêncio, o filme vai começar','já fechei o cinema pra uma ocasião especial, sabia?','pipoca vegetariana, claro']},
-  {id:'balao',   nome:'balão dos viajantes',ciclo:40, val:1.6e6,  abrir:2.5e9,up:8e8,   x:420,y:714, work:{dx:44,dy:6,acao:'mapa'},    fumaca:[], hist:'pedido',
+  {id:'balao',   nome:'balão dos viajantes',ciclo:40, val:80, abrir:120000, up:60000,   x:420,y:714, work:{dx:44,dy:6,acao:'mapa'},    fumaca:[], hist:'pedido',
    gato:{nome:'Bússola',cor:'#e8c9a4',det:'#8a6a4e',chapeuVerde:1}, pers:'navegador sonhador',
    falas:['próxima parada: China!','já pensou o Japão na primavera?','no Peru tem montanhas que tocam as nuvens','na Itália tem pizza vegetariana de verdade']},
-  {id:'observatorio',nome:'observatório das estrelas',ciclo:45,val:7e6, abrir:1e10,  up:3e9,   x:290,y:370, work:{dx:42,dy:12,acao:'olhar'}, fumaca:[], hist:'mundo',
+  {id:'observatorio',nome:'observatório das estrelas',ciclo:45, val:115, abrir:270000, up:130000,   x:290,y:370, work:{dx:42,dy:12,acao:'olhar'}, fumaca:[], hist:'mundo',
    gato:{nome:'Cometa',cor:'#4a4f6e',det:'#33374f',listras:1}, pers:'astrônoma que nunca dorme',
    falas:['achei uma estrela nova! vou chamar de Natalix','aquela luz verde de novo... vem de Veluma?','as estrelas piscam em código, sabia?','shh, a Ursa Menor tá dormindo'], extra:'à noite as estrelas rendem o dobro aqui'},
-  {id:'biblioteca',nome:'biblioteca do bosque',ciclo:50,val:3e7, abrir:4e10,  up:1.2e10, x:710,y:370, work:{dx:-48,dy:12,acao:'ler'}, fumaca:[[22,-106]], hist:'veluma',
+  {id:'biblioteca',nome:'biblioteca do bosque',ciclo:50, val:170, abrir:580000, up:290000, x:710,y:370, work:{dx:-48,dy:12,acao:'ler'}, fumaca:[[22,-106]], hist:'baile',
    gato:{nome:'Traça',cor:'#d9c8a9',det:'#a8916b',listras:1,oculos:1}, pers:'leitor que sabe de tudo',
    falas:['tem um livro aqui sobre gatos que caíram do céu...','silêncio é o barulho preferido dos livros','já li esse 14 vezes. o final ainda me pega','a Rainha guarda um diário trancado na última estante']},
-  {id:'pomar',   nome:'pomar de maracujá e morango',ciclo:55,val:1.2e8,abrir:1.6e11,up:5e10, x:160,y:540, work:{dx:44,dy:10,acao:'colher'}, fumaca:[], hist:'rainha',
+  {id:'pomar',   nome:'pomar de maracujá e morango',ciclo:55, val:250, abrir:1300000, up:640000, x:160,y:540, work:{dx:44,dy:10,acao:'colher'}, fumaca:[], hist:'rainha',
    gato:{nome:'Moranguinho',cor:'#f6c9b8',det:'#e0957e'}, pers:'jardineira animada',
    falas:['um maracujá pra ele, um morango pra ela!','plantei de propósito um do lado do outro','esse aqui tá docinho, prova!','o segredo é cantar pros morangos'], extra:'deixa os sucos da cafeteria 25% mais valiosos'},
-  {id:'casinha', nome:'casa da árvore dos dois',ciclo:60,val:5e8, abrir:6e11,  up:1.8e11, x:840,y:540, work:{dx:-50,dy:12,acao:'varrer'}, fumaca:[[10,-122]], hist:'atraso',
+  {id:'casinha', nome:'casa da árvore dos dois',ciclo:60, val:360, abrir:2800000, up:1400000, x:840,y:540, work:{dx:-50,dy:12,acao:'varrer'}, fumaca:[[10,-122]], hist:'medo',
    gato:{nome:'Dengo',cor:'#fbe9d0',det:'#e8bf8f',listras:1}, pers:'filhotinho adotado pelos dois',
    falas:['papai Gabrix! mamãe Natalix!','eu varri tudo sozinho, olha!','por que vocês têm antenas e eu não?','posso dormir no meio de vocês hoje?']}
 ];
 ESTACOES.forEach(e=>e.d=dEl(e.x,e.y));
-const MARCOS_NIVEL=[10,25,50,75,100,150,200];
+const MARCOS_NIVEL=[10,25,50];
 const FASES=['simples','caprichada','dos sonhos'];
 const faseDe=l=>l>=25?2:l>=10?1:0;
 const CASTELO_POS={x:500,y:318};
 const CASTELO=[
-  {nome:'ponte do bosque', art:'a', req:3, custo:3000,  desc:'liga a vila ao castelo e espanta um pouco da névoa'},
-  {nome:'portão real', art:'o', req:5, custo:150000,desc:'reconstrói as muralhas e o grande portão'},
-  {nome:'jardim da rainha', art:'o', req:6, custo:1.2e6, desc:'flores, cercas vivas e um banquinho pra rainha'},
-  {nome:'torres de vigia', art:'as', req:7, custo:9e6,   desc:'duas torres com telhadinhos cor de rosa'},
-  {nome:'salão do trono', art:'o', req:8, custo:6e7,   desc:'acende o castelo inteiro (e a última carta)'}
+  {nome:'ponte do bosque', art:'a', req:3, custo:500,    desc:'liga a vila ao castelo e espanta um pouco da névoa'},
+  {nome:'portão real', art:'o', req:5, custo:2500,   desc:'reconstrói as muralhas e o grande portão'},
+  {nome:'jardim da rainha', art:'o', req:7, custo:12000,  desc:'flores, cercas vivas, fonte e um banquinho pra rainha'},
+  {nome:'torres de vigia', art:'as', req:9, custo:60000,  desc:'duas torres com telhadinhos cor de rosa'},
+  {nome:'salão do trono', art:'o', req:11, custo:300000, desc:'acende o castelo inteiro (e a última carta)'}
 ];
 /* cartas da Rainha Mimosa: uma por parte do castelo restaurada (índice = parte-1) */
 const CARTAS=[
@@ -185,7 +185,7 @@ até lá: cuidem um do outro. é a única magia que eu conheço que nunca falha.
 ];
 const CARTA_FINAL_PADRAO='você é a minha pessoa favorita no mundo inteiro.\n\nobrigado por cada dia, cada risada e cada vez que você escolheu ficar.\n\nte amo hoje, amanhã e sempre.';
 const PERKS=[
-  {id:'receita',    ic:'sopa',  nome:'receita secreta',    desc:l=>`+10% moedas em tudo por nível (agora +${l*10}%)`, custo:l=>5*(l+1), max:50},
+  {id:'receita',    ic:'sopa',  nome:'receita secreta',    desc:l=>`+4% moedas em tudo por nível (agora +${l*4}%)`, custo:l=>5*(l+1), max:25},
   {id:'despertador',ic:'soneca',nome:'despertador fofinho',desc:l=>`construções 5% mais rápidas por nível (agora ${l*5}%)`, custo:l=>8*(l+1), max:10},
   {id:'sorte',      ic:'horta', nome:'trevo da sorte',     desc:l=>`2% de chance de produção em dobro por nível (agora ${l*2}%)`, custo:l=>6*(l+1), max:15},
   {id:'encomenda',  ic:'gift',  nome:'clientes generosos', desc:l=>`visitantes deixam +50% por nível (agora +${l*50}%)`, custo:l=>4*(l+1), max:20}
@@ -241,8 +241,8 @@ function seeded(s){ let x=s%2147483647||1; return ()=>{ x=(x*16807)%2147483647; 
 /* ------------------------------------------------------------------
    ESTADO + ECONOMIA
 ------------------------------------------------------------------ */
-function novaVila(ts){ return {v:5,moedas:0,coracoes:0,lastTs:ts===undefined?Date.now():ts,est:{sopa:{lvl:1}},decor:0,perks:{},missoes:null,
-  stats:{taps:0,ups:0,encomendas:0,ganhos:0,producoes:0,pedidos:0,erros:0,presentes:0,recebidos:0,visitas:0,cenas:0,chuva:0,noite:0,festa:0},castelo:0,cartas:[],adotados:[],cap:[],postais:[],conq:[],tut:0}; }
+function novaVila(ts){ return {v:6,mini:{},moedas:0,coracoes:0,lastTs:ts===undefined?Date.now():ts,est:{sopa:{lvl:1}},decor:0,perks:{},missoes:null,
+  stats:{taps:0,ups:0,encomendas:0,ganhos:0,producoes:0,pedidos:0,erros:0,presentes:0,recebidos:0,visitas:0,cenas:0,chuva:0,noite:0,festa:0,mini:0,castelo:0},castelo:0,cartas:[],adotados:[],cap:[],postais:[],conq:[],tut:0}; }
 let vila=novaVila(0);
 let CLIMA={tipo:'sol',nome:'sol'}, FESTA=null, ESTACAO='primavera';
 let visitando=false, minhaVila=null;
@@ -257,9 +257,11 @@ const estLvl=id=>(vila.est[id]&&vila.est[id].lvl)||0;
 const estAberta=id=>estLvl(id)>0;
 const nAbertas=()=>ESTACOES.filter(e=>estAberta(e.id)).length;
 const perkLvl=id=>(vila.perks&&vila.perks[id])||0;
-function marcoMult(l){ let m=1; MARCOS_NIVEL.forEach(x=>{ if(l>=x) m*=2; }); return m; }
+function marcoMult(l){ return 1+.5*MARCOS_NIVEL.filter(x=>l>=x).length; }
+/* teto de nível: cada parte do castelo restaurada libera +5 níveis em todas as construções */
+const nivelMax=()=>10+5*vila.castelo;
 const proxMarco=l=>MARCOS_NIVEL.find(x=>l<x);
-function multGlobal(){ return (1+0.03*vila.decor)*(1+0.10*perkLvl('receita'))*(1+0.03*estLvl('violao'))*(1+0.05*vila.adotados.length)*(1+0.05*vila.castelo); }
+function multGlobal(){ return (1+0.03*vila.decor)*(1+0.04*perkLvl('receita'))*(1+0.03*estLvl('violao'))*(1+0.05*vila.adotados.length)*(1+0.05*vila.castelo); }
 /* bônus do momento: clima, noite, festa e o pomar (mostrados na folha da estação) */
 function bonusEst(id){
   let b=1;
@@ -273,17 +275,19 @@ function estValor(id){ const l=estLvl(id); return l?estDef(id).val*l*marcoMult(l
 function estCiclo(id){ return estDef(id).ciclo/(1+0.05*perkLvl('despertador')); }
 function estRate(id){ return estAberta(id)?estValor(id)/estCiclo(id)*(1+0.02*perkLvl('sorte')):0; }
 function vilaRate(){ return ESTACOES.reduce((s,e)=>s+estRate(e.id),0); }
-const capHoras=()=>Math.min(24,8+estLvl('soneca'));
+const capHoras=()=>Math.min(12,6+.5*estLvl('soneca'));
+const OFFLINE=.3; // longe da vila os gatinhos trabalham mais devagar
 function vilaNivel(){ return ESTACOES.reduce((s,e)=>s+estLvl(e.id),0)+vila.decor+vila.adotados.length+vila.castelo*5; }
 const custoUp=(id,l)=>Math.round(estDef(id).up*Math.pow(1.16,l-1));
 function custoUpN(id,n){
-  const l=estLvl(id); let tot=0,k=0; const lim=n==='max'?500:n;
+  const l=estLvl(id); let tot=0,k=0; const lim=Math.min(n==='max'?500:n,Math.max(0,nivelMax()-l));
+  if(lim<=0) return {n:0,custo:Infinity,teto:true};
   while(k<lim){ const c=custoUp(id,l+k); if(n==='max'&&tot+c>vila.moedas) break; tot+=c; k++; }
   if(n==='max'&&k===0) return {n:1,custo:custoUp(id,l)};
-  return {n:k,custo:tot};
+  return {n:k,custo:tot,parcial:k<(n==='max'?k:n)};
 }
-const custoDecor=()=>Math.round(120*Math.pow(2.3,vila.decor));
-const custoAdocao=()=>Math.round(250*Math.pow(2.2,vila.adotados.length));
+const custoDecor=()=>Math.round(80*Math.pow(2.05,vila.decor));
+const custoAdocao=()=>Math.round(150*Math.pow(2.1,vila.adotados.length));
 function raioAlvo(){ let r=150; ESTACOES.forEach(e=>{ if(estAberta(e.id)||obras[e.id]) r=Math.max(r,e.d+72); }); return r; }
 const liberada=e=>!e.hist||vila.cap.includes(HIST.findIndex(h=>h.id===e.hist));
 const proximaEstacao=()=>ESTACOES.find(e=>!estAberta(e.id)&&liberada(e));
@@ -299,13 +303,22 @@ function normalizar(d){
   v.missoes=d.missoes||null; v.stats=Object.assign(v.stats,d.stats||{});
   v.castelo=Math.max(0,Math.min(CASTELO.length,Number(d.castelo)||0));
   v.cartas=Array.isArray(d.cartas)?d.cartas.filter(n=>Number.isInteger(n)):[];
-  v.cap=Array.isArray(d.cap)?d.cap.filter(n=>Number.isInteger(n)&&n>=0&&n<HIST.length):[];
+  v.cap=capDeVersao(d.cap,d.v).filter(n=>n>=0&&n<HIST.length);
   v.postais=Array.isArray(d.postais)?d.postais.filter(x=>POSTAIS.some(p=>p.id===x)):[];
   v.adotados=Array.isArray(d.adotados)?d.adotados.slice(0,20).map(a=>({nome:String(a.nome||'Gatinho').slice(0,20),c:Math.max(0,Math.min(CORES_GATOS.length-1,Number(a.c)||0)),j:Math.max(0,Math.min(JEITOS.length-1,Number(a.j)||0))})):[];
   v.conq=Array.isArray(d.conq)?d.conq.filter(x=>typeof x==='string').slice(0,200):[];
   v.tut=Math.max(0,Number(d.tut)||0);
   v.cartas=(Number(d.v)||0)<5?[]:v.cartas.filter(n=>n>=0&&n<CARTAS.length);  // cartas da Rainha foram reescritas na v5
   Object.keys(v.stats).forEach(k=>{ v.stats[k]=Math.max(0,Number(v.stats[k])||0); });
+  v.mini={}; if(d.mini&&typeof d.mini==='object') for(const k of ['fornada','pesca','baile']) if(d.mini[k]) v.mini[k]={dia:String(d.mini[k].dia||''),n:Math.max(0,Number(d.mini[k].n)||0),rec:Math.max(0,Number(d.mini[k].rec)||0)};
+  v.castAtiv=d.castAtiv&&typeof d.castAtiv==='object'?{...d.castAtiv}:{};
+  if((Number(d.v)||0)<6){
+    // economia nova (números menores): mantém a história e as construções, ajusta níveis ao teto e zera as moedas antigas
+    const teto=10+5*v.castelo; for(const id in v.est) v.est[id].lvl=Math.min(v.est[id].lvl,teto);
+    v.moedas=0; v.stats.mini=0;
+    // capítulos novos entraram no meio: quem já tinha lido o seguinte ganha o novo também
+    ['fornada','saudade','baile','medo'].forEach(id=>{ const i=capIdx(id); if(v.cap.includes(i+1)&&!v.cap.includes(i)) v.cap.push(i); });
+  }
   return v;
 }
 function escrever(){
@@ -338,13 +351,14 @@ function arvoreSVG(tipo,cor,est){
   if(tipo===2) return `<ellipse cx="0" cy="2" rx="20" ry="6" fill="rgba(60,80,40,.25)"/><path d="M-20 0 C-26 -14 -12 -26 0 -20 C10 -30 26 -16 20 0 Z" fill="${c}" ${S}/><circle cx="-8" cy="-12" r="2.2" fill="#f7c6d0"/><circle cx="6" cy="-16" r="2.2" fill="#fff"/><circle cx="11" cy="-7" r="2.2" fill="#f7c6d0"/>`;
   return `<ellipse cx="0" cy="2" rx="22" ry="7" fill="rgba(60,80,40,.25)"/><rect x="-4" y="-22" width="8" height="24" rx="3" fill="#a07a55" ${S}/><path d="M-24 -26 C-34 -42 -20 -62 -6 -56 C-2 -72 22 -70 22 -54 C36 -50 34 -26 20 -22 C12 -14 -16 -14 -24 -26 Z" fill="${c}" ${S}/><path d="M-12 -46 C-8 -52 0 -52 4 -48" stroke="${d}" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="12" cy="-34" r="2.3" fill="${d}"/>`;
 }
-function gatoSVG(o,escala,olhosFechados){
+function gatoSVG(o,escala,olhosFechados,semRabo){
   const s=escala||1, c=o.cor, d=o.det;
   const listras=o.listras?`<path d="M-4 -37 l1 4 M0 -38 v4 M4 -37 l-1 4" stroke="${d}" stroke-width="1.8" stroke-linecap="round"/><path d="M-11 -10 q3 1 4 4 M11 -10 q-3 1 -4 4" stroke="${d}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`:'';
   const capa=o.capa?`<path d="M-13 -22 C-20 -8 -18 2 -12 2 L12 2 C18 2 20 -8 13 -22 Z" fill="#f2a7b8" stroke="${INK}" stroke-width="2"/>`:'';
   const chapeu=o.chapeu?`<ellipse cx="0" cy="-41" rx="15" ry="4" fill="#e8c27a" stroke="${INK}" stroke-width="1.8"/><path d="M-8 -42 C-8 -52 8 -52 8 -42 Z" fill="#e8c27a" stroke="${INK}" stroke-width="1.8"/><path d="M-8 -44 h16" stroke="#e3798a" stroke-width="2.4"/>`
     :o.chapeuVerde?`<ellipse cx="0" cy="-41" rx="14" ry="3.6" fill="#5f824b" stroke="${INK}" stroke-width="1.8"/><path d="M-8 -42 C-8 -52 8 -52 8 -42 Z" fill="#6f9a58" stroke="${INK}" stroke-width="1.8"/>`
     :o.capacete?`<path d="M-11 -38 C-11 -52 11 -52 11 -38 Z" fill="#f2c14e" stroke="${INK}" stroke-width="1.8"/><path d="M-13 -38 h26" stroke="${INK}" stroke-width="2.4" stroke-linecap="round"/>`:'';
+  const boina=o.boina?`<g transform="translate(2,-8) rotate(-10)"><path d="M-15 -42 C-18 -52 4 -56 16 -48 C19 -45 15 -41 10 -41 C2 -43 -8 -42 -15 -42 Z" fill="#8c2f3c" stroke="${INK}" stroke-width="1.8"/><circle cx="2" cy="-53" r="1.8" fill="#8c2f3c" stroke="${INK}" stroke-width="1.2"/></g>`:'';
   const coroa=o.coroa?`<path d="M-8 -43 L-9 -53 L-4 -48 L0 -56 L4 -48 L9 -53 L8 -43 Z" fill="#f2c14e" stroke="#8a6224" stroke-width="1.6" stroke-linejoin="round"/><circle cx="0" cy="-47" r="1.6" fill="#e3798a"/>`:'';
   const bufao=o.bufao?`<path d="M-12 -38 C-16 -50 -24 -52 -26 -46 C-20 -46 -16 -42 -14 -36 Z M12 -38 C16 -50 24 -52 26 -46 C20 -46 16 -42 14 -36 Z" fill="#e3606e" stroke="${INK}" stroke-width="1.6"/><path d="M-12 -38 C-6 -54 6 -54 12 -38 Z" fill="#86afcf" stroke="${INK}" stroke-width="1.6"/><circle cx="-26" cy="-46" r="2.6" fill="#f2c14e" stroke="${INK}" stroke-width="1"/><circle cx="26" cy="-46" r="2.6" fill="#f2c14e" stroke="${INK}" stroke-width="1"/><circle cx="0" cy="-52" r="2.6" fill="#f2c14e" stroke="${INK}" stroke-width="1"/>`:'';
   const cachecol=o.cachecol?`<path d="M-11 -19 Q0 -13 11 -19 L11 -14 Q0 -8 -11 -14 Z" fill="${o.cachecol}" stroke="${INK}" stroke-width="1.4"/><path d="M6 -14 l3 9 l4 -1 l-2 -9" fill="${o.cachecol}" stroke="${INK}" stroke-width="1.2"/>`:'';
@@ -355,8 +369,8 @@ function gatoSVG(o,escala,olhosFechados){
   const olhos=olhosFechados?`<path d="M-7 -29.5 q2.4 2 4.8 0 M2.2 -29.5 q2.4 2 4.8 0" stroke="${INK}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`
     :`<ellipse cx="-4.6" cy="-29.5" rx="1.7" ry="2.1" fill="${INK}"/><ellipse cx="4.6" cy="-29.5" rx="1.7" ry="2.1" fill="${INK}"/><circle cx="-4" cy="-30.3" r=".6" fill="#fff"/><circle cx="5.2" cy="-30.3" r=".6" fill="#fff"/>`;
   return `<g transform="scale(${s})"><ellipse cx="0" cy="1" rx="13" ry="4" fill="rgba(60,50,30,.22)"/>
-    <path d="M9 -4 C20 -4 22 -14 17 -20" stroke="${INK}" stroke-width="7.5" fill="none" stroke-linecap="round"/>
-    <path d="M9 -4 C20 -4 22 -14 17 -20" stroke="${c}" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    ${semRabo?'':`<path d="M9 -4 C20 -4 22 -14 17 -20" stroke="${INK}" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+    <path d="M9 -4 C20 -4 22 -14 17 -20" stroke="${c}" stroke-width="4.5" fill="none" stroke-linecap="round"/>`}
     ${capa}
     <ellipse cx="0" cy="-10" rx="12" ry="11" fill="${c}" stroke="${INK}" stroke-width="2"/>
     <ellipse cx="-5" cy="-1" rx="4" ry="2.6" fill="${c}" stroke="${INK}" stroke-width="1.6"/><ellipse cx="5" cy="-1" rx="4" ry="2.6" fill="${c}" stroke="${INK}" stroke-width="1.6"/>
@@ -367,7 +381,7 @@ function gatoSVG(o,escala,olhosFechados){
     ${listras}${olhos}${oculos}
     <ellipse cx="-8" cy="-25" rx="2.6" ry="1.5" fill="#f4a6a6" opacity=".85"/><ellipse cx="8" cy="-25" rx="2.6" ry="1.5" fill="#f4a6a6" opacity=".85"/>
     <path d="M-2 -25.5 q1 1.4 2 0 q1 1.4 2 0" stroke="${INK}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    ${chapeu}${coroa}${bufao}${antenas}</g>`;
+    ${chapeu}${coroa}${boina}${bufao}${antenas}</g>`;
 }
 function gatoDeitadoSVG(o){
   const c=o.cor, d=o.det;
@@ -611,30 +625,79 @@ function decorSVG(id,n){
   return '';
 }
 function casteloSVG(st,n,html){
-  const pedra='#e4dccf', pedraEsc='#cfc4b4';
-  let g=`<ellipse cx="0" cy="8" rx="132" ry="58" fill="#c9b18a" ${S}/><ellipse cx="0" cy="0" rx="132" ry="56" fill="#b7cf93" stroke="#6b8f52" stroke-width="2.4"/>`;
-  if(st>=3){
-    g+=`<path d="M-110 10 C-116 0 -100 -6 -92 -2 C-86 -10 -70 -6 -72 4 Z M110 10 C116 0 100 -6 92 -2 C86 -10 70 -6 72 4 Z" fill="#7fa863" ${S}/>`;
-    [[-100,-2,'#e3798a'],[-84,4,'#fff'],[90,0,'#f2c14e'],[104,4,'#e3798a'],[-60,24,'#a07bb7'],[60,26,'#e3798a'],[-40,30,'#fff'],[42,32,'#f2c14e']].forEach(f=>g+=`<circle cx="${f[0]}" cy="${f[1]}" r="3.6" fill="${f[2]}" stroke="${INK}" stroke-width="1.2"/>`);
-  }
+  const pedra='#e9e1d3', pedraEsc='#d3c7b5', pedraMed='#ddd2c1', telha='#e3798a', telhaEsc='#c25a6c', ouro='#f2c14e';
+  const w=jan(n&&st>=2), vitral=n&&st>=5;
+  const tijolos=(x,y,wd,h,dens)=>{ let g=''; for(let yy=y+7;yy<y+h-2;yy+=8){ const off=((yy-y)/8%2)*7; for(let xx=x+3+off;xx<x+wd-6;xx+=dens||14) g+=`<path d="M${xx} ${yy} h7" stroke="${pedraEsc}" stroke-width="1.2" stroke-linecap="round"/>`; } return g; };
+  const ameias=(x,y,wd,cor)=>{ let g=''; for(let xx=x;xx<x+wd-4;xx+=12) g+=`<rect x="${xx}" y="${y-8}" width="8" height="9" fill="${cor||pedra}" ${S}/>`; return g; };
+  const janela=(x,y,wd,h)=>`<path d="M${x} ${y+h} V${y+wd/2} A${wd/2} ${wd/2} 0 0 1 ${x+wd} ${y+wd/2} V${y+h} Z" fill="${w}" ${S}/><path d="M${x+wd/2} ${y+2} V${y+h}" stroke="${INK}" stroke-width="1.2"/>`;
+  const torre=(x,y,wd,h,alta)=>{ let g=`<rect x="${x-wd/2}" y="${y-h}" width="${wd}" height="${h}" rx="3" fill="${pedra}" ${S}/>${tijolos(x-wd/2,y-h,wd,h,13)}`;
+    g+=janela(x-5,y-h+18,10,15); if(h>90) g+=janela(x-5,y-h+50,10,15);
+    g+=`<path d="M${x-wd/2-6} ${y-h+2} L${x} ${y-h-(alta?52:40)} L${x+wd/2+6} ${y-h+2} Z" fill="${telha}" ${S}/><path d="M${x-wd/2+2} ${y-h-4} L${x} ${y-h-(alta?50:38)}" stroke="${telhaEsc}" stroke-width="2"/>`;
+    g+=`<path d="M${x-wd/2-6} ${y-h+2} H${x+wd/2+6}" stroke="${INK}" stroke-width="2.4"/>${[...Array(5)].map((_,i)=>`<circle cx="${x-wd/2-3+i*(wd+6)/4}" cy="${y-h+5}" r="2" fill="${telhaEsc}"/>`).join('')}`;
+    g+=`<path d="M${x} ${y-h-(alta?52:40)} V${y-h-(alta?66:54)}" stroke="${INK}" stroke-width="2"/><circle cx="${x}" cy="${y-h-(alta?66:54)}" r="2.6" fill="${ouro}" ${S}/>`;
+    return g; };
+  let g=`<ellipse cx="0" cy="10" rx="136" ry="60" fill="#c9b18a" ${S}/><ellipse cx="0" cy="2" rx="136" ry="57" fill="#b7cf93" stroke="#6b8f52" stroke-width="2.4"/>`;
   if(st<2){
-    g+=`<path d="M-80 0 V-26 L-70 -32 L-62 -22 L-56 -30 V0 Z" fill="${pedra}" ${S}/>
-     <path d="M-36 -10 V-64 L-24 -74 L-14 -60 L-4 -70 L6 -52 L14 -66 L30 -58 V-10 Z" fill="${pedra}" ${S}/>
+    g+=`<path d="M-80 0 V-26 L-70 -32 L-62 -22 L-56 -30 V0 Z" fill="${pedraMed}" ${S}/>
+     <path d="M-36 -10 V-64 L-24 -74 L-14 -60 L-4 -70 L6 -52 L14 -66 L30 -58 V-10 Z" fill="${pedraMed}" ${S}/>${tijolos(-34,-60,62,48,15)}
      <path d="M-10 -10 V-34 A10 10 0 0 1 10 -34 V-10" fill="#8f8378" ${S}/>
-     <path d="M56 0 V-20 L64 -28 L74 -18 V0 Z" fill="${pedra}" ${S}/>
-     <ellipse cx="-20" cy="10" rx="8" ry="4" fill="${pedraEsc}" ${S}/><ellipse cx="40" cy="14" rx="6" ry="3" fill="${pedraEsc}" ${S}/>
-     <path d="M-30 -40 q6 -2 8 4 M16 -48 q5 0 6 5" stroke="#86a86b" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+     <path d="M56 0 V-20 L64 -28 L74 -18 V0 Z" fill="${pedraMed}" ${S}/>
+     <ellipse cx="-20" cy="10" rx="8" ry="4" fill="${pedraEsc}" ${S}/><ellipse cx="40" cy="14" rx="6" ry="3" fill="${pedraEsc}" ${S}/><ellipse cx="90" cy="20" rx="7" ry="3.4" fill="${pedraEsc}" ${S}/>
+     <path d="M-30 -40 q6 -2 8 4 M16 -48 q5 0 6 5 M-72 -20 q4 -1 5 3" stroke="#86a86b" stroke-width="3" fill="none" stroke-linecap="round"/>
+     <path d="M-50 4 q10 -8 20 0 M60 6 q8 -6 16 0" stroke="#7fa863" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+    if(st===1) g+=`<path d="M-8 58 L-8 20 M8 58 L8 20" stroke="#b98a5e" stroke-width="3"/>`;
   } else {
-    const w=jan(n&&st>=5);
-    if(st>=4) [-78,78].forEach(x=>{ g+=`<rect x="${x-16}" y="-96" width="32" height="96" rx="3" fill="${pedra}" ${S}/><rect x="${x-5}" y="-74" width="10" height="14" rx="5" fill="${w}" ${S}/><path d="M${x-22} -94 L${x} -136 L${x+22} -94 Z" fill="#e3798a" ${S}/><path d="M${x} -136 V-154" stroke="${INK}" stroke-width="2"/><path d="M${x} -154 L${x+16} -149 L${x} -144 Z" fill="#f2c14e" ${S}/>`; });
-    g+=`<rect x="-58" y="-40" width="116" height="40" fill="${pedra}" ${S}/>${[...Array(8)].map((_,i)=>`<rect x="${-56+i*14}" y="-48" width="8" height="8" fill="${pedra}" ${S}/>`).join('')}
-      <rect x="-34" y="-104" width="68" height="64" fill="${pedra}" ${S}/>${[...Array(5)].map((_,i)=>`<rect x="${-33+i*14}" y="-112" width="8" height="8" fill="${pedra}" ${S}/>`).join('')}
-      <rect x="-24" y="-88" width="12" height="16" rx="6" fill="${w}" ${S}/><rect x="12" y="-88" width="12" height="16" rx="6" fill="${w}" ${S}/>
-      <path d="M-16 0 V-26 A16 16 0 0 1 16 -26 V0 Z" fill="#b98a5e" ${S}/><path d="M0 -42 V0 M-16 -18 H16" stroke="${INK}" stroke-width="1.4"/>`;
-    if(st>=5) g+=`<path d="M-30 -104 L0 -146 L30 -104 Z" fill="#e3798a" ${S}/><path d="M0 -146 V-170" stroke="${INK}" stroke-width="2"/><path d="M0 -170 L22 -163 L0 -156 Z" fill="#e3798a" ${S}/><path d="M-20 -40 v26 l6 -4 l6 4 v-26 M8 -40 v26 l6 -4 l6 4 v-26" fill="#e3798a" stroke="${INK}" stroke-width="1.4"/>`;
+    // caminho de pedras até o portão
+    g+=`<path d="M-16 56 Q-12 30 -14 2 L14 2 Q12 30 16 56 Z" fill="#e4d6bd" stroke="#c9b18a" stroke-width="2"/>${[[0,12],[-6,24],[6,34],[-4,46]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="6" ry="3" fill="#d8c8aa"/>`).join('')}`;
+    // torres de vigia (atrás das muralhas)
+    if(st>=4){ g+=torre(-92,-8,34,118,false); g+=torre(92,-8,34,118,false);
+      g+=`<path d="M-75 -100 L-58 -96 L-75 -90 Z" fill="${ouro}" ${S}/>`; }
+    // torre central / salão do trono
+    if(st>=5){
+      g+=`<rect x="-24" y="-150" width="48" height="60" fill="${pedra}" ${S}/>${tijolos(-24,-150,48,60,13)}
+        <circle cx="0" cy="-124" r="13" fill="${vitral?'#ffd36b':'#cfe0f0'}" ${S}/>${[0,1,2,3,4,5].map(i=>{ const a=i*Math.PI/3; return `<path d="M0 -124 L${(Math.cos(a)*13).toFixed(1)} ${(-124+Math.sin(a)*13).toFixed(1)}" stroke="${INK}" stroke-width="1.2"/>`; }).join('')}
+        <circle cx="0" cy="-124" r="4" fill="${vitral?'#f6a6b4':telha}" stroke="${INK}" stroke-width="1.2"/>${[0,1,2,3,4,5].map(i=>{ const a=i*Math.PI/3+.5; return `<circle cx="${(Math.cos(a)*8.6).toFixed(1)}" cy="${(-124+Math.sin(a)*8.6).toFixed(1)}" r="2.2" fill="${['#86afcf','#b9dc4c','#f2c14e'][i%3]}" opacity="${vitral?1:.8}"/>`; }).join('')}
+        <path d="M-32 -148 L0 -196 L32 -148 Z" fill="${telha}" ${S}/><path d="M-20 -156 L0 -190" stroke="${telhaEsc}" stroke-width="2.4"/>
+        <path d="M-32 -148 H32" stroke="${INK}" stroke-width="2.4"/><path d="M0 -196 V-212" stroke="${INK}" stroke-width="2"/>
+        <path d="M-7 -210 C-7 -216 0 -216 0 -211 C0 -216 7 -216 7 -210 C7 -205 0 -201 0 -200 C0 -201 -7 -205 -7 -210 Z" fill="${telha}" ${S}/>`;
+    }
+    // castelo principal (torre de menagem)
+    g+=`<rect x="-40" y="-104" width="80" height="62" fill="${pedra}" ${S}/>${tijolos(-40,-104,80,62,14)}${ameias(-40,-104,84)}
+      ${janela(-30,-94,13,20)}${janela(17,-94,13,20)}
+      <path d="M-10 -70 h20 v8 h-20 Z" fill="${pedraMed}" ${S}/><path d="M-12 -62 h24" stroke="${INK}" stroke-width="2"/>${janela(-6,-90,12,18)}`;
+    if(st>=5) g+=`<path d="M-36 -42 v-30 l7 5 l7 -5 v30 M22 -42 v-30 l7 5 l7 -5 v30" fill="${telha}" stroke="${INK}" stroke-width="1.6"/><circle cx="-29" cy="-56" r="3.4" fill="${ouro}" ${S}/><circle cx="29" cy="-56" r="3.4" fill="${ouro}" ${S}/>`;
+    // muralha da frente com portão
+    g+=`<rect x="-72" y="-46" width="144" height="46" fill="${pedraMed}" ${S}/>${tijolos(-72,-46,144,46,15)}${ameias(-72,-46,148,pedraMed)}
+      <rect x="-80" y="-60" width="22" height="60" rx="10" fill="${pedra}" ${S}/>${ameias(-82,-60,26)}<rect x="58" y="-60" width="22" height="60" rx="10" fill="${pedra}" ${S}/>${ameias(56,-60,26)}
+      ${janela(-74,-48,10,13)}${janela(64,-48,10,13)}
+      <path d="M-20 0 V-26 A20 20 0 0 1 20 -26 V0 Z" fill="#8a5f3e" ${S}/><path d="M0 -46 V0 M-20 -16 H20 M-20 -30 H20" stroke="#6b4a2e" stroke-width="1.6"/>
+      ${[-12,-6,6,12].map(x=>`<circle cx="${x}" cy="-8" r="1.4" fill="#4a3a2e"/>`).join('')}<path d="M-24 -26 A24 24 0 0 1 24 -26" fill="none" stroke="${pedraEsc}" stroke-width="5"/><path d="M-24 -26 A24 24 0 0 1 24 -26" fill="none" stroke="${INK}" stroke-width="1.6"/>
+      <path d="M-48 -42 v22 l6 -4 l6 4 v-22 Z M36 -42 v22 l6 -4 l6 4 v-22 Z" fill="${telha}" stroke="${INK}" stroke-width="1.4"/><path d="M-45 -34 l3 -3 l3 3 l-3 3 Z M39 -34 l3 -3 l3 3 l-3 3 Z" fill="${ouro}"/>`;
+    // hera (some quando o castelo fica todo restaurado)
+    if(st<5) g+=`<path d="M-72 -10 q6 -10 2 -22 q-4 -8 4 -14 M70 -6 q-6 -8 -2 -18" stroke="#6f9a58" stroke-width="4" fill="none" stroke-linecap="round"/>${[[-70,-18],[-66,-30],[68,-14],[66,-22]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.4" fill="#86a86b"/>`).join('')}`;
+    // jardim da rainha
+    if(st>=3){
+      g+=`${[[-118,8,18],[-104,24,14],[118,8,18],[104,24,14],[-56,22,12],[56,22,12]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.72}" fill="#7fa863" ${S}/><ellipse cx="${x-r*.3}" cy="${y-r*.3}" rx="${r*.4}" ry="${r*.25}" fill="#9cc27c"/>`).join('')}`;
+      [[-110,2,'#e3798a'],[-100,18,'#fff'],[-60,16,'#f2c14e'],[60,16,'#e3798a'],[108,2,'#f2c14e'],[100,18,'#a07bb7'],[-122,14,'#f2a7b8'],[122,14,'#fff'],[-50,28,'#a07bb7'],[50,28,'#f2a7b8']].forEach(f=>g+=`<circle cx="${f[0]}" cy="${f[1]}" r="3.6" fill="${f[2]}" stroke="${INK}" stroke-width="1.2"/>`);
+      // fonte e banquinho
+      g+=`<ellipse cx="-82" cy="38" rx="20" ry="8" fill="${pedraEsc}" ${S}/><ellipse cx="-82" cy="37" rx="15" ry="5.4" fill="#9fc6dc"/><path d="M-82 36 V20" stroke="${pedraEsc}" stroke-width="4"/><ellipse cx="-82" cy="20" rx="6" ry="2.4" fill="${pedraEsc}" stroke="${INK}" stroke-width="1.4"/><path d="M-82 18 C-86 10 -90 16 -92 26 M-82 18 C-78 10 -74 16 -72 26" stroke="#9fc6dc" stroke-width="2" fill="none"/>
+        <rect x="68" y="30" width="30" height="5" rx="2" fill="#b98a5e" ${S}/><rect x="68" y="24" width="30" height="4" rx="2" fill="#c99a6b" ${S}/><path d="M72 35 v5 M94 35 v5" stroke="${INK}" stroke-width="2"/>`;
+    }
   }
   if(html && st<3){ const op=[.85,.55,.3][st]; g+=`<g opacity="${op}">${[[-90,-30,70,26],[40,-60,80,28],[-20,-10,110,30],[90,10,60,22],[-60,20,70,20]].map(f=>`<ellipse cx="${f[0]}" cy="${f[1]}" rx="${f[2]}" ry="${f[3]}" fill="#fbf7ef" opacity=".7"/>`).join('')}</g>`; }
   return g;
+}
+/* detalhes vivos do castelo (bandeirinhas tremulando, brilho na fonte, pássaros) */
+function desenharCasteloVivo(c){
+  const st=vila.castelo, X=CASTELO_POS.x, Y=CASTELO_POS.y;
+  const bandeira=(x,y,cor,tam)=>{ c.fillStyle=cor; c.strokeStyle=INK; c.lineWidth=1.4; c.beginPath(); c.moveTo(x,y); for(let i=0;i<=6;i++){ const k=i/6; c.lineTo(x+k*tam,y+Math.sin(tempo*5+k*4+x)*2.2*k); } for(let i=6;i>=0;i--){ const k=i/6; c.lineTo(x+k*tam,y+tam*.55+Math.sin(tempo*5+k*4+x+.6)*2.2*k-k*tam*.12); } c.closePath(); c.fill(); c.stroke(); };
+  if(st>=4){ bandeira(X-92,Y-8-118-54,'#f2c14e',16); bandeira(X+92,Y-8-118-54,'#86afcf',16); }
+  if(st>=5){ bandeira(X,Y-212,'#e3798a',18); }
+  if(st>=2&&st<4){ bandeira(X,Y-112,'#e3798a',12); }
+  if(st>=3){ // gotinhas da fonte
+    c.fillStyle='rgba(159,198,220,.9)'; for(let i=0;i<4;i++){ const k=((tempo*.9+i*.25)%1), lado=i%2?1:-1; c.beginPath(); c.arc(X-82+lado*k*10,Y+18-Math.sin(k*Math.PI)*8+k*8,1.4,0,6.283); c.fill(); } }
+  if(castDot&&!visitando){ const y=Y-6+Math.sin(tempo*4)*3; c.fillStyle='#fbf7ef'; c.strokeStyle=INK; c.lineWidth=2; c.beginPath(); c.arc(X-46,y-40,12,0,6.283); c.fill(); c.stroke(); c.fillStyle="#e3798a"; c.beginPath(); c.moveTo(X-46,y-35); c.bezierCurveTo(X-53,y-40,X-50,y-47,X-46,y-43); c.bezierCurveTo(X-42,y-47,X-39,y-40,X-46,y-35); c.fill(); }
+  if(st>=1&&NOITE<.5){ for(let i=0;i<2;i++){ const k=((tempo*.05+i*.5)%1), x=X-160+k*320, y=Y-150-Math.sin(k*Math.PI)*30-i*12, a=Math.sin(tempo*9+i)*3; c.strokeStyle=INK; c.lineWidth=1.4; c.beginPath(); c.moveTo(x-5,y+a); c.quadraticCurveTo(x-2,y-2,x,y); c.quadraticCurveTo(x+2,y-2,x+5,y+a); c.stroke(); } }
 }
 
 /* ------------------------------------------------------------------
@@ -657,13 +720,13 @@ function desenharSprite(ctx,s,x,y,sx,sy){
   if(sx==null){ ctx.drawImage(s.img,x+s.x,y+s.y,s.w,s.h); return; }
   ctx.save(); ctx.translate(x,y); ctx.scale(sx,sy); ctx.drawImage(s.img,s.x,s.y,s.w,s.h); ctx.restore();
 }
-const BOX={tree:[-40,-84,80,94],bal:[-104,-170,200,190],cat:[-28,-62,56,68],catLie:[-34,-34,66,40],bld:[-104,-126,200,160],camp:[-96,-60,192,100],castle:[-150,-200,300,270],decor:[-40,-70,80,80],sign:[-30,-54,60,62],scaf:[-50,-72,100,82]};
+const BOX={tree:[-40,-84,80,94],bal:[-104,-170,200,190],cat:[-28,-62,56,68],catLie:[-34,-34,66,40],bld:[-104,-126,200,160],camp:[-96,-60,192,100],castle:[-150,-222,300,292],decor:[-40,-70,80,80],sign:[-30,-54,60,62],scaf:[-50,-72,100,82]};
 function sprArvore(t){ return sprite('t'+t.tipo+t.cor+ESTACAO,BOX.tree,()=>arvoreSVG(t.tipo,t.cor)); }
-function sprGato(o,fech){ const k='c'+o.cor+o.det+(o.listras?1:0)+(o.chapeu?1:0)+(o.chapeuVerde?1:0)+(o.xadrez?1:0)+(o.coroa?1:0)+(o.capacete?1:0)+(o.bufao?1:0)+(o.antenas?1:0)+(o.cachecol||'')+(o.oculos?1:0)+(o.avental||'')+(fech?'z':''); return sprite(k,BOX.cat,()=>gatoSVG(o,1,fech)); }
+function sprGato(o,fech){ const k='c'+o.cor+o.det+(o.listras?1:0)+(o.chapeu?1:0)+(o.chapeuVerde?1:0)+(o.xadrez?1:0)+(o.coroa?1:0)+(o.capacete?1:0)+(o.bufao?1:0)+(o.antenas?1:0)+(o.cachecol||'')+(o.oculos?1:0)+(o.avental||'')+(o.capa?1:0)+(o.boina?1:0)+(fech?'z':'')+'r'; return sprite(k,BOX.cat,()=>gatoSVG(o,1,fech,true)); }
 function sprDeitado(o){ return sprite('L'+o.cor,BOX.catLie,()=>gatoDeitadoSVG(o)); }
 const boxDe=id=>(id==='balao'||id==='casinha')?BOX.bal:BOX.bld;
 function sprConstrucao(id,f,n){ return sprite(`b${id}${f}${n?'n':''}`,boxDe(id),()=>CONSTRUCAO[id](f,n)); }
-function sprHeroi(q,disf,fech){ return sprite(`h${q}${disf?1:0}${fech?'z':''}`,ALIEN_BOX,()=>alienSVG(q,disf,fech)); }
+function sprHeroi(q,disf,fech){ return sprite(`h${q}${disf?1:0}${fech?'z':''}r`,ALIEN_BOX,()=>alienSVG(q,disf,fech,true)); }
 function sprMural(){ return sprite('mural',BOX.decor,()=>`<ellipse cx="0" cy="2" rx="26" ry="6" fill="rgba(60,50,30,.22)"/><path d="M-24 0 V-44 M24 0 V-44" stroke="#a07a55" stroke-width="4"/><rect x="-28" y="-50" width="56" height="34" rx="3" fill="#c99a6b" ${S}/><rect x="-23" y="-46" width="16" height="11" fill="#d3ecf2" stroke="${INK}" stroke-width="1" transform="rotate(-6 -15 -40)"/><rect x="-4" y="-46" width="14" height="12" fill="#fbe3ea" stroke="${INK}" stroke-width="1"/><rect x="12" y="-44" width="12" height="10" fill="#fffaf0" stroke="${INK}" stroke-width="1" transform="rotate(8 18 -39)"/><rect x="-14" y="-31" width="16" height="11" fill="#f8e6c4" stroke="${INK}" stroke-width="1" transform="rotate(4 -6 -26)"/><path d="M-30 -50 L0 -60 L30 -50" fill="#9b4a58" ${S}/>`); }
 function sprAcamp(acesa,f){ return sprite(`camp${acesa?1:0}${f}`,BOX.camp,()=>bAcampamento(acesa,f)); }
 function sprCastelo(st,n){ return sprite(`cas${st}${n?'n':''}`,BOX.castle,()=>casteloSVG(st,n)); }
@@ -840,32 +903,106 @@ function montarMundo(){
 }
 function novoGato(chave,o){
   const p=o.casa?{...o.casa}:pontoLivre();
-  return {chave,o,x:p.x,y:p.y,alvo:null,espera:o.casa?8+Math.random()*20:1+Math.random()*4,dir:1,estado:o.casa?'work':'idle',fase:Math.random()*6.28,pulo:0,blink:3+Math.random()*4,fala:null};
+  return {chave,o,x:p.x,y:p.y,alvo:null,espera:o.casa?8+Math.random()*20:1+Math.random()*4,dir:1,estado:o.casa?'work':'idle',fase:Math.random()*6.28,pulo:0,blink:3+Math.random()*4,fala:null,
+    anim:null,emo:null,squash:0,alegria:0,corre:false,poeira:0,rabo:Math.random()*6};
 }
 function pontoLivre(){
   for(let i=0;i<30;i++){ const a=Math.random()*6.283, r=Math.sqrt(Math.random())*(R-40); const x=CX+Math.cos(a)*r, y=CY+Math.sin(a)*r*K; if(dEl(x,y)<R-34) return {x,y}; }
   return {x:CX,y:CY+30};
 }
+/* pequenas ações de quem está à toa: sentar, espreguiçar, lamber a pata, olhar em volta, pular de alegria, rolar */
+const ANIMS_IDLE=[['sentar',3.2],['espreguicar',1.6],['lamber',2.4],['olhar',2.2],['pulinho',1],['rolar',1.3],['sentar',2.6]];
+const EMOS=['coracao','nota','peixe','estrela','pontos','risada','flor'];
+function emo(c,tipo,t){ c.emo={tipo,t:t||1.8}; }
+function iniciarAnim(c){
+  const pers=c.o.pers||'';
+  let pool=ANIMS_IDLE;
+  if(/dorminhoco|preguiçoso/.test(pers)) pool=[['sentar',4],['espreguicar',2],['bocejo',2]];
+  if(/brincalhão|animad|filhot/.test(pers)) pool=[['pulinho',1],['rolar',1.3],['pulinho',1],['olhar',1.6],['correr',0]];
+  if(/tímido/.test(pers)) pool=[['sentar',3],['olhar',2.4],['lamber',2.4]];
+  const [tipo,d]=pool[Math.floor(Math.random()*pool.length)];
+  if(tipo==='correr'){ c.corre=true; c.alvo=pontoLivre(); c.estado='walk'; return; }
+  c.anim={tipo,t:0,d};
+  if(tipo==='pulinho'){ c.pulo=1; if(Math.random()<.5) emo(c,'nota',1.2); }
+  if(tipo==='bocejo') emo(c,'zz',2);
+}
+/* dois gatinhos à toa e pertinho: param, se olham e "conversam" com balõezinhos */
+function puxarPapo(c){
+  if(c.o.parado||c.o.visit||c.alvo||c.papo) return false;
+  for(const d of cats){
+    if(d===c||d.alvo||d.papo||d.o.parado||d.o.visit||d.estado==='work') continue;
+    const dist=Math.hypot(d.x-c.x,(d.y-c.y)/K); if(dist>70||dist<14) continue;
+    const casal=(c.o.heroi&&d.o.heroi);
+    c.papo={com:d,t:0,d:casal?6:4.5,vez:0}; d.papo={com:c,t:0,d:c.papo.d,vez:1};
+    c.dir=d.x>c.x?1:-1; d.dir=-c.dir; c.anim=d.anim=null;
+    return true;
+  }
+  return false;
+}
 function moverGatos(dt){
   cats.forEach(c=>{
-    c.fase+=dt; if(c.pulo>0) c.pulo=Math.max(0,c.pulo-dt*2.2);
+    c.fase+=dt; c.rabo+=dt*(c.alvo?(c.corre?3:1.8):c.alegria>0?3.2:1);
+    if(c.pulo>0){ c.pulo=Math.max(0,c.pulo-dt*2.2); if(c.pulo===0) c.squash=1; }
+    if(c.squash>0) c.squash=Math.max(0,c.squash-dt*5);
+    if(c.alegria>0) c.alegria=Math.max(0,c.alegria-dt);
     c.blink-=dt; if(c.blink<-.14) c.blink=2.5+Math.random()*4;
     if(c.fala){ c.fala.t-=dt; if(c.fala.t<=0) c.fala=null; }
-    if(c.o.parado) return;
+    if(c.emo){ c.emo.t-=dt; if(c.emo.t<=0) c.emo=null; }
+    if(c.anim){ c.anim.t+=dt; if(c.anim.t>=c.anim.d) c.anim=null; }
+    if(c.papo){
+      const P=c.papo; P.t+=dt;
+      const passo=Math.floor(P.t/1.1);
+      if(passo!==P.ult){ P.ult=passo; if(passo%2===P.vez && P.t<P.d-.6){ const casal=c.o.heroi&&P.com.o&&P.com.o.heroi; emo(c,casal?(Math.random()<.6?'coracao':'risada'):EMOS[Math.floor(Math.random()*EMOS.length)],1); if(Math.random()<.3) c.pulo=.7; } }
+      if(P.t>=P.d){ c.papo=null; c.espera=1+Math.random()*3; if(c.o.heroi&&P.com.o.heroi&&Math.random()<.5) emo(c,'coracao',1.4); }
+      return;
+    }
+    if(c.o.parado){ if(!c.anim&&Math.random()<dt*.12) c.anim={tipo:Math.random()<.5?'olhar':'aceno',t:0,d:2}; return; }
     if(c.alvo){
-      const dx=c.alvo.x-c.x, dy=c.alvo.y-c.y, dist=Math.hypot(dx,dy), v=(c.vel||c.o.vel||24)*dt;
-      if(dist<=v){ c.x=c.alvo.x; c.y=c.alvo.y; c.alvo=null;
+      const dx=c.alvo.x-c.x, dy=c.alvo.y-c.y, dist=Math.hypot(dx,dy), v=(c.vel||c.o.vel||24)*(c.corre?2.4:1)*dt;
+      if(dist<=v){ c.x=c.alvo.x; c.y=c.alvo.y; c.alvo=null; if(c.corre){ c.corre=false; c.squash=1; }
         if(c.o.casa && Math.hypot(c.x-c.o.casa.x,c.y-c.o.casa.y)<2){ c.estado='work'; c.espera=15+Math.random()*25; c.dir=1; }
-        else { c.estado='idle'; c.espera=c.o.visit?999:2+Math.random()*5; }
-      } else { c.x+=dx/dist*v; c.y+=dy/dist*v; c.dir=dx<0?-1:1; }
+        else { c.estado='idle'; c.espera=c.o.visit?999:2+Math.random()*5; if(!c.o.visit&&Math.random()<.55) iniciarAnim(c); }
+      } else { c.x+=dx/dist*v; c.y+=dy/dist*v; c.dir=dx<0?-1:1;
+        c.poeira-=dt; if(c.poeira<=0){ c.poeira=c.corre?.12:.42; if(NOITE<.6&&fumacas.length<60) fumacas.push({x:c.x-c.dir*6,y:c.y,r:c.corre?2.4:1.6,vida:.6,t:0,vx:-c.dir*.6,poeira:1}); } }
     } else if(!c.o.visit){
       c.espera-=dt;
-      if(c.espera<=0){
+      if(c.estado==='idle' && !c.anim && Math.random()<dt*.5 && puxarPapo(c)) return;
+      if(c.estado==='idle' && !c.anim && Math.random()<dt*.35) iniciarAnim(c);
+      if(c.espera<=0 && !c.anim){
         c.alvo=c.o.casa?(c.estado==='work'?(Math.random()<.5?{x:CX+(Math.random()-.5)*100,y:CY+18+(Math.random()-.5)*34}:pontoLivre()):{...c.o.casa}):pontoLivre();
-        c.estado='walk';
+        c.estado='walk'; c.corre=!c.o.casa&&Math.random()<.12;
       }
     }
   });
+}
+/* rabo desenhado à parte, balançando (coordenadas do sprite, âncora nos pés) */
+function rabo(c,cor,ang,alien){
+  const bx=alien?10:9, by=-4, P=alien?[[21,-4],[23,-14],[18,-21]]:[[20,-4],[22,-14],[17,-20]];
+  const r=(p,k)=>{ const x=p[0]-bx, y=p[1]-by, a=ang*k, ca=Math.cos(a), sa=Math.sin(a); return [bx+x*ca-y*sa, by+x*sa+y*ca]; };
+  const p1=r(P[0],.35), p2=r(P[1],.75), p3=r(P[2],1);
+  c.lineCap='round'; c.beginPath(); c.moveTo(bx,by); c.bezierCurveTo(p1[0],p1[1],p2[0],p2[1],p3[0],p3[1]);
+  c.strokeStyle=INK; c.lineWidth=7.5; c.stroke(); c.strokeStyle=cor; c.lineWidth=4.5; c.stroke();
+}
+function corDe(o){ return o.heroi?window.peloAlien(o.heroi,o.disf):o.cor; }
+/* desenha um gatinho parado em qualquer lugar (com rabo balançando) */
+function gatoEm(c,o,x,y,esc,t){
+  const sp=o.heroi?sprHeroi(o.heroi,o.disf,false):sprGato(o,false); if(!sp) return;
+  c.save(); c.translate(x,y); c.scale(esc,esc); rabo(c,corDe(o),Math.sin(t)*.22,!!o.heroi); c.drawImage(sp.img,sp.x,sp.y,sp.w,sp.h); c.restore();
+}
+function desenharEmo(c,x,y,tipo,a){
+  c.globalAlpha=a; c.fillStyle='#fffdf8'; c.strokeStyle=INK; c.lineWidth=1.6;
+  c.beginPath(); c.arc(x,y,10,0,6.283); c.fill(); c.stroke(); c.beginPath(); c.moveTo(x-3,y+9); c.lineTo(x-5,y+14); c.lineTo(x+2,y+9.6); c.fill(); c.stroke(); c.fillRect(x-3.6,y+7,6,3);
+  c.fillStyle=INK; c.strokeStyle=INK; c.lineWidth=1.6; c.lineCap='round';
+  if(tipo==='coracao'){ c.fillStyle='#e3798a'; c.beginPath(); c.moveTo(x,y+4); c.bezierCurveTo(x-7,y-1,x-4,y-7,x,y-3); c.bezierCurveTo(x+4,y-7,x+7,y-1,x,y+4); c.fill(); }
+  else if(tipo==='nota'){ c.beginPath(); c.arc(x-2,y+3,2.6,0,6.283); c.fill(); c.fillRect(x,y-6,1.6,9); c.fillRect(x,y-6,5,1.8); }
+  else if(tipo==='peixe'){ c.fillStyle='#86afcf'; c.beginPath(); c.ellipse(x-1,y,5,3,0,0,6.283); c.fill(); c.beginPath(); c.moveTo(x+3,y); c.lineTo(x+7,y-3); c.lineTo(x+7,y+3); c.fill(); }
+  else if(tipo==='estrela'){ c.fillStyle='#f2c14e'; c.beginPath(); for(let i=0;i<10;i++){ const r=i%2?2.6:6, a=-Math.PI/2+i*Math.PI/5; c.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r); } c.fill(); }
+  else if(tipo==='pontos'){ [-4,0,4].forEach(d=>{ c.beginPath(); c.arc(x+d,y,1.4,0,6.283); c.fill(); }); }
+  else if(tipo==='risada'){ c.beginPath(); c.arc(x,y-1,5,.15*Math.PI,.85*Math.PI); c.stroke(); c.beginPath(); c.moveTo(x-4,y-4); c.lineTo(x-2,y-3); c.moveTo(x+4,y-4); c.lineTo(x+2,y-3); c.stroke(); }
+  else if(tipo==='flor'){ c.fillStyle='#f2a7b8'; for(let i=0;i<5;i++){ const a=i*1.2566; c.beginPath(); c.arc(x+Math.cos(a)*3.4,y+Math.sin(a)*3.4,2.4,0,6.283); c.fill(); } c.fillStyle='#f2c14e'; c.beginPath(); c.arc(x,y,1.8,0,6.283); c.fill(); }
+  else if(tipo==='zz'){ c.font='800 9px Fredoka, sans-serif'; c.textAlign='center'; c.fillText('zZ',x,y+3); }
+  else if(tipo==='exclama'){ c.fillRect(x-1,y-6,2.2,8); c.fillRect(x-1,y+3.4,2.2,2.2); }
+  c.globalAlpha=1;
 }
 
 /* ------------------------------------------------------------------
@@ -890,6 +1027,7 @@ function desenhar(){
   c.drawImage(chao,chao.ox,chao.oy,chao.ww,chao.hh);
   refazerCamadas();
   c.drawImage(camT,CAM.x0,camT.y0,CAM.x1-CAM.x0,camT.hh);
+  desenharCasteloVivo(c);
   // ponte
   if(vila.castelo>=1){ const y0=CASTELO_POS.y+44, y1=CY-R*K+8; if(y1>y0){ c.fillStyle='rgba(163,122,85,.35)'; c.fillRect(CX-26,y0,52,y1-y0); for(let y=y0;y<y1;y+=9){ c.fillStyle='#c99a6b'; c.fillRect(CX-22,y,44,7); c.strokeStyle=INK; c.lineWidth=1.2; c.strokeRect(CX-22,y,44,7); } } }
   // lista ordenada por profundidade
@@ -917,7 +1055,7 @@ function desenhar(){
   }
   c.drawImage(camF,CAM.x0,camF.y0,CAM.x1-CAM.x0,camF.hh);
   // fumaça
-  for(const f of fumacas){ c.globalAlpha=Math.max(0,.65*(1-f.t/f.vida)); c.fillStyle='#fff'; c.beginPath(); c.arc(f.x,f.y,f.r,0,6.283); c.fill(); }
+  for(const f of fumacas){ c.globalAlpha=Math.max(0,(f.poeira?.45:.65)*(1-f.t/f.vida)); c.fillStyle=f.poeira?'#e9dcc0':'#fff'; c.beginPath(); c.arc(f.x,f.y,f.r,0,6.283); c.fill(); }
   c.globalAlpha=1;
   // névoa do castelo
   if(vila.castelo<3){ const op=[.9,.6,.32][vila.castelo]; c.globalAlpha=op; [[-90,-30,1.3],[40,-60,1.5],[-20,-10,1.9],[90,10,1.1],[-60,20,1.2]].forEach((f,i)=>{ const dx=Math.sin(tempo*.25+i)*14; const sz=f[2]*110; c.drawImage(NEVOA,CASTELO_POS.x+f[0]+dx-sz/2,CASTELO_POS.y+f[1]-sz*.3,sz,sz*.6); }); c.globalAlpha=1; }
@@ -962,7 +1100,7 @@ function desenharEnt(c,e,n){
       if(ac) chama(c,e.ax,e.ay-2); break; }
     case 'placa': { const b=Math.sin(tempo*3)*2.5; desenharSprite(c,sprite('placa',BOX.sign,placaSVG),e.ax,e.ay+b-2); break; }
     case 'obra': { desenharSprite(c,sprite('andaime',BOX.scaf,andaimeSVG),e.ax,e.ay);
-      const sp=sprGato({cor:'#f2c78f',det:'#c9a072',listras:1,capacete:1},false); desenharSprite(c,sp,e.ax+16,e.ay-1,.8,.8);
+      gatoEm(c,{cor:'#f2c78f',det:'#c9a072',listras:1,capacete:1},e.ax+16,e.ay-1,.8,tempo*3);
       c.save(); c.translate(e.ax+24,e.ay-22); c.rotate(Math.sin(tempo*14)*.5-.2); c.fillStyle='#b98a5e'; c.fillRect(-1.5,-14,3,14); c.fillStyle='#9aa3ad'; c.fillRect(-6,-18,12,6); c.restore();
       if(Math.random()<.05) ftxt(e.ax+30,e.ay-40,'toc!',''); break; }
     case 'decor': desenharSprite(c,sprDecor(e.id,n),e.ax,e.ay); break;
@@ -1000,17 +1138,37 @@ function desenharGato(c,g){
   }
   const andando=!!g.alvo, trab=g.estado==='work'&&!andando;
   const spA=o.heroi?sprHeroi(o.heroi,o.disf,false):sprGato(o,false), spF=o.heroi?sprHeroi(o.heroi,o.disf,true):sprGato(o,true);
-  const sp=(g.blink<0&&spF)?spF:spA; if(!sp) return; // olho fechado só quando já carregou (senão o gato sumia ao piscar)
-  let bob=0, rot=0, sx=1, sy=1;
-  if(andando){ bob=-Math.abs(Math.sin(g.fase*10))*3; rot=Math.sin(g.fase*10)*.05; }
+  const an=g.anim, ak=an?an.t/an.d:0, env=an?Math.sin(Math.min(1,ak)*Math.PI):0;
+  const olhoFechado=g.blink<0||(an&&(an.tipo==='lamber'||an.tipo==='bocejo'||an.tipo==='espreguicar')&&env>.4)||(g.alegria>0&&g.alegria<.8);
+  const sp=(olhoFechado&&spF)?spF:spA; if(!sp) return; // olho fechado só quando já carregou (senão o gato sumia ao piscar)
+  let bob=0, rot=0, sx=1, sy=1, dx=0, raboA=Math.sin(g.rabo*1.6)*.18;
+  if(andando){ const f=g.corre?16:10; bob=-Math.abs(Math.sin(g.fase*f))*(g.corre?4.5:3); rot=Math.sin(g.fase*f)*(g.corre?.09:.05)+(g.corre?.08:0); sy=1+Math.abs(Math.cos(g.fase*f))*.04; raboA=Math.sin(g.rabo*4)*.3-.15; }
   else if(trab){ bob=-Math.abs(Math.sin(g.fase*5))*1.6; sy=1+Math.sin(g.fase*5)*.02; }
   else sy=1+Math.sin(g.fase*2.6)*.025;
-  if(g.pulo>0) bob-=Math.sin(g.pulo*Math.PI)*14;
+  if(an){
+    if(an.tipo==='sentar'){ sy*=1-.1*env; sx*=1+.06*env; raboA=Math.sin(g.rabo*1.2)*.12+.3*env; }
+    else if(an.tipo==='espreguicar'){ sx*=1+.16*env; sy*=1-.13*env; rot=.06*env; }
+    else if(an.tipo==='lamber'){ rot=Math.sin(an.t*9)*.05; bob=-Math.abs(Math.sin(an.t*9))*1.2; }
+    else if(an.tipo==='olhar'){ rot=Math.sin(an.t*2.2)*.13; if(ak>.5&&!an.virou){ an.virou=1; g.dir*=-1; } }
+    else if(an.tipo==='rolar'){ rot=ak*Math.PI*2*(g.dir); bob=-Math.sin(ak*Math.PI)*8; }
+    else if(an.tipo==='bocejo'){ sy*=1+.05*env; rot=-.05*env; }
+    else if(an.tipo==='aceno'){ rot=Math.sin(an.t*6)*.06*env; bob=-Math.abs(Math.sin(an.t*6))*2*env; }
+  }
+  if(g.papo){ const fala=Math.floor(g.papo.t/1.1)%2===g.papo.vez; bob-=fala?Math.abs(Math.sin(g.papo.t*10))*1.6:0; rot=fala?Math.sin(g.papo.t*3)*.05:0; raboA=Math.sin(g.rabo*2.4)*.28; }
+  if(g.alegria>0){ raboA=Math.sin(g.rabo*7)*.38; }
+  if(g.pulo>0){ const k=g.pulo; bob-=Math.sin(k*Math.PI)*14; sy*=k>.85?.9:1+Math.sin(k*Math.PI)*.08; sx*=k>.85?1.08:1-Math.sin(k*Math.PI)*.05; }
+  if(g.squash>0){ sy*=1-.14*g.squash; sx*=1+.12*g.squash; }
   const esc=o.escala||(o.visit?.78:o.heroi?.86:.82);
-  c.save(); c.translate(g.x,g.y+bob); c.rotate(rot); c.scale(esc*g.dir,esc*sy*(2-sx)); c.drawImage(sp.img,sp.x,sp.y,sp.w,sp.h); c.restore();
+  const piv=an&&an.tipo==='rolar'?-16*esc:0;
+  c.save(); c.translate(g.x+dx,g.y+bob+piv); c.rotate(rot); c.translate(0,-piv); c.scale(esc*g.dir*sx,esc*sy);
+  rabo(c,corDe(o),raboA,!!o.heroi);
+  c.drawImage(sp.img,sp.x,sp.y,sp.w,sp.h);
+  if(an&&an.tipo==='lamber'&&env>.2){ c.fillStyle=corDe(o); c.strokeStyle=INK; c.lineWidth=1.6; c.beginPath(); c.ellipse(-4,-20-Math.abs(Math.sin(an.t*9))*3,4,3,0,0,6.283); c.fill(); c.stroke(); }
+  if(an&&an.tipo==='aceno'&&env>.2){ c.fillStyle=corDe(o); c.strokeStyle=INK; c.lineWidth=1.6; c.beginPath(); c.ellipse(13,-34+Math.sin(an.t*12)*2,3.6,3.2,0,0,6.283); c.fill(); c.stroke(); }
+  c.restore();
   if(trab) ferramenta(c,g);
+  if(g.emo){ const e=g.emo; desenharEmo(c,g.x+g.dir*8,g.y-62-(1-Math.min(1,e.t))*4,e.tipo,Math.min(1,e.t*3)); }
   if(o.parceiro && parceiroOnline()){ c.fillStyle='#86a86b'; c.beginPath(); c.arc(g.x+14,g.y-50,4,0,6.283); c.fill(); c.strokeStyle='#fbf7ef'; c.lineWidth=1.6; c.stroke(); }
-  if(o.heroi && !g.fala && tempo%9<.02) {}
   if(o.visit){ const y=g.y-58+Math.sin(tempo*4)*3; c.fillStyle='#fbf7ef'; c.strokeStyle=INK; c.lineWidth=2; c.beginPath(); c.arc(g.x,y,13,0,6.283); c.fill(); c.stroke(); c.fillStyle='#86afcf'; c.fillRect(g.x-7,y-3,14,10); c.strokeRect(g.x-7,y-3,14,10); c.fillStyle='#e3798a'; c.fillRect(g.x-1.5,y-3,3,10); }
 }
 /* ferramentas dos gatinhos trabalhando (vistos de cima, como nos vídeos) */
@@ -1152,7 +1310,7 @@ function acao(e){
   else if(tipo==='praca') toast('a fogueira da praça ainda está apagada... abram mais construções');
 }
 function carinhoGato(g){
-  g.pulo=1;
+  g.pulo=1; g.alegria=1.6; g.anim=null; if(g.papo){ g.papo.com.papo=null; g.papo=null; } if(Math.random()<.5) emo(g,'coracao',1.4);
   if(visitando){ if(g.o.falas&&!g.fala) g.fala={txt:g.o.falas[Math.floor(Math.random()*g.o.falas.length)],t:3}; else ftxt(g.x,g.y-50,'♥','h'); return; }
   avancarTut(2);
   vila.stats.taps++; csDirty=true; progMissao('taps',1);
@@ -1176,7 +1334,7 @@ window.abrirCozy=function(){
   redimensionar();
   garantirMissoes();
   const elp=vila.lastTs?Math.min((Date.now()-vila.lastTs)/1000,capHoras()*3600):0;
-  const ganho=elp>5?vilaRate()*elp:0;
+  const ganho=elp>5?vilaRate()*elp*OFFLINE:0;
   vila.lastTs=Date.now();
   NOITE=noite(); atualizarClima();
   if(CLIMA.tipo==='chuva') vila.stats.chuva++; if(NOITE>.5) vila.stats.noite++; if(FESTA) vila.stats.festa++;
@@ -1207,7 +1365,7 @@ window.pararCatLoop=function(){
 document.addEventListener('visibilitychange',()=>{
   if(!csAberto) return;
   if(document.hidden){ escrever(); csDirty=false; Som.stop(); }
-  else { if(!visitando){ const elp=Math.min((Date.now()-vila.lastTs)/1000,capHoras()*3600); if(elp>20){ const g=vilaRate()*elp; vila.moedas+=g; vila.stats.ganhos+=g; vila.lastTs=Date.now(); toast(`+${fmt(g)} moedas enquanto você estava fora`); } } atualizarClima(); last=0; Som.start(); }
+  else { if(!visitando){ const elp=Math.min((Date.now()-vila.lastTs)/1000,capHoras()*3600); if(elp>20){ const g=vilaRate()*elp*OFFLINE; vila.moedas+=g; vila.stats.ganhos+=g; vila.lastTs=Date.now(); toast(`+${fmt(g)} moedas enquanto você estava fora`); } } atualizarClima(); last=0; Som.start(); }
 });
 window.addEventListener('pagehide',()=>{ if(csAberto) escrever(); });
 
@@ -1237,10 +1395,11 @@ function loop(ts){
   if(hudN%20===0) atualizarPasso();
   // partículas
   if(Math.random()<dt*1.6) ents.forEach(e=>{ if(e.tipo!=='bld') return; const d=estDef(e.id); d.fumaca.forEach(([fx,fy])=>{ if(Math.random()<.5) fumacas.push({x:e.x+fx*[.82,1,1.1][faseDe(estLvl(e.id))],y:e.y+fy,r:3,vida:2.6,t:0,vx:.4}); }); });
-  for(let i=fumacas.length-1;i>=0;i--){ const f=fumacas[i]; f.t+=dt; f.y-=dt*14; f.x+=f.vx*dt*8; f.r+=dt*3; if(f.t>=f.vida) fumacas.splice(i,1); }
+  for(let i=fumacas.length-1;i>=0;i--){ const f=fumacas[i]; f.t+=dt; f.y-=dt*(f.poeira?5:14); f.x+=f.vx*dt*8; f.r+=dt*3; if(f.t>=f.vida) fumacas.splice(i,1); }
   for(let i=flutuantes.length-1;i>=0;i--){ flutuantes[i].t+=dt; if(flutuantes[i].t>1.3) flutuantes.splice(i,1); }
   atualizarParticulas(dt);
   if(mudou||(++hudN%15===0)) atualizarHud();
+  if((window.VilaMini&&VilaMini.ativo())||(window.VilaCena&&VilaCena.ativa())) return; // a vila fica parada embaixo
   desenhar();
   // medidor de desempenho: se o quadro demora, baixa a qualidade
   const custo=performance.now()-t0;
@@ -1308,23 +1467,26 @@ function abrirEstacaoSheet(id){
   const e=estDef(id), l=estLvl(id), pm=proxMarco(l), fase=faseDe(l);
   abrirSheet(`
     <div class="vl-video">${midia(id,true)}<span class="tag"><span class="vl-ic">${PROD[id]}</span>${e.gato.nome} trabalhando</span></div>
-    <h2>${e.nome}</h2><div class="vl-sub">${e.gato.nome}, ${e.pers} · construção ${FASES[fase]} · nível <b id="vl-s-lvl">${l}</b>${marcoMult(l)>1?` · produção ×${marcoMult(l)}`:''}${bonusEst(id)>1?` · <b style="color:var(--rose-dark)">bônus agora ×${String(+bonusEst(id).toFixed(2)).replace('.',',')}</b>`:''}</div>
-    <div class="vl-row"><div class="vl-stat"><b>${ic('coin')}<span id="vl-s-val">${fmt(estValor(id))}</span></b>por item</div><div class="vl-stat"><b>${estCiclo(id).toFixed(1).replace('.',',')}s</b>por item</div><div class="vl-stat"><b>${pm||'—'}</b>${pm?'próximo ×2':'nível máx'}</div></div>
+    <h2>${e.nome}</h2><div class="vl-sub">${e.gato.nome}, ${e.pers} · construção ${FASES[fase]} · nível <b id="vl-s-lvl">${l}</b>${marcoMult(l)>1?` · produção +${Math.round((marcoMult(l)-1)*100)}%`:''}${bonusEst(id)>1?` · <b style="color:var(--rose-dark)">bônus agora ×${String(+bonusEst(id).toFixed(2)).replace('.',',')}</b>`:''}</div>
+    <div class="vl-row"><div class="vl-stat"><b>${ic('coin')}<span id="vl-s-val">${fmt(estValor(id))}</span></b>por item</div><div class="vl-stat"><b>${estCiclo(id).toFixed(1).replace('.',',')}s</b>por item</div><div class="vl-stat"><b>${l}/${nivelMax()}</b>${l>=nivelMax()?'teto do castelo':pm?`nível ${pm}: +50%`:'nível'}</div></div>
     <div class="vl-bar"><i id="vl-sheet-bar" data-id="${id}"></i></div>
     ${e.extra?`<p class="vl-small" style="margin-top:0">${e.extra}</p>`:''}
     <div class="vl-buyx">${[1,10,'max'].map(x=>`<button class="${String(buyMode)===String(x)?'on':''}" onclick="vlBuyX('${x}','${id}')">${x==='max'?'máx':'x'+x}</button>`).join('')}</div>
-    <button class="vl-btn" id="vl-up" data-up="${id}" onclick="vlMelhorar('${id}')"></button>
+    <button class="vl-btn" id="vl-up" data-up="${id}" onclick="vlMelhorar('${id}')"></button>${blocoJogo(id)}
     <p class="vl-small">${fase<2?`no nível ${fase===0?10:25} a construção fica ${FASES[fase+1]}`:'construção completa'} · toque no gatinho na vila pra fazer carinho</p>`,'est:'+id);
 }
 window.vlBuyX=function(x,id){ buyMode=x==='max'?'max':Number(x); abrirEstacaoSheet(id); };
 function atualizarBotoesSheet(){
   const b=$('vl-up');
-  if(b){ const c=custoUpN(b.dataset.up,buyMode); b.innerHTML=`melhorar ${c.n>1?'+'+c.n+' ':''}· ${ic('coin')} ${fmt(c.custo)}`; b.classList.toggle('no',vila.moedas<c.custo); }
+  if(b){ const c=custoUpN(b.dataset.up,buyMode);
+    if(c.teto){ b.innerHTML=vila.castelo<CASTELO.length?`nível máximo · restaure o castelo pra passar de ${nivelMax()}`:'nível máximo'; b.classList.add('no'); }
+    else { b.innerHTML=`melhorar ${c.n>1?'+'+c.n+' ':''}· ${ic('coin')} ${fmt(c.custo)}`; b.classList.toggle('no',vila.moedas<c.custo); } }
   document.querySelectorAll('#vl-sheet [data-cost]').forEach(x=>x.classList.toggle('no',vila.moedas<Number(x.dataset.cost)));
   document.querySelectorAll('#vl-sheet [data-hcost]').forEach(x=>x.classList.toggle('no',vila.coracoes<Number(x.dataset.hcost)));
 }
 window.vlMelhorar=function(id){
   const c=custoUpN(id,buyMode);
+  if(c.teto){ toast(vila.castelo<CASTELO.length?`teto de nível ${nivelMax()}: restaure o castelo pra liberar mais`:'nível máximo!'); return; }
   if(vila.moedas<c.custo){ toast('faltam moedinhas'); return; }
   const antes=estLvl(id), faseA=faseDe(antes), nA=vilaNivel();
   vila.moedas-=c.custo; vila.est[id].lvl+=c.n; vila.stats.ups+=c.n; csDirty=true; progMissao('ups',c.n); avancarTut(1);
@@ -1332,7 +1494,7 @@ window.vlMelhorar=function(id){
   Som.blip(1.5);
   const m=MARCOS_NIVEL.find(x=>antes<x&&depois>=x);
   if(faseDe(depois)>faseA){ toast(`${e.nome} virou ${FASES[faseDe(depois)]}!`); Som.chime(); montarMundo(); popBld(id); }
-  else if(m){ toast(`${e.nome} nível ${m}: produção em dobro!`); Som.chime(); }
+  else if(m){ toast(`${e.nome} nível ${m}: +50% de produção!`); Som.chime(); }
   const vm=VILA_MARCOS.find(x=>nA<x.n&&vilaNivel()>=x.n); if(vm) setTimeout(()=>toast(vm.txt),1200);
   ftxt(e.x,e.y-110,'nível '+depois,'');
   abrirEstacaoSheet(id); atualizarHud();
@@ -1363,7 +1525,7 @@ function concluirObra(id){
     montarMundo(); Som.fanfarra();
     const c=CASTELO[vila.castelo-1];
     burstHearts(innerWidth/2,innerHeight/2,26);
-    modal(`<svg viewBox="-150 -200 300 260" style="width:220px;height:190px">${casteloSVG(vila.castelo,false,true)}</svg><h2>${c.nome} restaurado!</h2><p class="vl-small" style="font-size:14px">a Rainha Mimosa mandou uma carta</p><button class="vl-btn rose" onclick="fecharModal();abrirCartaRainha(${vila.castelo-1})">ler carta</button>`);
+    modal(`<svg viewBox="-150 -222 300 290" style="width:220px;height:190px">${casteloSVG(vila.castelo,false,true)}</svg><h2>${c.nome} restaurado!</h2><p class="vl-small" style="font-size:14px">a Rainha Mimosa mandou uma carta</p><button class="vl-btn rose" onclick="fecharModal();abrirCartaRainha(${vila.castelo-1})">ler carta</button>`);
     atualizarPasso(true);
     return;
   }
@@ -1375,19 +1537,56 @@ function concluirObra(id){
   atualizarHud();
 }
 /* --- castelo --- */
+/* coisas pra fazer no castelo (uma vez por dia cada, menos o baile) */
+const LORE=[
+  'em Veluma o céu tem três luas. a menor é verde e todo mundo faz pedido pra ela. eu pedi um lugar pra ficar. demorou, mas chegou.',
+  'quando eu caí, o bosque inteiro era névoa. o primeiro gato que eu conheci foi a avó da Nuvem. ela me deu sopa e não perguntou nada.',
+  'a coroa? foi um presente dos gatos da vila, no meu primeiro inverno. eles achavam que eu era da realeza por causa da capa. eu deixei eles acharem.',
+  'sabe por que o castelo ficou em ruínas? eu fiquei triste por muito tempo, e as pedras sentem. foram vocês que trouxeram a alegria de volta.',
+  'na academia de Veluma ensinavam a nunca se apegar a um planeta. que bom que vocês dois foram péssimos alunos.',
+  'o Felco, o bufão, já foi meu guarda real. ele derrubava a lança toda vez que ria. acabou virando bufão, que é um cargo muito mais importante.',
+  'o lago brilha verde em algumas noites. é o pó da minha nave, que afundou lá há muitos invernos. às vezes um peixe come e fica brilhando também.',
+  'a Lumi aprendeu a projetar filmes com uma lanterna que eu trouxe da nave. o primeiro filme do cinema foi uma gravação de Veluma.',
+  'amor de verdade é parecido com castelo: ninguém constrói num dia, e todo dia alguém tem que trocar uma pedrinha.',
+  'eu escrevi um diário a vida inteira. a última página está em branco. acho que estou guardando pra contar a história de vocês dois.',
+  'a Melodia compôs a valsa do baile numa noite de chuva. disse que se inspirou em dois gatinhos verdes dividindo um suco.',
+  'quando vocês brigam, a vila inteira fica quietinha esperando. quando vocês fazem as pazes, até a fonte espirra mais alto.'
+];
+const ATIV=[
+  {id:'cha',nome:'chá com a Rainha',ic:'crown',req:()=>vila.castelo>=2,trava:'restaure o portão real',desc:'+1 coração e uma história'},
+  {id:'jardim',nome:'colher flores',ic:'horta',req:()=>vila.castelo>=3,trava:'restaure o jardim',desc:'+3 corações'},
+  {id:'torre',nome:'olhar da torre',ic:'sparkle',req:()=>vila.castelo>=4,trava:'restaure as torres',desc:'acha moedinhas perdidas'},
+  {id:'baile',nome:'baile no salão',ic:'violao',req:()=>miniLiberado('baile'),trava:'libera no capítulo do baile',desc:'joguinho de ritmo',jogo:1}
+];
+const ativFeita=id=>vila.castAtiv&&vila.castAtiv[id]===hojeStr();
+function ativProntas(){ if(visitando) return 0; return ATIV.filter(a=>!a.jogo&&a.req()&&!ativFeita(a.id)).length; }
+window.vlAtiv=function(id){
+  const a=ATIV.find(x=>x.id===id); if(!a||visitando) return;
+  if(!a.req()){ toast(a.trava); return; }
+  if(a.jogo){ vlJogar('baile'); return; }
+  if(ativFeita(id)){ toast('já fez hoje! volta amanhã'); return; }
+  vila.castAtiv=vila.castAtiv||{}; vila.castAtiv[id]=hojeStr(); vila.stats.castelo=(vila.stats.castelo||0)+1; csDirty=true;
+  if(id==='cha'){ const i=(vila.castAtiv.chaN||0)%LORE.length; vila.castAtiv.chaN=i+1; vila.coracoes+=1;
+    modal(`<svg viewBox="-30 -62 60 68" style="width:96px;height:110px">${gatoSVG({cor:'#fffdf8',det:'#efe2d4',coroa:leu('rainha')?0:1,antenas:leu('rainha')?1:0,capa:1},1)}</svg><h2>chá com a Rainha</h2><div class="vl-letter"><p>${esc(LORE[i])}</p><div class="sig">— Mimosa</div></div><p class="vl-small">${ic('heart')} +1 coração · história ${i+1} de ${LORE.length}</p><button class="vl-btn" onclick="fecharModal()">obrigado, Rainha</button>`); }
+  else if(id==='jardim'){ vila.coracoes+=3; burstHearts(innerWidth/2,innerHeight/2,16); toast('um buquê do jardim da Rainha: +3 corações'); Som.chime(); sheetCastelo(); }
+  else if(id==='torre'){ const v=Math.round(Math.max(40,vilaRate()*240)); vila.moedas+=v; vila.stats.ganhos+=v; toast(`lá de cima deu pra ver um saquinho de moedas: +${fmt(v)}`); Som.chime(); if(!visitante) spawnVisitante(); sheetCastelo(); }
+  escrever(); csDirty=false; atualizarHud(); atualizarDots();
+};
 function sheetCastelo(){
   const st=vila.castelo, prox=CASTELO[st];
-  const lista=CASTELO.map((c,i)=>`<div class="vl-item ${i<st?'done':''}"><div class="ic">${i<st?ICON.sparkle:ICON.hammer}</div><div class="tx"><b>${c.nome}</b><small>${c.desc}${i>=st?` · precisa de ${c.req} estações abertas`:''}</small></div></div>`).join('');
+  const lista=CASTELO.map((c,i)=>`<div class="vl-item ${i<st?'done':''}"><div class="ic">${i<st?ICON.sparkle:ICON.hammer}</div><div class="tx"><b>${c.nome}</b><small>${c.desc}${i>=st?` · precisa de ${c.req} construções abertas`:''} · teto de nível ${15+5*i}</small></div></div>`).join('');
   let botao='';
   if(obras.castelo) botao='<button class="vl-btn" disabled>restaurando...</button>';
   else if(prox){
     const ok=nAbertas()>=prox.req;
     botao=ok?`<button class="vl-btn rose" data-cost="${prox.custo}" onclick="vlRestaurar()">restaurar ${prox.nome} · ${ic('coin')} ${fmt(prox.custo)}</button>`
-      :`<button class="vl-btn" disabled>abra ${prox.req-nAbertas()} estação(ões) a mais</button>`;
+      :`<button class="vl-btn" disabled>abra ${prox.req-nAbertas()} construção(ões) a mais</button>`;
   } else botao='<button class="vl-btn honey" onclick="vlPainel(\'rainha\',\'rainha\')">castelo completo · ler cartas</button>';
-  abrirSheet(`<svg viewBox="-150 -200 300 270" style="width:100%;max-height:220px;display:block">${casteloSVG(st,false,true)}</svg>
-    <h2>castelo da Rainha Mimosa</h2><div class="vl-sub">${st===0?'em ruínas, coberto de névoa':st<5?`${st} de 5 partes restauradas · +${st*5}% em tudo`:'todo aceso! +25% em tudo'}</div>
-    ${botao}<div style="height:12px"></div>${lista}`,'castelo');
+  const ativ=`<div class="vl-ativ">${ATIV.map(a=>{ const ok=a.req(), feito=!a.jogo&&ativFeita(a.id);
+    return `<button class="${ok?(feito?'':'pronto'):'lock'}" onclick="vlAtiv('${a.id}')"><span class="vl-ic">${a.ic==='crown'?ICON.crown:a.ic==='sparkle'?ICON.sparkle:PROD[a.ic]||ICON.sparkle}</span>${a.nome}<small>${!ok?a.trava:feito?'feito hoje':a.desc}</small></button>`; }).join('')}</div>`;
+  abrirSheet(`<svg viewBox="-150 -222 300 292" style="width:100%;max-height:240px;display:block">${casteloSVG(st,NOITE>.5,true)}</svg>
+    <h2>castelo da Rainha Mimosa</h2><div class="vl-sub">${st===0?'em ruínas, coberto de névoa':st<5?`${st} de 5 partes restauradas · +${st*5}% em tudo · nível máximo ${nivelMax()}`:'todo aceso! +25% em tudo · nível máximo 35'}</div>
+    ${botao}${ativ}<div style="height:4px"></div>${lista}`,'castelo');
 }
 window.vlRestaurar=function(){
   const p=CASTELO[vila.castelo]; if(!p||obras.castelo) return;
@@ -1457,7 +1656,30 @@ quando a vi, quase derrubei a pipoca: era a Natalix. da academia. desde a sexta 
 era o Gabrix. o menino engraçado da academia, com o mesmo cabelo bagunçado de sempre (mesmo disfarçado dá pra ver).
 
 passei a noite pensando: se ele é da academia, será que ele também caiu aqui? será que ele também se esconde? não tive coragem de perguntar. mas rir do lado dele foi bom demais.`}},
- {id:'lua', t:'4. uma lua cheia por mês', premio:5, meta:{ab:5}, txt:{
+ {id:'fornada', t:'4. a primeira fornada', premio:6, meta:{ab:5}, mini:'fornada', txt:{
+  g:`a Paçoca me pegou pelo gorro na saída da feira: "quem quer ver a Natalix de novo precisa de um motivo. pão é um ótimo motivo."
+
+passei a madrugada inteira na barraquinha sovando massa. a Paçoca corrigia cada dobra ("torto. de novo. torto. de novo."). no fim eu fiz um pão em formato de coração.
+
+ficou parecendo uma batata.
+
+levei mesmo assim. a Natalix virou o pão de um lado, do outro, e perguntou:
+
+"é uma batata?"
+"é um coração."
+"...é o coração mais feio que eu já vi."
+
+e comeu inteiro, sem deixar uma migalha.`,
+  n:`alguém deixou um pão torto na minha porta, embrulhado num guardanapo com um desenho de óculos.
+
+eu sabia quem era. ninguém mais desenha óculos daquele jeito, com as perninhas tortas.
+
+o pão tava meio queimado de um lado e cru do outro. foi o melhor pão que eu comi desde que caí aqui.
+
+fiquei com vergonha de contar que guardei o guardanapo.
+
+guardei. tá na minha gaveta até hoje.`}},
+ {id:'lua', t:'5. uma lua cheia por mês', premio:5, meta:{ab:5,mini:1}, txt:{
   g:`tive que me mudar pra uma clareira do outro lado do bosque, pra estudar com os sábios do castelo. agora eu e a Natalix só nos vemos uma vez por mês, na lua cheia, na feira.
 
 como amigos, claro.
@@ -1468,7 +1690,30 @@ mas reparei que ela guarda o lugar do meu lado. e que ela sempre pergunta "pode 
 eu conto os dias. não conto pra ninguém que conto os dias.
 
 na última feira ele chegou com o cabelo uma bagunça e eu falei que parecia um ninho de passarinho. ele riu. eu também. e quando ele foi embora, o bosque ficou grande demais de novo.`}},
- {id:'pegou', t:'5. "você me pegou"', premio:5, meta:{cas:1}, txt:{
+ {id:'saudade', t:'6. saudade tem cheiro de lago', premio:6, meta:{ab:6}, mini:'pesca', txt:{
+  g:`um mês é tempo demais.
+
+estudar com os sábios do castelo é bom, mas toda noite eu descia pro lago e ficava jogando a linha na água só pra ter o que fazer com as patas. o Laranjinha sentava do meu lado e não perguntava nada.
+
+uma noite ele falou, sem tirar o olho da boia:
+
+"saudade é igual pescaria. a gente não manda na hora que o peixe vem. só fica ali, esperando, porque sabe que vale a pena."
+
+eu ri. depois chorei um pouquinho.
+
+o Laranjinha fingiu que estava muito concentrado na boia.`,
+  n:`comecei a escrever cartas que eu não mandava.
+
+numa eu contava do filme que tinha visto. noutra, que a sopa da Nuvem tava sem sal. noutra eu só escrevi "volta logo, besta" e mais nada.
+
+dezessete cartas.
+
+quando a lua cheia chegou, levei todas. ele leu uma por uma, sentado no píer do lago, sem falar nada. eu fiquei olhando pra água pra não ter que olhar pra cara dele.
+
+na última ele riu tanto que caiu na água.
+
+(é verdade. tenho testemunha: o Laranjinha.)`}},
+ {id:'pegou', t:'7. "você me pegou"', premio:5, meta:{cas:2,mini:4}, txt:{
   g:`mandei uma carta por vagalume-correio, meio brincando: "Natalix, acho que você gosta de mim".
 
 a resposta veio rapidinho, com a letra tremida: "você me pegou. que vergonha."
@@ -1481,7 +1726,7 @@ escrevi "você me pegou, que vergonha" e escondi a cara na almofada a noite toda
 depois chegou outro vagalume: "então vamos ver uma história juntos. só nós dois. pode não?"
 
 pode sim.`}},
- {id:'sombras', t:'6. o teatro de sombras', premio:8, meta:{ab:6}, txt:{
+ {id:'sombras', t:'8. o teatro de sombras', premio:8, meta:{ab:7}, txt:{
   g:`fomos no teatro de sombras do castelo. era uma história de terror, com um monstro de papel que aparecia do nada. ela se assustou e segurou minha pata. não soltou mais.
 
 na saída ela estava tão linda que eu tentei dar um beijo. ela desviou e disse, sorrindo:
@@ -1494,7 +1739,7 @@ voltei pra minha clareira flutuando. nem precisava de nave.`,
 segurei a pata dele no primeiro susto e fingi que foi sem querer. não foi.
 
 quando ele tentou me beijar eu fiquei nervosa e disse "no próximo". e cumpri essa promessa na minha cabeça a semana inteira.`}},
- {id:'chuva', t:'7. amores expressos', premio:10, meta:{ab:7,cas:2,junto:7}, txt:{
+ {id:'chuva', t:'9. amores expressos', premio:10, meta:{ab:8,cas:3,junto:8}, txt:{
   g:`dois meses depois, o cinema da Rainha passou um filme antigo de outro mundo: "Amores Expressos". luzes de neon e uma música que gruda na cabeça.
 
 quando acabou, ela me beijou. o próximo tinha chegado.
@@ -1511,7 +1756,7 @@ na cafeteria eu pedi morango e ele maracujá. o dele, como sempre, era melhor. r
 aí a chuva levou o disfarce embora. as antenas dele apareceram. as minhas também.
 
 nunca fui a única. ele também nunca foi o único. a gente só estava se procurando no lugar errado.`}},
- {id:'pedido', t:'8. o cinema fechado', premio:15, meta:{est:'cinema'}, final:true, txt:{
+ {id:'pedido', t:'10. o cinema fechado', premio:15, meta:{est:'cinema'}, final:true, txt:{
   g:`construí um cinema ao ar livre e pedi pra fecharem só pra nós dois. ela, cinéfila, achou que era só mais uma sessão.
 
 no fim do filme, a lanterna mágica me projetou na tela, falando tudo o que eu sinto. depois tocou a música do nosso primeiro beijo.
@@ -1526,7 +1771,7 @@ no final do filme, ele apareceu na tela, falando coisas que eu guardo até hoje.
 ele ajoelhou com o cabelo bagunçado de sempre.
 
 claro que eu disse sim.`}},
- {id:'mundo', t:'9. o mundo inteiro', premio:20, meta:{est:'balao'}, txt:{
+ {id:'mundo', t:'11. o mundo inteiro', premio:20, meta:{est:'balao'}, txt:{
   g:`a gente consertou uma das naves, mas não pra voltar pra Veluma. transformamos ela num balão de viagem.
 
 primeiro destino? ela quer a China. eu quero o Peru. vamos pros dois. e pro Japão, Chile, Canadá, Itália (pizza!), França e Rússia.
@@ -1541,7 +1786,7 @@ China primeiro, depois Japão, Peru, Chile, Canadá, Itália, França, Rússia..
 eu vivia querendo fugir. agora eu só quero ir. é diferente.
 
 casa não é um planeta. é uma pessoa. e a minha tem cabelo bagunçado.`}},
- {id:'veluma', t:'10. o sinal de Veluma', premio:12, meta:{est:'observatorio'}, txt:{
+ {id:'veluma', t:'12. o sinal de Veluma', premio:12, meta:{est:'observatorio'}, txt:{
   g:`a Cometa me chamou no observatório no meio da noite. tinha um sinal piscando no céu, verde, no código da academia:
 
 "cadetes perdidos, respondam. a nave de resgate passa na próxima lua nova."
@@ -1560,7 +1805,24 @@ pensei na academia, no meu quarto, nas estrelas de lá. depois pensei na cafeter
 "a gente fica. pode não?", eu falei.
 
 ele riu. "pode não."`}},
- {id:'rainha', t:'11. o segredo da Rainha', premio:12, meta:{est:'biblioteca',cas:5}, txt:{
+ {id:'baile', t:'13. o baile do castelo', premio:12, meta:{cas:4,mini:10}, mini:'baile', txt:{
+  g:`a Rainha reabriu o salão e anunciou o primeiro baile em cem invernos.
+
+eu não sei dançar. ensaiei a semana toda com o Toco na serraria (ele conduz, e conduz bem).
+
+na hora H, pisei no pé dela três vezes.
+
+na quarta, ela me segurou pelas orelhas e falou baixinho: "para de contar os passos. olha pra mim."
+
+aí a Melodia começou a valsa, a música ficou devagar, o salão ficou pequeno... e eu esqueci que não sabia dançar.`,
+  n:`ele pisou no meu pé. três vezes. eu contei.
+
+mas quando a Melodia tocou a valsa, ele finalmente parou de olhar pro chão e olhou pra mim. e a gente girou tanto que a minha boina voou longe e caiu bem na cabeça da Rainha.
+
+ela usou a boina o resto da noite. disse que combinava com a coroa.
+
+no fim do baile, os vagalumes entraram pelas janelas do salão. o Gabrix falou que tinha combinado com eles. é mentira. mas foi lindo do mesmo jeito.`}},
+ {id:'rainha', t:'14. o segredo da Rainha', premio:12, meta:{est:'biblioteca',cas:5}, txt:{
   g:`a Rainha Mimosa chamou a gente na biblioteca e abriu a estante trancada. lá dentro tinha um diário velhinho e um potinho de pó de disfarce, igualzinho ao nosso.
 
 aí ela tirou a coroa, devagar. embaixo tinha duas antenas, branquinhas de tão antigas.
@@ -1575,7 +1837,7 @@ ela olhou pra mim e disse: "você vivia querendo fugir, né? eu também. aí eu 
 o Gabrix fingiu que não chorou. chorou sim. eu vi.
 
 na saída a Rainha deixou a coroa no trono e foi passear pela vila de antena de fora. os gatinhos acharam lindo.`}},
- {id:'cozinha', t:'12. a receita sem carne', premio:12, meta:{est:'pomar'}, txt:{
+ {id:'cozinha', t:'15. a receita sem carne', premio:12, meta:{est:'pomar'}, txt:{
   g:`a Natalix é vegetariana e eu... nem tanto. mas hoje eu quis fazer o jantar pra ela. pedi ajuda pra Nuvem, peguei maracujá e morango no pomar e inventei uma sopa de abóbora com queijo.
 
 queimei o pão. salguei a sopa. a cozinha ficou parecendo que caiu outra nave.
@@ -1590,7 +1852,7 @@ tava horrível. e era a coisa mais linda que alguém já fez pra mim.
 a sobremesa foi um cheesecake de cereja que a Cereja trouxe escondido, porque ela já sabia que a sopa ia dar errado.
 
 dei um beijinho na orelha dele e ele ficou vermelho até a ponta das antenas.`}},
- {id:'atraso', t:'13. cinco minutinhos', premio:12, meta:{ped:20}, txt:{
+ {id:'atraso', t:'16. cinco minutinhos', premio:12, meta:{ped:15}, txt:{
   g:`a gente marcou de ver o nascer do sol do balão. a Natalix odeia se atrasar e... a gente se atrasou. muito. culpa minha: fiquei arrumando o cabelo (não adiantou nada).
 
 ela ficou brava. brava de verdade, de bico e tudo.
@@ -1605,7 +1867,34 @@ mas ele fez uma piada tão besta que eu não consegui ficar brava nem cinco minu
 às vezes eu acho que ele se atrasa de propósito só pra me fazer rir depois.
 
 (não conta pra ele que eu acho isso fofo.)`}},
- {id:'casa', t:'epílogo: a nossa casa', premio:30, meta:{est:'casinha',juntoCap:'atraso'}, txt:{
+ {id:'medo', t:'17. o medo de perder', premio:15, meta:{mini:20}, txt:{
+  g:`fazia semanas que eu sumia toda tarde.
+
+era segredo: eu estava construindo uma casa em cima da árvore mais alta da vila. o Dengo, um filhotinho que apareceu na chuva, ajudava carregando os pregos na boca (e engolindo alguns, acho).
+
+um dia a Natalix me seguiu. me achou no meio das tábuas, todo sujo de serragem... e começou a chorar.
+
+achei que ela tinha odiado.
+
+"eu achei que você tava consertando a nave", ela disse. "que você ia embora."
+
+desci da árvore, abracei ela com serragem e tudo, e falei a coisa mais verdadeira que eu sei:
+
+"eu não sei voltar pra um lugar onde você não está."`,
+  n:`o sinal de Veluma voltou a piscar no céu. e o Gabrix começou a sumir toda tarde.
+
+eu juntei as duas coisas e fiz a conta errada.
+
+passei três noites sem dormir, fingindo que tava tudo bem. no quarto dia, segui ele pela floresta.
+
+ele estava construindo uma casa. pra nós.
+
+chorei de alívio, de vergonha, de amor, tudo junto. ele me abraçou todo sujo de serragem e disse: "eu não sei voltar pra um lugar onde você não está."
+
+eu também não.
+
+depois a Rainha me disse: "medo de perder é só o amor olhando pro escuro." acho que ela tem razão.`}},
+ {id:'casa', t:'epílogo: a nossa casa', premio:30, meta:{est:'casinha',juntoCap:'medo'}, txt:{
   g:`a gente construiu uma casa em cima da árvore mais alta da vila. tem uma janela pra cada um, uma rede no meio e um cantinho pro Dengo, o filhote que apareceu na nossa porta numa noite de chuva e nunca mais foi embora.
 
 a nave virou balão. a academia virou história pra contar. o disfarce a gente não usa mais: os gatos da vila conhecem a gente de verdade agora. verdinhos, de antena, de óculos e de cabelo bagunçado.
@@ -1622,6 +1911,55 @@ eu não quero mais fugir pra lugar nenhum. todo lugar que eu quero ir, eu quero 
 e de cada viagem a gente volta pra cá. pra casa. pra gente.`}}
 ];
 const capIdx=id=>HIST.findIndex(h=>h.id===id);
+/* joguinhos: cada um é liberado por um capítulo */
+const MINIS={
+  fornada:{nome:'fornada da Paçoca',onde:'na barraquinha da feira',est:'padaria',cap:'fornada',ic:'padaria'},
+  pesca:{nome:'pescaria do Laranjinha',onde:'na cabana do lago',est:'pesca',cap:'saudade',ic:'pesca'},
+  baile:{nome:'baile da Rainha',onde:'no castelo',cap:'baile',ic:'violao'}
+};
+const MINI_CHEIAS=5; // partidas por dia que valem a recompensa cheia
+const miniLiberado=id=>{ const m=MINIS[id]; return !!m && leu(m.cap) && (!m.est||estAberta(m.est)); };
+function miniHoje(id){ const x=vila.mini[id]; return x&&x.dia===hojeStr()?x.n:0; }
+window.vlJogar=function(id){
+  if(visitando){ toast('joguinho só na sua vila'); return; }
+  if(!window.VilaMini){ toast('o joguinho ainda está carregando'); return; }
+  if(!miniLiberado(id)){ const m=MINIS[id]; toast(`libera no capítulo "${HIST[capIdx(m.cap)].t}"`); return; }
+  fecharSheet(); fecharModal(); Som.init();
+  const n=miniHoje(id), rec=(vila.mini[id]&&vila.mini[id].rec)||0;
+  const info=(n<MINI_CHEIAS?`hoje: ${MINI_CHEIAS-n} de ${MINI_CHEIAS} partidas com prêmio cheio`:'os gatinhos estão cansados: hoje o prêmio é menor')+(rec?` · recorde ${rec}`:'');
+  VilaMini.jogar(id,{perfil,info,fim:res=>resultadoMini(id,res)});
+};
+function resultadoMini(id,res){
+  if(!res||(res.saiu&&res.pontos<=0)){ atualizarHud(); return; }
+  const n=miniHoje(id), cheio=n<MINI_CHEIAS;
+  const base=Math.max(15,vilaRate()*80), m=Math.round(base*(.3+1.3*res.nota)*(cheio?1:.25));
+  const h=id==='baile'?res.estrelas+(cheio?1:0):(res.estrelas>=3&&cheio?1:0);
+  const reg=vila.mini[id]&&vila.mini[id].dia===hojeStr()?vila.mini[id]:{dia:hojeStr(),n:0,rec:(vila.mini[id]&&vila.mini[id].rec)||0};
+  reg.n++; const recorde=res.pontos>reg.rec; if(recorde) reg.rec=res.pontos; vila.mini[id]=reg;
+  vila.moedas+=m; vila.coracoes+=h; vila.stats.ganhos+=m; vila.stats.mini=(vila.stats.mini||0)+1; csDirty=true;
+  if(id==='pesca'&&res.extra.peixes.includes('verde')) vila.stats.peixeVerde=(vila.stats.peixeVerde||0)+1;
+  if(res.estrelas>=3) vila.stats['tres_'+id]=(vila.stats['tres_'+id]||0)+1;
+  progMissao('ganhos',m);
+  escrever(); csDirty=false; atualizarHud(); atualizarPasso(true); atualizarDots();
+  const est=[0,1,2].map(i=>`<svg viewBox="0 0 24 24"><path d="M12 2 L14.9 8.6 L22 9.3 L16.6 14 L18.2 21 L12 17.3 L5.8 21 L7.4 14 L2 9.3 L9.1 8.6 Z" fill="${i<res.estrelas?'#f2c14e':'#e9dfcf'}" stroke="${INK}" stroke-width="1.4" stroke-linejoin="round"/></svg>`).join('');
+  const frase=res.saiu?'saiu no meio, mas valeu!':res.estrelas>=3?'perfeito!':res.estrelas===2?'muito bem!':res.estrelas===1?'tá pegando o jeito!':'na próxima vai!';
+  modal(`<h2>${MINIS[id].nome}</h2><div class="vl-estrelas">${est}</div><p class="vl-small" style="font-size:15px;margin:0">${frase}${recorde?' <b>novo recorde!</b>':''}</p>
+    <div class="big">${res.pontos} pontos</div>
+    <p class="vl-small" style="font-size:14px">${ic('coin')} +${fmt(m)}${h?` · ${ic('heart')} +${h}`:''}${cheio?'':' (prêmio menor: já jogou bastante hoje)'}</p>
+    <button class="vl-btn rose" onclick="vlJogar('${id}')">jogar de novo</button><div style="height:8px"></div><button class="vl-btn" onclick="fecharModal()">voltar pra vila</button>`);
+  if(res.estrelas>=2){ Som.chime(); burstHearts(innerWidth/2,innerHeight/2,res.estrelas*8); }
+  if(vila.stats.mini===1) setTimeout(()=>toast('primeiro joguinho! eles também ajudam a história a andar'),900);
+}
+function blocoJogo(estId){
+  const id=Object.keys(MINIS).find(k=>MINIS[k].est===estId); if(!id) return '';
+  const m=MINIS[id];
+  if(!leu(m.cap)) return `<div class="vl-jogo" style="opacity:.6"><span class="vl-ic" style="width:36px;height:36px">${ICON.crown}</span><div class="tx"><b>${m.nome}</b><small>libera no capítulo "${HIST[capIdx(m.cap)].t}"</small></div></div>`;
+  const n=miniHoje(id);
+  return `<div class="vl-jogo"><span class="vl-ic" style="width:36px;height:36px">${PROD[m.ic]||ICON.sparkle}</span><div class="tx"><b>${m.nome}</b><small>${n<MINI_CHEIAS?`${MINI_CHEIAS-n} partidas com prêmio cheio hoje`:'prêmio menor até amanhã'}${vila.mini[id]&&vila.mini[id].rec?` · recorde ${vila.mini[id].rec}`:''}</small></div><button class="vl-btn rose" onclick="vlJogar('${id}')">${ic('play')} jogar</button></div>`;
+}
+/* ordem antiga (até a v5): os índices salvos em cap mudaram quando entraram capítulos novos */
+const HIST_V5=['queda','disfarce','mural','feira','lua','pegou','sombras','chuva','pedido','mundo','veluma','rainha','cozinha','atraso','casa'];
+function capDeVersao(cap,v){ if(!Array.isArray(cap)) return []; if((Number(v)||0)>=6) return cap.filter(n=>Number.isInteger(n)); return cap.map(n=>capIdx(HIST_V5[n])).filter(n=>n>=0); }
 const leu=id=>vila.cap.includes(capIdx(id));
 const revelado=()=>leu('chuva');
 
@@ -1707,7 +2045,7 @@ function conectarPerfil(){
     const d=s.exists?s.data():null;
     const antes=parceiro;
     parceiroDados=d;
-    parceiro=d?{abertas:ESTACOES.filter(e=>d.est&&d.est[e.id]&&Number(d.est[e.id].lvl)>0).length,cap:Array.isArray(d.cap)?d.cap:[],lastTs:Number(d.lastTs)||0,nivel:0}:null;
+    parceiro=d?{abertas:ESTACOES.filter(e=>d.est&&d.est[e.id]&&Number(d.est[e.id].lvl)>0).length,cap:capDeVersao(d.cap,d.v),lastTs:Number(d.lastTs)||0,nivel:0}:null;
     if(antes&&parceiro&&csAberto){ // novidades do outro
       const o=HEROIS[outroDe(perfil)].nome;
       if(parceiro.cap.length>antes.cap.length){ const h=HIST[parceiro.cap[parceiro.cap.length-1]]; if(h) toast(`${o} leu "${h.t}"`); }
@@ -1848,6 +2186,7 @@ function metaOk(m){
   if(m.cas && vila.castelo<m.cas) return false;
   if(m.est && !estAberta(m.est)) return false;
   if(m.ped && (vila.stats.pedidos||0)<m.ped) return false;
+  if(m.mini && (vila.stats.mini||0)<m.mini) return false;
   return true;
 }
 function parceiroLeu(id){ if(!fb) return true; return !!parceiro && parceiro.cap.includes(capIdx(id)); }
@@ -1864,6 +2203,7 @@ function textoMeta(m){
   if(m.cas && vila.castelo<m.cas) p.push(`restaure ${CASTELO[m.cas-1].art} ${CASTELO[m.cas-1].nome} do castelo`);
   if(m.est && !estAberta(m.est)) p.push(`construa: ${estDef(m.est).nome}`);
   if(m.ped && (vila.stats.pedidos||0)<m.ped) p.push(`atenda ${m.ped} pedidos do cardápio (${vila.stats.pedidos||0}/${m.ped})`);
+  if(m.mini && (vila.stats.mini||0)<m.mini) p.push(`jogue ${m.mini} partidas dos joguinhos (${vila.stats.mini||0}/${m.mini})`);
   return p.join(' e ');
 }
 function motivoTrava(i){
@@ -1910,7 +2250,7 @@ function painelRainha(){
       <div class="vl-postais">${POSTAIS.map(p=>{ const ok=vila.postais.includes(p.id); return `<div class="${ok?'':'lock'}">${postalSVG(p,ok)}<b>${ok?p.nome:'???'}</b><small>${ok?p.desc:'ainda não visitado'}</small></div>`; }).join('')}</div>`;
   }
   const online=parceiro&&parceiroOnline()?` · <b style="color:var(--leaf-dark)">${ot.nome} está jogando agora</b>`:'';
-  abrirSheet(`<div class="vl-herois">${retrato(perfil,!revelado(),74)}<div><h2 style="text-align:left">${eu.nome}</h2><div class="vl-sub" style="text-align:left;margin:0">${revelado()?'sem disfarce':'disfarçad'+(perfil==='g'?'o':'a')+' de gato comum'}${online}</div><button class="linkish" style="font-size:13px" onclick="vlTrocarPerfil()">não é você? trocar jogador</button></div></div>
+  abrirSheet(`<div class="vl-herois">${retrato(perfil,!revelado(),74)}<div><h2 style="text-align:left">${eu.nome}</h2><div class="vl-sub" style="text-align:left;margin:0">${revelado()?'sem disfarce':'disfarçad'+(perfil==='g'?'o':'a')+' de gato comum'}${online}</div><button class="linkish" style="font-size:13px" onclick="vlTrocarPerfil()">não é você? trocar jogador</button> · <button class="linkish" style="font-size:13px" onclick="vlReiniciar()">recomeçar do zero</button></div></div>
     <div class="vl-duo"><button onclick="vlVisitar()">${ic('olho')}visitar a vila de ${ot.nome}</button><button onclick="abrirCorreio()">${ic('mail')}correio${correio.length?` <span class="n">${correio.length}</span>`:''}</button></div>${tabs}${corpo}`,'rainha');
 }
 window.abrirCarta=function(i,semCena){
@@ -1932,13 +2272,33 @@ window.abrirCarta=function(i,semCena){
     :`${retrato('g',disf&&h.id!=='chuva',84)}${retrato('n',disf&&h.id!=='chuva',84)}`;
   abrirSheet(`<div class="vl-cena">${cena}</div><h2>${h.t}</h2><div class="vl-sub">diário de ${HEROIS[perfil].nome}</div>
     <div class="vl-letter"><span class="seal">${ICON.letter}</span><p>${esc(txt)}</p><div class="sig">— ${HEROIS[perfil].nome}</div></div>
-    ${h.id==='chuva'?'<p class="vl-small">a cafeteria e o cinema agora podem ser construídos na vila!</p>':''}${h.id==='pedido'?'<p class="vl-small">o balão dos viajantes agora pode ser construído!</p>':''}
+    ${liberaTxt(h)}
     ${window.VilaCena&&VilaCena.tem(h.id)?`<button class="vl-btn honey" onclick="vlVerCena(${i})">${ic('play')} ver a cena de novo</button><div style="height:10px"></div>`:''}
-    <button class="vl-btn rose" onclick="vlPainel('rainha','cap')">voltar aos capítulos</button>`,'carta');
+    <button class="vl-btn rose" onclick="vlPainel('rainha','cap')">voltar aos capítulos</button>
+    ${h.id==='casa'?`<div style="height:14px"></div><div class="vl-fim"><b>fim da história de vocês dois (por enquanto)</b><small>dá pra continuar cuidando da vila, ou começar tudo de novo desde a queda</small><button class="vl-btn" onclick="vlReiniciar()">recomeçar do zero</button></div>`:''}`,'carta');
   atualizarDots(); atualizarPasso(true); if(nova) montarMundo();
   if(nova&&h.meta.juntoCap===undefined&&HIST.some(x=>x.meta.juntoCap===h.id)) avisar(`${HEROIS[perfil].nome} leu: ${h.t}`,`agora falta pouco pro epílogo de vocês dois na vila!`,'cap_'+h.id);
 };
+function liberaTxt(h){
+  const est=ESTACOES.filter(e=>e.hist===h.id).map(e=>e.nome), mini=h.mini?MINIS[h.mini]:null, p=[];
+  if(est.length) p.push(`agora dá pra construir: <b>${est.join(' e ')}</b>`);
+  if(mini) p.push(`novo joguinho: <b>${mini.nome}</b> (${mini.onde})`);
+  return p.length?`<p class="vl-small" style="font-size:13.5px">${p.join('<br>')}</p>`:'';
+}
 window.vlVerCena=function(i){ const h=HIST[i]; if(!h||!window.VilaCena) return; fecharSheet(); vila.stats.cenas++; csDirty=true; VilaCena.tocar(h.id,perfil,()=>abrirCarta(i,true)); };
+/* recomeçar: zera só a vila de quem está jogando (a do outro continua igual) */
+window.vlReiniciar=function(){
+  if(visitando) return;
+  modal(`<h2>recomeçar do zero?</h2><p class="vl-small" style="font-size:14px">a vila de ${HEROIS[perfil].nome} volta pro começo: moedas, construções, castelo, capítulos e conquistas. a vila de ${HEROIS[outroDe(perfil)].nome} não muda.</p>
+    <button class="vl-btn rose" onclick="vlReiniciarOk()">sim, recomeçar desde a queda</button><div style="height:8px"></div><button class="vl-btn" onclick="fecharModal()">não, deixa assim</button>`);
+};
+window.vlReiniciarOk=function(){
+  vila=novaVila(); obras={}; Object.keys(prog).forEach(k=>delete prog[k]); passoAtual=null;
+  cats.length=0; R=0; Ralvo=0; csDirty=false; escrever();
+  try{ Object.keys(localStorage).filter(k=>k.indexOf('vilaAviso_'+perfil+'_')>=0).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+  fecharModal(); fecharSheet(); garantirMissoes(); montarMundo(); focar(CX,CY-30,zoomInicial()); atualizarHud(); atualizarDots(); atualizarPasso(true);
+  toast('a vila voltou pro começo'); setTimeout(()=>abrirCarta(0),600);
+};
 window.vlTrocarPerfil=function(){ pararCatLoop(); perfil=null; LS.set('vilaPerfil',null); abrirCozy(); };
 function escolherPerfil(){
   modal(`<h2>quem está jogando?</h2><p class="vl-small" style="font-size:14px">cada um tem a sua própria vila. a história junta vocês dois no caminho.</p>
@@ -2015,11 +2375,13 @@ window.vlBau=function(){
   modal(`<span class="vl-ic" style="width:70px;height:70px">${ICON.gift}</span><h2>presente da rainha!</h2><div class="big">${ic('coin')} ${fmt(g)} + 5 ${ic('heart')}</div><button class="vl-btn rose" onclick="fecharModal()">obrigado, majestade</button>`);
   painelRainha(); atualizarHud(); atualizarDots();
 };
+let castDot=false;
 function atualizarDots(){
   if(!root) return;
   const m=vila.missoes;
   const pode=!visitando&&(cartasNovas().length>0||cartasRainhaNovas().length>0||correio.length>0||(m&&(m.lista.some(x=>x.prog>=x.meta&&!x.ok)||(!m.bau&&m.lista.every(x=>x.ok)))));
   $('vl-dot-rainha').classList.toggle('on',!!pode);
+  if(ents.length&&csAberto&&!visitando) castDot=ativProntas()>0;
   const dc=$('vl-dot-conq'); if(dc) dc.classList.toggle('on',!visitando&&conqProntas().length>0);
 }
 
@@ -2066,11 +2428,14 @@ function proximoPasso(){
     if(mm.cas && vila.castelo<mm.cas) return passoCastelo();
     if(mm.est && !estAberta(mm.est)) return passoConstruir(`pra continuar a história · `);
     if(mm.ped && (vila.stats.pedidos||0)<mm.ped) return {txt:`atenda pedidos do cardápio (${vila.stats.pedidos||0}/${mm.ped})`,sub:'toque nos gatinhos com balãozinho de comida',ic:'gift',prog:(vila.stats.pedidos||0)/mm.ped,alvo:(cats.find(c=>c.pedido)||null),pode:!!cats.find(c=>c.pedido)};
+    if(mm.mini && (vila.stats.mini||0)<mm.mini){ const ids=Object.keys(MINIS).filter(miniLiberado), id=ids[(vila.stats.mini||0)%Math.max(1,ids.length)];
+      if(id){ const M=MINIS[id], e=M.est?estDef(M.est):null; return {txt:`jogue ${M.nome} (${vila.stats.mini||0}/${mm.mini} partidas)`,sub:`os joguinhos ficam ${ids.map(k=>MINIS[k].onde).join(' e ')}`,ic:'play',prog:(vila.stats.mini||0)/mm.mini,pode:true,alvo:e||{x:CASTELO_POS.x,y:CASTELO_POS.y},acao:()=>vlJogar(id)}; } }
     if(!juntoOk(mm)){ const o=HEROIS[outroDe(perfil)].nome;
       return {txt:motivoTrava(i),sub:fb?`mande um presente pra ajudar ${o}`:'',ic:'heart',acao:fb?()=>abrirCorreio('enviar'):null,prog:mm.junto&&parceiro?Math.min(1,parceiro.abertas/mm.junto):null}; }
   }
   const pc=passoConstruir(); if(pc) return pc;
   const ca=passoCastelo(); if(ca) return ca;
+  if(ativProntas()) return {txt:'tem coisa pra fazer no castelo hoje',sub:'chá com a Rainha, flores e a torre',ic:'crown',pode:true,alvo:{x:CASTELO_POS.x,y:CASTELO_POS.y},acao:()=>{ animarFoco(CASTELO_POS.x,CASTELO_POS.y-40,Math.max(view.s,1)); sheetCastelo(); }};
   return {txt:'a história toda foi vivida! melhore, enfeite e adote gatinhos',ic:'heart',acao:()=>painelMimos()};
 }
 let passoAtual=null, passoT=0;
@@ -2202,7 +2567,7 @@ window.vlServir=function(id){
   const g=pedidoGato; if(!g||!g.pedido) { fecharSheet(); return; }
   if(g.pedido.id!==id){ vila.stats.erros++; csDirty=true; Som.blip(.5); g.fala={txt:['hmm... não era bem isso','isso não é o que eu pedi, né?','quase! tenta de novo','*olha confuso*'][Math.floor(Math.random()*4)],t:2.6}; toast('não era esse...'); return; }
   const rapido=tempo-g.pedido.ini<12;
-  const v=Math.max(20,vilaRate()*25)*(rapido?1.5:1), h=g.o.heroi?2:1;
+  const v=Math.max(8,vilaRate()*30)*(rapido?1.5:1), h=g.o.heroi?2:1;
   vila.moedas+=v; vila.coracoes+=h; vila.stats.pedidos++; vila.stats.ganhos+=v; csDirty=true;
   progMissao('pedidos',1); progMissao('ganhos',v);
   const m=menuDef(id); g.pedido=null; g.pulo=1;
@@ -2227,6 +2592,13 @@ const CONQ=[
   {id:'est10',nome:'cidadezinha',desc:'10 construções abertas',ok:()=>nAbertas()>=10,p:6},
   {id:'esttodas',nome:'a floresta inteira',desc:'todas as construções',ok:()=>nAbertas()>=ESTACOES.length,p:15},
   {id:'castelo',nome:'castelo aceso',desc:'restaurar o castelo inteiro',ok:v=>v.castelo>=CASTELO.length,p:8},
+  {id:'mini1',nome:'hora do recreio',desc:'jogar um joguinho',ok:v=>(v.stats.mini||0)>=1,p:2},
+  {id:'mini30',nome:'viciados em joguinho',desc:'30 partidas de joguinho',ok:v=>(v.stats.mini||0)>=30,p:6},
+  {id:'fornada3',nome:'mestre padeiro',desc:'3 estrelas na fornada',ok:v=>(v.stats.tres_fornada||0)>=1,p:4},
+  {id:'pesca3',nome:'paciência de pescador',desc:'3 estrelas na pescaria',ok:v=>(v.stats.tres_pesca||0)>=1,p:4},
+  {id:'peixeverde',nome:'brilho de Veluma',desc:'pescar o peixe verde que brilha',ok:v=>(v.stats.peixeVerde||0)>=1,p:6},
+  {id:'valsa3',nome:'pé de valsa',desc:'3 estrelas no baile',ok:v=>(v.stats.tres_baile||0)>=1,p:5},
+  {id:'cha',nome:'hora do chá',desc:'tomar chá com a Rainha 5 vezes',ok:v=>(v.castAtiv&&v.castAtiv.chaN||0)>=5,p:4},
   {id:'rainha',nome:'confidente da Rainha',desc:'ler todas as cartas da Rainha',ok:v=>CARTAS.every((_,i)=>v.cartas.includes(i)),p:5},
   {id:'feira',nome:'encontro na feira',desc:'viver a feira dos viajantes',ok:()=>leu('feira'),p:4},
   {id:'chuva',nome:'a chuva revela',desc:'tirar o disfarce na chuva',ok:()=>leu('chuva'),p:6},
@@ -2304,7 +2676,7 @@ function spawnVisitante(){
 function removerVisitante(){ const i=cats.indexOf(visitante); if(i>=0) cats.splice(i,1); visitante=null; }
 function pegarVisitante(){
   const g=visitante; if(!g) return;
-  const v=Math.max(25,vilaRate()*50)*(1+.5*perkLvl('encomenda'));
+  const v=Math.max(10,vilaRate()*45)*(1+.5*perkLvl('encomenda'));
   vila.moedas+=v; vila.coracoes+=2; vila.stats.encomendas++; vila.stats.ganhos+=v; csDirty=true;
   progMissao('encomendas',1); progMissao('ganhos',v);
   ftxt(g.x,g.y-60,'+'+fmt(v)+' e +2 corações','');
@@ -2317,7 +2689,7 @@ function mostrarOffline(g,seg){
   _off=g; const h=Math.floor(seg/3600), m=Math.floor((seg%3600)/60);
   const tempo=h?`${h}h${m?` ${m}min`:''}`:`${Math.max(1,m)}min`;
   modal(`<svg viewBox="-30 -60 60 66" style="width:110px;height:120px">${gatoSVG({cor:'#f2dcc0',det:'#d8b48c',listras:1},1)}</svg><h2>bem-vindos de volta!</h2>
-    <p class="vl-small" style="font-size:14px">em ${tempo} os gatinhos trabalharam e juntaram:</p><div class="big">${ic('coin')} ${fmt(g)}</div>
+    <p class="vl-small" style="font-size:14px">em ${tempo} os gatinhos trabalharam devagarzinho (sem vocês por perto rende menos) e juntaram:</p><div class="big">${ic('coin')} ${fmt(g)}</div>
     <button class="vl-btn" onclick="vlColetar(1)">coletar</button><button class="vl-btn rose" ${vila.coracoes<3?'disabled':''} onclick="vlColetar(2)">coletar ×2 (3 corações)</button>`);
 }
 window.vlColetar=function(x){
@@ -2369,7 +2741,12 @@ const Som={
     noite:{bpm:56, passos:16, CH:[[57,60,64,67],[53,57,60,64],[48,52,55,59],[55,59,62,65]], ESC:[69,72,74,76,79,81,84], kick:[], hat:[], baixo:[0], mel:.22, voz:'caixinha'},
     chuva:{bpm:64, passos:16, CH:[[50,53,57,60,64],[55,59,62,65],[48,52,55,59,62],[57,60,64,67]], ESC:[62,64,65,67,69,72,74,76], kick:[0,7,10], hat:[4,12], escova:1, baixo:[0,6,8], mel:.26, voz:'rhodes'},
     festa:{bpm:100,passos:16, CH:[[48,52,55,60],[55,59,62,67],[57,60,64,69],[53,57,60,65]], ESC:[72,74,76,79,81,84], kick:[0,4,8,12], hat:[2,6,10,14], palma:[4,12], baixo:[0,3,8,11], mel:.5, voz:'pluck'},
-    cena: {bpm:78, passos:12, CH:[[53,57,60,64],[52,55,59,64],[50,53,57,62],[55,59,62,65]], ESC:[65,67,69,72,74,76,77,79], kick:[], hat:[], baixo:[0], harpa:1, mel:.3, voz:'sino'}
+    cena: {bpm:78, passos:12, CH:[[53,57,60,64],[52,55,59,64],[50,53,57,62],[55,59,62,65]], ESC:[65,67,69,72,74,76,77,79], kick:[], hat:[], baixo:[0], harpa:1, mel:.3, voz:'sino'},
+    triste:{bpm:50, passos:16, CH:[[57,60,64,67],[53,57,60,64],[48,52,55,59],[52,55,59,62]], ESC:[64,67,69,71,72,76], kick:[], hat:[], baixo:[0], mel:.18, voz:'rhodes'},
+    romance:{bpm:80, passos:12, CH:[[53,57,60,64],[50,53,57,62],[46,50,53,57],[48,52,55,60]], ESC:[65,67,69,72,74,77,79,81], kick:[], hat:[], baixo:[0,6], harpa:1, mel:.34, voz:'sino'},
+    tensa:{bpm:58, passos:16, CH:[[45,52,57],[44,51,56],[45,52,57],[41,48,53]], ESC:[69,71,72,76], kick:[0], hat:[], baixo:[0,8], mel:.1, voz:'caixinha'},
+    alegre:{bpm:96, passos:16, CH:[[48,52,55,60],[53,57,60,65],[55,59,62,67],[48,52,55,60]], ESC:[72,74,76,79,81,84], kick:[0,8], hat:[4,12], baixo:[0,8,11], mel:.42, voz:'pluck'},
+    valsa:{bpm:96, passos:12, CH:[[53,57,60,65],[48,52,55,60],[50,53,57,62],[46,50,53,58]], ESC:[69,72,74,77,79,81], kick:[], hat:[], baixo:[0,6], harpa:1, mel:.4, voz:'caixinha'}
   },
   forcada:null, atual:'dia',
   escolher(){ if(this.forcada) return this.forcada; if(FESTA) return 'festa'; if(CLIMA.tipo==='chuva') return 'chuva'; if(NOITE>.5) return 'noite'; return 'dia'; },
@@ -2438,11 +2815,12 @@ const Som={
 };
 window.vlSom=()=>{ Som.init(); Som.toggle(); };
 /* ganchos pra testes automáticos (não mudam o jogo) */
-window.__vilaDebug={get vila(){ return vila; },get ents(){ return ents; },get cats(){ return cats; },get obras(){ return obras; },proximoPasso:()=>proximoPasso(),spawnPedido:()=>spawnPedido(),
+window.__vilaDebug={get vila(){ return vila; },get ents(){ return ents; },sheetCastelo:()=>sheetCastelo(),estSheet:id=>abrirEstacaoSheet(id),get cats(){ return cats; },get obras(){ return obras; },proximoPasso:()=>proximoPasso(),spawnPedido:()=>spawnPedido(),
   festa:f=>{ festaForcada=f||null; atualizarClima(); },get correio(){ return correio; },get parceiro(){ return parceiro; },get visitando(){ return visitando; },get view(){ return view; },focar:(x,y,s)=>focar(x,y,s)};
 /* arte e som pra quem desenha as cenas (vila-cenas.js) */
-window.VilaArte={gatoSVG,rainhaSVG,arvoreSVG,casteloSVG,decorSVG,postalSVG,CONSTRUCAO,INK,POSTAIS,
-  som:{init:()=>Som.init(),forcar:t=>{ Som.forcar(t); if(Som.ctx&&Som.on){ Som.atual=Som.escolher(); Som.step=0; } },chime:()=>Som.chime(),fanfarra:()=>Som.fanfarra(),blip:k=>Som.blip(k),ligado:()=>Som.on}};
+window.VilaArte={rabo,desenharEmo,corDe,gatoSVG,rainhaSVG,arvoreSVG,casteloSVG,decorSVG,postalSVG,CONSTRUCAO,INK,POSTAIS,
+  som:{pausar:()=>{ clearInterval(Som.timer); Som.timer=null; },retomar:()=>Som.start(),ctx:()=>Som.ctx,ligado2:()=>Som.on&&!!Som.ctx,nota:(m,t,d,tp,g,fx)=>{ if(Som.ctx&&Som.on) Som.nota(m,t,d,tp,g,fx,.006); },kick:t=>{ if(Som.ctx&&Som.on) Som.kick(t); },hat:t=>{ if(Som.ctx&&Som.on) Som.hat(t); },palma:t=>{ if(Som.ctx&&Som.on) Som.palma(t); },
+    init:()=>Som.init(),forcar:t=>{ Som.forcar(t); if(Som.ctx&&Som.on){ Som.atual=Som.escolher(); Som.step=0; } },chime:()=>Som.chime(),fanfarra:()=>Som.fanfarra(),blip:k=>Som.blip(k),ligado:()=>Som.on}};
 
 
 })();
