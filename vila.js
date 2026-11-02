@@ -811,12 +811,12 @@ function montarMundo(){
     const aberta=estAberta(e.id);
     if(e.id==='fogueira'){
       ents.push({tipo:'camp',id:e.id,x:e.x,y:e.y,ax:e.x,ay:e.y,act:aberta?'est:fogueira':(e===prox?'abrir:fogueira':'praca'),box:[-80,-50,160,80]});
-      if(!aberta && e===prox && !obras.fogueira) ents.push({tipo:'placa',x:e.x+44,y:e.y-4,ax:e.x+44,ay:e.y-4,act:'abrir:fogueira',box:BOX.sign});
-      if(obras.fogueira) ents.push({tipo:'obra',x:e.x,y:e.y,ax:e.x,ay:e.y,box:BOX.scaf});
+      if(!aberta && e===prox && !obras.fogueira) ents.push({tipo:'placa',x:e.x+44,y:e.y-4,ax:e.x+44,ay:e.y-4,act:'abrir:fogueira',box:BOX.sign,hit:[-46,-74,92,96]});
+      if(obras.fogueira) ents.push({tipo:'obra',x:e.x,y:e.y,ax:e.x,ay:e.y,act:'abrir:'+e.id,box:BOX.scaf});
     } else if(!aberta){
       if(e!==prox) return;
-      if(obras[e.id]) ents.push({tipo:'obra',x:e.x,y:e.y,ax:e.x,ay:e.y,box:BOX.scaf});
-      else ents.push({tipo:'placa',x:e.x,y:e.y,ax:e.x,ay:e.y,act:'abrir:'+e.id,box:BOX.sign});
+      if(obras[e.id]) ents.push({tipo:'obra',x:e.x,y:e.y,ax:e.x,ay:e.y,act:'abrir:'+e.id,box:BOX.scaf});
+      else ents.push({tipo:'placa',x:e.x,y:e.y,ax:e.x,ay:e.y,act:'abrir:'+e.id,box:BOX.sign,hit:[-46,-74,92,96]});
     } else ents.push({tipo:'bld',id:e.id,x:e.x,y:e.y,ax:e.x,ay:e.y,act:'est:'+e.id,box:[-70,-110,140,130],pop:0});
   });
   DECORS.forEach((d,i)=>{ if(i<vila.decor && d.d<R-10) ents.push({tipo:'decor',id:d.id,x:d.x,y:d.y,ax:d.x,ay:d.y,box:BOX.decor}); });
@@ -993,13 +993,14 @@ function desenharExtras(c,e){
 function desenharGato(c,g){
   const o=g.o;
   // gatinho dormindo na rede
-  if(g.estado==='work' && o.acao==='dormir' && !g.alvo){
+  if(g.estado==='work' && o.acao==='dormir' && !g.alvo && sprDeitado(o)){
     const sp=sprDeitado(o); if(sp){ c.save(); c.translate(g.x,g.y-14); const b=1+Math.sin(g.fase*1.6)*.03; c.scale(.82,.82*b); c.drawImage(sp.img,sp.x,sp.y,sp.w,sp.h); c.restore(); }
     const k=(g.fase*.5)%1; c.globalAlpha=1-k; c.fillStyle=INK; c.font='700 11px Fredoka, sans-serif'; c.fillText('z',g.x-10+k*10,g.y-40-k*18); c.fillText('z',g.x-4+k*12,g.y-48-k*22); c.globalAlpha=1;
     return;
   }
   const andando=!!g.alvo, trab=g.estado==='work'&&!andando;
-  const sp=o.heroi?sprHeroi(o.heroi,o.disf,g.blink<0):sprGato(o,g.blink<0); if(!sp) return;
+  const spA=o.heroi?sprHeroi(o.heroi,o.disf,false):sprGato(o,false), spF=o.heroi?sprHeroi(o.heroi,o.disf,true):sprGato(o,true);
+  const sp=(g.blink<0&&spF)?spF:spA; if(!sp) return; // olho fechado só quando já carregou (senão o gato sumia ao piscar)
   let bob=0, rot=0, sx=1, sy=1;
   if(andando){ bob=-Math.abs(Math.sin(g.fase*10))*3; rot=Math.sin(g.fase*10)*.05; }
   else if(trab){ bob=-Math.abs(Math.sin(g.fase*5))*1.6; sy=1+Math.sin(g.fase*5)*.02; }
@@ -1104,12 +1105,12 @@ function ligarPanZoom(){
     if(!pts.has(e.pointerId)) return;
     pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
     if(pts.size===2&&pinch){ const [a,b]=[...pts.values()], d=Math.hypot(a.x-b.x,a.y-b.y); zoomEm((a.x+b.x)/2,(a.y+b.y)/2,pinch.s*d/pinch.d); moved=99; return; }
-    if(pts.size===1&&last){ const dx=e.clientX-last.x, dy=e.clientY-last.y; moved+=Math.abs(dx)+Math.abs(dy); if(moved>7){ v.classList.add('drag'); view.tx+=dx; view.ty+=dy; aplicarView(); } last={x:e.clientX,y:e.clientY}; }
+    if(pts.size===1&&last){ const dx=e.clientX-last.x, dy=e.clientY-last.y; moved+=Math.abs(dx)+Math.abs(dy); if(moved>12){ v.classList.add('drag'); view.tx+=dx; view.ty+=dy; aplicarView(); } last={x:e.clientX,y:e.clientY}; }
   });
   const up=e=>{
     if(!pts.has(e.pointerId)) return;
     pts.delete(e.pointerId); if(pts.size<2) pinch=null;
-    if(pts.size===0){ v.classList.remove('drag'); if(moved<=7&&downPos) tocar(downPos.x,downPos.y); downPos=null; last=null; }
+    if(pts.size===0){ v.classList.remove('drag'); if(moved<=12&&downPos) tocar(downPos.x,downPos.y); downPos=null; last=null; }
     else { const p=[...pts.values()][0]; last={x:p.x,y:p.y}; }
   };
   v.addEventListener('pointerup',up);
@@ -1128,11 +1129,17 @@ function esconderDica(){ const h=$('vl-hint'); if(h) h.style.opacity='0'; }
 function tocar(sx,sy){
   const r=$('vl-view').getBoundingClientRect(), wx=(sx-r.left-view.tx)/view.s, wy=(sy-r.top-view.ty)/view.s;
   Som.init();
-  // gatinhos primeiro (são pequenos), do mais à frente pro mais atrás
-  const gs=cats.slice().sort((a,b)=>b.y-a.y);
-  for(const g of gs){ if(Math.abs(wx-g.x)<17 && wy<g.y+6 && wy>g.y-46){ Som.blip(); if(g.o.visit) pegarVisitante(); else if(g.pedido&&!visitando) abrirPedido(g); else carinhoGato(g); return; } }
+  const pad=Math.max(4,14/view.s); // folga pro dedo (em unidades do mundo)
+  const dentro=(e,p)=>{ const [bx,by,bw,bh]=e.hit||e.box; return wx>=e.ax+bx-p&&wx<=e.ax+bx+bw+p&&wy>=e.ay+by-p&&wy<=e.ay+by+bh+p; };
+  // placas e obras primeiro: um gatinho passando na frente não pode roubar o toque
+  const obra=ents.filter(e=>e.act&&(e.tipo==='placa'||e.tipo==='obra')).find(e=>dentro(e,pad));
+  if(obra){ Som.blip(); acao(obra); return; }
+  // gatinhos (são pequenos), do mais à frente pro mais atrás
+  const gs=cats.slice().sort((a,b)=>b.y-a.y), gp=pad*.6;
+  for(const g of gs){ if(Math.abs(wx-g.x)<17+gp && wy<g.y+6+gp && wy>g.y-46-gp){ Som.blip(); if(g.o.visit) pegarVisitante(); else if(g.pedido&&!visitando) abrirPedido(g); else carinhoGato(g); return; } }
   const es=ents.filter(e=>e.act).sort((a,b)=>b.y-a.y);
-  for(const e of es){ const [bx,by,bw,bh]=e.box; if(wx>=e.ax+bx&&wx<=e.ax+bx+bw&&wy>=e.ay+by&&wy<=e.ay+by+bh){ Som.blip(); acao(e); return; } }
+  const e=es.find(e=>dentro(e,0))||es.find(e=>dentro(e,pad));
+  if(e){ Som.blip(); acao(e); }
 }
 function acao(e){
   const [tipo,arg]=e.act.split(':');
@@ -2431,7 +2438,7 @@ const Som={
 };
 window.vlSom=()=>{ Som.init(); Som.toggle(); };
 /* ganchos pra testes automáticos (não mudam o jogo) */
-window.__vilaDebug={get vila(){ return vila; },get cats(){ return cats; },get obras(){ return obras; },proximoPasso:()=>proximoPasso(),spawnPedido:()=>spawnPedido(),
+window.__vilaDebug={get vila(){ return vila; },get ents(){ return ents; },get cats(){ return cats; },get obras(){ return obras; },proximoPasso:()=>proximoPasso(),spawnPedido:()=>spawnPedido(),
   festa:f=>{ festaForcada=f||null; atualizarClima(); },get correio(){ return correio; },get parceiro(){ return parceiro; },get visitando(){ return visitando; },get view(){ return view; },focar:(x,y,s)=>focar(x,y,s)};
 /* arte e som pra quem desenha as cenas (vila-cenas.js) */
 window.VilaArte={gatoSVG,rainhaSVG,arvoreSVG,casteloSVG,decorSVG,postalSVG,CONSTRUCAO,INK,POSTAIS,
