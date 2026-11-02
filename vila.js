@@ -41,6 +41,7 @@ const ICON={
   chuva:'<svg viewBox="0 0 24 24"><path d="M6 14 H18 A4 4 0 0 0 18 6 A6 6 0 0 0 7 5 A4.5 4.5 0 0 0 6 14 Z" fill="#dfe6ec" stroke="#7d8b98" stroke-width="1.6"/><path d="M8 17 l-1 3 M12 17 l-1 3 M16 17 l-1 3" stroke="#5f8db1" stroke-width="2" stroke-linecap="round"/></svg>',
   nevoa:'<svg viewBox="0 0 24 24"><path d="M3 8 H17 M6 12 H21 M3 16 H15 M8 20 H20" stroke="#a9b4be" stroke-width="2.2" stroke-linecap="round"/></svg>',
   festa:'<svg viewBox="0 0 24 24"><path d="M3 4 Q12 10 21 4" stroke="#6b5440" stroke-width="1.4" fill="none"/><path d="M5 5 l2 5 l2-4 Z" fill="#e3798a"/><path d="M10 6.5 l2 5 l2-5 Z" fill="#f2c14e"/><path d="M15 6 l2 4 l2-5 Z" fill="#86afcf"/><path d="M12 14 C9 11 5 13 8 17 L12 21 L16 17 C19 13 15 11 12 14 Z" fill="#e3798a" stroke="#a8485a" stroke-width="1.2"/></svg>',
+  engrenagem:`<svg viewBox="0 0 24 24"><path d="M12 2.5l1.7 2.4 2.9-.7.9 2.8 2.8.9-.7 2.9L21.5 12l-2.4 1.7.7 2.9-2.8.9-.9 2.8-2.9-.7L12 21.5l-1.7-2.4-2.9.7-.9-2.8-2.8-.9.7-2.9L2.5 12l2.4-1.7-.7-2.9 2.8-.9.9-2.8 2.9.7z" fill="#f3d9a4" ${S}/><circle cx="12" cy="12" r="3.2" fill="#fbf7ef" ${S}/></svg>`,
   olho:'<svg viewBox="0 0 24 24"><path d="M2 12 C6 5 18 5 22 12 C18 19 6 19 2 12 Z" fill="#fffaf0" stroke="#6b5440" stroke-width="1.8"/><circle cx="12" cy="12" r="3.6" fill="#86a86b" stroke="#6b5440" stroke-width="1.4"/></svg>',
   play:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#e3798a" stroke="#a8485a" stroke-width="1.6"/><path d="M10 8 L16 12 L10 16 Z" fill="#fff"/></svg>'
 };
@@ -756,6 +757,7 @@ function montarDOM(){
      <span class="vl-sp"></span>
      <button class="vl-round" id="vl-clima" title="clima" onclick="vlClima()">${ic('sol')}</button>
      <button class="vl-round" id="vl-som" title="música" onclick="vlSom()">${ic('music')}</button>
+     <button class="vl-round" title="configurações" onclick="vlConfig()">${ic('engrenagem')}</button>
      <button class="vl-round" title="fechar" onclick="fecharJogo()">${ic('close')}</button>
    </div>
    <button class="vl-passo" id="vl-passo" onclick="vlPasso()"></button>
@@ -2250,7 +2252,7 @@ function painelRainha(){
       <div class="vl-postais">${POSTAIS.map(p=>{ const ok=vila.postais.includes(p.id); return `<div class="${ok?'':'lock'}">${postalSVG(p,ok)}<b>${ok?p.nome:'???'}</b><small>${ok?p.desc:'ainda não visitado'}</small></div>`; }).join('')}</div>`;
   }
   const online=parceiro&&parceiroOnline()?` · <b style="color:var(--leaf-dark)">${ot.nome} está jogando agora</b>`:'';
-  abrirSheet(`<div class="vl-herois">${retrato(perfil,!revelado(),74)}<div><h2 style="text-align:left">${eu.nome}</h2><div class="vl-sub" style="text-align:left;margin:0">${revelado()?'sem disfarce':'disfarçad'+(perfil==='g'?'o':'a')+' de gato comum'}${online}</div><button class="linkish" style="font-size:13px" onclick="vlTrocarPerfil()">não é você? trocar jogador</button> · <button class="linkish" style="font-size:13px" onclick="vlReiniciar()">recomeçar do zero</button></div></div>
+  abrirSheet(`<div class="vl-herois">${retrato(perfil,!revelado(),74)}<div><h2 style="text-align:left">${eu.nome}</h2><div class="vl-sub" style="text-align:left;margin:0">${revelado()?'sem disfarce':'disfarçad'+(perfil==='g'?'o':'a')+' de gato comum'}${online}</div><button class="linkish" style="font-size:13px" onclick="vlTrocarPerfil()">não é você? trocar jogador</button></div></div>
     <div class="vl-duo"><button onclick="vlVisitar()">${ic('olho')}visitar a vila de ${ot.nome}</button><button onclick="abrirCorreio()">${ic('mail')}correio${correio.length?` <span class="n">${correio.length}</span>`:''}</button></div>${tabs}${corpo}`,'rainha');
 }
 window.abrirCarta=function(i,semCena){
@@ -2286,6 +2288,17 @@ function liberaTxt(h){
   return p.length?`<p class="vl-small" style="font-size:13.5px">${p.join('<br>')}</p>`:'';
 }
 window.vlVerCena=function(i){ const h=HIST[i]; if(!h||!window.VilaCena) return; fecharSheet(); vila.stats.cenas++; csDirty=true; VilaCena.tocar(h.id,perfil,()=>abrirCarta(i,true)); };
+/* configurações do jogo: música, trocar jogador e recomeçar (só o jogo, nada do resto do site) */
+window.vlConfig=function(){
+  if(visitando){ toast('volte pra sua vila pra abrir isso'); return; }
+  const eu=HEROIS[perfil];
+  abrirSheet(`<h2>configurações</h2><div class="vl-sub">só do jogo da vila · o resto do site não é afetado</div>
+    <div class="vl-config">
+      <button onclick="vlSom();vlConfig()"><b>${ic('music')}música</b><small>${Som.on?'ligada · toque pra desligar':'desligada · toque pra ligar'}</small></button>
+      <button onclick="vlFecharSheet();vlTrocarPerfil()"><b>${ic('paw')}trocar jogador</b><small>você está jogando como ${eu.nome}</small></button>
+      <button class="perigo" onclick="vlReiniciar()"><b>${ic('close')}recomeçar o jogo do zero</b><small>apaga só a vila de ${eu.nome} · a de ${HEROIS[outroDe(perfil)].nome} não muda</small></button>
+    </div>`,'config');
+};
 /* recomeçar: zera só a vila de quem está jogando (a do outro continua igual) */
 window.vlReiniciar=function(){
   if(visitando) return;
