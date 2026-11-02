@@ -30,6 +30,7 @@ const ICON={
   home:'<svg viewBox="0 0 24 24"><path d="M4 11 L12 4 L20 11" fill="none" stroke="#6b5440" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 10v9h11v-9" fill="#f5efe3" stroke="#6b5440" stroke-width="2.2" stroke-linejoin="round"/><rect x="10" y="13.5" width="4" height="5.5" rx="2" fill="#e9b24f"/></svg>',
   letter:'<svg viewBox="0 0 32 32"><rect x="3" y="7" width="26" height="18" rx="3" fill="#fffaf0" stroke="#6b5440" stroke-width="2"/><path d="M4 9 L16 18 L28 9" fill="none" stroke="#6b5440" stroke-width="2"/><circle cx="16" cy="18" r="4" fill="#e3798a" stroke="#a8485a" stroke-width="1.5"/></svg>',
   sparkle:'<svg viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="#f2c14e" stroke="#c38a2b" stroke-width="1.2"/></svg>',
+  book:'<svg viewBox="0 0 32 32"><path d="M4 7 C9 5 13 6 16 9 C19 6 23 5 28 7 V26 C23 24 19 25 16 27 C13 25 9 24 4 26 Z" fill="#fffaf0" stroke="#6b5440" stroke-width="2" stroke-linejoin="round"/><path d="M16 9 V27" stroke="#6b5440" stroke-width="2"/><path d="M7 11 h6 M7 15 h6 M19 11 h6 M19 15 h6" stroke="#c2ac88" stroke-width="1.6" stroke-linecap="round"/><circle cx="22" cy="20" r="2.4" fill="#b9dc4c" stroke="#6b5440" stroke-width="1.2"/></svg>',
   hammer:'<svg viewBox="0 0 32 32"><rect x="14" y="10" width="4" height="19" rx="2" fill="#b98a5e" stroke="#6b5440" stroke-width="1.8"/><rect x="7" y="5" width="18" height="8" rx="2" fill="#9aa3ad" stroke="#5a6068" stroke-width="1.8"/></svg>'
 };
 const inner=svg=>svg.replace(/<\/?svg[^>]*>/g,'');
@@ -42,6 +43,9 @@ const PROD={
   pesca:'<svg viewBox="0 0 32 32"><path d="M4 16 C9 8 20 8 25 16 C20 24 9 24 4 16Z" fill="#86afcf" stroke="#4e6f8c" stroke-width="2"/><path d="M25 16 L30 11 L30 21 Z" fill="#86afcf" stroke="#4e6f8c" stroke-width="2" stroke-linejoin="round"/><circle cx="10" cy="14.5" r="1.6" fill="#4e6f8c"/></svg>',
   fogueira:'<svg viewBox="0 0 32 32"><path d="M4 28 L28 6" stroke="#b98a5e" stroke-width="2.4" stroke-linecap="round"/><rect x="17" y="6" width="8" height="8" rx="3.5" fill="#fffaf2" stroke="#6b5440" stroke-width="1.8" transform="rotate(-42 21 10)"/><rect x="10" y="13" width="8" height="8" rx="3.5" fill="#f9e3cf" stroke="#6b5440" stroke-width="1.8" transform="rotate(-42 14 17)"/></svg>',
   violao:'<svg viewBox="0 0 32 32"><path d="M12 25V8l14-3v15" fill="none" stroke="#6b5440" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="9" cy="25" rx="4" ry="3.2" fill="#a07bb7" stroke="#6b5440" stroke-width="2"/><ellipse cx="23" cy="21" rx="4" ry="3.2" fill="#a07bb7" stroke="#6b5440" stroke-width="2"/></svg>',
+  cafe:'<svg viewBox="0 0 32 32"><path d="M8 10 H20 L18 28 H10 Z" fill="#f2c14e" stroke="#6b5440" stroke-width="2"/><path d="M15 10 L19 2" stroke="#e3798a" stroke-width="2.4" stroke-linecap="round"/><path d="M18 14 H26 L24.5 28 H19 Z" fill="#f2a7b8" stroke="#6b5440" stroke-width="2"/><path d="M22 14 L25 7" stroke="#86a86b" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  cinema:'<svg viewBox="0 0 32 32"><path d="M7 12 H25 L22 29 H10 Z" fill="#fbf3e3" stroke="#6b5440" stroke-width="2"/><path d="M10 12 L12 29 M16 12 V29 M22 12 L20 29" stroke="#e3606e" stroke-width="2.2"/><circle cx="10" cy="10" r="3.4" fill="#fff8e0" stroke="#6b5440" stroke-width="1.6"/><circle cx="16" cy="8" r="3.6" fill="#fff8e0" stroke="#6b5440" stroke-width="1.6"/><circle cx="22" cy="10" r="3.4" fill="#fff8e0" stroke="#6b5440" stroke-width="1.6"/></svg>',
+  balao:'<svg viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="18" rx="2" fill="#fffaf0" stroke="#6b5440" stroke-width="2"/><rect x="19" y="10" width="6" height="7" fill="#f2a7b8" stroke="#6b5440" stroke-width="1.4"/><path d="M8 13 h8 M8 17 h8 M8 21 h12" stroke="#c2ac88" stroke-width="1.6" stroke-linecap="round"/></svg>',
   soneca:'<svg viewBox="0 0 32 32"><path d="M11 8c0-2 2-2 2-4M16 8c0-2 2-2 2-4" stroke="#c2ac88" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M5 12 H23 V20 C23 25 19 27 14 27 C9 27 5 25 5 20Z" fill="#fbf3e3" stroke="#6b5440" stroke-width="2"/><path d="M23 14 C29 14 29 21 23 21" fill="none" stroke="#6b5440" stroke-width="2"/><ellipse cx="14" cy="12.5" rx="9" ry="1.8" fill="#c99a6b"/></svg>'
 };
 
@@ -75,7 +79,16 @@ const ESTACOES=[
    falas:['essa se chama "saudade de um lugar que eu nunca fui"','lá-lá-láá~','um dia vou tocar num palco de verdade','aplausos são opcionais. mas bem-vindos.'], extra:'a música anima todo mundo: +3% em tudo por nível'},
   {id:'soneca',  nome:'casa-cogumelo',      ciclo:22, val:28000, abrir:1.4e7,  up:4.2e6,  x:702,y:610, work:{dx:-58,dy:6,acao:'dormir'},   fumaca:[[-6,-92]],
    gato:{nome:'Soninho',cor:'#f2dcc0',det:'#d8b48c',listras:1}, pers:'preguiçoso e filósofo',
-   falas:['zzz... cinco minutinhos...','descansar também é trabalhar','sonhei que eu era uma nuvem. ou a nuvem sonhou comigo?','por que correr se a rede tá logo ali?'], extra:'gatinhos descansados: +1h de ganho offline por nível'}
+   falas:['zzz... cinco minutinhos...','descansar também é trabalhar','sonhei que eu era uma nuvem. ou a nuvem sonhou comigo?','por que correr se a rede tá logo ali?'], extra:'gatinhos descansados: +1h de ganho offline por nível'},
+  {id:'cafe',    nome:'cafeteria da chuva', ciclo:26, val:110000, abrir:8e7,  up:2.6e7, x:272,y:452, work:{dx:40,dy:12,acao:'servir'},  fumaca:[[24,-100]], hist:'chuva',
+   gato:{nome:'Cereja',cor:'#f7dfe3',det:'#e8a9b6'}, pers:'doceira apaixonada por cheesecake',
+   falas:['cheesecake de cereja saindo!','aqui tudo é vegetariano, viu?','um de maracujá e um de morango, como sempre?','dizem que a chuva daqui revela segredos...']},
+  {id:'cinema',  nome:'cine cultura',       ciclo:30, val:420000, abrir:4.5e8,up:1.4e8, x:744,y:452, work:{dx:-50,dy:16,acao:'projetar'}, fumaca:[], hist:'chuva',
+   gato:{nome:'Lumi',cor:'#ddd5ec',det:'#a99cc9',listras:1}, pers:'projecionista cinéfila',
+   falas:['hoje tem sessão de Amores Expressos','silêncio, o filme vai começar','já fechei o cinema pra uma ocasião especial, sabia?','pipoca vegetariana, claro']},
+  {id:'balao',   nome:'balão dos viajantes',ciclo:40, val:1.6e6,  abrir:2.5e9,up:8e8,   x:420,y:714, work:{dx:44,dy:6,acao:'mapa'},    fumaca:[], hist:'pedido',
+   gato:{nome:'Bússola',cor:'#e8c9a4',det:'#8a6a4e',chapeuVerde:1}, pers:'navegador sonhador',
+   falas:['próxima parada: China!','já pensou o Japão na primavera?','no Peru tem montanhas que tocam as nuvens','na Itália tem pizza vegetariana de verdade']}
 ];
 ESTACOES.forEach(e=>e.d=dEl(e.x,e.y));
 const MARCOS_NIVEL=[10,25,50,75,100,150,200];
@@ -173,7 +186,7 @@ function seeded(s){ let x=s%2147483647||1; return ()=>{ x=(x*16807)%2147483647; 
    ESTADO + ECONOMIA
 ------------------------------------------------------------------ */
 function novaVila(ts){ return {v:4,moedas:0,coracoes:0,lastTs:ts===undefined?Date.now():ts,est:{sopa:{lvl:1}},decor:0,perks:{},missoes:null,
-  stats:{taps:0,ups:0,encomendas:0,ganhos:0,producoes:0},castelo:0,cartas:[],adotados:[]}; }
+  stats:{taps:0,ups:0,encomendas:0,ganhos:0,producoes:0},castelo:0,cartas:[],adotados:[],cap:[],postais:[]}; }
 let vila=novaVila(0);
 let csDirty=false, csAberto=false, csBoas=false, buyMode=1;
 const prog={};
@@ -205,9 +218,10 @@ function custoUpN(id,n){
 const custoDecor=()=>Math.round(120*Math.pow(2.3,vila.decor));
 const custoAdocao=()=>Math.round(250*Math.pow(2.2,vila.adotados.length));
 function raioAlvo(){ let r=150; ESTACOES.forEach(e=>{ if(estAberta(e.id)||obras[e.id]) r=Math.max(r,e.d+72); }); return r; }
-const proximaEstacao=()=>ESTACOES.find(e=>!estAberta(e.id));
+const liberada=e=>!e.hist||vila.cap.includes(HIST.findIndex(h=>h.id===e.hist));
+const proximaEstacao=()=>ESTACOES.find(e=>!estAberta(e.id)&&liberada(e));
 
-function salvarLocal(){ LS.set('vilaCats',vila); }
+function salvarLocal(){ if(perfil) LS.set(chaveLocal(),vila); }
 function normalizar(d){
   const v=novaVila();
   v.moedas=Math.max(0,Number(d.moedas)||0); v.coracoes=Math.max(0,Number(d.coracoes)||0);
@@ -218,36 +232,19 @@ function normalizar(d){
   v.missoes=d.missoes||null; v.stats=Object.assign(v.stats,d.stats||{});
   v.castelo=Math.max(0,Math.min(CASTELO.length,Number(d.castelo)||0));
   v.cartas=Array.isArray(d.cartas)?d.cartas.filter(n=>Number.isInteger(n)):[];
+  v.cap=Array.isArray(d.cap)?d.cap.filter(n=>Number.isInteger(n)&&n>=0&&n<HIST.length):[];
+  v.postais=Array.isArray(d.postais)?d.postais.filter(x=>POSTAIS.some(p=>p.id===x)):[];
   v.adotados=Array.isArray(d.adotados)?d.adotados.slice(0,20).map(a=>({nome:String(a.nome||'Gatinho').slice(0,20),c:Math.max(0,Math.min(CORES_GATOS.length-1,Number(a.c)||0)),j:Math.max(0,Math.min(JEITOS.length-1,Number(a.j)||0))})):[];
   return v;
 }
 function escrever(){
   vila.lastTs=Date.now(); salvarLocal();
-  if(!fb) return;
-  cozyRef.set(JSON.parse(JSON.stringify({...vila,by:CLIENT_ID})),{merge:false}).catch(e=>console.error(e));
+  if(!fb||!refEu||!perfil) return;
+  refEu.set(JSON.parse(JSON.stringify({...vila,by:CLIENT_ID,perfil})),{merge:false}).catch(e=>console.error(e));
 }
-window.carregarVilaLocal=function(){ const v=LS.get('vilaCats',null); if(v&&(v.v===3||v.v===4)) vila=normalizar(v); };
-window.catOnRemote=function(data){
-  if(!data){ csBoas=true; if(LS.get('vilaCats',null)) escrever(); return; }
-  if(data.v===3||data.v===4){
-    if(data.by===CLIENT_ID && Number(data.lastTs)<=vila.lastTs) return;
-    if(Number(data.lastTs)<vila.lastTs-1500){ csBoas=true; escrever(); return; }
-    vila=normalizar(data);
-  } else if(!csBoas && (data.v===2||'catsOwned' in data||'banked' in data)){
-    const old=data; vila=novaVila();
-    vila.moedas=Number(old.moedas||old.banked)||0;
-    const ol=old.est&&old.est.padaria?Number(old.est.padaria.lvl)||1:Number(old.potLevel)||1;
-    vila.est.sopa={lvl:Math.max(1,ol)};
-    vila.coracoes=Math.max(0,(Number(old.gatos||old.catsOwned)||1)-1)*2;
-    vila.decor=Math.min(DECORS.length,Number(old.decorLvl||old.toppingLevel)||0);
-    vila.lastTs=Number(old.lastTs)||Date.now();
-    csBoas=true; escrever();
-  } else return;
-  csBoas=true; salvarLocal();
-  if(csAberto){ montarMundo(); atualizarHud(); }
-  window.atualizarTagCozy();
-};
-window.atualizarTagCozy=function(){ const t=$('cozy-tag'); if(t) t.textContent=`nível ${vilaNivel()} · ${fmt(vila.moedas)} moedas · +${fmt(vilaRate())}/s`; };
+window.carregarVilaLocal=function(){ if(perfil) conectarPerfil(); };
+window.catOnRemote=function(data){ legado=data; };  // save antigo do casal (só pra migração)
+window.atualizarTagCozy=function(){ const t=$('cozy-tag'); if(t) t.textContent=!perfil?'escolham: Gabrix ou Natalix?':`${HEROIS[perfil].nome} · nível ${vilaNivel()} · ${fmt(vila.moedas)} moedas · +${fmt(vilaRate())}/s`; };
 
 /* ------------------------------------------------------------------
    DESENHOS VETORIAIS (viram sprites; também usados no HTML)
@@ -400,7 +397,48 @@ function bCogumelo(f,n){ // casa-cogumelo + rede
    <rect x="-12" y="-98" width="9" height="16" rx="2" fill="#d9b48a" ${S}/>
    ${f>=1?`<g transform="translate(32,4)"><rect x="-7" y="-12" width="14" height="4" rx="2" fill="#b98a5e" ${S}/><path d="M-4 -8 v8 M4 -8 v8" stroke="${INK}" stroke-width="2"/><rect x="-4" y="-19" width="8" height="7" rx="2" fill="#fbf3e3" ${S}/></g>`:''}`;
 }
-const CONSTRUCAO={sopa:bSopa,padaria:bFeira,horta:bEstufa,lenha:bSerraria,pesca:bLago,violao:bCoreto,soneca:bCogumelo};
+function bCafe(f,n){ // cafeteria com toldo rosa, mesinha com maracujá e morango e um cheesecake
+  let toldo=''; for(let i=0;i<6;i++) toldo+=`<path d="M${-36+i*12} -50 h12 l1 12 h-14 Z" fill="${i%2?'#fff5f5':'#e3798a'}"/>`;
+  return `${sombra(60,13)}
+   ${f>=2?`<g transform="translate(-42,-4)"><path d="M-14 0 V-28 H14 V0 Z" fill="#f7e6e0" ${S}/><path d="M-20 -26 L0 -46 L20 -26 Z" fill="#c25a6c" ${S}/><rect x="-5" y="-20" width="10" height="10" rx="2" fill="${jan(n)}" ${S}/></g>`:''}
+   <path d="M-34 0 V-48 H34 V0 Z" fill="#f7e6e0" ${S}/>
+   <path d="M-8 0 V-26 H8 V0 Z" fill="#b98a5e" ${S}/><circle cx="4" cy="-13" r="1.3" fill="${INK}"/>
+   <circle cx="-20" cy="-24" r="9" fill="${jan(n)}" ${S}/><path d="M-20 -33 v18 M-29 -24 h18" stroke="${INK}" stroke-width="1.2"/>
+   <rect x="13" y="-34" width="14" height="16" rx="2" fill="${jan(n)}" ${S}/>
+   <path d="M-40 -48 L0 -82 L40 -48 Z" fill="#c25a6c" ${S}/><rect x="20" y="-94" width="10" height="24" rx="2" fill="#d9b48a" ${S}/>
+   ${toldo}<path d="M-36 -50 H36 L37 -38 H-37 Z" fill="none" ${S}/>
+   <g transform="translate(0,-62)"><circle r="10" fill="#fbf3e3" ${S}/><path d="M-5 -3 H5 L4 5 H-4 Z" fill="#c99a6b" stroke="${INK}" stroke-width="1.4"/><path d="M5 -1 q4 0 3 3" stroke="${INK}" stroke-width="1.4" fill="none"/></g>
+   <g transform="translate(44,8)"><ellipse cx="0" cy="-12" rx="16" ry="5" fill="#fbf3e3" ${S}/><path d="M0 -8 V2 M-8 2 H8" stroke="${INK}" stroke-width="2"/>
+     <path d="M-10 -26 h6 l-1 10 h-4 Z" fill="#f2c14e" stroke="${INK}" stroke-width="1.4"/><path d="M-7 -26 l2 -6" stroke="#e3798a" stroke-width="1.6"/>
+     <path d="M4 -26 h6 l-1 10 h-4 Z" fill="#f2a7b8" stroke="${INK}" stroke-width="1.4"/><path d="M7 -26 l2 -6" stroke="#86a86b" stroke-width="1.6"/>
+     ${f>=1?`<path d="M-3 -15 l6 0 l-3 -5 Z" fill="#fff4dc" stroke="${INK}" stroke-width="1"/><circle cx="0" cy="-21" r="1.8" fill="#c2185b"/>`:''}</g>`;
+}
+function bCinema(f,n){ // cinema ao ar livre: telão, bancos e cabine do projetor
+  const luzes=f>=1?[...Array(9)].map((_,i)=>`<circle cx="${-46+i*11.5}" cy="-104" r="2.6" fill="${n?'#ffd36b':['#e3798a','#f2c14e','#86afcf'][i%3]}" stroke="${INK}" stroke-width=".8"/>`).join(''):'';
+  return `${sombra(66,14)}
+   <path d="M-48 -40 V-104 M48 -40 V-104" stroke="#8a6a4e" stroke-width="5"/>
+   <rect x="-52" y="-102" width="104" height="58" rx="3" fill="#f3f1ea" ${S}/>
+   <rect x="-46" y="-96" width="92" height="46" fill="#2b2440" />
+   ${luzes}
+   <g transform="translate(0,-18)"><rect x="-40" y="-6" width="80" height="8" rx="3" fill="#c25a6c" ${S}/><path d="M-36 2 v6 M36 2 v6" stroke="${INK}" stroke-width="2"/></g>
+   <g transform="translate(0,0)"><rect x="-44" y="-6" width="88" height="8" rx="3" fill="#c25a6c" ${S}/><path d="M-40 2 v6 M40 2 v6" stroke="${INK}" stroke-width="2"/></g>
+   ${f>=2?`<g transform="translate(62,-2)"><path d="M-12 0 V-26 H12 V0 Z" fill="#efe2c8" ${S}/><path d="M-16 -24 L0 -38 L16 -24 Z" fill="#a07bb7" ${S}/><circle cx="0" cy="-14" r="4" fill="${jan(n)}" ${S}/></g>`:''}`;
+}
+function bBalao(f,n){ // balão de viagem feito com a nave
+  const listras=['#b9dc4c','#f2a7b8','#b9dc4c','#f2a7b8','#b9dc4c'];
+  return `${sombra(30,8)}
+   <g transform="translate(0,-10)">
+    <path d="M-40 -96 C-44 -150 44 -150 40 -96 C38 -78 18 -62 10 -54 H-10 C-18 -62 -38 -78 -40 -96 Z" fill="#b9dc4c" ${S}/>
+    ${listras.map((c,i)=>`<path d="M${-30+i*15} -138 C${-34+i*15} -110 ${-22+i*11} -78 ${-8+i*4} -56" stroke="${c==='#b9dc4c'?'#9cc63a':'#f2a7b8'}" stroke-width="7" fill="none" opacity=".8"/>`).join('')}
+    <path d="M-40 -96 C-44 -150 44 -150 40 -96 C38 -78 18 -62 10 -54 H-10 C-18 -62 -38 -78 -40 -96 Z" fill="none" ${S}/>
+    <path d="M-10 -54 L-16 -30 M10 -54 L16 -30" stroke="${INK}" stroke-width="1.4"/>
+    <ellipse cx="0" cy="-26" rx="22" ry="7" fill="#c8ccd2" ${S}/><path d="M-14 -28 C-14 -40 14 -40 14 -28 Z" fill="#dfe8f0" ${S}/>
+    ${[-12,-4,4,12].map(x=>`<circle cx="${x}" cy="-24" r="1.6" fill="${n?'#ffd36b':'#f2c14e'}"/>`).join('')}
+    ${f>=1?`<path d="M-30 -84 L-50 -60 M30 -84 L50 -60" stroke="${INK}" stroke-width="1"/><path d="M-50 -60 l6 6 l-8 2 Z M50 -60 l-6 6 l8 2 Z" fill="#e3798a"/>`:''}
+   </g>
+   <path d="M-6 2 L0 -10 L6 2" stroke="#a07a55" stroke-width="3" fill="none"/>`;
+}
+const CONSTRUCAO={sopa:bSopa,padaria:bFeira,horta:bEstufa,lenha:bSerraria,pesca:bLago,violao:bCoreto,soneca:bCogumelo,cafe:bCafe,cinema:bCinema,balao:bBalao};
 
 function placaSVG(){
   return `<ellipse cx="0" cy="3" rx="16" ry="5" fill="rgba(60,50,30,.25)"/><rect x="-3" y="-30" width="6" height="32" rx="2" fill="#a07a55" ${S}/>
@@ -476,11 +514,13 @@ function desenharSprite(ctx,s,x,y,sx,sy){
   if(sx==null){ ctx.drawImage(s.img,x+s.x,y+s.y,s.w,s.h); return; }
   ctx.save(); ctx.translate(x,y); ctx.scale(sx,sy); ctx.drawImage(s.img,s.x,s.y,s.w,s.h); ctx.restore();
 }
-const BOX={tree:[-40,-84,80,94],cat:[-28,-62,56,68],catLie:[-34,-34,66,40],bld:[-104,-126,200,160],camp:[-96,-60,192,100],castle:[-150,-200,300,270],decor:[-40,-70,80,80],sign:[-30,-54,60,62],scaf:[-50,-72,100,82]};
+const BOX={tree:[-40,-84,80,94],bal:[-104,-170,200,190],cat:[-28,-62,56,68],catLie:[-34,-34,66,40],bld:[-104,-126,200,160],camp:[-96,-60,192,100],castle:[-150,-200,300,270],decor:[-40,-70,80,80],sign:[-30,-54,60,62],scaf:[-50,-72,100,82]};
 function sprArvore(t){ return sprite('t'+t.tipo+t.cor,BOX.tree,()=>arvoreSVG(t.tipo,t.cor)); }
 function sprGato(o,fech){ const k='c'+o.cor+o.det+(o.listras?1:0)+(o.chapeu?1:0)+(o.chapeuVerde?1:0)+(o.xadrez?1:0)+(o.coroa?1:0)+(o.capacete?1:0)+(fech?'z':''); return sprite(k,BOX.cat,()=>gatoSVG(o,1,fech)); }
 function sprDeitado(o){ return sprite('L'+o.cor,BOX.catLie,()=>gatoDeitadoSVG(o)); }
-function sprConstrucao(id,f,n){ return sprite(`b${id}${f}${n?'n':''}`,BOX.bld,()=>CONSTRUCAO[id](f,n)); }
+function sprConstrucao(id,f,n){ return sprite(`b${id}${f}${n?'n':''}`,id==='balao'?BOX.bal:BOX.bld,()=>CONSTRUCAO[id](f,n)); }
+function sprHeroi(q,disf,fech){ return sprite(`h${q}${disf?1:0}${fech?'z':''}`,ALIEN_BOX,()=>alienSVG(q,disf,fech)); }
+function sprMural(){ return sprite('mural',BOX.decor,()=>`<ellipse cx="0" cy="2" rx="26" ry="6" fill="rgba(60,50,30,.22)"/><path d="M-24 0 V-44 M24 0 V-44" stroke="#a07a55" stroke-width="4"/><rect x="-28" y="-50" width="56" height="34" rx="3" fill="#c99a6b" ${S}/><rect x="-23" y="-46" width="16" height="11" fill="#d3ecf2" stroke="${INK}" stroke-width="1" transform="rotate(-6 -15 -40)"/><rect x="-4" y="-46" width="14" height="12" fill="#fbe3ea" stroke="${INK}" stroke-width="1"/><rect x="12" y="-44" width="12" height="10" fill="#fffaf0" stroke="${INK}" stroke-width="1" transform="rotate(8 18 -39)"/><rect x="-14" y="-31" width="16" height="11" fill="#f8e6c4" stroke="${INK}" stroke-width="1" transform="rotate(4 -6 -26)"/><path d="M-30 -50 L0 -60 L30 -50" fill="#9b4a58" ${S}/>`); }
 function sprAcamp(acesa,f){ return sprite(`camp${acesa?1:0}${f}`,BOX.camp,()=>bAcampamento(acesa,f)); }
 function sprCastelo(st,n){ return sprite(`cas${st}${n?'n':''}`,BOX.castle,()=>casteloSVG(st,n)); }
 function sprDecor(id,n){ return sprite(`d${id}${n&&id==='lampiao'?'n':''}`,BOX.decor,()=>decorSVG(id,n)); }
@@ -512,7 +552,7 @@ function montarDOM(){
    </div>
    <div class="vl-hint" id="vl-hint">arraste pra passear · toque nas casinhas e nos gatinhos</div>
    <div class="vl-nav">
-     <button onclick="vlPainel('rainha')">${ic('crown')}rainha<span class="vl-dot" id="vl-dot-rainha"></span></button>
+     <button onclick="vlPainel('rainha')">${ic('book')}história<span class="vl-dot" id="vl-dot-rainha"></span></button>
      <button onclick="vlPainel('gatos')">${ic('paw')}gatinhos</button>
      <button onclick="vlPainel('mimos')">${ic('heart')}mimos</button>
      <button onclick="vlCentro()">${ic('home')}centro</button>
@@ -619,7 +659,6 @@ function montarMundo(){
   ents=[];
   ents.push({tipo:'castelo',x:CASTELO_POS.x,y:CASTELO_POS.y-60,ax:CASTELO_POS.x,ay:CASTELO_POS.y,act:'castelo',box:[-130,-170,260,220]});
   if(obras.castelo) ents.push({tipo:'obra',x:CASTELO_POS.x,y:CASTELO_POS.y+40,ax:CASTELO_POS.x,ay:CASTELO_POS.y+40,box:BOX.scaf});
-  if(vila.castelo>=1) ents.push({tipo:'rainha',x:CASTELO_POS.x+34,y:CASTELO_POS.y+28,ax:CASTELO_POS.x+34,ay:CASTELO_POS.y+28,act:'rainha',box:[-20,-62,40,64]});
   const prox=proximaEstacao();
   ESTACOES.forEach(e=>{
     const aberta=estAberta(e.id);
@@ -634,11 +673,18 @@ function montarMundo(){
     } else ents.push({tipo:'bld',id:e.id,x:e.x,y:e.y,ax:e.x,ay:e.y,act:'est:'+e.id,box:[-70,-110,140,130],pop:0});
   });
   DECORS.forEach((d,i)=>{ if(i<vila.decor && d.d<R-10) ents.push({tipo:'decor',id:d.id,x:d.x,y:d.y,ax:d.x,ay:d.y,box:BOX.decor}); });
+  if(perfil && (vila.cap.includes(1)||capDisponivel(2))) ents.push({tipo:'mural',x:542,y:584,ax:542,ay:584,act:'mural',box:[-30,-62,60,66]});
   // gatinhos: mantém posições dos que já existem
   const antigos=new Map(cats.map(c=>[c.chave,c]));
   cats.length=0;
   ESTACOES.forEach(e=>{ if(estAberta(e.id)){ const k='e'+e.id; const casa={x:e.x+e.work.dx,y:e.y+e.work.dy}; cats.push(antigos.get(k)||novoGato(k,{...e.gato,estacao:e.id,casa,falas:e.falas,acao:e.work.acao,pers:e.pers})); } });
   vila.adotados.forEach((a,i)=>{ const k='a'+i+a.nome; const c=CORES_GATOS[a.c]; cats.push(antigos.get(k)||novoGato(k,{nome:a.nome,cor:c[0],det:c[1],listras:c[2],falas:JEITOS[a.j||0].falas,pers:JEITOS[a.j||0].p})); });
+  const re=(k,o,pos)=>{ const c=antigos.get(k); if(c){ c.o=o; return c; } const g=novoGato(k,o); if(pos){ g.x=pos.x; g.y=pos.y; } return g; };
+  if(vila.castelo>=1) cats.push(re('rainha',{nome:'Rainha Mimosa',cor:'#fffdf8',det:'#efe2d4',coroa:1,capa:1,parado:1,falas:FALAS_RAINHA,escala:1.15},{x:CASTELO_POS.x+34,y:CASTELO_POS.y+28}));
+  if(perfil){
+    cats.push(re('eu',{nome:HEROIS[perfil].nome,heroi:perfil,disf:!revelado(),falas:falasEu(),vel:30},{x:CX-40,y:CY+30}));
+    if(leu('feira') && parceiro){ const q=outroDe(perfil); cats.push(re('par',{nome:HEROIS[q].nome,heroi:q,disf:!revelado(),falas:falasParceiro(),parceiro:1},{x:CX+50,y:CY+26})); }
+  }
   if(visitante) cats.push(visitante);
   atualizarArvores();
   precisaDesenhar=true;
@@ -656,8 +702,9 @@ function moverGatos(dt){
     c.fase+=dt; if(c.pulo>0) c.pulo=Math.max(0,c.pulo-dt*2.2);
     c.blink-=dt; if(c.blink<-.14) c.blink=2.5+Math.random()*4;
     if(c.fala){ c.fala.t-=dt; if(c.fala.t<=0) c.fala=null; }
+    if(c.o.parado) return;
     if(c.alvo){
-      const dx=c.alvo.x-c.x, dy=c.alvo.y-c.y, dist=Math.hypot(dx,dy), v=(c.vel||24)*dt;
+      const dx=c.alvo.x-c.x, dy=c.alvo.y-c.y, dist=Math.hypot(dx,dy), v=(c.vel||c.o.vel||24)*dt;
       if(dist<=v){ c.x=c.alvo.x; c.y=c.alvo.y; c.alvo=null;
         if(c.o.casa && Math.hypot(c.x-c.o.casa.x,c.y-c.o.casa.y)<2){ c.estado='work'; c.espera=15+Math.random()*25; c.dir=1; }
         else { c.estado='idle'; c.espera=c.o.visit?999:2+Math.random()*5; }
@@ -755,7 +802,7 @@ function desenharEnt(c,e,n){
       const f=faseDe(estLvl(e.id)); const sp=sprConstrucao(e.id,f,n);
       if(e.pop>0){ e.pop=Math.max(0,e.pop-.03); const k=1-e.pop; const sc=k<1?.3+.7*k+Math.sin(k*3.14)*.15:1; desenharSprite(c,sp,e.ax,e.ay,sc,sc); }
       else if(e.squish>0){ e.squish=Math.max(0,e.squish-.06); const q=Math.sin(e.squish*3.14)*.06; desenharSprite(c,sp,e.ax,e.ay,1+q,1-q); }
-      else desenharSprite(c,sp,e.ax,e.ay);
+      else desenharSprite(c,sp,e.ax,e.id==='balao'?e.ay+Math.sin(tempo*1.2)*3:e.ay);
       desenharExtras(c,e); break; }
     case 'camp': {
       const ac=estAberta('fogueira'), f=faseDe(estLvl('fogueira'));
@@ -767,6 +814,7 @@ function desenharEnt(c,e,n){
       c.save(); c.translate(e.ax+24,e.ay-22); c.rotate(Math.sin(tempo*14)*.5-.2); c.fillStyle='#b98a5e'; c.fillRect(-1.5,-14,3,14); c.fillStyle='#9aa3ad'; c.fillRect(-6,-18,12,6); c.restore();
       if(Math.random()<.05) ftxt(e.ax+30,e.ay-40,'toc!',''); break; }
     case 'decor': desenharSprite(c,sprDecor(e.id,n),e.ax,e.ay); break;
+    case 'mural': desenharSprite(c,sprMural(),e.ax,e.ay); break;
   }
 }
 function chama(c,x,y){
@@ -782,6 +830,10 @@ function desenharExtras(c,e){
     c.strokeStyle='rgba(255,255,255,.8)'; c.lineWidth=1.6; const o=Math.sin(tempo*1.5)*4;
     c.beginPath(); c.moveTo(e.x-70+o,e.y+14); c.quadraticCurveTo(e.x-64+o,e.y+11,e.x-58+o,e.y+14); c.stroke();
   }
+  if(e.id==='cinema'){ const f=faseDe(estLvl('cinema')); c.save(); c.beginPath(); c.rect(e.x-46,e.y-96,92,46); c.clip();
+    const k=Math.floor(tempo*1.2)%4, cores=[['#ff6fa8','#6fd6ff'],['#ffd36b','#ff6fa8'],['#6fd6ff','#b9dc4c'],['#f2a7b8','#ffd36b']][k];
+    c.globalAlpha=.85; c.fillStyle=cores[0]; c.fillRect(e.x-46+((tempo*20)%40),e.y-90,22,30); c.fillStyle=cores[1]; c.fillRect(e.x-10,e.y-84+Math.sin(tempo*2)*4,30,24);
+    c.fillStyle='#fff'; c.globalAlpha=.25+Math.random()*.1; c.fillRect(e.x-46,e.y-96,92,46); c.restore(); c.globalAlpha=1; }
   if(e.id==='violao'){ for(let i=0;i<2;i++){ const k=((tempo*.4+i*.5)%1); c.globalAlpha=k<.2?k*5:1-k; c.fillStyle=INK; const nx=e.x-26+i*50+k*10, ny=e.y-60-k*30; c.beginPath(); c.arc(nx,ny,2.4,0,6.283); c.fill(); c.fillRect(nx+1.4,ny-9,1.4,9); c.fillRect(nx+1.4,ny-9,5,1.6); } c.globalAlpha=1; }
 }
 function desenharGato(c,g){
@@ -793,15 +845,17 @@ function desenharGato(c,g){
     return;
   }
   const andando=!!g.alvo, trab=g.estado==='work'&&!andando;
-  const sp=sprGato(o,g.blink<0); if(!sp) return;
+  const sp=o.heroi?sprHeroi(o.heroi,o.disf,g.blink<0):sprGato(o,g.blink<0); if(!sp) return;
   let bob=0, rot=0, sx=1, sy=1;
   if(andando){ bob=-Math.abs(Math.sin(g.fase*10))*3; rot=Math.sin(g.fase*10)*.05; }
   else if(trab){ bob=-Math.abs(Math.sin(g.fase*5))*1.6; sy=1+Math.sin(g.fase*5)*.02; }
   else sy=1+Math.sin(g.fase*2.6)*.025;
   if(g.pulo>0) bob-=Math.sin(g.pulo*Math.PI)*14;
-  const esc=o.visit?.78:.82;
+  const esc=o.escala||(o.visit?.78:o.heroi?.86:.82);
   c.save(); c.translate(g.x,g.y+bob); c.rotate(rot); c.scale(esc*g.dir,esc*sy*(2-sx)); c.drawImage(sp.img,sp.x,sp.y,sp.w,sp.h); c.restore();
   if(trab) ferramenta(c,g);
+  if(o.parceiro && parceiroOnline()){ c.fillStyle='#86a86b'; c.beginPath(); c.arc(g.x+14,g.y-50,4,0,6.283); c.fill(); c.strokeStyle='#fbf7ef'; c.lineWidth=1.6; c.stroke(); }
+  if(o.heroi && !g.fala && tempo%9<.02) {}
   if(o.visit){ const y=g.y-58+Math.sin(tempo*4)*3; c.fillStyle='#fbf7ef'; c.strokeStyle=INK; c.lineWidth=2; c.beginPath(); c.arc(g.x,y,13,0,6.283); c.fill(); c.stroke(); c.fillStyle='#86afcf'; c.fillRect(g.x-7,y-3,14,10); c.strokeRect(g.x-7,y-3,14,10); c.fillStyle='#e3798a'; c.fillRect(g.x-1.5,y-3,3,10); }
 }
 /* ferramentas dos gatinhos trabalhando (vistos de cima, como nos vídeos) */
@@ -828,6 +882,11 @@ function ferramenta(c,g){
   } else if(a==='tostar'){ // marshmallow no fogo
     c.strokeStyle='#b98a5e'; c.lineWidth=2; c.beginPath(); c.moveTo(x+6,y-14); c.lineTo(x+22+Math.sin(t*2)*2,y-26); c.stroke();
     c.fillStyle=Math.sin(t*.5)>.6?'#f2d9a8':'#fffaf2'; c.strokeStyle=INK; c.lineWidth=1.2; c.beginPath(); c.ellipse(x+24+Math.sin(t*2)*2,y-27,4,3,0,0,6.283); c.fill(); c.stroke();
+  } else if(a==='servir'){ const b=Math.sin(t*3)*1.5; c.fillStyle='#d8dde3'; c.strokeStyle=INK; c.lineWidth=1.2; c.beginPath(); c.ellipse(x+12,y-26+b,10,3,0,0,6.283); c.fill(); c.stroke();
+    c.fillStyle='#f2c14e'; c.fillRect(x+5,y-36+b,5,9); c.strokeRect(x+5,y-36+b,5,9); c.fillStyle='#f2a7b8'; c.fillRect(x+13,y-36+b,5,9); c.strokeRect(x+13,y-36+b,5,9);
+  } else if(a==='projetar'){ c.globalAlpha=.18+Math.random()*.06; c.fillStyle='#fff6c8'; c.beginPath(); c.moveTo(x+6,y-22); c.lineTo(x+60,y-84); c.lineTo(x+86,y-60); c.closePath(); c.fill(); c.globalAlpha=1;
+    c.fillStyle='#5c5550'; c.fillRect(x+2,y-28,12,9); c.beginPath(); c.arc(x+5,y-31,4,0,6.283); c.arc(x+12,y-31,4,0,6.283); c.fill();
+  } else if(a==='mapa'){ const k=(Math.sin(t*1.5)+1)/2; c.fillStyle='#fffaf0'; c.strokeStyle=INK; c.lineWidth=1.2; c.fillRect(x-14,y-30,18+k*6,13); c.strokeRect(x-14,y-30,18+k*6,13); c.strokeStyle='#e3798a'; c.beginPath(); c.moveTo(x-11,y-21); c.lineTo(x-4,y-26); c.lineTo(x+4+k*4,y-22); c.stroke();
   } else if(a==='tocar'){ // violãozinho no colo
     c.save(); c.translate(x+4,y-12); c.rotate(-.6+Math.sin(t*4)*.06); c.fillStyle='#c99a6b'; c.strokeStyle=INK; c.lineWidth=1.4; c.beginPath(); c.ellipse(0,0,7,5.5,0,0,6.283); c.fill(); c.stroke(); c.fillStyle='#6b5440'; c.beginPath(); c.arc(0,0,1.8,0,6.283); c.fill(); c.fillStyle='#8a6a4e'; c.fillRect(5,-1.2,14,2.4); c.restore();
   }
@@ -912,6 +971,7 @@ function acao(e){
   else if(tipo==='abrir') sheetConstruir(arg);
   else if(tipo==='castelo') sheetCastelo();
   else if(tipo==='rainha') vlPainel('rainha');
+  else if(tipo==='mural') sheetMural();
   else if(tipo==='praca') toast('a fogueira da praça ainda está apagada... abram mais construções');
 }
 function carinhoGato(g){
@@ -919,7 +979,7 @@ function carinhoGato(g){
   vila.stats.taps++; csDirty=true; progMissao('taps',1);
   if(g.o.estacao) prog[g.o.estacao]=Math.min(.999,(prog[g.o.estacao]||0)+.2);
   if(vila.stats.taps%10===0){ vila.coracoes++; ftxt(g.x,g.y-50,'+1 coração','h'); atualizarHud(); Som.chime(); }
-  if(g.o.falas && (!g.fala) && Math.random()<.7){ g.fala={txt:g.o.falas[Math.floor(Math.random()*g.o.falas.length)],t:3.2}; }
+  if(g.o.falas && (!g.fala) && (g.o.heroi||g.o.parado||Math.random()<.7)){ g.fala={txt:g.o.falas[Math.floor(Math.random()*g.o.falas.length)],t:3.2}; }
   else ftxt(g.x,g.y-50,['miau!','prr...','mrrp!','♥'][Math.floor(Math.random()*4)],'h');
 }
 function popBld(id){ const e=ents.find(x=>x.tipo==='bld'&&x.id===id); if(e) e.pop=1; }
@@ -930,6 +990,8 @@ function popBld(id){ const e=ents.find(x=>x.tipo==='bld'&&x.id===id); if(e) e.po
 let raf=null, last=0, syncT=null, ceuT=null, visitT=null, qualidade=(navigator.hardwareConcurrency||4)<=4?.5:1, lentos=0;
 window.abrirCozy=function(){
   montarDOM();
+  if(!perfil){ $('game-overlay').classList.add('active'); $('arcade-wrap').style.display='none'; root.classList.add('on'); document.body.style.overflow='hidden'; redimensionar(); R=0; montarMundo(); focar(CX,CY-30,zoomInicial()); NOITE=noite(); desenhar(); setTimeout(()=>{ if(!perfil&&root.classList.contains('on')) desenhar(); },400); escolherPerfil(); return; }
+  if(!refEu && fb) conectarPerfil();
   $('game-overlay').classList.add('active'); $('arcade-wrap').style.display='none'; root.classList.add('on');
   document.body.style.overflow='hidden'; csAberto=true;
   redimensionar();
@@ -942,7 +1004,7 @@ window.abrirCozy=function(){
   $('vl-som').classList.toggle('off',!Som.on);
   Som.start();
   if(ganho>=1) mostrarOffline(ganho,elp);
-  else if(!vila.cartas.includes(0)) setTimeout(()=>abrirCarta(0),700);
+  else if(!vila.cap.includes(0)) setTimeout(()=>abrirCarta(0),700);
   last=0; raf=requestAnimationFrame(loop);
   syncT=setInterval(()=>{ if(csDirty){ escrever(); csDirty=false; } },5000);
   ceuT=setInterval(()=>{ NOITE=noite(); atualizarDots(); },5000);
@@ -1015,6 +1077,7 @@ function produzir(e){
   vila.moedas+=v; vila.stats.ganhos+=v; vila.stats.producoes++; csDirty=true;
   progMissao('ganhos',v); progMissao('producoes',1);
   if(e.ciclo>=5||Math.random()<.5) ftxt(e.x,e.y-(e.id==='fogueira'?50:100),(dobro?'sorte! ':'')+'+'+fmt(v),'');
+  if(e.id==='balao' && Math.random()<.3){ const falta=POSTAIS.filter(p=>!vila.postais.includes(p.id)); if(falta.length){ const p=falta[Math.floor(Math.random()*falta.length)]; vila.postais.push(p.id); csDirty=true; toast(`o balão voltou com um postal: ${p.nome}!`); Som.chime(); } }
   const p=$('vl-coin-pill'); p.classList.remove('pop'); void p.offsetWidth; p.classList.add('pop');
 }
 function atualizarHud(){
@@ -1037,11 +1100,18 @@ function modal(html){ $('vl-modal-box').innerHTML=html; $('vl-modal').classList.
 function fecharModal(){ const m=$('vl-modal'); if(m) m.classList.remove('on'); }
 window.fecharModal=fecharModal;
 
+/* vídeo do gatinho (as 8 primeiras) ou desenho da construção + gatinho (as novas, até chegar arte do Gemini) */
+const COM_VIDEO=['sopa','padaria','horta','lenha','pesca','fogueira','violao','soneca'];
+function midia(id,anim){
+  if(COM_VIDEO.includes(id)) return anim?`<video src="gatos/${id}.mp4" poster="gatos/${id}.webp" muted loop playsinline autoplay></video>`:`<img src="gatos/${id}.webp" alt="" style="filter:saturate(.85)">`;
+  const e=estDef(id), f=faseDe(Math.max(1,estLvl(id))), b=id==='balao'?BOX.bal:BOX.bld;
+  return `<svg viewBox="${b[0]-10} ${b[1]} ${b[2]+20} ${b[3]+6}" style="width:100%;height:100%;background:radial-gradient(ellipse at 50% 85%,#dfeac4 0,#f5efe3 70%)">${CONSTRUCAO[id](f,false)}<g transform="translate(${e.work.dx},${e.work.dy})">${gatoSVG(e.gato,1)}</g></svg>`;
+}
 /* --- estação --- */
 function abrirEstacaoSheet(id){
   const e=estDef(id), l=estLvl(id), pm=proxMarco(l), fase=faseDe(l);
   abrirSheet(`
-    <div class="vl-video"><video src="gatos/${id}.mp4" poster="gatos/${id}.webp" muted loop playsinline autoplay></video><span class="tag"><span class="vl-ic">${PROD[id]}</span>${e.gato.nome} trabalhando</span></div>
+    <div class="vl-video">${midia(id,true)}<span class="tag"><span class="vl-ic">${PROD[id]}</span>${e.gato.nome} trabalhando</span></div>
     <h2>${e.nome}</h2><div class="vl-sub">${e.gato.nome}, ${e.pers} · construção ${FASES[fase]} · nível <b id="vl-s-lvl">${l}</b>${marcoMult(l)>1?` · produção ×${marcoMult(l)}`:''}</div>
     <div class="vl-row"><div class="vl-stat"><b>${ic('coin')}<span id="vl-s-val">${fmt(estValor(id))}</span></b>por item</div><div class="vl-stat"><b>${estCiclo(id).toFixed(1).replace('.',',')}s</b>por item</div><div class="vl-stat"><b>${pm||'—'}</b>${pm?'próximo ×2':'nível máx'}</div></div>
     <div class="vl-bar"><i id="vl-sheet-bar" data-id="${id}"></i></div>
@@ -1075,7 +1145,7 @@ window.vlMelhorar=function(id){
 function sheetConstruir(id){
   const e=estDef(id);
   if(obras[id]){ toast('os gatinhos pedreiros estão trabalhando!'); return; }
-  abrirSheet(`<div class="vl-video"><img src="gatos/${id}.webp" alt="" style="filter:saturate(.85)"><span class="tag">quem vai morar aqui?</span></div>
+  abrirSheet(`<div class="vl-video">${midia(id,false)}<span class="tag">quem vai morar aqui?</span></div>
     <h2>${e.nome}</h2><div class="vl-sub">${e.gato.nome} quer voltar pra floresta</div>
     <div class="vl-row"><div class="vl-stat"><b>${ic('coin')}${fmt(e.val*multGlobal())}</b>por item</div><div class="vl-stat"><b>${e.ciclo}s</b>por item</div></div>
     ${e.extra?`<p class="vl-small">${e.extra}</p>`:''}
@@ -1104,7 +1174,7 @@ function concluirObra(id){
   Ralvo=raioAlvo(); montarMundo(); Som.fanfarra(); popBld(id);
   const e=estDef(id);
   burstHearts(innerWidth/2,innerHeight/2,22);
-  modal(`<div class="vl-video" style="margin-bottom:8px"><video src="gatos/${id}.mp4" poster="gatos/${id}.webp" muted loop playsinline autoplay></video></div><h2>${e.nome} abriu!</h2><p class="vl-small" style="font-size:14px">${e.gato.nome} voltou pra floresta e já está trabalhando${e.extra?'<br><b>'+e.extra+'</b>':''}</p><button class="vl-btn" onclick="fecharModal()">eba!</button>`);
+  modal(`<div class="vl-video" style="margin-bottom:8px">${midia(id,true)}</div><h2>${e.nome} abriu!</h2><p class="vl-small" style="font-size:14px">${e.gato.nome} voltou pra floresta e já está trabalhando${e.extra?'<br><b>'+e.extra+'</b>':''}</p><button class="vl-btn" onclick="fecharModal()">eba!</button>`);
   atualizarHud();
 }
 /* --- castelo --- */
@@ -1132,42 +1202,319 @@ window.vlRestaurar=function(){
 };
 
 /* --- painéis da barra --- */
-let abaRainha='cartas', abaGatos='album';
+/* =====================================================================
+   HISTÓRIA: GABRIX E NATALIX — dois gatos alienígenas disfarçados
+   Cada um joga o seu save; alguns capítulos só acontecem quando os
+   DOIS chegam lá (a feira e a chuva).
+   ===================================================================== */
+const HEROIS={g:{nome:'Gabrix',real:'Gabriel',pron:'ele'},n:{nome:'Natalix',real:'Natália',pron:'ela'}};
+const outroDe=p=>p==='g'?'n':'g';
+const HIST=[
+ {id:'queda', t:'prólogo: a queda', premio:3, req:()=>true, txt:{
+  g:`a última coisa que eu lembro é o alarme da nave gritando e um monte de luz verde. depois, silêncio. acordei numa floresta cheia de árvores fofas e um cheiro de sopa no ar.
+
+sou o Gabrix, da Academia Estelar de Veluma. e pelo jeito, o único que sobrou.
+
+os gatos daqui não podem saber o que eu sou. passei pó de disfarce no pelo, escondi as antenas num gorro e... os óculos ficaram. ninguém desconfia de um gato de óculos, né?
+
+pode não?`,
+  n:`minha nave caiu bem no meio da noite. quando abri a escotilha, só tinha estrelas, árvores e um silêncio enorme.
+
+sou a Natalix, da Academia Estelar de Veluma. procurei sinal de outra nave por horas. nada. sou a única.
+
+passei o pó de disfarce, prendi as antenas embaixo da boina e deixei o cabelo solto pra cobrir o resto. de longe pareço uma gata normal. de perto... melhor ninguém chegar perto.`}},
+ {id:'disfarce', t:'1. ninguém me vê', premio:3, req:()=>nAbertas()>=2, reqTxt:'abra 2 construções', txt:{
+  g:`os gatos daqui são gentis. a Nuvem me dá sopa, o Toco me ensina a cortar lenha. eu faço todo mundo rir.
+
+mas tem uma coisa estranha: quanto mais eu faço os outros rirem, mais eu sinto que ninguém me conhece de verdade. eles riem do gato engraçado de óculos. o Gabrix de verdade continua escondido embaixo do gorro.
+
+às vezes olho pro céu e dá vontade de ir embora. só não sei pra onde.`,
+  n:`hoje a Paçoca elogiou meu jeito de organizar as caixas. eu sorri, mas por dentro pensei: se ela soubesse...
+
+é cansativo fingir o tempo todo. ninguém aqui sabe o que me faz rir de verdade, nem que eu fico brava quando me atraso, nem que eu choro vendo filme.
+
+à noite eu subo na colina e fico olhando as estrelas. dá vontade de fugir. mas fugir pra onde, se eu nem sei mais de onde eu sou?`}},
+ {id:'mural', t:'2. o mural de postais', premio:5, req:()=>nAbertas()>=3, reqTxt:'abra 3 construções', txt:{
+  g:`na praça tem um mural onde os viajantes penduram cartões-postais. hoje apareceu um novo: um desenho do mar, com a legenda "lembrança do Rio das Estrelas".
+
+quem desenhou assinou só com uma boina.
+
+não resisti e escrevi embaixo uma piada sobre o tamanho das ondas. no dia seguinte tinha uma resposta: "hahahaha besta".
+
+não sei quem é. mas faz tempo que eu não fico tão curioso.`,
+  n:`pendurei um desenho do mar do Rio das Estrelas no mural da praça. ninguém nunca comenta nada lá.
+
+hoje tinha uma piada escrita embaixo. uma piada boba... e eu ri sozinha no meio da praça, igual uma doida.
+
+respondi "hahahaha besta". a letra dele é toda torta. e isso me lembrou alguém da academia: um menino engraçado que vivia num grupo diferente do meu.`}},
+ {id:'feira', t:'3. a feira dos viajantes', premio:8, junto:4, req:()=>nAbertas()>=4, reqTxt:'abra 4 construções', txt:{
+  g:`a Rainha anunciou a Feira dos Viajantes, com o show do Felco, o bufão mais engraçado do bosque. chamei os amigos e, num impulso, deixei um convite no mural pra dona da boina.
+
+nunca que ela ia aceitar.
+
+ela aceitou.
+
+quando a vi, quase derrubei a pipoca: era a Natalix. da academia. desde a sexta órbita a gente estudava junto e nunca tinha conversado direito. ela ria das minhas piadas de longe. hoje riu de perto.`,
+  n:`eu nunca aceito convite de desconhecido. mas a letra torta do mural me chamou pro show do Felco e eu... fui.
+
+era o Gabrix. o menino engraçado da academia, com o mesmo cabelo bagunçado de sempre (mesmo disfarçado dá pra ver).
+
+passei a noite pensando: se ele é da academia, será que ele também caiu aqui? será que ele também se esconde? não tive coragem de perguntar. mas rir do lado dele foi bom demais.`}},
+ {id:'lua', t:'4. uma lua cheia por mês', premio:5, req:()=>nAbertas()>=5, reqTxt:'abra 5 construções', txt:{
+  g:`tive que me mudar pra uma clareira do outro lado do bosque, pra estudar com os sábios do castelo. agora eu e a Natalix só nos vemos uma vez por mês, na lua cheia, na feira.
+
+como amigos, claro.
+
+mas reparei que ela guarda o lugar do meu lado. e que ela sempre pergunta "pode não?" quando quer alguma coisa e já sabe que eu vou dizer sim.`,
+  n:`o Gabrix foi estudar longe. agora é uma lua cheia por mês.
+
+eu conto os dias. não conto pra ninguém que conto os dias.
+
+na última feira ele chegou com o cabelo uma bagunça e eu falei que parecia um ninho de passarinho. ele riu. eu também. e quando ele foi embora, o bosque ficou grande demais de novo.`}},
+ {id:'pegou', t:'5. "você me pegou"', premio:5, req:()=>vila.castelo>=1, reqTxt:'restaure a ponte do castelo', txt:{
+  g:`mandei uma carta por vagalume-correio, meio brincando: "Natalix, acho que você gosta de mim".
+
+a resposta veio rapidinho, com a letra tremida: "você me pegou. que vergonha."
+
+fiquei olhando pra carta um tempão. aí percebi uma coisa ainda mais estranha: eu também gosto dela. já faz tempo.`,
+  n:`eu não acredito que ele perguntou assim, do nada, por carta!
+
+escrevi "você me pegou, que vergonha" e escondi a cara na almofada a noite toda.
+
+depois chegou outro vagalume: "então vamos ver uma história juntos. só nós dois. pode não?"
+
+pode sim.`}},
+ {id:'sombras', t:'6. o teatro de sombras', premio:8, req:()=>nAbertas()>=6, reqTxt:'abra 6 construções', txt:{
+  g:`fomos no teatro de sombras do castelo. era uma história de terror, com um monstro de papel que aparecia do nada. ela se assustou e segurou minha pata. não soltou mais.
+
+na saída ela estava tão linda que eu tentei dar um beijo. ela desviou e disse, sorrindo:
+
+"no próximo."
+
+voltei pra minha clareira flutuando. nem precisava de nave.`,
+  n:`ele escolheu uma história de terror. eu sabia que ia me assustar e fui mesmo assim, porque era com ele.
+
+segurei a pata dele no primeiro susto e fingi que foi sem querer. não foi.
+
+quando ele tentou me beijar eu fiquei nervosa e disse "no próximo". e cumpri essa promessa na minha cabeça a semana inteira.`}},
+ {id:'chuva', t:'7. amores expressos', premio:10, junto:7, req:()=>nAbertas()>=7&&vila.castelo>=2, reqTxt:'abra 7 construções e restaure o portão real', txt:{
+  g:`dois meses depois, o cinema da Rainha passou um filme antigo de outro mundo: "Amores Expressos". luzes de neon e uma música que gruda na cabeça.
+
+quando acabou, ela me beijou. o próximo tinha chegado.
+
+corremos da chuva pra uma cafeteria. pedi maracujá, ela pediu morango, e em dois minutos ela já tava bebendo o meu.
+
+foi aí que a chuva lavou o pó de disfarce. o pelo dela ficou verde. igual ao meu.
+
+a gente ficou se olhando, pingando, verde... e começou a rir.`,
+  n:`"Amores Expressos". eu amo filmes, e esse virou o meu favorito no mesmo instante, porque foi nele que eu dei o beijo que tinha prometido.
+
+na cafeteria eu pedi morango e ele maracujá. o dele, como sempre, era melhor. roubei.
+
+aí a chuva levou o disfarce embora. as antenas dele apareceram. as minhas também.
+
+nunca fui a única. ele também nunca foi o único. a gente só estava se procurando no lugar errado.`}},
+ {id:'pedido', t:'8. o cinema fechado', premio:15, req:()=>estAberta('cinema'), reqTxt:'construa o cine cultura', final:true, txt:{
+  g:`construí um cinema ao ar livre e pedi pra fecharem só pra nós dois. ela, cinéfila, achou que era só mais uma sessão.
+
+no fim do filme, a lanterna mágica me projetou na tela, falando tudo o que eu sinto. depois tocou a música do nosso primeiro beijo.
+
+a Lumi, do projetor, apareceu com um buquê. eu ajoelhei.
+
+"Natalix, quer namorar comigo?"`,
+  n:`ele fechou o cinema inteiro. pra mim.
+
+no final do filme, ele apareceu na tela, falando coisas que eu guardo até hoje. aí começou a música do nosso primeiro beijo e eu já tava chorando antes do buquê chegar.
+
+ele ajoelhou com o cabelo bagunçado de sempre.
+
+claro que eu disse sim.`}},
+ {id:'mundo', t:'epílogo: o mundo inteiro', premio:20, req:()=>estAberta('balao'), reqTxt:'construa o balão dos viajantes', txt:{
+  g:`a gente consertou uma das naves, mas não pra voltar pra Veluma. transformamos ela num balão de viagem.
+
+primeiro destino? ela quer a China. eu quero o Peru. vamos pros dois. e pro Japão, Chile, Canadá, Itália (pizza!), França e Rússia.
+
+passei a vida querendo ir embora sem saber pra onde. agora eu sei: pra qualquer lugar, desde que seja com ela.
+
+casa não é um planeta. é uma pessoa.`,
+  n:`transformamos a nave dele num balão. eu fico com a janela e reclamo do cabelo dele voando.
+
+China primeiro, depois Japão, Peru, Chile, Canadá, Itália, França, Rússia... e cada cafeteria pelo caminho. ele pede maracujá, eu peço morango, e eu sempre fico com o dele.
+
+eu vivia querendo fugir. agora eu só quero ir. é diferente.
+
+casa não é um planeta. é uma pessoa. e a minha tem cabelo bagunçado.`}}
+];
+const capIdx=id=>HIST.findIndex(h=>h.id===id);
+const leu=id=>vila.cap.includes(capIdx(id));
+const revelado=()=>leu('chuva');
+
+/* postais trazidos pelo balão */
+const POSTAIS=[
+  {id:'china',nome:'China',desc:'a Grande Muralha',bg:'#f6d6c8'},
+  {id:'japao',nome:'Japão',desc:'cerejeiras e um portal vermelho',bg:'#fbe3ea'},
+  {id:'peru',nome:'Peru',desc:'montanhas que tocam as nuvens',bg:'#dbe9cf'},
+  {id:'chile',nome:'Chile',desc:'as estrelas do deserto',bg:'#2f3a63'},
+  {id:'canada',nome:'Canadá',desc:'lagos e folhas de bordo',bg:'#d7e8f0'},
+  {id:'italia',nome:'Itália',desc:'pizza vegetariana de verdade',bg:'#f8e6c4'},
+  {id:'franca',nome:'França',desc:'a torre de ferro de Paris',bg:'#e3e3f3'},
+  {id:'russia',nome:'Rússia',desc:'cúpulas coloridas',bg:'#f3dcdc'},
+  {id:'hongkong',nome:'Hong Kong',desc:'o neon de Amores Expressos',bg:'#2b2440'},
+  {id:'rio',nome:'Rio das Estrelas',desc:'o mar do primeiro postal',bg:'#d3ecf2'}
+];
+function postalSVG(p,ok){
+  const I='#4a3a2e';
+  const arte={
+    china:`<path d="M6 62 L28 46 L48 54 L70 38 L92 48 L114 36" stroke="#b5654a" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="M26 44 v-5 M46 52 v-5 M68 36 v-5 M90 46 v-5" stroke="#b5654a" stroke-width="4"/><path d="M0 70 Q40 52 80 64 T120 60 V80 H0Z" fill="#9cc27c"/>`,
+    japao:`<path d="M36 70 V36 M84 70 V36" stroke="#d1453b" stroke-width="5"/><path d="M28 34 Q60 26 92 34" stroke="#d1453b" stroke-width="6" fill="none"/><path d="M34 44 H86" stroke="#d1453b" stroke-width="4"/>${[[18,20],[100,18],[108,30],[12,34]].map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="6" fill="#f6b6c8"/>`).join('')}`,
+    peru:`<path d="M0 72 L30 30 L52 52 L74 20 L120 72 Z" fill="#86a86b" stroke="${I}" stroke-width="1.6"/><path d="M58 50 h30 M54 58 h40 M50 66 h50" stroke="#c9b18a" stroke-width="2.4"/><ellipse cx="96" cy="22" rx="14" ry="5" fill="#fff"/>`,
+    chile:`${[[14,14],[34,26],[60,10],[84,22],[104,12],[50,34],[94,40]].map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="1.8" fill="#fff4b0"/>`).join('')}<path d="M0 66 Q30 50 60 62 T120 58 V80 H0Z" fill="#d9a46b"/>`,
+    canada:`<rect x="0" y="54" width="120" height="26" fill="#86afcf"/><path d="M60 14 L64 26 L74 22 L70 34 L80 36 L68 44 L70 52 L60 48 L50 52 L52 44 L40 36 L50 34 L46 22 L56 26 Z" fill="#d1453b" stroke="${I}" stroke-width="1.4"/><path d="M60 48 V60" stroke="${I}" stroke-width="2"/>`,
+    italia:`<path d="M30 20 L96 34 L40 70 Z" fill="#f2c14e" stroke="${I}" stroke-width="2"/><path d="M30 20 L96 34" stroke="#c99a6b" stroke-width="6"/>${[[50,36],[66,40],[48,52],[62,30]].map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="4" fill="#d1453b"/>`).join('')}<circle cx="56" cy="46" r="3" fill="#86a86b"/>`,
+    franca:`<path d="M60 10 L48 70 M60 10 L72 70 M52 50 H68 M55 32 H65 M44 70 Q60 52 76 70" stroke="#6b5440" stroke-width="3" fill="none"/>`,
+    russia:`${[[34,'#e3798a'],[60,'#86afcf'],[86,'#86a86b']].map((q,i)=>`<rect x="${q[0]-9}" y="${44-i%2*6}" width="18" height="${30+i%2*6}" fill="#f5efe3" stroke="${I}" stroke-width="1.4"/><path d="M${q[0]-12} ${44-i%2*6} C${q[0]-12} ${30-i%2*6} ${q[0]} ${26-i%2*6} ${q[0]} ${18-i%2*6} C${q[0]} ${26-i%2*6} ${q[0]+12} ${30-i%2*6} ${q[0]+12} ${44-i%2*6} Z" fill="${q[1]}" stroke="${I}" stroke-width="1.4"/>`).join('')}`,
+    hongkong:`${[[14,30,14,40,'#ff6fa8'],[34,18,16,52,'#6fd6ff'],[56,26,14,44,'#ffd36b'],[76,14,18,56,'#ff6fa8'],[98,28,14,42,'#6fd6ff']].map(q=>`<rect x="${q[0]}" y="${q[1]}" width="${q[2]}" height="${q[3]}" fill="none" stroke="${q[4]}" stroke-width="2.4"/>`).join('')}`,
+    rio:`<path d="M0 56 Q20 50 40 56 T80 56 T120 56 V80 H0Z" fill="#86afcf"/><path d="M70 56 C74 30 84 24 92 26 C98 30 100 44 104 56 Z" fill="#86a86b" stroke="${I}" stroke-width="1.4"/><circle cx="24" cy="22" r="9" fill="#f2c14e"/>`
+  }[p.id];
+  return `<svg viewBox="0 0 120 80"><rect x="1" y="1" width="118" height="78" rx="6" fill="${p.bg}" stroke="${I}" stroke-width="2"/>${ok?arte:'<text x="60" y="48" text-anchor="middle" font-size="26" fill="#c2ac88">?</text>'}<rect x="94" y="6" width="18" height="20" rx="2" fill="#fbf7ef" stroke="#c2ac88" stroke-width="1.4" stroke-dasharray="2 2"/></svg>`;
+}
+
+/* falas dos heróis conforme a história avança */
+function falasEu(){
+  const g=perfil==='g';
+  if(revelado()) return g?['maracujá, sempre.','ela roubou meu suco de novo. vale a pena.','casa não é um planeta.','pode não?']:['morango... mas o maracujá dele é melhor','mozi, arruma esse cabelo!','queria um cheesecake de cereja agora','pode não?'];
+  if(leu('feira')) return g?['a Natalix riu da minha piada. de novo.','falta quanto pra lua cheia?','será que ela também esconde alguma coisa?','pode não?']:['a letra torta dele é horrível. eu adoro.','o cabelo dele tava uma bagunça de novo','será que ele também é... não, né?','pode não?'];
+  return g?['será que tem mais alguém como eu por aqui?','esse gorro coça as antenas...','fiz a Nuvem rir. ponto pro Gabrix.','às vezes dá vontade de ir embora... mas pra onde?']:['ninguém aqui sabe quem eu sou de verdade','essa boina esconde duas antenas, shh','quero fugir... mas pra onde?','já tô atrasada pra alguma coisa, com certeza'];
+}
+function falasParceiro(){
+  const parG=perfil==='n';
+  if(revelado()) return parG?['meu bem! trouxe maracujá pra gente','pode não? *faz careta*','*conta uma piada péssima*','meu cabelo tá ótimo, obrigado']:['mozi, seu cabelo tá uma bagunça','me dá um gole do seu? o seu é sempre melhor','*beijinho na orelha*','a gente vai se atrasar!!','pode não?'];
+  return parG?['oi, Natalix! viu o show do Felco?','*faz uma piada sobre as ondas do Rio das Estrelas*','guarda um lugar pra mim na próxima lua cheia?']:['hahahaha besta','guardei um lugar pra você','sua letra é horrível, sabia?'];
+}
+const FALAS_RAINHA=['bem-vindos à minha floresta, viajantes','que gorro curioso... nunca vi um gato de antenas. digo, de gorro.','vocês dois me lembram uma história muito antiga','a feira dos viajantes é a minha festa favorita'];
+
+/* ---------------- perfis e saves separados ---------------- */
+let perfil=LS.get('vilaPerfil',null); if(perfil!=='g'&&perfil!=='n') perfil=null;
+let parceiro=null, legado=null, refEu=null, refOutro=null, unsubEu=null, unsubOutro=null;
+const chaveLocal=()=>'vilaCats_'+perfil;
+function deLegado(d){
+  if(!d) return null;
+  if(d.v===3||d.v===4){ const v=normalizar(d); v.cap=[]; v.postais=[]; return v; }
+  if(d.v===2||'catsOwned' in d||'banked' in d){
+    const v=novaVila(); v.moedas=Number(d.moedas||d.banked)||0;
+    const ol=d.est&&d.est.padaria?Number(d.est.padaria.lvl)||1:Number(d.potLevel)||1;
+    v.est.sopa={lvl:Math.max(1,ol)}; v.coracoes=Math.max(0,(Number(d.gatos||d.catsOwned)||1)-1)*2;
+    v.decor=Math.min(DECORS.length,Number(d.decorLvl||d.toppingLevel)||0); v.lastTs=Number(d.lastTs)||Date.now(); return v;
+  }
+  return null;
+}
+function conectarPerfil(){
+  const loc=LS.get(chaveLocal(),null);
+  if(loc) vila=normalizar(loc);
+  else { vila=deLegado(LS.get('vilaCats',null))||deLegado(legado)||novaVila(0); }
+  salvarLocal();
+  parceiro=null;
+  if(unsubEu){ unsubEu(); unsubEu=null; } if(unsubOutro){ unsubOutro(); unsubOutro=null; }
+  if(!fb||typeof mainRef==='undefined'||!mainRef) return;
+  refEu=mainRef.collection('extras').doc('vila_'+perfil);
+  refOutro=mainRef.collection('extras').doc('vila_'+outroDe(perfil));
+  unsubEu=refEu.onSnapshot(s=>remotoEu(s.exists?s.data():null),()=>{});
+  unsubOutro=refOutro.onSnapshot(s=>{
+    const d=s.exists?s.data():null;
+    parceiro=d?{abertas:ESTACOES.filter(e=>d.est&&d.est[e.id]&&Number(d.est[e.id].lvl)>0).length,cap:Array.isArray(d.cap)?d.cap:[],lastTs:Number(d.lastTs)||0}:null;
+    if(csAberto){ montarMundo(); atualizarDots(); }
+  },()=>{});
+}
+function remotoEu(d){
+  if(!d){ // primeira vez deste jogador na nuvem: herda o save antigo do casal
+    if(!LS.get(chaveLocal(),null)){ const v=deLegado(legado); if(v) vila=v; }
+    escrever(); if(csAberto){ montarMundo(); atualizarHud(); } return;
+  }
+  if(d.by===CLIENT_ID && Number(d.lastTs)<=vila.lastTs) return;
+  if(Number(d.lastTs)<vila.lastTs-1500){ escrever(); return; }
+  vila=normalizar(d); salvarLocal();
+  if(csAberto){ montarMundo(); atualizarHud(); }
+  window.atualizarTagCozy();
+}
+function parceiroOk(n){ if(!fb) return true; return !!parceiro && parceiro.abertas>=n; }
+const parceiroOnline=()=>parceiro&&Date.now()-parceiro.lastTs<3*60*1000;
+
+/* capítulos disponíveis: em ordem, cumprindo os requisitos */
+function capDisponivel(i){
+  const h=HIST[i]; if(!h) return false;
+  if(i>0 && !vila.cap.includes(i-1)) return false;
+  if(!h.req()) return false;
+  if(h.junto && !parceiroOk(h.junto)) return false;
+  return true;
+}
+function cartasNovas(){ return HIST.map((h,i)=>i).filter(i=>!vila.cap.includes(i)&&capDisponivel(i)); }
+function motivoTrava(i){
+  const h=HIST[i];
+  if(i>0&&!vila.cap.includes(i-1)) return 'leia o capítulo anterior';
+  if(!h.req()) return h.reqTxt||'continue cuidando da vila';
+  if(h.junto&&!parceiroOk(h.junto)){ const o=HEROIS[outroDe(perfil)].nome; return parceiro?`esperando ${o} chegar (${parceiro.abertas}/${h.junto} construções)`:`esperando ${o} começar a jogar`; }
+  return '';
+}
+
+/* ---------------- painel da história ---------------- */
+let abaRainha='cap', abaGatos='album';
 window.vlPainel=function(p,aba){
   if(p==='rainha'){ if(aba) abaRainha=aba; painelRainha(); }
   else if(p==='gatos'){ if(aba) abaGatos=aba; painelGatos(); }
   else painelMimos();
 };
-function cartasDisponiveis(){ return CARTAS.map((c,i)=>i).filter(i=>i<=vila.castelo); }
-function cartasNovas(){ return cartasDisponiveis().filter(i=>!vila.cartas.includes(i)); }
+function retrato(q,disf,w){ return `<svg viewBox="${ALIEN_BOX.join(' ')}" style="width:${w||70}px;height:${(w||70)*1.2}px">${alienSVG(q,disf,false)}</svg>`; }
 function painelRainha(){
   garantirMissoes();
-  const tabs=`<div class="vl-tabs"><button class="${abaRainha==='cartas'?'on':''}" onclick="vlPainel('rainha','cartas')">cartas${cartasNovas().length?' •':''}</button><button class="${abaRainha==='pedidos'?'on':''}" onclick="vlPainel('rainha','pedidos')">pedidos do dia</button></div>`;
+  const eu=HEROIS[perfil], ot=HEROIS[outroDe(perfil)];
+  const tabs=`<div class="vl-tabs"><button class="${abaRainha==='cap'?'on':''}" onclick="vlPainel('rainha','cap')">capítulos${cartasNovas().length?' •':''}</button><button class="${abaRainha==='pedidos'?'on':''}" onclick="vlPainel('rainha','pedidos')">pedidos</button><button class="${abaRainha==='postais'?'on':''}" onclick="vlPainel('rainha','postais')">postais</button></div>`;
   let corpo='';
-  if(abaRainha==='cartas'){
-    corpo=CARTAS.map((c,i)=>{ const ok=i<=vila.castelo, nova=ok&&!vila.cartas.includes(i);
-      return `<button class="vl-chap ${ok?'':'lock'}" ${ok?`onclick="abrirCarta(${i})"`:''}><span class="vl-ic" style="width:30px;height:30px">${ok?ICON.letter:ICON.crown}</span><span><b>${ok?c.t:'carta lacrada'}</b><small>${ok?(vila.cartas.includes(i)?'lida':'nova! recompensa: '+c.premio+' corações'):`restaure: ${CASTELO[i-1].nome}`}</small></span>${nova?'<span class="new">nova</span>':''}</button>`; }).join('');
-  } else {
+  if(abaRainha==='cap'){
+    corpo=HIST.map((h,i)=>{ const lido=vila.cap.includes(i), ok=lido||capDisponivel(i), nova=ok&&!lido;
+      return `<button class="vl-chap ${ok?'':'lock'}" ${ok?`onclick="abrirCarta(${i})"`:''}><span class="vl-ic" style="width:30px;height:30px">${ok?ICON.letter:ICON.crown}</span><span><b>${ok?h.t:'capítulo trancado'}</b><small>${lido?'lido':ok?'novo! +'+h.premio+' corações':esc(motivoTrava(i))}</small></span>${nova?'<span class="new">novo</span>':''}</button>`; }).join('');
+  } else if(abaRainha==='pedidos'){
     const m=vila.missoes;
-    corpo=`<p class="vl-small" style="margin:0 0 10px">a rainha pede ajuda todo dia — vale pros dois!</p>`+m.lista.map((x,i)=>{
+    corpo=`<p class="vl-small" style="margin:0 0 10px">pedidos da Rainha Mimosa pra hoje</p>`+m.lista.map((x,i)=>{
       const def=MISSOES_POOL.find(p=>p.tipo===x.tipo), pct=Math.min(100,x.prog/x.meta*100);
       return `<div class="vl-item ${x.ok?'done':''}"><div class="tx"><b style="font-size:15px">${def.txt(x.meta)}</b><div class="vl-mbar"><i style="width:${pct}%"></i></div><small>${fmt(x.prog)} / ${fmt(x.meta)}</small></div>
         ${x.ok?'<span class="bt leaf" style="background:none;box-shadow:none;color:var(--leaf-dark)">feito</span>':x.prog>=x.meta?`<button class="bt leaf" onclick="vlResgatar(${i})">+3 ${ic('heart')}</button>`:`<span class="bt no">+3 ${ic('heart')}</span>`}</div>`; }).join('')
       +`<div class="vl-item" style="justify-content:center;flex-direction:column;text-align:center;border-style:dashed;border-color:var(--honey)"><span class="vl-ic" style="width:44px;height:44px">${ICON.gift}</span>${m.bau?'<b>presente de hoje aberto! volta amanhã</b>':m.lista.every(x=>x.ok)?'<button class="vl-btn honey" onclick="vlBau()">abrir presente da rainha</button>':'<small style="font-weight:800;color:var(--ink-soft)">cumpra os 3 pedidos pra ganhar o presente do dia</small>'}</div>`;
+  } else {
+    const n=vila.postais.length;
+    corpo=`<p class="vl-small" style="margin:0 0 10px">${estAberta('balao')?`${n}/${POSTAIS.length} postais · o balão traz um novo de vez em quando`:'o balão dos viajantes ainda não existe... a história vai chegar lá'}</p>
+      <div class="vl-postais">${POSTAIS.map(p=>{ const ok=vila.postais.includes(p.id); return `<div class="${ok?'':'lock'}">${postalSVG(p,ok)}<b>${ok?p.nome:'???'}</b><small>${ok?p.desc:'ainda não visitado'}</small></div>`; }).join('')}</div>`;
   }
-  abrirSheet(`<svg class="vl-queen" viewBox="-40 -64 80 70">${rainhaSVG(1)}</svg><h2>Rainha Mimosa</h2><div class="vl-sub">${vila.castelo<5?'castelo '+vila.castelo+'/5 restaurado':'o reino dos aconchegos acordou'}</div>${tabs}${corpo}`,'rainha');
+  const online=parceiro&&parceiroOnline()?` · <b style="color:var(--leaf-dark)">${ot.nome} está jogando agora</b>`:'';
+  abrirSheet(`<div class="vl-herois">${retrato(perfil,!revelado(),74)}<div><h2 style="text-align:left">${eu.nome}</h2><div class="vl-sub" style="text-align:left;margin:0">${revelado()?'sem disfarce':'disfarçad'+(perfil==='g'?'o':'a')+' de gato comum'}${online}</div><button class="linkish" style="font-size:13px" onclick="vlTrocarPerfil()">não é você? trocar jogador</button></div></div>${tabs}${corpo}`,'rainha');
 }
 window.abrirCarta=function(i){
-  const c=CARTAS[i]; if(!c||i>vila.castelo) return;
-  let txt=c.txt;
-  if(c.final){ const f=(window.DB&&DB.cartaFinal)||(typeof DB!=='undefined'&&DB.cartaFinal)||''; txt+=`\n\n— carta do viajante —\n\n${f||CARTA_FINAL_PADRAO}`; }
-  const nova=!vila.cartas.includes(i);
-  if(nova){ vila.cartas.push(i); vila.coracoes+=c.premio; csDirty=true; escrever(); csDirty=false; atualizarHud(); setTimeout(()=>{ toast(`+${c.premio} corações da rainha`); Som.chime(); },400); if(c.final) burstHearts(innerWidth/2,innerHeight/2,40); }
-  abrirSheet(`<svg class="vl-queen" viewBox="-40 -64 80 70">${rainhaSVG(1)}</svg><h2>${c.t}</h2><div class="vl-sub">de: Rainha Mimosa · para: vocês dois</div>
-    <div class="vl-letter"><span class="seal">${ICON.letter}</span><p>${esc(txt)}</p><div class="sig">com carinho, R. Mimosa</div></div>
-    <button class="vl-btn rose" onclick="vlPainel('rainha','cartas')">voltar às cartas</button>`,'carta');
+  const h=HIST[i]; if(!h||!(vila.cap.includes(i)||capDisponivel(i))) return;
+  let txt=h.txt[perfil];
+  if(h.final){
+    if(perfil==='n'){ const f=(typeof DB!=='undefined'&&DB.cartaFinal)||''; txt+=`\n\n— o que ele disse na tela —\n\n${f||CARTA_FINAL_PADRAO}`; }
+    else { const f=(typeof DB!=='undefined'&&DB.cartaFinalDela)||''; if(f) txt+=`\n\n— o que ela respondeu —\n\n${f}`; }
+  }
+  const nova=!vila.cap.includes(i);
+  if(nova){ vila.cap.push(i); vila.coracoes+=h.premio; csDirty=true; escrever(); csDirty=false; atualizarHud(); setTimeout(()=>{ toast(`+${h.premio} corações`); Som.chime(); },400); if(h.id==='chuva'||h.final) burstHearts(innerWidth/2,innerHeight/2,40); }
+  const disf=!revelado();
+  const cena=(h.id==='queda'||h.id==='disfarce')?retrato(perfil,true,90)
+    :`${retrato('g',disf&&h.id!=='chuva',84)}${retrato('n',disf&&h.id!=='chuva',84)}`;
+  abrirSheet(`<div class="vl-cena">${cena}</div><h2>${h.t}</h2><div class="vl-sub">diário de ${HEROIS[perfil].nome}</div>
+    <div class="vl-letter"><span class="seal">${ICON.letter}</span><p>${esc(txt)}</p><div class="sig">— ${HEROIS[perfil].nome}</div></div>
+    ${h.id==='chuva'?'<p class="vl-small">a cafeteria e o cinema agora podem ser construídos na vila!</p>':''}${h.id==='pedido'?'<p class="vl-small">o balão dos viajantes agora pode ser construído!</p>':''}
+    <button class="vl-btn rose" onclick="vlPainel('rainha','cap')">voltar aos capítulos</button>`,'carta');
   atualizarDots(); if(nova) montarMundo();
 };
+window.vlTrocarPerfil=function(){ pararCatLoop(); perfil=null; LS.set('vilaPerfil',null); abrirCozy(); };
+function escolherPerfil(){
+  modal(`<h2>quem está jogando?</h2><p class="vl-small" style="font-size:14px">cada um tem a sua própria vila. a história junta vocês dois no caminho.</p>
+   <div class="vl-escolha">
+     <button onclick="vlEscolher('g')">${retrato('g',false,92)}<b>Gabrix</b><small>Gabriel</small></button>
+     <button onclick="vlEscolher('n')">${retrato('n',false,92)}<b>Natalix</b><small>Natália</small></button>
+   </div>`);
+}
+window.vlEscolher=function(p){ perfil=p; LS.set('vilaPerfil',p); conectarPerfil(); fecharModal(); abrirCozy(); };
+
 function painelGatos(){
   const tabs=`<div class="vl-tabs"><button class="${abaGatos==='album'?'on':''}" onclick="vlPainel('gatos','album')">álbum</button><button class="${abaGatos==='adotar'?'on':''}" onclick="vlPainel('gatos','adotar')">abrigo</button></div>`;
   let corpo='';
@@ -1241,6 +1588,17 @@ function atualizarDots(){
   $('vl-dot-rainha').classList.toggle('on',!!pode);
 }
 
+/* --- mural de postais da praça --- */
+function sheetMural(){
+  const g=perfil==='g';
+  abrirSheet(`<h2>mural de postais</h2><div class="vl-sub">os viajantes deixam recados aqui</div>
+    <div class="vl-postais" style="grid-template-columns:1fr">
+      <div>${postalSVG(POSTAIS.find(p=>p.id==='rio'),true)}<b>lembrança do Rio das Estrelas</b><small>assinado: uma boina</small></div>
+    </div>
+    <div class="vl-letter" style="margin-top:12px"><p>${vila.cap.includes(2)?(g?'"essas ondas aí são do tamanho da minha vontade de ir embora... ou do meu cabelo de manhã" — escrito numa letra toda torta\n\n"hahahaha besta" — respondeu a boina':'"essas ondas aí são do tamanho da minha vontade de ir embora... ou do meu cabelo de manhã" — escrito numa letra toda torta\n\n"hahahaha besta" — você respondeu'):'tem um postal novo aqui... quem será que desenhou?'}</p></div>
+    <button class="vl-btn rose" onclick="vlPainel('rainha','cap')">abrir a história</button>`,'mural');
+}
+
 /* --- visitantes --- */
 function agendarVisitante(){ clearTimeout(visitT); visitT=setTimeout(spawnVisitante,(30+Math.random()*45)*1000); }
 function spawnVisitante(){
@@ -1274,7 +1632,7 @@ window.vlColetar=function(x){
   if(x===2){ if(vila.coracoes<3) return; vila.coracoes-=3; }
   const g=_off*x; vila.moedas+=g; vila.stats.ganhos+=g; _off=0; csDirty=true; escrever(); csDirty=false;
   fecharModal(); atualizarHud(); Som.chime();
-  if(!vila.cartas.includes(0)) setTimeout(()=>abrirCarta(0),500);
+  if(!vila.cap.includes(0)) setTimeout(()=>abrirCarta(0),500);
 };
 
 /* ------------------------------------------------------------------

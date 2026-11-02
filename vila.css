@@ -168,3 +168,19 @@
 
 @media (min-width:700px){ .vl-sheet{border-left:2px solid var(--line-dark);border-right:2px solid var(--line-dark);} }
 @media (prefers-reduced-motion: reduce){ .tree .sway,.cat .bodyg,.cat .tail{animation:none !important;} }
+
+/* história, postais e escolha de jogador */
+.vl-herois{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.vl-herois svg{flex-shrink:0;}
+.vl-cena{display:flex;justify-content:center;align-items:flex-end;gap:2px;margin:0 auto 4px;background:radial-gradient(ellipse at 50% 80%,#e9f3d2 0,rgba(233,243,210,0) 70%);}
+.vl-postais{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.vl-postais div{background:var(--paper-hi);border:2px solid var(--line);border-radius:14px;padding:6px 6px 8px;text-align:center;}
+.vl-postais svg{width:100%;height:auto;display:block;border-radius:6px;}
+.vl-postais b{display:block;font-family:var(--font-title);font-size:14px;margin-top:4px;}
+.vl-postais small{font-size:11.5px;font-weight:800;color:var(--ink-soft);}
+.vl-postais div.lock{opacity:.6;}
+.vl-escolha{display:flex;gap:10px;margin-top:10px;}
+.vl-escolha button{flex:1;background:var(--paper-hi);border:2px solid var(--line);border-radius:18px;padding:8px 4px 10px;cursor:pointer;box-shadow:0 4px 0 var(--line-dark);font:inherit;color:var(--ink);display:flex;flex-direction:column;align-items:center;}
+.vl-escolha button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line-dark);}
+.vl-escolha b{font-family:var(--font-title);font-size:18px;}
+.vl-escolha small{font-size:12px;font-weight:800;color:var(--ink-soft);}
